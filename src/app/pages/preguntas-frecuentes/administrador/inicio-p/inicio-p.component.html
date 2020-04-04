@@ -1,0 +1,94 @@
+<app-cabecero-administrador></app-cabecero-administrador>
+<header id="main-header" class="py-2 bg-info text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1>
+           Preguntas Frecuentes
+        </h1>
+        <div class="form-group">
+        <input type="text" class="form-control" name="filterPregunta" placeholder="Buscar pregunta por nombre...." [(ngModel)]="filterPregunta">
+      </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<br><br>
+
+<section id="preguntas">
+  <div class="container"align="center">
+    <div class="row">
+      <div class="col-md-7">
+        <div class="card">
+          <div class="card-header">
+            <h4>Listado de Preguntas Frecuentes</h4>
+          </div>
+          <div class="table-responsive ">
+          <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+              <tr>
+                <th>editar</th>
+                <th>eliminar</th>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let pregunta of preguntas |filtern:filterPregunta| paginate:{itemsPerPage :5 , currentPage:PageActual} ; let i = index ">
+                 <td>
+                  <a routerLink="/editarpf/{{pregunta.id}}" align="center" style="width:100px; "class="btn btn-secondary">Editar
+                 </a>
+
+                </td>
+                 <td>  <!--<a   (click)="eliminar(usuario.Id)"  class="btn btn-success btn-block" >  eliminar</a>-->
+                   <form (submit)="eliminar(pregunta.id)">
+                   <button type="submit"  class="btn btn-danger btn-block">Eliminar
+          </button>
+           </form>
+         </td>
+                <td>{{i+1}}</td>
+                <td>{{pregunta.nombre}} </td>
+                <td>{{pregunta.descripcion }}</td>
+               
+              </tr>
+            </tbody>
+          </table>
+          <pagination-controls (pageChange)="PageActual = $event"></pagination-controls>
+        </div>
+        </div>
+      </div>
+    <div class="col-md-3">
+        <div class="card text-center bg-white text-white mb-3">
+          <div class="card-body">
+      
+            <img src="assets/imagenes/pregunta.jpg" class="card-img-top" width="150" height="150" >
+      <div class="container">
+        <div align="center">
+  <a class="btn btn-primary" href="/agregarpf" role="button">Nueva pregunta</a>
+</div>
+  </div>
+
+
+          </div>
+        </div>
+
+        <div class="card text-center bg-white text-black mb-3">
+          <div class="card-body">
+            <h3>Total de preguntas</h3>
+            <h4 class="display-4">
+              <!--<i class="fas fa-users"></i> {{clientes?.length}}-->
+          {{preguntas?.length}}
+          
+            </h4>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<br><br>

@@ -1,0 +1,171 @@
+
+
+<header id="main-header" class="py-2 bg-info text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1>
+           Editar evento
+        </h1>
+      </div>
+    </div>
+  </div>
+</header>
+<form #eventoForm="ngForm" (ngSubmit)="guardar(eventoForm)"> 
+
+
+  <section id="actions" class="py-4 mb-4 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <a routerLink="/inicioeventos" class="btn btn-dark text-white btn-block">
+             Regresar al Inicio
+          </a>
+        </div>
+        <div class="col-md-3">
+          <button type="submit" class="btn btn-success btn-block">
+             Guardar cambios
+          </button>
+        </div>
+       <!-- <div class="col-md-3">
+          <a href="/inicioeventos"   (click)="eliminar()" class="btn btn-danger btn-block">
+             Eliminar 
+          </a>
+        </div>-->
+      </div>
+    </div>
+  </section>
+
+  <section id="details">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div class="card">
+            <div class="card-header">
+              <h4>Editar </h4>
+            </div>
+            <div class="card-body">
+             <div class="form-group">
+                <label for="nombre"> Ingrese el Nombre del evento</label>
+                <input type="text" name="nombre" class="form-control" #nombre="ngModel" [(ngModel)]="evento.Nombre"
+                  [ngClass]="{'is-invalid': nombre.errors && nombre.touched}" required minlength="2">
+                <div [hidden]="!nombre.errors?.required" class="invalid-feedback">
+                  Nombre requerido
+                </div>
+                <div [hidden]="!nombre.errors?.minlength" class="invalid-feedback">
+                  Debe contener al menos 2 caracteres
+                </div>
+              </div>
+
+            <!--  <div class="form-group">
+                <label for="  FechaPublicacion">Fecha de publicacion</label>
+                <input type="date" name="FechaPublicacion" class="form-control" #FechaPublicacion="ngModel" [(ngModel)]="evento.FechaPublicacion"
+                  [ngClass]="{'is-invalid': FechaPublicacion.errors && FechaPublicacion.touched}" required minlength="2">
+                <div [hidden]="!FechaPublicacion.errors?.required" class="invalid-feedback">
+                  Fecha publicacion requerida
+                </div>
+                <div [hidden]="!FechaPublicacion.errors?.minlength" class="invalid-feedback">
+                  Debe contener al menos 2 caracteres
+                </div>
+              </div>-->
+
+            
+              <div class="form-group">
+                
+                <label style="color:#FF0000"> esta es la fecha actual del evento {{evento.Fecha}}</label>
+                <label>para modificarla seleccione la nueva fecha aqui</label>
+                 <input type="date" name="Fecha" class="form-control" #Fecha="ngModel" [(ngModel)]="evento.Fecha">
+           
+                <input type="hidden" name="Fecha" class="form-control" #Fecha="ngModel" [(ngModel)]="evento.Fecha"
+                  >
+                
+               
+              </div>
+
+
+
+              <div class="form-group">
+                <label for="  Descripcion">Descripcion</label>
+                <input type="text" name="Descripcion" class="form-control" #Descripcion="ngModel" [(ngModel)]="evento.Descripcion"
+                  [ngClass]="{'is-invalid': Descripcion.errors && Descripcion.touched}" required minlength="10">
+                <div [hidden]="!Descripcion.errors?.required" class="invalid-feedback">
+                  Decripcion requerida
+                </div>
+                <div [hidden]="!Descripcion.errors?.minlength" class="invalid-feedback">
+                  Debe contener al menos 10 caracteres
+                </div>
+              </div>
+
+
+
+              <div class="form-group">
+                <label for="  Calificacion">Calificacion</label>
+                <input type="number" name="Calificacion" class="form-control" #Calificacion="ngModel" [(ngModel)]="evento.Calificacion"
+                  [ngClass]="{'is-invalid': Calificacion.errors && Calificacion.touched}" >
+                <div [hidden]="!Calificacion.errors?.required" class="invalid-feedback">
+                  Calificacion requerida
+                </div>
+               
+              </div>
+
+              
+
+              <div class="form-group">
+               <div>
+                <div><label>Imagen Actual del evento</label></div>
+               <div align="center">
+                  <img class="pick-avatar" class="card-img-top" class="img-fluid" alt="Responsive image"width="700" height="400"
+                 src={{kk}}
+                       >    
+               </div>
+                 </div>      
+                <br><br>
+                <label for="ImagenesUrl"> Si desea cambiar la imagen actual del evento</label>
+
+
+
+                <input type="file" (change)="onFileSelected($event)">
+         <input type="hidden" name="ImagenesUrl" class="form-control" #ImagenesUrl="ngModel" [(ngModel)]="evento.ImagenesUrl"
+                >
+              
+              
+               
+              </div>
+
+
+           
+     <div class="form-group">
+                <!--<label for="ComentariosId">ComentariosId</label>-->
+                <input type="hidden" name="ComentariosId" class="form-control" #ComentariosId="ngModel" [(ngModel)]="evento.ComentariosId"
+                  [ngClass]="{'is-invalid':ComentariosId.errors && ComentariosId.touched}" >
+                <!--<div [hidden]="!ComentariosId.errors?.required" class="invalid-feedback">
+                  ComentariosId requerida
+                </div>-->
+                
+              </div>
+
+
+              <div class="form-group">
+                <!--<label for="ListaComentariosEvento">ListaComentariosEvento</label>-->
+                <input type="hidden" name="ListaComentariosEvento" class="form-control" #ListaComentariosEvento="ngModel" [(ngModel)]="evento.ListaComentariosEvento"
+                  [ngClass]="{'is-invalid': ListaComentariosEvento.errors && ListaComentariosEvento.touched}" required minlength="2">
+               <!-- <div [hidden]="!ListaComentariosEvento.errors?.required" class="invalid-feedback">
+                 ListaComentariosEvento requerida
+                </div>
+                <div [hidden]="!ListaComentariosEvento.errors?.minlength" class="invalid-feedback">
+                  Debe contener al menos 2 caracteres
+                </div>-->
+              </div>
+             
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</form>
+
+
+  
