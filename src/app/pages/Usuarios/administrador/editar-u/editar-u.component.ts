@@ -47,7 +47,8 @@ usuarios: Usuarios[];
     if(this.usuario.Nombre=='' || this.usuario.Apellido=='' 
       ||this.usuario.TipoDocumento=='' || this.usuario.NumeroDocumento==''
       ||this.usuario.LugarExpedicion=='' || this.usuario.CorreoElectronico==''
-      ||this.usuario.Clave==''){
+      ||this.usuario.Clave=='' ||this.usuario.RolId==''||this.usuario.VerificacionCuenta==''
+      ||this.usuario.EstadoCuenta==''){
       console.log(this.usuario.Nombre);
             Swal.fire(
   'Por favor llene todos los campos!',
@@ -62,13 +63,7 @@ usuarios: Usuarios[];
   'error'
 )
     }
-    else if(this.usuario.RolId=='0'){
-                  Swal.fire(
-  'Por favor llene todos los campos!',
-  'Usuario no  Agregado!',
-  'error'
-) 
-    }
+
     else{
  
         Swal.fire({

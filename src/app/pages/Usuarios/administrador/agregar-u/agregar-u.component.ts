@@ -41,7 +41,8 @@ usuarios: Usuarios[];
    if(this.usuario.Nombre=='' || this.usuario.Apellido=='' 
       ||this.usuario.TipoDocumento=='' || this.usuario.NumeroDocumento==''
       ||this.usuario.LugarExpedicion=='' || this.usuario.CorreoElectronico==''
-      ||this.usuario.Clave==''
+      ||this.usuario.Clave=='' ||this.usuario.RolId==''||this.usuario.VerificacionCuenta==''
+      ||this.usuario.EstadoCuenta==''
       ){
       console.log(this.usuario.Nombre);
             Swal.fire(
@@ -50,13 +51,7 @@ usuarios: Usuarios[];
   'error'
 )
     }
-    else if(this.usuario.RolId=='0'){
-                  Swal.fire(
-  'Por favor llene todos los campos!',
-  'Usuario no  Agregado!',
-  'error'
-) 
-    }
+  
     else if(this.usuario.Icono_url==''){
                     Swal.fire(
   'Por favor seleccione un icono para el usuario!',
@@ -68,11 +63,24 @@ usuarios: Usuarios[];
  
       console.log(value);
       this.servi.insertar(value);
-      this.usuarioForm.reset();
+      this.refrescar();
+    //  this.usuarioForm.reset();
     }
 
   }
+refrescar(){
+  this.usuario.Nombre="";
+   this.usuario.Apellido="";
+    this.usuario.TipoDocumento="";
+     this.usuario.NumeroDocumento="";
+      this.usuario.LugarExpedicion="";
+       this.usuario.CorreoElectronico="";
+        this.usuario.Icono_url="";
+         this.usuario.VerificacionCuenta="";
+          this.usuario.EstadoCuenta="";
+          this.usuario.RolId="";
 
+}
   ngOnInit(): void {
 
   }
