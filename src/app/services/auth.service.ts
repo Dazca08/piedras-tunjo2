@@ -41,7 +41,7 @@ export class AuthService {
                       if (res['ok'] === true) {
                         if (res['userLogin'].RolId === 1) {
                           localStorage.setItem('usuario', JSON.stringify(res['userLogin']));
-                          this.router.navigateByUrl('/inicioadministrador');
+                          this.router.navigateByUrl('/home');
                           Swal.close();
                         } else {
                           this.mostrarAlert('Error', 'No eres un usuario administrador', 'warning');
@@ -55,19 +55,17 @@ export class AuthService {
   getUsuario() {
     setTimeout(() => {
       this.usuario = JSON.parse(localStorage.getItem('usuario')) || undefined;
-    }, 2000);
+    }, 500);
     return this.usuario;
   }
 
-  isAuthenticate() {
-    setTimeout(() => {
-      return this.getUsuario() !== undefined; // si es diferente de undefined es porque esta autenticado
-    });
+  isAuthenticate(): boolean {
+    return this.getUsuario() !== undefined; // si es diferente de undefined es porque esta autenticado
   }
 
   logout() {
     localStorage.removeItem('usuario');
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/home');
   }
 
   mostrarAlert(title: any, text: any, icon: any) {

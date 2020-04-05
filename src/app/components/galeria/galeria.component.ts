@@ -7,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GaleriaComponent implements OnInit {
 
+  images = [
+    'galeria2.jpeg',
+    'galeria3.jpeg',
+    'galeria4.jpeg',
+  ];
+
   constructor() { }
 
   ngOnInit(): void {

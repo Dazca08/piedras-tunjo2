@@ -1,0 +1,2 @@
+<app-tablero *ngIf="!authService.isAuthenticate()"></app-tablero>
+<app-inicio-administrador *ngIf="authService.isAuthenticate()"></app-inicio-administrador>

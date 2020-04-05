@@ -1,50 +1,100 @@
-<div class="row-inner row-level-1"><div class="row clearfix">
-  <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
-    <div class="col-inner texto-home" style=" padding:50px">
-      <div class="widget-html"><div class="pts-widget" id="wid-key_1564087875859">
-        <div class="widget-html block block-borderbox"><div class="widget-inner block_content">
-          <h2 style="text-align: center;"><span style="color: #2445a2;">{{titulo}}</span>
-          </h2><p style="text-align: justify; margin-top: 20px; padding: 10px 30px 0px 30px;"><span>
-<div class="col-lg-6 col-md-4 col-sm-6 col-xs-12" style=" padding:50px">
-	<h2 style="text-align: center;"><span style="color: #2445a2;">Noticias</span></h2>
-<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner" >
-    <div class="carousel-item active">
- <img src="http://piedrasdeltunjo.tk//images/getImage?tipo=info&nombre=galeria1.jpeg" class="d-block w-100" alt="First slide" >
-    
-        
-      <div class="carousel-caption d-none d-md-block" >
-        <h5>Noticia 1</h5>
-        <p>descripcion noticia 1.</p>
+<div class="row justify-content-center">
+  <!-- Descripcion Parque -->
+  <div class="col-md-6 col-sm-12" *ngIf="descripcion">
+    <h4>Descripción Parque</h4>
+    <p>
+      {{ descripcion['descripcion'] }}
+    </p>
+  </div>
+  <div class="col-md-6 col-sm-12">
+    <div id="carouselDescripcion" class="carousel slide w-100" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item" [ngClass]="{ 'active': i === 0 }" 
+              *ngFor="let img of descripcion.listaImagenesUrl; let i = index;">
+          <img [src]="img | imgServer: 'info'" class="img-responsive" [alt]="img">
+        </div>
       </div>
-    </div>
-    <div class="carousel-item">
-      <img src="http://piedrasdeltunjo.tk//images/getImage?tipo=info&nombre=galeria5.jpeg" class="d-block w-100" alt="Second slide">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Noticia 2</h5>
-        <p>descripcion noticia 2</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="http://piedrasdeltunjo.tk//images/getImage?tipo=info&nombre=galeria6.jpeg" class="d-block w-100" alt="Third slide">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Noticia 3</h5>
-        <p>descripcion noticia 3</p>
-      </div>
+      <a class="carousel-control-prev" href="#carouselDescripcion" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselDescripcion" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
     </div>
   </div>
-  <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
 </div>
-	</div>
+<hr>
+<div class="row justify-content-center" *ngIf="reseniaHistorica">
+    <!-- Reseña Histórica Parque -->
+    <div class="col-md-6 col-sm-12">
+      <div id="carouselReseniaHist" class="carousel slide w-100" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item" [ngClass]="{ 'active': i === 0 }" 
+                *ngFor="let img of reseniaHistorica.listaImagenesUrl; let i = index;">
+            <img [src]="img | imgServer: 'info'" class="img-responsive" [alt]="img">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselReseniaHist" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselReseniaHist" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-12" *ngIf="descripcion">
+      <h4>Reseña Histórica</h4>
+      <p>
+        {{ reseniaHistorica['descripcion'] }}
+      </p>
+    </div>
+</div>
+<hr>
+<div class="row justify-content-center">
+  <div class="col-md-6 col-sm-12">
+    <h4 class="d-block text-center">Noticias</h4>
+    <hr>
+    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" >
+        <div class="carousel-item active">
+          <img [src]="'galeria1.jpeg' | imgServer: 'info'" alt="Third slide" >
+          <div class="carousel-caption d-none d-md-block" >
+            <h5>Noticia 1</h5>
+            <p>descripcion noticia 1.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img [src]="'galeria5.jpeg' | imgServer: 'info'" alt="Second slide" >
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Noticia 2</h5>
+            <p>descripcion noticia 2</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img [src]="'galeria6.jpeg' | imgServer: 'info'" alt="First slide" >
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Noticia 3</h5>
+            <p>descripcion noticia 3</p>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+</div>

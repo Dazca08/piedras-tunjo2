@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { TableroComponent } from './pages/tablero/tablero.component';
 
 const routes: Routes = [
   {

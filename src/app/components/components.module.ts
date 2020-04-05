@@ -5,21 +5,19 @@ import { CommonModule } from '@angular/common';
 import { PipesModule } from '../pipes/pipes.module';
 
 // Components
-import { CabeceroAdministradorComponent } from './cabecero-administrador/cabecero-administrador.component';
-import { CabeceroComponent } from './cabecero/cabecero.component';
 import { PiePaginaComponent } from './pie-pagina/pie-pagina.component';
 import { GaleriaComponent } from './galeria/galeria.component';
 import { SeccionInformativaComponent } from './seccion-informativa/seccion-informativa.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
-    CabeceroAdministradorComponent,
-    CabeceroComponent,
     PiePaginaComponent,
     GaleriaComponent,
-    SeccionInformativaComponent
+    SeccionInformativaComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,
@@ -29,11 +27,10 @@ import { RouterModule } from '@angular/router';
     PipesModule
   ],
   exports: [
-    CabeceroAdministradorComponent,
-    CabeceroComponent,
     PiePaginaComponent,
     GaleriaComponent,
-    SeccionInformativaComponent
+    SeccionInformativaComponent,
+    HeaderComponent
   ]
 })
 export class ComponentsModule { }

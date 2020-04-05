@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { ComponentsModule } from '../components/components.module';
 // PipesModule
 import { PipesModule } from '../pipes/pipes.module';
+// RoutingModule
+import { PagesRoutingModule } from './pages-routing.module';
 
 // Pages
 import { LoginComponent } from './login/login.component';
@@ -37,7 +39,7 @@ import { CalendarModule } from '@syncfusion/ej2-angular-calendars';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ImageUploadModule } from 'angular2-image-upload';
-import { PagesRoutingModule } from './pages-routing.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -65,46 +67,20 @@ import { PagesRoutingModule } from './pages-routing.module';
     AvatarSelectorComponent,
     VerSubscripcionesComponent,
     EditarSubscripcionesComponent,
-    InsertSubscripcionesComponent
+    InsertSubscripcionesComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     PagesRoutingModule,
     ComponentsModule,
     PipesModule,
     CalendarModule,
-    ReactiveFormsModule,
     HttpClientModule,
     NgxPaginationModule,
     ImageUploadModule
-  ],
-  exports: [
-    LoginComponent,
-    TableroComponent,
-    ConfiguracionComponent,
-    ContactanosComponent,
-    EventosComponent,
-    InicioAdministradorComponent,
-    ModuloQrComponent,
-    PreguntasFrecuentesComponent,
-    InicioAComponent,
-    AgregarComponent,
-    EditarComponent,
-    PictogramasComponent,
-    InicioPComponent,
-    AgregarPComponent,
-    EditarPComponent,
-    IniciocComponent,
-    EditarcComponent,
-    AgregarcComponent,
-    InicioUComponent,
-    EditarUComponent,
-    AgregarUComponent,
-    AvatarSelectorComponent,
-    VerSubscripcionesComponent,
-    EditarSubscripcionesComponent,
-    InsertSubscripcionesComponent,
   ]
 })
 export class PagesModule { }

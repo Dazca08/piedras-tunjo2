@@ -25,36 +25,42 @@ import { VerSubscripcionesComponent } from './subscripciones/ver-subscripciones/
 import { InsertSubscripcionesComponent } from './subscripciones/insert-subscripciones/insert-subscripciones.component';
 import { EditarSubscripcionesComponent } from './subscripciones/editar-subscripciones/editar-subscripciones.component';
 import { PuntosInteresComponent } from './puntos-interes/puntos-interes.component';
+import { HomeComponent } from './home/home.component';
+import { AuthGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
-  {path: '', component: TableroComponent},
+  {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'configuracion', component: ConfiguracionComponent},
   {path: 'contactanos', component: ContactanosComponent},
-  {path: 'inicioadministrador', component: InicioAdministradorComponent},
-  {path: 'moduloQr', component: ModuloQrComponent},
-  {path: 'preguntasfrecuentes', component: PreguntasFrecuentesComponent},
-  {path: 'inicioeventos', component: InicioAComponent},
-  {path: 'agregarevento', component: AgregarComponent},
-  {path: 'editarevento/:id', component: EditarComponent},
-  {path: 'inicioaPf', component: InicioPComponent},
-  {path: 'agregarpf', component: AgregarPComponent},
-  {path: 'editarpf/:id', component: EditarPComponent},
-  {path: 'pictogramas', component: PictogramasComponent},
-  {path: 'inicioc', component: IniciocComponent},
-  {path: 'agregarc', component: AgregarcComponent},
-  {path: 'editarc/:id', component: EditarcComponent},
-  {path: 'iniciou', component: InicioUComponent},
-  {path: 'agregaru', component: AgregarUComponent},
-  {path: 'editaru/:id', component: EditarUComponent},
-  {path: 'ver_subs', component: VerSubscripcionesComponent},
-  {path: 'insert_subs', component: InsertSubscripcionesComponent},
-  {path: 'editar_subs/:id', component: EditarSubscripcionesComponent},
-  { path: 'puntos-interes', component: PuntosInteresComponent },
-
+  {
+    path: '',
+    canActivate: [ AuthGuard ],
+    children: [
+      {path: 'configuracion', component: ConfiguracionComponent},
+      {path: 'moduloQr', component: ModuloQrComponent},
+      {path: 'preguntasfrecuentes', component: PreguntasFrecuentesComponent},
+      {path: 'inicioeventos', component: InicioAComponent},
+      {path: 'agregarevento', component: AgregarComponent},
+      {path: 'editarevento/:id', component: EditarComponent},
+      {path: 'inicioaPf', component: InicioPComponent},
+      {path: 'agregarpf', component: AgregarPComponent},
+      {path: 'editarpf/:id', component: EditarPComponent},
+      {path: 'pictogramas', component: PictogramasComponent},
+      {path: 'inicioc', component: IniciocComponent},
+      {path: 'agregarc', component: AgregarcComponent},
+      {path: 'editarc/:id', component: EditarcComponent},
+      {path: 'iniciou', component: InicioUComponent},
+      {path: 'agregaru', component: AgregarUComponent},
+      {path: 'editaru/:id', component: EditarUComponent},
+      {path: 'ver_subs', component: VerSubscripcionesComponent},
+      {path: 'insert_subs', component: InsertSubscripcionesComponent},
+      {path: 'editar_subs/:id', component: EditarSubscripcionesComponent},
+      { path: 'puntos-interes', component: PuntosInteresComponent },
+    ]
+  },
   // Estas dos rutas DEBEN ser las últimas del array de rutas
-  {path: '', pathMatch: 'full', redirectTo: ''},
-  {path: '**', pathMatch: 'full', redirectTo: ''}
+  {path: '', pathMatch: 'full', redirectTo: 'home'},
+  {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];
 
 @NgModule({

@@ -8,29 +8,18 @@ import { ServicioInfoService } from './servicio-info.service';
 })
 export class SeccionInformativaComponent implements OnInit {
 
-  constructor(private servicioinfoservice:ServicioInfoService) {  this.ObtenerInformacion}
-  Informacion:any;
-  descripcion:any;
-  titulo:any;
- 
-  ObtenerInformacion(){
- this.servicioinfoservice.ObtenerJson().subscribe(resultado =>{
-   this.Informacion=resultado;
-   this.descripcion=this.Informacion.descripcion;
-   this.titulo=this.Informacion.property;
-  
- 
-   console.log("Informacion ya tiene resultado");
-      
- },
- error=>{
-console.log(JSON.stringify(error));
+  descripcion: any;
+  reseniaHistorica: any;
 
- }); 
-   }
-  ngOnInit(): void {
-  	this.ObtenerInformacion();
+  constructor(
+    private infoService: ServicioInfoService
+  ) {}
 
-
-}
+  ngOnInit() {
+    this.infoService.getInformacion()
+                    .subscribe((res: any[]) => {
+                      this.descripcion = res.find(x => x.id === 2);
+                      this.reseniaHistorica = res.find(x => x.id === 4);
+                    });
+  }
 }
