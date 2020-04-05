@@ -18,7 +18,7 @@ eventos: Evento[];
      Fecha: '',
     Descripcion: '',
      Calificacion: '',
-    ImagenesUrl: this.k,
+    ImagenesUrl:'',
      ComentariosId: '',
     ListaComentariosEvento: '',
     
@@ -35,7 +35,7 @@ eventos: Evento[];
 agregar({value, valid}: {value: Evento, valid: boolean}){
  console.log(this.evento.ImagenesUrl)
 console.log(this.selectedfile)
-this.evento.ImagenesUrl=this.selectedfile.name.toString();
+
  console.log(this.evento.ImagenesUrl)
  if(this.evento.Fecha ==""){
    console.log('error');
@@ -74,12 +74,15 @@ this.evento.ImagenesUrl=this.selectedfile.name.toString();
  else{
 this.servi.insertar(value)
 this.cargandoImagen();
+this.selectedfile=null;
+this.refrescar();
+
                    Swal.fire(
   'Evento agregado con exito!',
   'Evento Agregado!',
   'success'
 )
-    this.eventoForm.reset();
+    //this.eventoForm.reset();
 
 }
  
@@ -90,10 +93,19 @@ selectedfile:File=null;
 onFileSelected(evento){
   console.log(this.k)
 this.selectedfile=<File>evento.target.files[0];
-this.k=this.selectedfile.name.toString();
+this.evento.ImagenesUrl=this.selectedfile.name.toString();
 console.log("new k "+this.k)
 }
-
+refrescar(){
+ this.evento.Nombre="";
+this.evento.FechaPublicacion= Date.now().toString();
+this.evento.Fecha="";
+this.evento.Descripcion="";
+this.evento.Calificacion="";
+this.evento.ImagenesUrl="";
+this.evento.ComentariosId="";
+this.evento.ListaComentariosEvento="";
+}
 
    public cargandoImagen(){
     
