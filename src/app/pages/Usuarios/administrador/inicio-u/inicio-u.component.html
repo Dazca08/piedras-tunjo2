@@ -69,7 +69,7 @@
 
 		 				 <tr *ngFor="let usuario of usuarios  |filter:filterPost | paginate:{itemsPerPage :5 , currentPage:PageActual}  ; index as i" >
 		 				 	 	 <td>
-                  <a routerLink="/editaru/{{usuario.Id}}" class="btn btn-secondary">
+                  <a routerLink="/admin/editaru/{{usuario.Id}}" class="btn btn-secondary">
                    Editar
                   </a>
                 </td>
@@ -116,7 +116,7 @@
             <img src="assets/imagenes/u2.jpg" class="card-img-top" width="150" height="150" >
       <div class="container">
         <div align="center">
-	<a class="btn btn-primary" href="/agregaru" role="button">Nuevo Usuario</a>
+	<a class="btn btn-primary" href="/admin/agregaru" role="button">Nuevo Usuario</a>
 </div>
   </div>
 
