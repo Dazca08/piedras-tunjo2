@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Usuario } from '../interfaces/usuario.interface';
 import { environment } from '../../environments/environment';
@@ -15,11 +15,13 @@ const apiUrl = environment.apiUrl;
 export class AuthService {
 
   private usuario: Usuario;
+  auth$ = new EventEmitter<boolean>();
 
   constructor(
     private http: HttpClient,
     private router: Router
-  ) { }
+  ) {
+  }
 
   login(correo: string, clave: string) {
     const body = {
@@ -41,7 +43,8 @@ export class AuthService {
                       if (res['ok'] === true) {
                         if (res['userLogin'].RolId === 1) {
                           localStorage.setItem('usuario', JSON.stringify(res['userLogin']));
-                          this.router.navigateByUrl('/home');
+                          this.auth$.emit(true);
+                          this.router.navigateByUrl('/admin');
                           Swal.close();
                         } else {
                           this.mostrarAlert('Error', 'No eres un usuario administrador', 'warning');
@@ -53,19 +56,18 @@ export class AuthService {
   }
 
   getUsuario() {
-    setTimeout(() => {
-      this.usuario = JSON.parse(localStorage.getItem('usuario')) || undefined;
-    }, 500);
+    this.usuario = JSON.parse(localStorage.getItem('usuario')) || null;
     return this.usuario;
   }
 
   isAuthenticate(): boolean {
-    return this.getUsuario() !== undefined; // si es diferente de undefined es porque esta autenticado
+    return this.getUsuario() !== null;
   }
 
   logout() {
     localStorage.removeItem('usuario');
-    this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('/inicio');
+    this.auth$.emit(false);
   }
 
   mostrarAlert(title: any, text: any, icon: any) {

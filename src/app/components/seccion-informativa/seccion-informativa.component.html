@@ -1,6 +1,6 @@
-<div class="row justify-content-center">
+<div class="row justify-content-center" *ngIf="descripcion">
   <!-- Descripcion Parque -->
-  <div class="col-md-6 col-sm-12" *ngIf="descripcion">
+  <div class="col-md-6 col-sm-12">
     <h4>Descripción Parque</h4>
     <p>
       {{ descripcion['descripcion'] }}
@@ -46,7 +46,7 @@
         </a>
       </div>
     </div>
-    <div class="col-md-6 col-sm-12" *ngIf="descripcion">
+    <div class="col-md-6 col-sm-12">
       <h4>Reseña Histórica</h4>
       <p>
         {{ reseniaHistorica['descripcion'] }}

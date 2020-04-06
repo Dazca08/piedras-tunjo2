@@ -9,12 +9,10 @@ import { PipesModule } from '../pipes/pipes.module';
 import { PagesRoutingModule } from './pages-routing.module';
 
 // Pages
-import { LoginComponent } from './login/login.component';
-import { TableroComponent } from './tablero/tablero.component';
+import { TableroComponent } from './/tablero/tablero.component';
 import { ConfiguracionComponent } from './configuracion/configuracion.component';
 import { ContactanosComponent } from './contactanos/contactanos.component';
 import { EventosComponent } from '../components/seccion-eventos/seccion-eventos.component';
-import { InicioAdministradorComponent } from './inicio-administrador/inicio-administrador.component';
 import { ModuloQrComponent } from './modulo-qr/modulo-qr.component';
 import { PreguntasFrecuentesComponent } from './preguntas-frecuentes/preguntas-frecuentes.component';
 import { InicioAComponent } from './eventos/inicio-a/inicio-a.component';
@@ -40,15 +38,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ImageUploadModule } from 'angular2-image-upload';
 import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
-    LoginComponent,
     TableroComponent,
+    LoginComponent,
     ConfiguracionComponent,
     ContactanosComponent,
     EventosComponent,
-    InicioAdministradorComponent,
     ModuloQrComponent,
     PreguntasFrecuentesComponent,
     InicioAComponent,

@@ -10,13 +10,12 @@ export class HeaderComponent implements OnInit {
 
   // las rutas para usuarios no autetincados
   anonymousRoutes = [
-    { label: 'Inicio', path: '/' },
     { label: 'Contactanos', path: '/contactanos' }
   ];
 
   // rutas para cuando el usuario se haya autenticado
   routes = [
-    { label: 'Inicio', path: '/inicioadministrador' },
+    { label: 'Inicio Admin', path: '/'  },
     { label: 'Usuarios', path: '/iniciou' },
     { label: 'Subscripciones', path: '/ver_subs' },
     { label: 'Pictogramas', path: '/pictogramas' },
@@ -33,5 +32,4 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

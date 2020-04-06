@@ -9,7 +9,7 @@ import { AuthService } from '../../services/auth.service';
 export class HomeComponent implements OnInit {
 
   constructor(
-    public authService: AuthService
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {

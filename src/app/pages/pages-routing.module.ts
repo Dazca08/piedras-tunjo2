@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-import {TableroComponent} from './tablero/tablero.component';
-import {LoginComponent} from './login/login.component';
+import { TableroComponent } from './tablero/tablero.component';
+import { LoginComponent } from './login/login.component';
 import {ConfiguracionComponent} from './configuracion/configuracion.component';
 import {ContactanosComponent} from './contactanos/contactanos.component';
 import { ModuloQrComponent } from './modulo-qr/modulo-qr.component';
 import { PreguntasFrecuentesComponent } from './preguntas-frecuentes/preguntas-frecuentes.component';
-import {InicioAdministradorComponent} from './inicio-administrador/inicio-administrador.component';
 import { InicioAComponent } from './eventos/inicio-a/inicio-a.component';
 import { AgregarComponent } from './eventos/agregar/agregar.component';
 import { EditarComponent } from './eventos/editar/editar.component';
@@ -29,13 +27,14 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
-  {path: 'home', component: HomeComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'contactanos', component: ContactanosComponent},
+  { path: 'inicio', component: TableroComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'contactanos', component: ContactanosComponent },
   {
-    path: '',
+    path: 'admin',
     canActivate: [ AuthGuard ],
     children: [
+      {path: '', component: HomeComponent},
       {path: 'configuracion', component: ConfiguracionComponent},
       {path: 'moduloQr', component: ModuloQrComponent},
       {path: 'preguntasfrecuentes', component: PreguntasFrecuentesComponent},
@@ -55,12 +54,11 @@ const routes: Routes = [
       {path: 'ver_subs', component: VerSubscripcionesComponent},
       {path: 'insert_subs', component: InsertSubscripcionesComponent},
       {path: 'editar_subs/:id', component: EditarSubscripcionesComponent},
-      { path: 'puntos-interes', component: PuntosInteresComponent },
+      { path: 'puntos-interes', component: PuntosInteresComponent }
     ]
   },
-  // Estas dos rutas DEBEN ser las últimas del array de rutas
-  {path: '', pathMatch: 'full', redirectTo: 'home'},
-  {path: '**', pathMatch: 'full', redirectTo: 'home'}
+  { path: '', pathMatch: 'full', redirectTo: '/inicio' },
+  { path: '**', pathMatch: 'full', redirectTo: '/inicio' }
 ];
 
 @NgModule({
