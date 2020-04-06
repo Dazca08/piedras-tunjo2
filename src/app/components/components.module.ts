@@ -10,14 +10,16 @@ import { GaleriaComponent } from './galeria/galeria.component';
 import { SeccionInformativaComponent } from './seccion-informativa/seccion-informativa.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { HeaderComponent } from './header/header.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     PiePaginaComponent,
     GaleriaComponent,
     SeccionInformativaComponent,
-    HeaderComponent
+    NavbarComponent,
+    SidebarComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { HeaderComponent } from './header/header.component';
     PiePaginaComponent,
     GaleriaComponent,
     SeccionInformativaComponent,
-    HeaderComponent
+    NavbarComponent,
+    SidebarComponent
   ]
 })
 export class ComponentsModule { }

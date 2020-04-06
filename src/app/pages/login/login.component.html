@@ -1,13 +1,13 @@
 <div class="row mt-5 justify-content-center">
-  <div class="col-md-4 col-sm-8">
-    <div class="card">
+  <div class="col-md-6 col-sm-10">
+    <div @loginAnimate class="card bg-dark text-white shadow">
       <div class="card-header">
-        <b class="text-muted">INICIAR SESIÓN</b>
+        <b class="d-block text-center">INICIAR SESIÓN</b>
       </div>
       <div class="card-body">
         <form [formGroup]="formLogin" (ngSubmit)="login()">
           <div class="form-group">
-            <b class="text-muted">Correo Electrónico</b>
+            <b>Correo Electrónico</b>
             <input type="text" [ngClass]="getValidationClass('correo')" formControlName="correo" class="form-control">
             <div class="valid-feedback">Ok!</div>
             <div class="invalid-feedback">
@@ -17,7 +17,7 @@
             </div>
           </div>
           <div class="form-group">
-            <b class="text-muted">Contraseña</b>
+            <b>Contraseña</b>
             <input type="password" [ngClass]="getValidationClass('clave')" formControlName="clave" class="form-control">
             <div class="valid-feedback">Ok!</div>
             <div class="invalid-feedback">
@@ -29,7 +29,7 @@
           </div>
 
           <div class="form-group text-center">
-            <button [disabled]="formLogin.invalid" type="submit" class="btn btn-outline-success">INGRESAR</button>
+            <button [disabled]="formLogin.invalid" type="submit" class="btn btn-outline-light">INGRESAR</button>
           </div>
         </form>
       </div>
