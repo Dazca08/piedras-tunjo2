@@ -1,7 +1,7 @@
 
 
 export interface Subscripciones{
-    id?:any;
+    id_subscripcion?:string;
     subscripcion?:string;
     contenidoSubscripcion?:string;
     valorSubscripcion?:any;

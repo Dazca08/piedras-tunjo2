@@ -15,7 +15,7 @@
         <div class="container">
           <div class="row">
             <div class="col-md-3">
-              <a routerLink="/ver_subscripciones" class="btn btn-light btn-block">
+              <a routerLink="/admin/ver_subs" class="btn btn-light btn-block">
                  Regresar al Inicio
               </a>
             </div>
@@ -82,7 +82,7 @@
                         <label for="valorSubscripcion">Valor:</label>
                         <input 
                             type="text" 
-                            name="precio" 
+                            name="valorSubscripcion" 
                             class="form-control"
                             #valorSubscripcion="ngModel" 
                             [(ngModel)]="editarsub.valorSubscripcion"

@@ -20,7 +20,7 @@ export class InsertSubscripcionesComponent implements OnInit {
 
     inssub: Subscripciones[];
     insertarsub: Subscripciones ={                  
-          id: '',
+          id_subscripcion: '',
           subscripcion: '',
           contenidoSubscripcion: '',
           valorSubscripcion: '',

@@ -13,9 +13,9 @@ const httpOptions =
 })
 export class ServicioSubService {
 
-  private Url: string = 'http://piedrasdeltunjo.tk/Subscripcion/';
+  //private Url: string = 'http://piedrasdeltunjo.tk/Subscripcion/';
 
-  //private Url: string = "http://localhost:61629/Subscripcion/";
+  private Url: string = "http://localhost:61629/Subscripcion/";
   
 
   
@@ -32,46 +32,24 @@ export class ServicioSubService {
     });
   }
 
-
-
-/*
-
-  private extractData(res: Response) {
-
-    let body = JSON.parse('' + res);
-
-    return body || {};
-  }
-
-  private handleError<T>(operation = 'operation', result?: T) {
-
-    return (error: any): Observable<T> => {
-
-      console.log(`${operation} failed: ${error.message}`);
-      return of(result as T)
-    };
-  }
-
-  async RegistroSubscripcion(jsonRegistroSub): Promise<any> {
-
-    //console.log(TipoDoc, this.Url+"/tipdoc")
-
+  async Eliminar(id_subscripcion): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.post(`${this.Url}Registro` , jsonRegistroSub, httpOptions).toPromise()
+      this.http.get(`${this.Url}Remover_Subscripciones?id_subscripcion=${id_subscripcion}`).toPromise()
+      console.log("subscripcion eliminada");      
     });
   }
 
-*/
 
 getu(id):Observable<any>{
-  return this.http.get(this.Url + "Subscripcion/Buscar_Subscripciones/" + id, httpOptions)
+  return this.http.get(this.Url + id, httpOptions)
   
   }
   async update(cadena,id): Promise<any> {
 
     return new Promise((resolve, reject) => {
-      this.http.put(this.Url+"Subscripcion/Actualizar_Subscripciones/"+id, cadena, httpOptions).toPromise()
+      this.http.put(this.Url+id, cadena, httpOptions).toPromise()
     });
   }
   
 }
+
