@@ -13,9 +13,9 @@ const httpOptions =
 })
 export class ServicioSubService {
 
-  //private Url: string = 'http://piedrasdeltunjo.tk/Subscripcion/';
+  private Url: string = 'http://piedrasdeltunjo.tk/Subscripcion/';
 
-  private Url: string = "http://localhost:61629/Subscripcion/";
+  //private Url: string = "http://localhost:61629/Subscripcion/";
   
 
   
