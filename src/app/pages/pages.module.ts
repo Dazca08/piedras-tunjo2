@@ -39,6 +39,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ImageUploadModule } from 'angular2-image-upload';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+//calendar
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { LoginComponent } from './login/login.component';
     CalendarModule,
     HttpClientModule,
     NgxPaginationModule,
-    ImageUploadModule
+    ImageUploadModule,
+    
   ]
 })
 export class PagesModule { }
