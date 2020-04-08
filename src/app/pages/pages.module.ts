@@ -18,7 +18,6 @@ import { PreguntasFrecuentesComponent } from './preguntas-frecuentes/preguntas-f
 import { InicioAComponent } from './eventos/inicio-a/inicio-a.component';
 import { AgregarComponent } from './eventos/agregar/agregar.component';
 import { EditarComponent } from './eventos/editar/editar.component';
-import { PictogramasComponent } from './pictogramas/pictogramas.component';
 import { InicioPComponent } from './preguntas-frecuentes/administrador/inicio-p/inicio-p.component';
 import { AgregarPComponent } from './preguntas-frecuentes/administrador/agregar-p/agregar-p.component';
 import { EditarPComponent } from './preguntas-frecuentes/administrador/editar-p/editar-p.component';
@@ -39,6 +38,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ImageUploadModule } from 'angular2-image-upload';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { VerPictogramaComponent } from './pictogramas/ver-pictograma/ver-pictograma.component';
+import { EditarPicComponent } from './pictogramas/editar-pic/editar-pic.component';
+import { AgregarPicComponent } from './pictogramas/agregar-pic/agregar-pic.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,6 @@ import { LoginComponent } from './login/login.component';
     InicioAComponent,
     AgregarComponent,
     EditarComponent,
-    PictogramasComponent,
     InicioPComponent,
     AgregarPComponent,
     EditarPComponent,
@@ -66,6 +67,9 @@ import { LoginComponent } from './login/login.component';
     VerSubscripcionesComponent,
     EditarSubscripcionesComponent,
     InsertSubscripcionesComponent,
+    VerPictogramaComponent,
+    EditarPicComponent,  
+    AgregarPicComponent,
     HomeComponent
   ],
   imports: [
