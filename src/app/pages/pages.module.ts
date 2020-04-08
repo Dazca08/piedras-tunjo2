@@ -38,6 +38,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ImageUploadModule } from 'angular2-image-upload';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { VerNoticiasComponent } from './noticias/ver-noticias/ver-noticias.component';
+import { InsertNoticiasComponent } from './noticias/insert-noticias/insert-noticias.component';
 
 //calendar
 
@@ -74,7 +76,9 @@ import { AgregarPicComponent } from './pictogramas/agregar-pic/agregar-pic.compo
     VerPictogramaComponent,
     EditarPicComponent,  
     AgregarPicComponent,
-    HomeComponent
+    HomeComponent,
+    VerNoticiasComponent,
+    InsertNoticiasComponent,
   ],
   imports: [
     CommonModule,

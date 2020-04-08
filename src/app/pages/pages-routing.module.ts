@@ -27,6 +27,8 @@ import { AuthGuard } from '../guards/auth.guard';
 import { VerPictogramaComponent } from './pictogramas/ver-pictograma/ver-pictograma.component';
 import { AgregarPicComponent } from './pictogramas/agregar-pic/agregar-pic.component';
 import { EditarPicComponent } from './pictogramas/editar-pic/editar-pic.component';
+import { VerNoticiasComponent } from './noticias/ver-noticias/ver-noticias.component';
+import { InsertNoticiasComponent } from './noticias/insert-noticias/insert-noticias.component';
 
 const routes: Routes = [
   { path: 'inicio', component: TableroComponent },
@@ -58,7 +60,9 @@ const routes: Routes = [
       {path: 'puntos-interes', component: PuntosInteresComponent},
       {path: 'pictogramas', component: VerPictogramaComponent},
       {path: 'insertpic', component: AgregarPicComponent},
-      {path: 'editarpic/:id', component: EditarPicComponent}
+      {path: 'editarpic/:id', component: EditarPicComponent},
+      {path: 'ver_noticias', component: VerNoticiasComponent},
+      {path: 'insert_noticias', component: InsertNoticiasComponent}
     ]
   },
   { path: '', pathMatch: 'full', redirectTo: '/inicio' },

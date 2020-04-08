@@ -23,7 +23,8 @@ export class SidebarComponent implements OnInit {
     { label: 'Eventos', path: '/inicioeventos', icon: 'republican' },
     { label: 'Preguntas Frecuentes', path: '/inicioaPf', icon: 'question' },
     { label: 'Cabañas', path: '/inicioc', icon: 'home' },
-    { label: 'Puntos de Interés', path: '/puntos-interes', icon: 'map-marker-alt' }
+    { label: 'Puntos de Interés', path: '/puntos-interes', icon: 'map-marker-alt' },
+    { label: 'Noticias', path: '/ver_noticias', icon: 'newspaper'}
   ];
 
   constructor(
