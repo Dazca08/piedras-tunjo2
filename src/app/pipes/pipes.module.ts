@@ -6,6 +6,8 @@ import { FilternPipe } from './filtern.pipe';
 import { FiltroNPipe } from './filtro-n.pipe';
 import { FiltroCorreoPipe } from './filtro-correo.pipe';
 import { ImgServerPipe } from './img-server.pipe';
+import { FiltropicPipe } from './filtropic.pipe';
+
 
 @NgModule({
   declarations: [
@@ -15,6 +17,7 @@ import { ImgServerPipe } from './img-server.pipe';
     FiltroNPipe,
     FiltroCorreoPipe,
     ImgServerPipe,
+    FiltropicPipe
   ],
   imports: [
     CommonModule
@@ -25,7 +28,9 @@ import { ImgServerPipe } from './img-server.pipe';
     FilternPipe,
     FiltroNPipe,
     FiltroCorreoPipe,
-    ImgServerPipe
+    ImgServerPipe,
+    FiltropicPipe
+    
   ]
 })
 export class PipesModule { }

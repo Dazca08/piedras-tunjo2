@@ -3,7 +3,9 @@ import { ServicioSubService } from '../servicio-sub.service';
 import { FormBuilder } from '@angular/forms';
 
 import { Subscripciones } from '../subscripcion.model';
-import { ActivatedRoute} from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
+
 
 
 @Component({
@@ -14,13 +16,15 @@ import { ActivatedRoute} from '@angular/router';
 export class EditarSubscripcionesComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
-    private servi:  ServicioSubService,
-    private route: ActivatedRoute) { }
+    private servi:  ServicioSubService ,
+    private Router: Router,
+    private route: ActivatedRoute,
+    private router: Router) { }
    
     id:string;
     editsub: Subscripciones[];
     editarsub: Subscripciones ={                  
-    id: '',
+    id_subscripcion: '',
     subscripcion: '',
     contenidoSubscripcion: '',
     valorSubscripcion: '',
@@ -35,67 +39,56 @@ export class EditarSubscripcionesComponent implements OnInit {
 
   });
 }
+/*
   guardar({value, valid}: {value:Subscripciones, valid: boolean}){
    
-    value.id = this.id;
+    value.id_subscripcion = this.id;
     this.servi.update(value,this.id);  
     this.servi.ObtenerJson();
     //this.route.navigate(['/']);
   
 }
-  
-/*
+  */
 
-  guardar({value, valid}: {value:Usuarios, valid: boolean}){
+
+  guardar({value, valid}: {value:Subscripciones, valid: boolean}){
    
-    if(this.usuario.Nombre=='' || this.usuario.Apellido=='' 
-      ||this.usuario.TipoDocumento=='' || this.usuario.NumeroDocumento==''
-      ||this.usuario.LugarExpedicion=='' || this.usuario.CorreoElectronico==''
-      ||this.usuario.Clave==''){
-      console.log(this.usuario.Nombre);
-            Swal.fire(
+    if(this.editarsub.subscripcion=='' || this.editarsub.contenidoSubscripcion=='' 
+      ||this.editarsub.valorSubscripcion=='' || this.editarsub.imagen_Subscripcion==''){
+      console.log(this.editarsub.subscripcion);
+      Swal.fire(
       'Por favor llene todos los campos!',
       'Usuario no  Editado!',
       'error'
-    )
-    }
-    else if(this.usuario.Icono_url==''){
-                    Swal.fire(
-  'Por favor seleccione un icono para el usuario!',
-  'Usuario no  Editado!',
-  'error'
-)
-    }
-    else if(this.usuario.RolId=='0'){
-                  Swal.fire(
-  'Por favor llene todos los campos!',
-  'Usuario no  Agregado!',
-  'error'
-) 
-    }
+      )
+    }         
     else{
  
-        Swal.fire({
-  title: 'Esta seguro?',
-  text: "Desea guardar los cambios?",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Si, guardar!'
+      Swal.fire({
+      title: 'Esta seguro?',
+      text: "Desea guardar los cambios?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, guardar!'
 }).then((result) => {
   if (result.value) {
     Swal.fire(
 
       'Guardado!',
-      'El usuario ha sido Actualizado ',
+      'La subscripcion ha sido Actualizada ',
       'success'
      
     )
-       value.Id = this.id;
+       value.id_subscripcion = this.id;
+       
       
-   this.servi.update(value,this.id);
+    this.servi.update(value,this.id);
+    this.router.navigateByUrl("/admin/ver_subs");
+    
   }
+
 })
        
      
@@ -109,7 +102,7 @@ export class EditarSubscripcionesComponent implements OnInit {
 
 
 
-*/
+
 
 
 

@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import * as jwt_decode from 'jwt-decode';
 
 const apiUrl = environment.apiUrl;
 
@@ -41,8 +42,13 @@ export class AuthService {
                     )
                     .subscribe(res => {
                       if (res['ok'] === true) {
-                        if (res['userLogin'].RolId === 1) {
-                          localStorage.setItem('usuario', JSON.stringify(res['userLogin']));
+                        // decode
+                        const decode = jwt_decode(res['token']);
+                        const user = JSON.parse(decode['usuario']);
+
+                        if (user['RolId'] === 1) {
+                          localStorage.setItem('token', res['token']);
+                          localStorage.setItem('usuario', decode['usuario']);
                           this.auth$.emit(true);
                           this.router.navigateByUrl('/admin');
                           Swal.close();

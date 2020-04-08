@@ -12,7 +12,6 @@ import { EditarComponent } from './eventos/editar/editar.component';
 import { InicioPComponent } from './preguntas-frecuentes/administrador/inicio-p/inicio-p.component';
 import { AgregarPComponent } from './preguntas-frecuentes/administrador/agregar-p/agregar-p.component';
 import { EditarPComponent } from './preguntas-frecuentes/administrador/editar-p/editar-p.component';
-import { PictogramasComponent } from './pictogramas/pictogramas.component';
 import { IniciocComponent } from './cabana/administrador/inicioc/inicioc.component';
 import { EditarcComponent } from './cabana/administrador/editarc/editarc.component';
 import { AgregarcComponent } from './cabana/administrador/agregarc/agregarc.component';
@@ -25,6 +24,9 @@ import { EditarSubscripcionesComponent } from './subscripciones/editar-subscripc
 import { PuntosInteresComponent } from './puntos-interes/puntos-interes.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from '../guards/auth.guard';
+import { VerPictogramaComponent } from './pictogramas/ver-pictograma/ver-pictograma.component';
+import { AgregarPicComponent } from './pictogramas/agregar-pic/agregar-pic.component';
+import { EditarPicComponent } from './pictogramas/editar-pic/editar-pic.component';
 
 const routes: Routes = [
   { path: 'inicio', component: TableroComponent },
@@ -44,7 +46,6 @@ const routes: Routes = [
       {path: 'inicioaPf', component: InicioPComponent},
       {path: 'agregarpf', component: AgregarPComponent},
       {path: 'editarpf/:id', component: EditarPComponent},
-      {path: 'pictogramas', component: PictogramasComponent},
       {path: 'inicioc', component: IniciocComponent},
       {path: 'agregarc', component: AgregarcComponent},
       {path: 'editarc/:id', component: EditarcComponent},
@@ -54,7 +55,10 @@ const routes: Routes = [
       {path: 'ver_subs', component: VerSubscripcionesComponent},
       {path: 'insert_subs', component: InsertSubscripcionesComponent},
       {path: 'editar_subs/:id', component: EditarSubscripcionesComponent},
-      { path: 'puntos-interes', component: PuntosInteresComponent }
+      {path: 'puntos-interes', component: PuntosInteresComponent},
+      {path: 'pictogramas', component: VerPictogramaComponent},
+      {path: 'insertpic', component: AgregarPicComponent},
+      {path: 'editarpic/:id', component: EditarPicComponent}
     ]
   },
   { path: '', pathMatch: 'full', redirectTo: '/inicio' },
