@@ -1,0 +1,125 @@
+<!-- 
+	AUTOR: Mary Alejandra Zapata Tellez
+	COMPONENTE: HTML para  agregar Pictograma
+  FECHA: 24/03/2020
+  <META http-equiv=refresh content=2>
+-->
+
+<!--
+	<app-cabecero-administrador></app-cabecero-administrador>-->
+
+<header><h1 class="titulo">Agregar Pictograma</h1>
+  
+
+    <section id="actions" class="py-4 mb-4 bg-light">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-3">
+              <a routerLink="/iniciopic" class="btn btn-light btn-block">
+                 Regresar al Inicio
+              </a>
+            </div>
+            
+          </div>
+        </div>
+      </section>
+</header>
+
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 style="text-align: center;">Agregar Pictogramas</h4>
+                            
+
+                            <form #insertarpicForm ="ngForm" (ngSubmit)="agregar(insertarpicForm)"  >
+                                
+                                <div class="modal-body">
+                                    <div class="form-group">
+
+                                        <label for="nombre">Nombre</label>
+                                        <input type="text" name="nombre" class="form-control" #nombre="ngModel" [(ngModel)]="insertarpic.nombre"
+                                        [ngClass]="{'is-invalid': nombre.errors && nombre.touched}" required minlength="2">
+                                        <div [hidden]="!nombre.errors?.required" class="invalid-feedback">
+                                        Nombre requerido
+                                        </div>
+                                        <div [hidden]="!nombre.errors?.minlength" class="invalid-feedback">
+                                        Debe contener al menos 2 caracteres
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label for="descripcion">descripcion</label>
+                                        <input type="text" name="descripcion" class="form-control" #descripcion="ngModel" [(ngModel)]="insertarpic.descripcion"
+                                        [ngClass]="{'is-invalid': descripcion.errors && descripcion.touched}" required minlength="2">
+                                        <div [hidden]="!descripcion.errors?.required" class="invalid-feedback">
+                                        descripcion requerido
+                                        </div>
+                                        <div [hidden]="!descripcion.errors?.minlength" class="invalid-feedback">
+                                        Debe contener al menos 2 caracteres
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="imagenes_url">ImagenesUrl</label>
+                                        <input type="text" name="imagenes_url" class="form-control" #imagenes_url="ngModel" [(ngModel)]="insertarpic.imagenes_url"
+                                          [ngClass]="{'is-invalid': imagenes_url.errors && imagenes_url.touched}" required minlength="2">
+                                        <div [hidden]="!imagenes_url.errors?.required" class="invalid-feedback">
+                                          ImagenesUrl requerida
+                                        </div>
+                                        <div [hidden]="!imagenes_url.errors?.minlength" class="invalid-feedback">
+                                          Debe contener al menos 2 caracteres
+                                        </div>
+                                      </div>
+
+                                      <div class="form-group">
+
+                                        <label for="id_parque">id_parque</label>
+                                        <input type="text" name="id_parque" class="form-control" #id_parque="ngModel" [(ngModel)]="insertarpic.id_parque"
+                                        [ngClass]="{'is-invalid': id_parque.errors && id_parque.touched}" required minlength="1">
+                                        <div [hidden]="!id_parque.errors?.required" class="invalid-feedback">
+                                        id parque requerido
+                                        </div>
+                                        <div [hidden]="!id_parque.errors?.minlength" class="invalid-feedback">
+                                        Debe contener al menos 1 caracter
+                                        </div>
+
+                                    </div>
+                                    
+
+                                </div>
+                            <!--    <li>
+                                    <div><label >Nombre Pictograma:</label></div>
+                                    <input type="text" formControlName="textn" class="col-md-10 mx-auto" >
+                                    <br><br>
+                                    <div><label >Descripción:</label></div>
+                                    <input type="text" formControlName="textd" class="col-md-10 mx-auto" >
+                                    <br><br>
+                                    <div><label >Imagen:</label></div>
+                                    <input type="text" formControlName="textd" class="col-md-10 mx-auto" >
+                                    <br><br>
+                                    <div><label >Numero parque:</label></div>
+                                    <input type="text" formControlName="textnp" class="col-md-10 mx-auto" >
+                                    <br><br>
+                                    
+                                </li>
+                                -->
+                                <div class="modal-footer">
+                                    <a href="/iniciopic"><button type="submit"  class="btn btn-primary"  >Agregar</button></a>
+                                  
+                                  </div>
+                            </form>
+
+                        </div>
+                    </div> 
+                </div>
+            </div>  
+        </div>
+    </div>
+
+
+
+

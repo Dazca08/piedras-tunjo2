@@ -46,7 +46,7 @@
 		 			<tbody>
 		 				 <tr *ngFor="let evento of eventos |filtroN:filterEvento | paginate:{itemsPerPage :5 , currentPage:PageActual}; let i =index">
 		 				 	 	 <td>
-                  <a routerLink="/editarevento/{{evento.Id}}" class="btn btn-secondary">
+                  <a routerLink="/admin/editarevento/{{evento.Id}}" class="btn btn-secondary">
                    Editar
                   </a>
                 </td>
@@ -85,7 +85,7 @@
             <img src="assets/imagenes/4.jpg" class="card-img-top" width="150" height="150" >
       <div class="container">
         <div align="center">
-	<a class="btn btn-primary" href="/agregarevento" role="button">Nuevo Evento</a>
+	<a class="btn btn-primary" href="/admin/agregarevento" role="button">Nuevo Evento</a>
 </div>
   </div>
 

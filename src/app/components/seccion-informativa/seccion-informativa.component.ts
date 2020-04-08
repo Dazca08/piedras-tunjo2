@@ -10,6 +10,7 @@ export class SeccionInformativaComponent implements OnInit {
 
   descripcion: any;
   reseniaHistorica: any;
+  horario: any;
 
   constructor(
     private infoService: ServicioInfoService
@@ -20,6 +21,7 @@ export class SeccionInformativaComponent implements OnInit {
                     .subscribe((res: any[]) => {
                       this.descripcion = res.find(x => x.id === 2);
                       this.reseniaHistorica = res.find(x => x.id === 4);
+                      this.horario = res.find(x => x.id === 7);
                     });
   }
 }

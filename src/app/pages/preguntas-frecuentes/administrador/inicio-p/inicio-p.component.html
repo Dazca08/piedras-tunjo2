@@ -39,7 +39,7 @@
             <tbody>
               <tr *ngFor="let pregunta of preguntas |filtern:filterPregunta| paginate:{itemsPerPage :5 , currentPage:PageActual} ; let i = index ">
                  <td>
-                  <a routerLink="/editarpf/{{pregunta.id}}" align="center" style="width:100px; "class="btn btn-secondary">Editar
+                  <a routerLink="/admin/editarpf/{{pregunta.id}}" align="center" style="width:100px; "class="btn btn-secondary">Editar
                  </a>
 
                 </td>
@@ -67,7 +67,7 @@
             <img src="assets/imagenes/pregunta.jpg" class="card-img-top" width="150" height="150" >
       <div class="container">
         <div align="center">
-  <a class="btn btn-primary" href="/agregarpf" role="button">Nueva pregunta</a>
+  <a class="btn btn-primary" href="/admin/agregarpf" role="button">Nueva pregunta</a>
 </div>
   </div>
 
