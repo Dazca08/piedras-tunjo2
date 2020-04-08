@@ -38,13 +38,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ImageUploadModule } from 'angular2-image-upload';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-<<<<<<< HEAD
+
 //calendar
-=======
+
 import { VerPictogramaComponent } from './pictogramas/ver-pictograma/ver-pictograma.component';
 import { EditarPicComponent } from './pictogramas/editar-pic/editar-pic.component';
 import { AgregarPicComponent } from './pictogramas/agregar-pic/agregar-pic.component';
->>>>>>> ee09f73f3970b9ea005035c67a267e1c7b7d25a6
+
 
 @NgModule({
   declarations: [
