@@ -38,9 +38,18 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ImageUploadModule } from 'angular2-image-upload';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { VerNoticiasComponent } from './noticias/ver-noticias/ver-noticias.component';
+import { InsertNoticiasComponent } from './noticias/insert-noticias/insert-noticias.component';
+
+//calendar
+
 import { VerPictogramaComponent } from './pictogramas/ver-pictograma/ver-pictograma.component';
 import { EditarPicComponent } from './pictogramas/editar-pic/editar-pic.component';
 import { AgregarPicComponent } from './pictogramas/agregar-pic/agregar-pic.component';
+import { IniciopromComponent } from './promociones/inicioprom/inicioprom.component';
+import { AgregarpromComponent } from './promociones/agregarprom/agregarprom.component';
+import { EditarpromComponent } from './promociones/editarprom/editarprom.component';
+
 
 @NgModule({
   declarations: [
@@ -70,7 +79,12 @@ import { AgregarPicComponent } from './pictogramas/agregar-pic/agregar-pic.compo
     VerPictogramaComponent,
     EditarPicComponent,  
     AgregarPicComponent,
-    HomeComponent
+    HomeComponent,
+    VerNoticiasComponent,
+    InsertNoticiasComponent,
+    IniciopromComponent,
+    AgregarpromComponent,
+    EditarpromComponent
   ],
   imports: [
     CommonModule,
@@ -82,7 +96,8 @@ import { AgregarPicComponent } from './pictogramas/agregar-pic/agregar-pic.compo
     CalendarModule,
     HttpClientModule,
     NgxPaginationModule,
-    ImageUploadModule
+    ImageUploadModule,
+    
   ]
 })
 export class PagesModule { }

@@ -1,0 +1,93 @@
+
+<header id="main-header" class="py-2 bg-info text-white">
+	<META http-equiv=refresh content=10>
+
+	<div class="container">
+	  <div class="row">
+		<div class="col-md-6">
+		  <h1>
+			 Inicio Promociones
+		  </h1>
+		  <div class="form-group">
+			  <input type="text" class="form-control" name="filtropromPost" placeholder="Buscar...." [(ngModel)]="filtropromPost">  
+			   </div>
+		</div>
+	  </div>
+	</div>
+  </header>
+
+  <div><br><br></div>
+
+  <section id ="Promociones">
+	<div class="container">
+		<div class="row">
+		 <div class="col-md-9">
+		 	<div class="card">
+		 		<h4 text-align =center>LISTADO DE Promociones</h4>
+
+		 	</div>
+		 	<div>
+				<div class="table-responsive ">
+		 		<table class="table  table-bordered table-striped" >
+		 			<thead class="thead-dark">
+		 				<tr>
+								<th>#Id</th>
+								<th>Nombre</th>
+								<th>descripcion</th>
+								<th>Editar</th>
+								<th>Eliminar</th>
+								<th></th>
+		 				</tr>
+		 			</thead>
+		 			<tbody>
+		 				 <tr *ngFor="let prom of promo  |filtroprom:filtropromPost | paginate:{itemsPerPage :5 , currentPage:PageActual}  ; index as i">
+		 				 	<td>{{prom.id}}</td>
+							<td>{{prom.nombre}}</td>                            							 
+							<td>{{prom.descripcion}}</td>
+							<td>{{prom.precio}}</td>
+							<td><div> <a class="letra" routerLink="/admin/editarprom/{{prom.id}}" >Editar</a></div></td>					
+                            <td>
+							<!--"-->
+							<!--(submit)="eliminar(prom.id)"-->	<form (submit)="eliminar(prom.id)" >
+									<button type="submit"  class="btn btn-danger btn-block">
+										Eliminar
+									</button>
+								</form>
+
+							</td>
+                            <td></td>
+		 				 </tr>
+		 			</tbody>
+				 </table>
+				 <pagination-controls (pageChange)="PageActual = $event"></pagination-controls>
+				</div>
+				<br><br><br><br>
+		 	</div>
+		 </div>	
+
+		 <div class="col-md-3">
+			<div class="card text-center bg-white text-white mb-3">
+			  <div class="card-body">
+				<img src="assets/imagenes/newpicto.jpg" class="card-img-top" width="100" height="200" >
+		  <div class="container">
+			<div align="center">
+		<a class="btn btn-primary" href="/admin/insertprom" role="button">Agregar Promoción</a>
+		<!--admin/insertprom-->
+	</div>
+	  </div>
+	
+	
+			  </div>
+			</div>
+		</div>
+
+
+		</div>
+	</div>
+
+</section>
+
+<div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
+
+
+
