@@ -10,10 +10,17 @@ import { AuthService } from '../../services/auth.service';
 export class TableroComponent implements OnInit {
 
   constructor(
+    private authService: AuthService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
+    this.authService.validateToken(false)
+                    .then(ok => {
+                      if (ok === true) {
+                        this.router.navigateByUrl('/admin');
+                      }
+                    });
   }
 
 }

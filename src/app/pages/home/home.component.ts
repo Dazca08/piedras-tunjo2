@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.authService.getUsuario().then(res => console.log(res));
   }
 
 }
