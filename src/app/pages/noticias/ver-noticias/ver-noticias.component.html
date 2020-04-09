@@ -53,14 +53,13 @@
                                     <td>{{not.titulo}}</td>     
                                     <td>{{not.fecha_Publicacion}}</td>     
                                     <td>{{not.imagenesUrl}}</td>     								
-                                    <td><div> <a class="letra" >Editar</a></div></td>	
-                                    <!--routerLink="/admin/editar_noticias/{{not.Id}"-->																	
+                                    <td><div> <a class="letra" routerLink="/admin/edit_noticias/{{not.id}}" >Editar</a></div></td>	
+                                    																
 									<td>  
-										<form>
-											<button type="submit"  class="btn btn-danger btn-block">
+										<form (submit)="eliminar(not.id)">
+											<button type="submit" class="btn btn-danger btn-block">
 												Eliminar
                                             </button>
-                                            <!-- (submit)="eliminar(not.Id)"-->
 										</form>
 									</td>			
                                 </tr>                                

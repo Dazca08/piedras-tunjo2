@@ -40,7 +40,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { VerNoticiasComponent } from './noticias/ver-noticias/ver-noticias.component';
 import { InsertNoticiasComponent } from './noticias/insert-noticias/insert-noticias.component';
-
+import { EditarNoticiasComponent } from './noticias/editar-noticias/editar-noticias.component';
 //calendar
 
 import { VerPictogramaComponent } from './pictogramas/ver-pictograma/ver-pictograma.component';
@@ -82,9 +82,11 @@ import { EditarpromComponent } from './promociones/editarprom/editarprom.compone
     HomeComponent,
     VerNoticiasComponent,
     InsertNoticiasComponent,
+    EditarNoticiasComponent,
     IniciopromComponent,
     AgregarpromComponent,
     EditarpromComponent
+
   ],
   imports: [
     CommonModule,

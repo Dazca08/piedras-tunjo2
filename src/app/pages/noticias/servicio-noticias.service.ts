@@ -14,9 +14,9 @@ const httpOptions =
 })
 export class ServicioNoticiasService {
 
-  //private Url: string = "http://piedrasdeltunjo.tk/Noticias/";
+  private Url: string = "http://piedrasdeltunjo.tk/Noticias/";
 
-  private Url: string = "http://localhost:61629/Noticias/";
+ // private Url: string = "http://localhost:61629/Noticias/";
   private Url2: string = "http://piedrasdeltunjo.tk/";
   
   constructor(private http: HttpClient) { }
@@ -40,7 +40,22 @@ export class ServicioNoticiasService {
     formData.append('imagenPropia', imagenParaSubir, imagenParaSubir.name); 
     return this.http.post(this.Url2 +"images/uploadImage?tipo=noticias", formData);
   }
+  
+  getu(id):Observable<any>{
+    return this.http.get(this.Url + id, httpOptions)
+  }
 
+  async update(cadena,id): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.put(this.Url+id,cadena, httpOptions).toPromise()
+    });
+  }
 
-
+  async Eliminar(id): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(`${this.Url}eliminarNoticia?id=${id}`).toPromise()
+      console.log("Noticia eliminada");      
+    });
+  }
+  
 }
