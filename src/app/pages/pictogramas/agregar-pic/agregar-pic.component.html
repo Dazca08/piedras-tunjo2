@@ -77,7 +77,7 @@
 
                                       <div class="form-group">
 
-                                        <label for="id_parque">id_parque</label>
+                                        <label for="id_parque">Id del parque</label>
                                         <input type="text" name="id_parque" class="form-control" #id_parque="ngModel" [(ngModel)]="insertarpic.id_parque"
                                         [ngClass]="{'is-invalid': id_parque.errors && id_parque.touched}" required minlength="1">
                                         <div [hidden]="!id_parque.errors?.required" class="invalid-feedback">

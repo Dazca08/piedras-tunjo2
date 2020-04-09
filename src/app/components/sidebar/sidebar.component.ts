@@ -19,6 +19,7 @@ export class SidebarComponent implements OnInit {
     { label: 'Usuarios', path: '/iniciou', icon: 'users' },
     { label: 'Subscripciones', path: '/ver_subs', icon: 'award' },
     { label: 'Pictogramas', path: '/pictogramas', icon: 'skull' },
+     { label: 'Promociones', path: '/promociones', icon:  'bullhorn'},
     { label: 'QR', path: '/moduloQr', icon: 'qrcode' },
     { label: 'Eventos', path: '/inicioeventos', icon: 'republican' },
     { label: 'Preguntas Frecuentes', path: '/inicioaPf', icon: 'question' },

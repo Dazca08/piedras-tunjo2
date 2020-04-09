@@ -14,7 +14,7 @@ const httpOptions =
 })
 export class ServiciopicService {
 
-  private Url: string = "http://localhost:61629/Pictograma/";
+  private Url: string = "http://piedrasdeltunjo.tk/Pictograma/";
 
 
   constructor(private http: HttpClient) { }

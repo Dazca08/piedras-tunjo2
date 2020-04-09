@@ -29,6 +29,9 @@ import { AgregarPicComponent } from './pictogramas/agregar-pic/agregar-pic.compo
 import { EditarPicComponent } from './pictogramas/editar-pic/editar-pic.component';
 import { VerNoticiasComponent } from './noticias/ver-noticias/ver-noticias.component';
 import { InsertNoticiasComponent } from './noticias/insert-noticias/insert-noticias.component';
+import { IniciopromComponent } from './promociones/inicioprom/inicioprom.component';
+import { AgregarpromComponent } from './promociones/agregarprom/agregarprom.component';
+import { EditarpromComponent } from './promociones/editarprom/editarprom.component';
 
 const routes: Routes = [
   { path: 'inicio', component: TableroComponent },
@@ -62,7 +65,10 @@ const routes: Routes = [
       {path: 'insertpic', component: AgregarPicComponent},
       {path: 'editarpic/:id', component: EditarPicComponent},
       {path: 'ver_noticias', component: VerNoticiasComponent},
-      {path: 'insert_noticias', component: InsertNoticiasComponent}
+      {path: 'insert_noticias', component: InsertNoticiasComponent},
+      {path: 'promociones', component: IniciopromComponent},
+      {path: 'insertprom', component: AgregarpromComponent},
+      {path: 'editarprom/:id', component: EditarpromComponent},
     ]
   },
   { path: '', pathMatch: 'full', redirectTo: '/inicio' },

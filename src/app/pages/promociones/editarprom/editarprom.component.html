@@ -3,19 +3,19 @@
       <div class="row">
         <div class="col-md-6">
           <h1>
-             Editar Pictograma
+             Editar Promocion
           </h1>
         </div>
       </div>
     </div>
   </header>
-
-  <form #editarpicForm="ngForm" (ngSubmit)="guardar(editarpicForm)">
+<!--#editarpromForm="ngForm" (ngSubmit)="guardar(editarpromForm)"-->
+  <form #editarpromForm="ngForm" (ngSubmit)="guardar(editarpromForm)">
     <section id="actions" class="py-4 mb-4 bg-light">
         <div class="container">
           <div class="row">
             <div class="col-md-3">
-              <a routerLink="/admin/pictogramas" class="btn btn-light btn-block">
+              <a routerLink="/admin/promociones" class="btn btn-light btn-block">
                  Regresar al Inicio
               </a>
             </div>
@@ -24,12 +24,7 @@
                  Guardar cambios
               </button>
             </div>
-            
-
-
-              
-
-          </div>
+            </div>
         </div>
       </section>
     
@@ -51,7 +46,7 @@
                             name="nombre" 
                             class="form-control" 
                             #nombre="ngModel" 
-                            [(ngModel)]="editarpic.nombre"
+                            [(ngModel)]="editarprom.nombre"
                             [ngClass]="{'is-invalid': nombre.errors && nombre.touched}" 
                             required minlength="2">
                         <div 
@@ -76,7 +71,7 @@
                             name="descripcion" 
                             class="form-control" 
                             #descripcion="ngModel" 
-                            [(ngModel)]="editarpic.descripcion"
+                            [(ngModel)]="editarprom.descripcion"
                             [ngClass]="{'is-invalid': descripcion.errors && descripcion.touched}">
                         <div 
                             [hidden]="!descripcion.errors?.required" 
@@ -86,40 +81,23 @@
                         </div>
         
                         <div class="form-group">
-                            <label for="imagenes_url">
-                                imagenes_urls
+                            <label for="precio">
+                                Precio
                             </label>
                             <input 
                                 type="text" 
-                                name="imagenes_url" 
+                                name="precio" 
                                 class="form-control" 
-                                #imagenes_url="ngModel" 
-                                [(ngModel)]="editarpic.imagenes_url"
-                                [ngClass]="{'is-invalid': imagenes_url.errors && imagenes_url.touched}">
+                                #precio="ngModel" 
+                                [(ngModel)]="editarprom.precio"
+                                [ngClass]="{'is-invalid': precio.errors && precio.touched}">
                             <div 
-                                [hidden]="!imagenes_url.errors?.required" 
+                                [hidden]="!precio.errors?.required" 
                                 class="invalid-feedback">
-                                imagenes_url requerido
+                                precio requerido
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="id_parque">
-                                id_parque
-                            </label>
-                            <input 
-                                type="text" 
-                                name="id_parque" 
-                                class="form-control" 
-                                #id_parque="ngModel" 
-                                [(ngModel)]="editarpic.id_parque"
-                                [ngClass]="{'is-invalid': id_parque.errors && id_parque.touched}">
-                            <div 
-                                [hidden]="!id_parque.errors?.required" 
-                                class="invalid-feedback">
-                                id_parque requerido
-                            </div>
-                        </div>
-                
+                        
     
   
                 </div>
