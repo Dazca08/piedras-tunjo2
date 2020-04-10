@@ -27,6 +27,12 @@ import { AuthGuard } from '../guards/auth.guard';
 import { VerPictogramaComponent } from './pictogramas/ver-pictograma/ver-pictograma.component';
 import { AgregarPicComponent } from './pictogramas/agregar-pic/agregar-pic.component';
 import { EditarPicComponent } from './pictogramas/editar-pic/editar-pic.component';
+import { VerNoticiasComponent } from './noticias/ver-noticias/ver-noticias.component';
+import { InsertNoticiasComponent } from './noticias/insert-noticias/insert-noticias.component';
+import { IniciopromComponent } from './promociones/inicioprom/inicioprom.component';
+import { AgregarpromComponent } from './promociones/agregarprom/agregarprom.component';
+import { EditarpromComponent } from './promociones/editarprom/editarprom.component';
+import { EditarNoticiasComponent } from './noticias/editar-noticias/editar-noticias.component';
 
 const routes: Routes = [
   { path: 'inicio', component: TableroComponent },
@@ -58,7 +64,13 @@ const routes: Routes = [
       {path: 'puntos-interes', component: PuntosInteresComponent},
       {path: 'pictogramas', component: VerPictogramaComponent},
       {path: 'insertpic', component: AgregarPicComponent},
-      {path: 'editarpic/:id', component: EditarPicComponent}
+      {path: 'editarpic/:id', component: EditarPicComponent},
+      {path: 'ver_noticias', component: VerNoticiasComponent},
+      {path: 'insert_noticias', component: InsertNoticiasComponent},
+      {path: 'edit_noticias/:id', component: EditarNoticiasComponent},
+      {path: 'promociones', component: IniciopromComponent},
+      {path: 'insertprom', component: AgregarpromComponent},
+      {path: 'editarprom/:id', component: EditarpromComponent},
     ]
   },
   { path: '', pathMatch: 'full', redirectTo: '/inicio' },

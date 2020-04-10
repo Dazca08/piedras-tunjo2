@@ -65,13 +65,14 @@ export class EditarPicComponent implements OnInit {
       else{
    
           Swal.fire({
-    title: 'Esta seguro?',
-    text: "Desea guardar los cambios?",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Si, guardar!'
+          title: 'Esta seguro?',
+          text: "Desea guardar los cambios?",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Si, guardar!'
+          
   }).then((result) => {
     if (result.value) {
       Swal.fire(

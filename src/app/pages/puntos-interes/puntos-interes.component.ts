@@ -113,11 +113,11 @@ export class PuntosInteresComponent implements OnInit, AfterViewInit {
             Longitud: lng
           };
           this.puntosService.postPuntosInteres(punto)
-          .subscribe(res => {
-            if (res['ok'] === true) {
-              this.loadPuntosInteres();
-            }
-          });
+                            .subscribe((res: any) => {
+                              if (res['ok'] === true) {
+                                this.loadPuntosInteres();
+                              }
+                            });
         } else {
           // Actualizar punto de interes
           const punto = this.puntosInteres.find(x => x.Longitud === lng && x.Latitud === lat);

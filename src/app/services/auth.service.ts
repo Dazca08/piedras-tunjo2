@@ -1,5 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Usuario } from '../interfaces/usuario.interface';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
@@ -45,10 +45,9 @@ export class AuthService {
                         // decode
                         const decode = jwt_decode(res['token']);
                         const user = JSON.parse(decode['usuario']);
-
+                        // verificar que sea el administrador
                         if (user['RolId'] === 1) {
-                          localStorage.setItem('token', res['token']);
-                          localStorage.setItem('usuario', decode['usuario']);
+                          this.guardarToken(res['token']);
                           this.auth$.emit(true);
                           this.router.navigateByUrl('/admin');
                           Swal.close();
@@ -61,17 +60,52 @@ export class AuthService {
                     });
   }
 
-  getUsuario() {
-    this.usuario = JSON.parse(localStorage.getItem('usuario')) || null;
-    return this.usuario;
+  validateToken(redirect: boolean): Promise<boolean> {
+    const token = localStorage.getItem('token') || undefined;
+    if (!token) {
+      if (redirect) {
+        this.router.navigateByUrl('/login');
+      }
+      return Promise.resolve(false);
+    }
+
+    return new Promise(resolve => {
+      const headers = new HttpHeaders({
+        Authorization: 'Bearer ' + token
+      });
+      this.http.get(`${ apiUrl }/cuenta/userByToken`, { headers })
+                .pipe(
+                  catchError(err => of({ ok: false }))
+                ).subscribe(res => {
+                  if (res['ok'] === true) {
+                    this.usuario = res['usuario'];
+                    resolve(true);
+                  } else {
+                    resolve(false);
+                  }
+                });
+    });
   }
 
-  isAuthenticate(): boolean {
-    return this.getUsuario() !== null;
+  async guardarToken(token: string) {
+    localStorage.clear();
+    localStorage.setItem('token', token);
+    await this.validateToken(false);
+  }
+
+  async getUsuario() {
+    await this.validateToken(false);
+    return { ...this.usuario };
+  }
+
+  isAuthenticate() {
+    // return await this.validateToken(false);
+    return this.usuario?.Id !== undefined;
   }
 
   logout() {
-    localStorage.removeItem('usuario');
+    localStorage.clear();
+    this.usuario = undefined;
     this.router.navigateByUrl('/inicio');
     this.auth$.emit(false);
   }

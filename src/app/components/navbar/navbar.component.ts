@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    $('body').toggleClass('sb-sidenav-toggled');
+    // $('body').toggleClass('sb-sidenav-toggled');
   }
 
   toggleSidebar(e: any) {

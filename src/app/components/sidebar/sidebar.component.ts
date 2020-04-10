@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 
+declare var $: any;
+declare var window: any;
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -19,11 +22,13 @@ export class SidebarComponent implements OnInit {
     { label: 'Usuarios', path: '/iniciou', icon: 'users' },
     { label: 'Subscripciones', path: '/ver_subs', icon: 'award' },
     { label: 'Pictogramas', path: '/pictogramas', icon: 'skull' },
+     { label: 'Promociones', path: '/promociones', icon:  'bullhorn'},
     { label: 'QR', path: '/moduloQr', icon: 'qrcode' },
     { label: 'Eventos', path: '/inicioeventos', icon: 'republican' },
     { label: 'Preguntas Frecuentes', path: '/inicioaPf', icon: 'question' },
     { label: 'Cabañas', path: '/inicioc', icon: 'home' },
-    { label: 'Puntos de Interés', path: '/puntos-interes', icon: 'map-marker-alt' }
+    { label: 'Puntos de Interés', path: '/puntos-interes', icon: 'map-marker-alt' },
+    { label: 'Noticias', path: '/ver_noticias', icon: 'newspaper'}
   ];
 
   constructor(
