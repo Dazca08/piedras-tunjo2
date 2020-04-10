@@ -51,6 +51,7 @@ export class PuntosInteresComponent implements OnInit, AfterViewInit {
       allowOutsideClick: false
     });
     Swal.showLoading();
+    
     // Cargar los puntos de interes
     this.puntosService.getPuntosInteres()
                       .subscribe(puntos => {

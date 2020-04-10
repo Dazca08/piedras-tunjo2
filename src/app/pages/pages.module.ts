@@ -39,12 +39,11 @@ import { ImageUploadModule } from 'angular2-image-upload';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 
-//calendar
+import { MapaComponent } from '../components/mapa/mapa.component';
 
 import { VerPictogramaComponent } from './pictogramas/ver-pictograma/ver-pictograma.component';
 import { EditarPicComponent } from './pictogramas/editar-pic/editar-pic.component';
 import { AgregarPicComponent } from './pictogramas/agregar-pic/agregar-pic.component';
-
 
 @NgModule({
   declarations: [
@@ -74,7 +73,8 @@ import { AgregarPicComponent } from './pictogramas/agregar-pic/agregar-pic.compo
     VerPictogramaComponent,
     EditarPicComponent,  
     AgregarPicComponent,
-    HomeComponent
+    HomeComponent,
+    MapaComponent
   ],
   imports: [
     CommonModule,

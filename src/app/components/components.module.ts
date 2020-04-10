@@ -13,13 +13,15 @@ import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
+
 @NgModule({
   declarations: [
     PiePaginaComponent,
     GaleriaComponent,
     SeccionInformativaComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    
   ],
   imports: [
     CommonModule,
