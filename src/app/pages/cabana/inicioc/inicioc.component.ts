@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule , FormsModule } from '@angular/forms';
 import { Cabana } from '../cabana.model';
-import { ServiciocService  } from '../../servicioc.service';
+import { ServiciocService  } from '../servicioc.service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-inicioc',

@@ -11,9 +11,19 @@ const URL = environment.apiUrl;
 })
 export class PuntosInteresService {
 
+  private token: string;
+
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private storage: Storage
   ) { }
+
+  async buildService() {
+    this.token = await this.storage.get('token') || undefined;
+    if (!this.token) {
+      //
+    }
+  }
 
   getPuntosInteres() {
     return this.http.get<PuntoInteres[]>(`${ URL }/puntos-interes`);
