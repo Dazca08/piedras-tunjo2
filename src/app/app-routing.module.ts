@@ -61,11 +61,6 @@ const routes: Routes = [
     canLoad: [AuthGuard],
     loadChildren: () => import('./pages/promociones/promociones.module').then(mod => mod.PromocionesModule)
   },
-  // {
-  //   path: 'usuarios',
-  //   canLoad: [AuthGuard],
-  //   loadChildren: () => import('./pages/usuarios/usuarios.module').then(mod => mod.UsuariosModule)
-  // },
   {
     path: 'puntos-interes',
     canLoad: [AuthGuard],
@@ -75,6 +70,11 @@ const routes: Routes = [
     path: 'subscripciones',
     canLoad: [AuthGuard],
     loadChildren: () => import('./pages/subscripciones/subscripciones.module').then(mod => mod.SubscripcionesModule)
+  },
+  {
+    path: 'usuarios',
+    canLoad: [AuthGuard],
+    loadChildren: () => import('./pages/usuarios/usuarios.module').then(mod => mod.UsuariosModule)
   },
   { path: '', pathMatch: 'full', redirectTo: 'tablero' },
   { path: '**', pathMatch: 'full', redirectTo: 'tablero' }
