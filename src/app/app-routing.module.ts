@@ -4,6 +4,19 @@ import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
+    path: 'tablero',
+    loadChildren: () => import('./pages/tablero/tablero.module').then(mod => mod.TableroModule)
+  },
+  {
+    path: 'contactanos',
+    loadChildren: () => import('./pages/contactanos/contactanos.module').then(mod => mod.ContactanosModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then(mod => mod.LoginModule)
+  },
+  // Guard auth
+  {
     path: 'home',
     canLoad: [AuthGuard],
     loadChildren: () => import('./pages/home/home.module').then(mod => mod.HomeModule)
@@ -19,17 +32,9 @@ const routes: Routes = [
     loadChildren: () => import('./pages/configuracion/configuracion.module').then(mod => mod.ConfiguracionModule)
   },
   {
-    path: 'contactanos',
-    loadChildren: () => import('./pages/contactanos/contactanos.module').then(mod => mod.ContactanosModule)
-  },
-  {
     path: 'eventos',
     canLoad: [AuthGuard],
     loadChildren: () => import('./pages/eventos/eventos.module').then(mod => mod.EventosModule)
-  },
-  {
-    path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then(mod => mod.LoginModule)
   },
   {
     path: 'modulo-qr',
@@ -56,6 +61,11 @@ const routes: Routes = [
     canLoad: [AuthGuard],
     loadChildren: () => import('./pages/promociones/promociones.module').then(mod => mod.PromocionesModule)
   },
+  // {
+  //   path: 'usuarios',
+  //   canLoad: [AuthGuard],
+  //   loadChildren: () => import('./pages/usuarios/usuarios.module').then(mod => mod.UsuariosModule)
+  // },
   {
     path: 'puntos-interes',
     canLoad: [AuthGuard],
@@ -65,15 +75,6 @@ const routes: Routes = [
     path: 'subscripciones',
     canLoad: [AuthGuard],
     loadChildren: () => import('./pages/subscripciones/subscripciones.module').then(mod => mod.SubscripcionesModule)
-  },
-  {
-    path: 'tablero',
-    loadChildren: () => import('./pages/tablero/tablero.module').then(mod => mod.TableroModule)
-  },
-  {
-    path: 'usuarios',
-    canLoad: [AuthGuard],
-    loadChildren: () => import('./pages/usuarios/usuarios.module').then(mod => mod.UsuariosModule)
   },
   { path: '', pathMatch: 'full', redirectTo: 'tablero' },
   { path: '**', pathMatch: 'full', redirectTo: 'tablero' }
