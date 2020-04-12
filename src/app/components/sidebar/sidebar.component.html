@@ -2,7 +2,7 @@
     <div class="sb-sidenav-menu">
         <div class="nav" *ngIf="authService.isAuthenticate()">
             <div class="text-center sb-sidenav-menu-heading">Piedras del Tunjo</div>
-                <a *ngFor="let ruta of routes" class="nav-link" [routerLink]="'/admin' + ruta.path">
+                <a *ngFor="let ruta of routes" class="nav-link" [routerLink]="ruta.path">
                     <i [class]="'fas fa-' + ruta.icon"></i>
                     &nbsp;&nbsp;
                     {{ ruta.label }}

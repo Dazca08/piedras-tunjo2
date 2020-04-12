@@ -20,8 +20,6 @@ cabanas: Cabana[];
     comentariosId: '',
      token: '',
     listaComentariosCabana: '',
-
-   
   }
   constructor(private formBuilder: FormBuilder,
       private servi:  ServiciocService ,

@@ -45,7 +45,7 @@
 							<td>{{pic.nombre}}</td>                            							 
                             <td>{{pic.descripcion}}</td>
                             <td>{{pic.calificacion}}</td>
-							<td><div> <a class="letra" routerLink="/admin/editarpic/{{pic.id}}" >Editar</a></div></td>					
+							<td><div> <a class="letra" routerLink="editar/{{pic.id}}" >Editar</a></div></td>					
                             <td>
 
 								<form (submit)="eliminar(pic.id)">
@@ -71,7 +71,7 @@
 				<img src="assets/imagenes/newpicto.jpg" class="card-img-top" width="100" height="200" >
 		  <div class="container">
 			<div align="center">
-		<a class="btn btn-primary" href="/admin/insertpic" role="button">Agregar Pictograma</a>
+		<a class="btn btn-primary" routerLink="agregar" role="button">Agregar Pictograma</a>
 	</div>
 	  </div>
 	

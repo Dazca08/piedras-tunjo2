@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule , FormsModule } from '@angular/forms';
 import { Cabana } from '../cabana.model';
 import { ServiciocService  } from '../servicioc.service';
-import { Router ,ActivatedRoute} from '@angular/router';
+import { Router, ActivatedRoute} from '@angular/router';
 @Component({
   selector: 'app-agregarc',
   templateUrl: './agregarc.component.html',
@@ -19,8 +19,6 @@ cabanas: Cabana[];
     comentariosId: '',
      token: '',
     listaComentariosCabana: '',
-
-   
   }
   constructor(private formBuilder: FormBuilder,
       private servi:  ServiciocService ,

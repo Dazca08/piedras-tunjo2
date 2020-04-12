@@ -12,6 +12,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { AvatarSelectorComponent } from './avatar-selector/avatar-selector.component';
+import { MapaComponent } from './mapa/mapa.component';
+import { EventosComponent } from './seccion-eventos/seccion-eventos.component';
 
 
 @NgModule({
@@ -19,9 +22,11 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     PiePaginaComponent,
     GaleriaComponent,
     SeccionInformativaComponent,
+    EventosComponent,
     NavbarComponent,
     SidebarComponent,
-    
+    MapaComponent,
+    AvatarSelectorComponent
   ],
   imports: [
     CommonModule,
@@ -34,8 +39,11 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     PiePaginaComponent,
     GaleriaComponent,
     SeccionInformativaComponent,
+    EventosComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    MapaComponent,
+    AvatarSelectorComponent
   ]
 })
 export class ComponentsModule { }

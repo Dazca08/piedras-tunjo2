@@ -1,8 +1,10 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { environment } from '../../../environments/environment.prod';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PuntoInteres } from '../../interfaces/punto-interes.interface';
 import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { of, Observable } from 'rxjs';
 
 const URL = environment.apiUrl;
 
@@ -12,16 +14,23 @@ const URL = environment.apiUrl;
 export class PuntosInteresService {
 
   private token: string;
+  private headers: HttpHeaders;
 
   constructor(
     private http: HttpClient,
-    private storage: Storage
+    private router: Router
   ) { }
 
   async buildService() {
-    this.token = await this.storage.get('token') || undefined;
+    this.token = localStorage.getItem('token') || undefined;
     if (!this.token) {
-      //
+      this.router.navigateByUrl('/login');
+      return false;
+    } else {
+      this.headers = new HttpHeaders({
+        Authorization: 'Bearer ' + this.token
+      });
+      return true;
     }
   }
 
@@ -30,16 +39,24 @@ export class PuntosInteresService {
   }
 
   postPuntosInteres(punto: PuntoInteres) {
-    return this.http.post(`${ URL }/puntos-interes`, punto);
+    this.buildService().then(build => {
+      if (!build) { return of({ ok: false }); }
+    });
+    return this.http.post(`${ URL }/puntos-interes`, punto, { headers: this.headers });
   }
 
   putPuntosInteres(punto: PuntoInteres) {
-    return this.http.put(`${ URL }/puntos-interes/${ punto.Id }`, punto);
+    this.buildService().then(build => {
+      if (!build) { return of({ ok: false }); }
+    });
+    return this.http.put(`${ URL }/puntos-interes/${ punto.Id }`, punto, { headers: this.headers });
   }
 
-  deletePuntosInteres(id: number): Promise<boolean> {
+  async deletePuntosInteres(id: number): Promise<boolean> {
+    const build = await this.buildService();
+    if (!build) { return Promise.resolve(false); }
     return new Promise(resolve => {
-      this.http.delete(`${ URL }/puntos-interes/${ id }`)
+      this.http.delete(`${ URL }/puntos-interes/${ id }`, { headers: this.headers })
               .subscribe(res => {
                 resolve(res['ok']);
               });

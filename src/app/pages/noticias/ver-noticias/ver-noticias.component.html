@@ -53,7 +53,7 @@
                                     <td>{{not.titulo}}</td>     
                                     <td>{{not.fecha_Publicacion}}</td>     
                                     <td>{{not.imagenesUrl}}</td>     								
-                                    <td><div> <a class="letra" routerLink="/admin/edit_noticias/{{not.id}}" >Editar</a></div></td>	
+                                    <td><div> <a class="letra" routerLink="editar/{{not.id}}" >Editar</a></div></td>	
                                     																
 									<td>  
 										<form (submit)="eliminar(not.id)">
@@ -77,7 +77,7 @@
                     <br>
 						<div class="container">
 							<div align="center">
-                                <a class="boton"  href="/admin/insert_noticias" role="button">Agregar</a>
+                                <a class="boton"  routerLink="agregar" role="button">Agregar</a>
                                
 							</div>
 						</div>								

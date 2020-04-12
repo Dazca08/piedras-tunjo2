@@ -9,14 +9,14 @@ import { PuntoInteres } from 'src/app/interfaces/punto-interes.interface';
   templateUrl: './mapa.component.html',
   styleUrls: ['./mapa.component.css']
 })
-export class MapaComponent implements OnInit , AfterViewInit{
+export class MapaComponent implements OnInit , AfterViewInit {
   mapa1: Mapboxgl.Map;
   puntosInteres: PuntoInteres[] = [];
   currentMarkers = [];
-  constructor(private puntosService:ServiciomapaService) { }
+  constructor(private puntosService: ServiciomapaService) { }
 
  ngAfterViewInit(): void {
-    Mapboxgl.accessToken = environment.mapboxTokenInicio;
+    Mapboxgl.accessToken = environment.mapboxToken;
     this.mapa1 = new Mapboxgl.Map({
       container: 'mapa',
       style: 'mapbox://styles/mapbox/streets-v11',

@@ -45,7 +45,7 @@
 							<td>{{prom.nombre}}</td>                            							 
 							<td>{{prom.descripcion}}</td>
 							<td>{{prom.precio}}</td>
-							<td><div> <a class="letra" routerLink="/admin/editarprom/{{prom.id}}" >Editar</a></div></td>					
+							<td><div> <a class="letra" routerLink="editar/{{prom.id}}" >Editar</a></div></td>					
                             <td>
 							<!--"-->
 							<!--(submit)="eliminar(prom.id)"-->	<form (submit)="eliminar(prom.id)" >
@@ -71,7 +71,7 @@
 				<img src="assets/imagenes/newpicto.jpg" class="card-img-top" width="100" height="200" >
 		  <div class="container">
 			<div align="center">
-		<a class="btn btn-primary" href="/admin/insertprom" role="button">Agregar Promoción</a>
+		<a class="btn btn-primary" routerLink="agregar" role="button">Agregar Promoción</a>
 		<!--admin/insertprom-->
 	</div>
 	  </div>

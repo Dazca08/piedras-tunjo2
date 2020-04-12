@@ -66,7 +66,7 @@
 									<td>{{sub.contenidoSubscripcion}}</td>
 									<td>${{sub.valorSubscripcion}}</td> 
 																	
-									<td><div> <a class="letra" routerLink="/admin/editar_subs/{{sub.id_subscripcion}}">Editar</a></div></td>																		
+									<td><div> <a class="letra" routerLink="editar/{{sub.id_subscripcion}}">Editar</a></div></td>																		
 									<td>  
 										<form (submit)="eliminar(sub.id_subscripcion)">
 											<button type="submit"  class="btn btn-danger btn-block">
@@ -90,7 +90,7 @@
 							<img src="assets/imagenes/u2.jpg" class="card-img-top" width="100" height="200" >
 							<div class="container">
 								<div align="center">
-									<a class="boton" href="/admin/insert_subs" role="button">Agregar Nuevo</a>
+									<a class="boton" routerLink="agregar" role="button">Agregar Nuevo</a>
 								</div>
 							</div>								
 						</div>

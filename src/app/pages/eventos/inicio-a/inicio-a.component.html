@@ -46,7 +46,7 @@
 		 			<tbody>
 		 				 <tr *ngFor="let evento of eventos |filtroN:filterEvento | paginate:{itemsPerPage :5 , currentPage:PageActual}; let i =index">
 		 				 	 	 <td>
-                  <a routerLink="/admin/editarevento/{{evento.Id}}" class="btn btn-secondary">
+                  <a routerLink="editar/{{evento.Id}}" class="btn btn-secondary">
                    Editar
                   </a>
                 </td>

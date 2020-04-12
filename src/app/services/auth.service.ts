@@ -49,7 +49,7 @@ export class AuthService {
                         if (user['RolId'] === 1) {
                           this.guardarToken(res['token']);
                           this.auth$.emit(true);
-                          this.router.navigateByUrl('/admin');
+                          this.router.navigateByUrl('/home');
                           Swal.close();
                         } else {
                           this.mostrarAlert('Error', 'No eres un usuario administrador', 'warning');
@@ -106,7 +106,7 @@ export class AuthService {
   logout() {
     localStorage.clear();
     this.usuario = undefined;
-    this.router.navigateByUrl('/inicio');
+    this.router.navigateByUrl('/tablero');
     this.auth$.emit(false);
   }
 

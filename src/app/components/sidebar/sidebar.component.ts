@@ -18,17 +18,16 @@ export class SidebarComponent implements OnInit {
 
   // rutas para cuando el usuario se haya autenticado
   routes = [
-    { label: 'Panel Admin', path: '/', icon: 'dragon' },
-    { label: 'Usuarios', path: '/iniciou', icon: 'users' },
-    { label: 'Subscripciones', path: '/ver_subs', icon: 'award' },
+    { label: 'Usuarios', path: '/usuarios', icon: 'users' },
+    { label: 'Subscripciones', path: '/subscripciones', icon: 'award' },
     { label: 'Pictogramas', path: '/pictogramas', icon: 'skull' },
      { label: 'Promociones', path: '/promociones', icon:  'bullhorn'},
-    { label: 'QR', path: '/moduloQr', icon: 'qrcode' },
-    { label: 'Eventos', path: '/inicioeventos', icon: 'republican' },
-    { label: 'Preguntas Frecuentes', path: '/inicioaPf', icon: 'question' },
-    { label: 'Cabañas', path: '/inicioc', icon: 'home' },
+    { label: 'QR', path: '/modulo-qr', icon: 'qrcode' },
+    { label: 'Eventos', path: '/eventos', icon: 'republican' },
+    { label: 'Preguntas Frecuentes', path: '/preguntas-frecuentes', icon: 'question' },
+    { label: 'Cabañas', path: '/cabanas', icon: 'home' },
     { label: 'Puntos de Interés', path: '/puntos-interes', icon: 'map-marker-alt' },
-    { label: 'Noticias', path: '/ver_noticias', icon: 'newspaper'}
+    { label: 'Noticias', path: '/noticias', icon: 'newspaper'}
   ];
 
   constructor(

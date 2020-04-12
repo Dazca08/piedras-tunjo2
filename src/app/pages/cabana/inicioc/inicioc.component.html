@@ -41,7 +41,7 @@
 		 			<tbody>
 		 				 <tr *ngFor="let cabana of cabanas; let i =index">
 		 				 	 	 <td>
-                  <a routerLink="/admin/editarc/{{cabana.id}}" class="btn btn-secondary">
+                  <a routerLink="editar/{{cabana.id}}" class="btn btn-secondary">
                    Editar
                   </a>
                 </td>
@@ -81,7 +81,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-3">
-        <a class="btn btn-primary" href="/admin/agregarc" role="button">Agregar Cabana</a>
+        <a class="btn btn-primary" href="/agregar" role="button">Agregar Cabana</a>
         
       </div>
     </div>

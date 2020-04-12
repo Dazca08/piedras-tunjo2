@@ -18,7 +18,7 @@ export class TableroComponent implements OnInit {
     this.authService.validateToken(false)
                     .then(ok => {
                       if (ok === true) {
-                        this.router.navigateByUrl('/admin');
+                        this.router.navigateByUrl('/home');
                       }
                     });
   }
