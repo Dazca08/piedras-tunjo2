@@ -58,7 +58,7 @@ export class AgregarpromComponent implements OnInit {
     )
        
        
-    this.router.navigateByUrl("/admin/promociones");
+   // this.router.navigateByUrl("/admin/promociones");
       this.servi.insertar(value);
      
       

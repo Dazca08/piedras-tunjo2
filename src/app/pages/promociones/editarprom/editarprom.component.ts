@@ -70,7 +70,7 @@ if (result.value) {
    
   )
      value.id= this.id;
-     this.router.navigateByUrl("/admin/promociones")
+    // this.router.navigateByUrl("/admin/promociones")
     
      this.servi.update(value,this.id);
 }

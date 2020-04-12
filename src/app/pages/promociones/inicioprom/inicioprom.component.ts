@@ -63,20 +63,20 @@ export class IniciopromComponent implements OnInit {
             this.refrescar(id);
           }
         })
-        this.router.navigateByUrl("/admin/promociones");
+       // this.router.navigateByUrl("/admin/promociones");
           
       }
       refrescar(id){
         console.log(id);
         this.ServiciopromService.Eliminar(id);
-        this.ObtenerPromocion();
+       this.ObtenerPromocion();
         this.ngOnInit();
      
      
      }
     
   ngOnInit(): void {
-    this.ObtenerPromocion();
+   this.ObtenerPromocion();
   }
 
 }
