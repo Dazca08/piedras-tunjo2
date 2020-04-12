@@ -35,6 +35,42 @@ export class VerNoticiasComponent implements OnInit {
   });       
   }
   
+  
+eliminar(id){
+
+  Swal.fire({
+  title: 'Esta seguro?',
+  text: "¿Realmente quiere eliminar la noticia?",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Eliminar!'
+}).then((result) => {
+    if (result.value) {
+      Swal.fire(
+
+        'Eliminado!',
+        'La noticia ha sido eliminada....',
+        'success'
+      
+      )
+      this.refrescar(id);      
+    }
+  })
+  this.router.navigateByUrl("/admin/ver_noticias");
+    
+}
+
+refrescar(id){
+  console.log(id);
+  this.Servicio_NoticiasService.Eliminar(id);  
+  this.ngOnInit();
+
+
+}
+
+
   i:number;
   ngOnInit(): void {
     this.ObtenerNoticias();

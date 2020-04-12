@@ -38,10 +38,15 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ImageUploadModule } from 'angular2-image-upload';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+
+
+import { MapaComponent } from '../components/mapa/mapa.component';
+
 import { VerNoticiasComponent } from './noticias/ver-noticias/ver-noticias.component';
 import { InsertNoticiasComponent } from './noticias/insert-noticias/insert-noticias.component';
-
+import { EditarNoticiasComponent } from './noticias/editar-noticias/editar-noticias.component';
 //calendar
+
 
 import { VerPictogramaComponent } from './pictogramas/ver-pictograma/ver-pictograma.component';
 import { EditarPicComponent } from './pictogramas/editar-pic/editar-pic.component';
@@ -49,7 +54,6 @@ import { AgregarPicComponent } from './pictogramas/agregar-pic/agregar-pic.compo
 import { IniciopromComponent } from './promociones/inicioprom/inicioprom.component';
 import { AgregarpromComponent } from './promociones/agregarprom/agregarprom.component';
 import { EditarpromComponent } from './promociones/editarprom/editarprom.component';
-
 
 @NgModule({
   declarations: [
@@ -80,11 +84,15 @@ import { EditarpromComponent } from './promociones/editarprom/editarprom.compone
     EditarPicComponent,  
     AgregarPicComponent,
     HomeComponent,
+    MapaComponent,
     VerNoticiasComponent,
     InsertNoticiasComponent,
+    EditarNoticiasComponent,
     IniciopromComponent,
     AgregarpromComponent,
     EditarpromComponent
+
+
   ],
   imports: [
     CommonModule,

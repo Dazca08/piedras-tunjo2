@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class EditarComponent implements OnInit {
  id:string;
- k:string='soy k :v';
+ Vtemp:string="";
 eventos: Evento[];
   evento: Evento ={
     Nombre: '',
@@ -19,7 +19,7 @@ eventos: Evento[];
      Fecha: '',
     Descripcion: '',
      Calificacion: '',
-    ImagenesUrl: this.k,
+    ImagenesUrl: this.Vtemp,
      ComentariosId: '',
     ListaComentariosEvento: '',
 
@@ -35,15 +35,20 @@ eventos: Evento[];
 
   selectedfile:File=null;
 
-
-kk:string="";
+fechatemp:string="";
+rutaImagen:string="";
 
 
   ngOnInit(): void {
      this.id = this.route.snapshot.params['id'];
       this.servi.getu('/'+this.id).subscribe(resultado =>{
  this.evento=resultado;
-  this.kk="http://piedrasdeltunjo.tk/images/getImage?tipo=evento&nombre="+this.evento.ImagenesUrl;
+ this.fechatemp=this.evento.Fecha;
+     var splitted = this.fechatemp.split("T", 2); 
+    // console.log(splitted)
+      this.fechatemp=splitted[0];
+      this.evento.Fecha=this.fechatemp;
+  this.rutaImagen="http://piedrasdeltunjo.tk/images/getImage?tipo=evento&nombre="+this.evento.ImagenesUrl;
 
  });
 
@@ -52,16 +57,16 @@ kk:string="";
 
   }
   onFileSelected(evento){
-  console.log(this.k)
+  console.log(this.Vtemp)
 this.selectedfile=<File>evento.target.files[0];
-this.k=this.selectedfile.name.toString();
-console.log("new k "+this.k)
-    this.evento.ImagenesUrl=this.k;
+this.Vtemp=this.selectedfile.name.toString();
+console.log("new Vtemp "+this.Vtemp)
+    this.evento.ImagenesUrl=this.Vtemp;
 }
 
      guardar({value, valid}: {value:Evento, valid: boolean}){
     console.log(this.evento.ImagenesUrl)
-    console.log(this.k)
+    console.log(this.Vtemp)
 
     console.log(this.evento.ImagenesUrl)
   console.log(this.id);
@@ -118,7 +123,7 @@ console.log("new k "+this.k)
      value.Id = this.id;
       
    this.servi.update(value,this.id);  
-  this.Router.navigate(['/editarevento/'+this.id])
+  this.Router.navigate(['/admin/editarevento/'+this.id])
     this.cargandoImagen();
     this.refrescar(this.id);
   }
@@ -172,12 +177,12 @@ refrescar(id){
     this.id = this.route.snapshot.params['id'];
       this.servi.getu('/'+this.id).subscribe(resultado =>{
  this.evento=resultado;
-  this.kk="http://piedrasdeltunjo.tk/images/getImage?tipo=evento&nombre="+this.evento.ImagenesUrl;
+  this.rutaImagen="http://piedrasdeltunjo.tk/images/getImage?tipo=evento&nombre="+this.evento.ImagenesUrl;
 
  });
   this.ngOnInit();
 
-
+  this.ngOnInit();
 }
  
 

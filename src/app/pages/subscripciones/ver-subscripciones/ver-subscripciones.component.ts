@@ -60,8 +60,7 @@ eliminar(id_subscripcion){
         'success'
       
       )
-      this.refrescar(id_subscripcion);
-      this.refrescar(id_subscripcion);
+      this.refrescar(id_subscripcion);      
     }
   })
   this.router.navigateByUrl("/admin/ver_subs");
@@ -76,8 +75,7 @@ eliminar(id_subscripcion){
 
   refrescar(id_subscripcion){
     console.log(id_subscripcion);
-    this.Servicio_SubService.Eliminar(id_subscripcion);
-    this.ObtenerSubscripcion();
+    this.Servicio_SubService.Eliminar(id_subscripcion);    
     this.ngOnInit();
  
  

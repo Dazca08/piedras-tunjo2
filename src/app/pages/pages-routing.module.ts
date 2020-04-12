@@ -32,6 +32,7 @@ import { InsertNoticiasComponent } from './noticias/insert-noticias/insert-notic
 import { IniciopromComponent } from './promociones/inicioprom/inicioprom.component';
 import { AgregarpromComponent } from './promociones/agregarprom/agregarprom.component';
 import { EditarpromComponent } from './promociones/editarprom/editarprom.component';
+import { EditarNoticiasComponent } from './noticias/editar-noticias/editar-noticias.component';
 
 const routes: Routes = [
   { path: 'inicio', component: TableroComponent },
@@ -66,6 +67,7 @@ const routes: Routes = [
       {path: 'editarpic/:id', component: EditarPicComponent},
       {path: 'ver_noticias', component: VerNoticiasComponent},
       {path: 'insert_noticias', component: InsertNoticiasComponent},
+      {path: 'edit_noticias/:id', component: EditarNoticiasComponent},
       {path: 'promociones', component: IniciopromComponent},
       {path: 'insertprom', component: AgregarpromComponent},
       {path: 'editarprom/:id', component: EditarpromComponent},
