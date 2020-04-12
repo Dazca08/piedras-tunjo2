@@ -18,63 +18,63 @@ const routes: Routes = [
   // Guard auth
   {
     path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then(mod => mod.HomeModule),
     canLoad: [AuthGuard],
-    loadChildren: () => import('./pages/home/home.module').then(mod => mod.HomeModule)
   },
   {
     path: 'cabanas',
+    loadChildren: () => import('./pages/cabana/cabana.module').then(mod => mod.CabanaModule),
     canLoad: [AuthGuard],
-    loadChildren: () => import('./pages/cabana/cabana.module').then(mod => mod.CabanaModule)
   },
   {
     path: 'configuracion',
+    loadChildren: () => import('./pages/configuracion/configuracion.module').then(mod => mod.ConfiguracionModule),
     canLoad: [AuthGuard],
-    loadChildren: () => import('./pages/configuracion/configuracion.module').then(mod => mod.ConfiguracionModule)
   },
   {
     path: 'eventos',
+    loadChildren: () => import('./pages/eventos/eventos.module').then(mod => mod.EventosModule),
     canLoad: [AuthGuard],
-    loadChildren: () => import('./pages/eventos/eventos.module').then(mod => mod.EventosModule)
   },
   {
     path: 'modulo-qr',
+    loadChildren: () => import('./pages/modulo-qr/qr.module').then(mod => mod.QrModule),
     canLoad: [AuthGuard],
-    loadChildren: () => import('./pages/modulo-qr/qr.module').then(mod => mod.QrModule)
   },
   {
     path: 'noticias',
+    loadChildren: () => import('./pages/noticias/noticias.module').then(mod => mod.NoticiasModule),
     canLoad: [AuthGuard],
-    loadChildren: () => import('./pages/noticias/noticias.module').then(mod => mod.NoticiasModule)
   },
   {
     path: 'pictogramas',
+    loadChildren: () => import('./pages/pictogramas/pictogramas.module').then(mod => mod.PictogramasModule),
     canLoad: [AuthGuard],
-    loadChildren: () => import('./pages/pictogramas/pictogramas.module').then(mod => mod.PictogramasModule)
   },
   {
     path: 'preguntas-frecuentes',
+    loadChildren: () => import('./pages/preguntas-frecuentes/preguntas-frecuentes.module').then(mod => mod.PreguntasFrecuentesModule),
     canLoad: [AuthGuard],
-    loadChildren: () => import('./pages/preguntas-frecuentes/preguntas-frecuentes.module').then(mod => mod.PreguntasFrecuentesModule)
   },
   {
     path: 'promociones',
+    loadChildren: () => import('./pages/promociones/promociones.module').then(mod => mod.PromocionesModule),
     canLoad: [AuthGuard],
-    loadChildren: () => import('./pages/promociones/promociones.module').then(mod => mod.PromocionesModule)
   },
   {
     path: 'puntos-interes',
+    loadChildren: () => import('./pages/puntos-interes/puntos-interes.module').then(mod => mod.PuntosInteresModule),
     canLoad: [AuthGuard],
-    loadChildren: () => import('./pages/puntos-interes/puntos-interes.module').then(mod => mod.PuntosInteresModule)
   },
   {
     path: 'subscripciones',
+    loadChildren: () => import('./pages/subscripciones/subscripciones.module').then(mod => mod.SubscripcionesModule),
     canLoad: [AuthGuard],
-    loadChildren: () => import('./pages/subscripciones/subscripciones.module').then(mod => mod.SubscripcionesModule)
   },
   {
     path: 'usuarios',
+    loadChildren: () => import('./pages/usuarios/usuarios.module').then(mod => mod.UsuariosModule),
     canLoad: [AuthGuard],
-    loadChildren: () => import('./pages/usuarios/usuarios.module').then(mod => mod.UsuariosModule)
   },
   { path: '', pathMatch: 'full', redirectTo: 'tablero' },
   { path: '**', pathMatch: 'full', redirectTo: 'tablero' }
