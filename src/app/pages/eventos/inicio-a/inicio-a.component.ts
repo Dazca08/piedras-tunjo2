@@ -28,6 +28,9 @@ eventos: Evento[];
  constructor(private servi:ServicioEventoService) {  this.ObtenerEventos}
    PageActual:number=1;
     filterEvento ='';
+    fechatemp:string="";
+    fechaPtemp:string="";
+    i:number=0;
  if(PageActual=0){
    PageActual=1;
  }
@@ -35,7 +38,18 @@ eventos: Evento[];
   ObtenerEventos(){
  this.servi.ObtenerJson().subscribe(resultado =>{
    this.eventos=resultado;
-   
+   for(this.i=0;this.i<this.eventos.length;this.i++){
+     this.fechatemp=this.eventos[this.i].Fecha;
+     this.fechaPtemp=this.eventos[this.i].FechaPublicacion;
+     var splitted = this.fechatemp.split("T", 2); 
+     var splittedd=this.fechaPtemp.split("T", 2);
+    // console.log(splitted)
+      this.fechatemp=splitted[0];
+      this.fechaPtemp=splittedd[0];
+      this.eventos[this.i].Fecha=this.fechatemp;
+      this.eventos[this.i].FechaPublicacion=this.fechaPtemp;
+   }
+    
    console.log("Informacion ya tiene resultado");
   
  },
