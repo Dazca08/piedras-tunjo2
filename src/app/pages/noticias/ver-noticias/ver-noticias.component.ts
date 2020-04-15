@@ -13,29 +13,36 @@ import Swal from 'sweetalert2';
 export class VerNoticiasComponent implements OnInit {
 
   constructor( private router: Router, private Servicio_NoticiasService:ServicioNoticiasService) { this.ObtenerNoticias}
-  filtroNoticiasPost ='';  
+  filtroNoticiasPost ='';
   PageActual:number=1;
-  noticias: Noticias[];  
+  fechaPtemp:string="";
+  noticias: Noticias[];
   noti: Noticias ={
-      
     id:"",
-    titulo: "",
-    fecha_publicacion: "",
-    imagenesUrl:"",     
+    titulo:"",
+    fechaPublicacion:"",
+    imagenesUrl:"",
     descripcion:""
   }
 
-  ObtenerNoticias(){          
+  ObtenerNoticias(){
     this.Servicio_NoticiasService.Obtener().subscribe(resultado =>{
-    this.noticias=resultado;        
+    this.noticias=resultado;
+    for(this.i=0;this.i<this.noticias.length;this.i++){
+      this.fechaPtemp=this.noticias[this.i].fechaPublicacion;
+      var splittedd=this.fechaPtemp.split("T", 2);
+     // console.log(splitted)
+       this.fechaPtemp=splittedd[0];
+       this.noticias[this.i].fechaPublicacion=this.fechaPtemp;
+    }
     console.log("Informacion ya tiene resultado");
     console.log(this.noticias.length)
   },
     error=>{ console.log(JSON.stringify(error));
-  });       
+  });
   }
-  
-  
+
+
 eliminar(id){
 
   Swal.fire({
@@ -53,18 +60,18 @@ eliminar(id){
         'Eliminado!',
         'La noticia ha sido eliminada....',
         'success'
-      
+
       )
-      this.refrescar(id);      
+      this.refrescar(id);
     }
   })
   this.router.navigateByUrl("/admin/ver_noticias");
-    
+
 }
 
 refrescar(id){
   console.log(id);
-  this.Servicio_NoticiasService.Eliminar(id);  
+  this.Servicio_NoticiasService.Eliminar(id);
   this.ngOnInit();
 
 
@@ -76,6 +83,6 @@ refrescar(id){
     this.ObtenerNoticias();
   }
 
-  
+
 
 }

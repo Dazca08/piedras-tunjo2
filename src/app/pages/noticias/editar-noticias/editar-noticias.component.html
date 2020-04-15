@@ -1,140 +1,98 @@
 <header id="main-header" class="py-2 bg-info text-white">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <h1>
-             Editar Noticia
-          </h1>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1>
+          Editar Noticia
+        </h1>
       </div>
     </div>
+  </div>
 </header>
 
 <form #editarnotForm="ngForm" (ngSubmit)="guardar(editarnotForm)">
-    <section id="actions" class="py-4 mb-4 bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <a routerLink="/noticias" class="btn btn-light btn-block">
-                       Regresar al Inicio
-                    </a>
-                </div>
-                <div class="col-md-3">
-                    <button type="submit" class="btn btn-success btn-block">
-                       Guardar cambios
-                    </button>
-                </div>        
-            </div>
+  <section id="actions" class="py-4 mb-4 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <a routerLink="/noticias" class="btn btn-light btn-block">
+            Regresar al Inicio
+          </a>
         </div>
-    </section>
-
-    <section id="details">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Editar </h4>
-                        </div>
-                        <div class="card-body">
-                            
-                            <div class="form-group">
-                                <label for="titulo">Titulo:</label>
-                                <input
-                                    type="text" 
-                                    name="titulo" 
-                                    class="form-control" 
-                                    #titulo="ngModel" 
-                                    [(ngModel)]="noti.titulo"
-                                    [ngClass]="{'is-invalid': titulo.errors && titulo.touched}" 
-                                    required minlength="2"
-                                >
-                                <div 
-                                    [hidden]="!titulo.errors?.required" 
-                                    class="invalid-feedback">
-                                    Titulo requerido
-                                </div>
-                                <div 
-                                    [hidden]="!titulo.errors?.minlength" 
-                                    class="invalid-feedback">
-                                    Debe escribir un titulo mas largo
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="descripcion">Descripcion:</label>
-                                <input
-                                    type="text" 
-                                    name="descripcion" 
-                                    class="form-control" 
-                                    #descripcion="ngModel" 
-                                    [(ngModel)]="noti.descripcion"
-                                    [ngClass]="{'is-invalid': descripcion.errors && descripcion.touched}" 
-                                    required minlength="2"
-                                >
-                                <div 
-                                    [hidden]="!descripcion.errors?.required" 
-                                    class="invalid-feedback">
-                                    Contenido requerido
-                                </div>
-                                <div 
-                                    [hidden]="!descripcion.errors?.minlength" 
-                                    class="invalid-feedback">
-                                    Debe escribir un Contenido mas largo
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="fecha_publicacion">Fecha de Publicacion:</label>
-                                <input
-                                    type="date" 
-                                    name="fecha_publicacion" 
-                                    class="form-control" 
-                                    #fecha_publicacion="ngModel" 
-                                    [(ngModel)]="noti.fecha_publicacion"
-                                    [ngClass]="{'is-invalid': fecha_publicacion.errors && fecha_publicacion.touched}"                                  
-                                >
-                                <div 
-                                    [hidden]="!fecha_publicacion.errors?.required" 
-                                    class="invalid-feedback">
-                                    Fecha requerido
-                                </div>
-                             
-                            </div>
-                       
-                            <div class="form-group">
-                                <div>
-                                    <div><label>Imagen Actual de la noticia</label></div>
-                                        <div align="center">
-                                            <img 
-                                            class="pick-avatar" 
-                                            class="card-img-top" 
-                                            class="img-fluid"
-                                            alt="Responsive image"
-                                            width="700" 
-                                            height="400"
-                                            src={{imagen_actual}} 
-                                            >    
-                                        </div><!--kk-->
-                                    </div>      
-                                    <br><br>
-                                    <label for="imagenesUrl"> Si desea cambiar la imagen actual de la noticia</label>                                      
-                                    <input 
-                                        type="file" 
-                                        (change)="onFileSelected($event)"
-                                    >
-                                    <input 
-                                        type="hidden" 
-                                        name="imagenesUrl" 
-                                        class="form-control" 
-                                        #imagenesUrl="ngModel" 
-                                        [(ngModel)]="noti.imagenesUrl"
-                                    >                                                                                  
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="col-md-3">
+          <button type="submit" class="btn btn-success btn-block">
+            Guardar cambios
+          </button>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
+
+  <section id="details">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-header">
+              <h4>Editar </h4>
+            </div>
+            <div class="card-body">
+
+              <div class="form-group">
+                <label for="titulo">Titulo:</label>
+                <input type="text" name="titulo" class="form-control" #titulo="ngModel" [(ngModel)]="noti.titulo"
+                  [ngClass]="{'is-invalid': titulo.errors && titulo.touched}" required minlength="2">
+                <div [hidden]="!titulo.errors?.required" class="invalid-feedback">
+                  Titulo requerido
+                </div>
+                <div [hidden]="!titulo.errors?.minlength" class="invalid-feedback">
+                  Debe escribir un titulo mas largo
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="descripcion">Descripcion:</label>
+                <input type="text" name="descripcion" class="form-control" #descripcion="ngModel"
+                  [(ngModel)]="noti.descripcion" [ngClass]="{'is-invalid': descripcion.errors && descripcion.touched}"
+                  required minlength="2">
+                <div [hidden]="!descripcion.errors?.required" class="invalid-feedback">
+                  Contenido requerido
+                </div>
+                <div [hidden]="!descripcion.errors?.minlength" class="invalid-feedback">
+                  Debe escribir un Contenido mas largo
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="fechaPublicacion">Fecha de Publicacion:</label>
+                <input type="date" name="fechaPublicacion" class="form-control" #fechaPublicacion="ngModel"
+                  [(ngModel)]="noti.fechaPublicacion"
+                  [ngClass]="{'is-invalid': fechaPublicacion.errors && fechaPublicacion.touched}">
+                <div [hidden]="!fechaPublicacion.errors?.required" class="invalid-feedback">
+                  Fecha requerido
+                </div>
+
+              </div>
+
+              <div class="form-group">
+                <div>
+                  <div><label>Imagen Actual de la noticia</label></div>
+                  <div align="center">
+                    <img class="pick-avatar" class="card-img-top" class="img-fluid" alt="Responsive image" width="700"
+                      height="400" src={{imagen_actual}}>
+                  </div>
+                  <!--kk-->
+                </div>
+                <br><br>
+                <label for="imagenesUrl"> Si desea cambiar la imagen actual de la noticia</label>
+                <input type="file" (change)="onFileSelected($event)">
+                <input type="hidden" name="imagenesUrl" class="form-control" #imagenesUrl="ngModel"
+                  [(ngModel)]="noti.imagenesUrl">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </form>

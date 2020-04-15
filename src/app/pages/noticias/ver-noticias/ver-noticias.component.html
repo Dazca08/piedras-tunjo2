@@ -1,90 +1,63 @@
-
 <!--
 	AUTOR: GABRIEL ZAPATA
 	COMPONENTE HTML QUE CONTIENE LA VISTA INICIAL DE LA GESTION DE NOTICIAS
-	FECHA 24/03/2020  
+	FECHA 24/03/2020
 -->
-<header id="main-header" class="py-2 bg-info text-white">
-	<div class="container">
-	  <div class="row">
-		<div class="col-md-6">
-		  <h1>
-			 	Gestion de Noticias
-		  </h1>
-		  <div class="form-group">
-				   <input type="text" class="form-control" name="filtroNoticiasPost" placeholder="Escriba el encabezado.." [(ngModel)]="filtroNoticiasPost">
-			   </div>
-		</div>
-	  </div>
-	</div>
-  </header>
- 
-<div><br><br></div>
-
-
-
-<section id ="Noticias">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-9" align="center">          
-                <div class="bordetitulo" >
-					<h4 class="letratitulo" text-align =center>LISTADO DE NOTICIAS</h4>
-                </div>
-                
-                <div>
-                    <br>
-                    <div class="table-responsive ">
-                        <table class="table  table-bordered table-striped">
-                            <thead class="thead-dark">
-								<tr>
-										<th>#</th>
-										<th>ENCABEZADO</th>
-										<th>FECHA</th>
-										<th>IMAGEN</th>
-										
-										<th>Editar</th>
-										<th>Eliminar</th>
-										
-								</tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let not of noticias | filtroNoticias:filtroNoticiasPost | paginate:{itemsPerPage :5 , currentPage:PageActual}  ; index as i">
-                                    <td>{{i+1}}</td>
-                                    <td>{{not.titulo}}</td>     
-                                    <td>{{not.fecha_Publicacion}}</td>     
-                                    <td>{{not.imagenesUrl}}</td>     								
-                                    <td><div> <a class="letra" routerLink="editar/{{not.id}}" >Editar</a></div></td>	
-                                    																
-									<td>  
-										<form (submit)="eliminar(not.id)">
-											<button type="submit" class="btn btn-danger btn-block">
-												Eliminar
-                                            </button>
-										</form>
-									</td>			
-                                </tr>                                
-                            </tbody>
-                        </table>
-                        <pagination-controls (pageChange)="PageActual = $event"></pagination-controls>
-                    </div>
-                    <br><br>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card-body">	
-                    <img src="assets/imagenes/u2.jpg" class="card-img-top" width="100" height="200" >
-                    <br>
-                    <br>
-						<div class="container">
-							<div align="center">
-                                <a class="boton"  routerLink="agregar" role="button">Agregar</a>
-                               
-							</div>
-						</div>								
-                </div>
-            </div>
+<section class="bg-transparent" id="Noticias">
+  <div class="container ">
+    <div class="row">
+      <div class="col-md-3 bg-transparent">
+        <h4>Gestion de noticias</h4>
+      </div>
+      <div class="col-md-1">
+        <h5>{{noticias?.length}}</h5>
+      </div>
+      <div class="col-md-5">
+        <div class="form-group text-center">
+          <input type="text" class="form-control" name="filtroNoticiasPost" placeholder="Escriba el encabezado.." [(ngModel)]="filtroNoticiasPost">
         </div>
+      </div>
+      <div class="col-md-3">
+        <div class="text-center">
+          <a class="btn btn-success btn-block" routerLink="agregar" role="button"><i class="fas fa-plus"></i> Agregar</a>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="row row-cols-1 row-cols-md-3">
+          <div class="col mb-4" *ngFor="let not of noticias | filtroNoticias:filtroNoticiasPost | paginate:{itemsPerPage :6 , currentPage:PageActual}  ; index as i">
+            <div class="card h-100">
+              <div class="card-header">
+                <h4>Noticia {{i+1}}</h4>
+              </div>
+              <div class="car-body container">
+                <p style="text-align: justify;font-size: 0.7em;text-transform: capitalize;" class="wrap8">
+                  <i class="fa fa-calendar"></i>&nbsp;&nbsp; {{not.fechaPublicacion}}
+                </p>
+                <img src="http://piedrasdeltunjo.tk/images/getImage?tipo=noticias&nombre={{not.imagenesUrl}}" class="card-img-top" width="100" height="200">
+                <p>
+                  <b>{{not.titulo}}</b><br>
+                  {{not.descripcion}}
+                </p>
+                <div class="row">
+                  <div class="col-md-6">
+                    <a class="btn btn-info btn-block" routerLink="editar/{{not.id}}">Editar</a>
+                  </div>
+                  <div class="col-md-6">
+                    <form (submit)="eliminar(not.id)">
+                      <button type="submit" class="btn btn-danger btn-block">
+                        Eliminar
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <pagination-controls (pageChange)="PageActual = $event"></pagination-controls>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
-
-<div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
