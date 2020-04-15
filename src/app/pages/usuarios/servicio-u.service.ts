@@ -43,13 +43,14 @@ async Eliminar(id): Promise<any> {
   async Deshabilitar(id): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.get(`${this.url}/Estado_Usuario?estadoFiltro=1&id_Usuario=${id}`).toPromise()
-      console.log("Usuario Deshabilitado");      
+      console.log('Usuario Deshabilitado');
     });
   }
+
   async Habilitar(id): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.get(`${this.url}/Estado_Usuario?estadoFiltro=2&id_Usuario=${id}`).toPromise()
-      console.log("Usuario Habilitado");      
+      console.log('Usuario Habilitado');
     });
   }
 

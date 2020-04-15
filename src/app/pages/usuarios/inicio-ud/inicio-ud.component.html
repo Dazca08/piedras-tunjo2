@@ -55,7 +55,7 @@
 						</thead>
 						<tbody>
 <!--|filter:filterPost | paginate:{itemsPerPage :2 , currentPage:PageActual}-->
-							<tr *ngFor="let usuario of usuarios    ; index as i" >
+							<tr *ngFor="let usuario of usuarios; index as i" >
 								
 								<td>{{i+1}}
 									<div class="col mb-4">
@@ -68,12 +68,7 @@
 												<p class="card-text">Numero de Documento : {{usuario.NumeroDocumento}}</p>
 												<p class="card-text">Lugar de Expedicion: {{usuario.LugarExpedicion}}</p>
 												<p class="card-text">Correo Electronico: {{usuario.CorreoElectronico}}</p>
-												
-												<form (submit)="habilitar(usuario.Id)">
-													<button type="submit"  class="btn btn-secondary">
-														Habilitar
-													</button>
-												</form>	
+												<button class="btn btn-secondary" (click)="habilitar(usuario.Id)">Habilitar</button>
 												
 											</div>
 										</div>

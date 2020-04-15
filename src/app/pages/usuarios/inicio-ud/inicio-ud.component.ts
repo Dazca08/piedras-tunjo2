@@ -11,82 +11,51 @@ import Swal from 'sweetalert2';
   styleUrls: ['./inicio-ud.component.css']
 })
 export class InicioUdComponent implements OnInit {
+
   usuarios: Usuarios[];
-  usuario: Usuarios ={
-    Id:'',
-    Nombre: '',
-    Apellido: '',
-    TipoDocumento: '',
-    NumeroDocumento: '',
-    LugarExpedicion: '',
-    CorreoElectronico: '',
-    Clave: '',
-    Icono_url: '',
-    VerificacionCuenta: '',
-    EstadoCuenta: '',
-    RolId: '',
-    Imagen_documento: '',
-    estadoc: '',
+  filterPost = '';
+  i: number;
+  PageActua = 1;
 
-   
+  constructor(
+    private servi: ServicioUService,
+  ) { }
+
+  ngOnInit() {
+    this.obtenerUsuarios();
   }
-  constructor(private servi:ServicioUService ,private route: ActivatedRoute,private Router: Router,) {this.ObtenerUsuarios }
-  filterPost ='';
-  PageActual:number=1;
-  ObtenerUsuarios(){
-      this.servi.ObtenerDeshabilitados().subscribe(resultado =>{
-      this.usuarios=resultado;
-      console.log("Informacion ya tiene resultado");
-      console.log(this.usuarios.length)
-  },
-  error=>{
-      console.log(JSON.stringify(error));
-  }); 
-    }
 
-    i:number;
-    
 
-    ngOnInit(): void {
-     
-      this.ObtenerUsuarios();
-    
-    }
-    
-    habilitar(id){
+  obtenerUsuarios() {
+    this.servi.ObtenerDeshabilitados().subscribe(resultado => {
+      this.usuarios = resultado;
+    });
+  }
 
-      Swal.fire({
-    title: 'Esta seguro?',
-    text: "El usuario aparecera ahora como habilitado",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Si, habilitar!'
-    }).then((result) => {
-    if (result.value) {
-      Swal.fire(
-    
-        'habilitado!',
-        'El usuario ha sido habilitado.',
-        'success'
-       
-      )
-        
-         this.refrescar(id);
-    }
-    })
-    
-    
-    }
-    
-    refrescar(id){
-          console.log(id);
-          this.servi.Habilitar(id);
-          this.ObtenerUsuarios();
-          this.ngOnInit();
-    
-    
-    }
+  habilitar(id: string) {
+    Swal.fire({
+      title: 'Esta seguro?',
+      text: 'El usuario aparecera ahora como habilitado',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, habilitar!'
+      }).then((result) => {
+        if (result.value) {
+          Swal.fire(
+            'habilitado!',
+            'El usuario ha sido habilitado.',
+            'success'
+          );
+          this.refrescar(id);
+        }
+    });
+  }
 
+  refrescar(id: string) {
+    // console.log(id);
+    this.servi.Habilitar(id);
+    this.usuarios = this.usuarios.filter(x => x.Id !== id);
+  }
 }

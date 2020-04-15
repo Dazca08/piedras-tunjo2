@@ -31,7 +31,10 @@ usuarios: Usuarios[];
 
    
   }
-  constructor(private servi:ServicioUService ,private route: ActivatedRoute,private Router: Router,) {this.ObtenerUsuarios }
+  constructor(private servi: ServicioUService, 
+    private route: ActivatedRoute,
+    private Router: Router
+  ) {this.ObtenerUsuarios }
  filterPost ='';
  PageActual:number=1;
  ObtenerUsuarios(){
