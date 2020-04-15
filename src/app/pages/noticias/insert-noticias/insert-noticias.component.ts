@@ -12,18 +12,17 @@ import Swal from 'sweetalert2';
 })
 export class InsertNoticiasComponent implements OnInit {
   control:string='noticia';
-  noticias: Noticias[];  
+  noticias: Noticias[];
   noti: Noticias ={
-  titulo: '',
-  fecha_publicacion: Date.now().toString(),
-  descripcion: '',
-  imagenesUrl: ''       
+    titulo: '',
+    fechaPublicacion: Date.now().toString(),
+    descripcion: '',
+    imagenesUrl: ''
   }
 
   @ViewChild("insertarnotForm") insertarnotForm:FormGroup;
   public respuestaImagenEnviada;
   public resultadoCarga;
- 
 
   constructor(private formBuilder: FormBuilder,
     private servi: ServicioNoticiasService ,
@@ -32,8 +31,8 @@ export class InsertNoticiasComponent implements OnInit {
   agregar({value, valid}: {value: Noticias, valid: boolean}){
     console.log(this.selectedfile)
     console.log(this.noti.imagenesUrl)
-    
-    if(this.noti.fecha_publicacion ==""){
+
+    if(this.noti.fechaPublicacion ==""){
       console.log('Error');
       console.log('error seleccione una Fecha');
       Swal.fire(
@@ -48,7 +47,7 @@ export class InsertNoticiasComponent implements OnInit {
         'Fallo al agregar la notica!',
         'error'
       )
-    }else if(this.noti.fecha_publicacion=='' || this.noti.titulo=='' || this.noti.descripcion==''){
+    }else if(this.noti.fechaPublicacion=='' || this.noti.titulo=='' || this.noti.descripcion==''){
       console.log('Debe llenar todos los campos')
       Swal.fire(
         'Todos los campos son requeridos, por favor llenelos!',
@@ -60,12 +59,12 @@ export class InsertNoticiasComponent implements OnInit {
       this.cargandoImagen();
       this.selectedfile=null;
       this.refrescar();
-      
+
       Swal.fire(
         'Evento agregado con exito!',
         'Evento Agregado!',
         'success'
-      )              
+      )
     }
   }
 
@@ -78,13 +77,13 @@ export class InsertNoticiasComponent implements OnInit {
     console.log("Nueva imagen"+this.control)
   }
 
-  public cargandoImagen(){    
+  public cargandoImagen(){
     console.log("Entra a cargar img");
     this.servi.postFileImagen(this.selectedfile).subscribe(response => {
-      this.respuestaImagenEnviada = response; 
+      this.respuestaImagenEnviada = response;
         if(this.respuestaImagenEnviada <= 1){
-          console.log("Error en el servidor"); 
-        }else{  
+          console.log("Error en el servidor");
+        }else{
           if(this.respuestaImagenEnviada.code == 200 && this.respuestaImagenEnviada.status == "success"){
             console.log("enviada");
             this.resultadoCarga = 1;
@@ -95,13 +94,13 @@ export class InsertNoticiasComponent implements OnInit {
       },
       error => {
         console.log(<any>error);
-      }  
-    );     
+      }
+    );
   }
 
   refrescar(){
    this.noti.titulo="";
-   this.noti.fecha_publicacion= Date.now().toString();
+   this.noti.fechaPublicacion= Date.now().toString();
    this.noti.descripcion="";
    this.noti.imagenesUrl="";
   }

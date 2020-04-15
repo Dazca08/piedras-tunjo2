@@ -14,12 +14,12 @@ export class EditarNoticiasComponent implements OnInit {
 
   id:string;
   control:string='noticia';
-  noticias: Noticias[];  
+  noticias: Noticias[];
   noti: Noticias ={
   titulo: '',
   descripcion: '',
-  fecha_publicacion: Date.now().toString(),
-  imagenesUrl: this.control       
+  fechaPublicacion: Date.now().toString(),
+  imagenesUrl: this.control
   }
 
   constructor(private formBuilder: FormBuilder,
@@ -27,7 +27,7 @@ export class EditarNoticiasComponent implements OnInit {
     private Router: Router,
     private route: ActivatedRoute) { }
 
-  
+
   public respuestaImagenEnviada;
   public resultadoCarga;
   selectedfile:File=null;
@@ -43,11 +43,11 @@ export class EditarNoticiasComponent implements OnInit {
 
 
   guardar({value, valid}: {value:Noticias, valid: boolean}){
-    
+
     console.log(this.imagen_actual)
     console.log(this.noti.imagenesUrl)
     console.log(this.id);
-    if(this.noti.fecha_publicacion == ""){
+    if(this.noti.fechaPublicacion == ""){
       console.log('error');
       console.log('error Seleccione una Fecha');
       Swal.fire(
@@ -69,7 +69,7 @@ export class EditarNoticiasComponent implements OnInit {
         'Fallo en edicion de noticia!',
         'error'
       )
-    }else{ 
+    }else{
         Swal.fire({
           title: '¿Esta seguro?',
           text: "¿Desea guardar los cambios?",
@@ -80,28 +80,28 @@ export class EditarNoticiasComponent implements OnInit {
           confirmButtonText: 'Guardar!'
         }).then((result) => {
           if (result.value) {
-            Swal.fire(    
+            Swal.fire(
               'Guardado!',
               'La Noticia ha sido Actualizada',
-              'success'         
+              'success'
             )
-            value.id = this.id;          
-            this.servi.update(value,this.id);  
+            value.id = this.id;
+            this.servi.update(value,this.id);
             //this.Router.navigate(['/editarevento/'+this.id])
             this.cargandoImagen();
             this.refrescar(this.id);
           }
         })
-    }           
+    }
   }
 
-  public cargandoImagen(){    
+  public cargandoImagen(){
     console.log("cargar img");
     this.servi.postFileImagen(this.selectedfile).subscribe(response => {
-      this.respuestaImagenEnviada = response; 
+      this.respuestaImagenEnviada = response;
       if(this.respuestaImagenEnviada <= 1){
-        console.log("Error en el servidor"); 
-      }else{  
+        console.log("Error en el servidor");
+      }else{
         if(this.respuestaImagenEnviada.code == 200 && this.respuestaImagenEnviada.status == "success"){
           console.log("enviada");
           this.resultadoCarga = 1;
@@ -115,16 +115,16 @@ export class EditarNoticiasComponent implements OnInit {
     });
   }
 
-  refrescar(id){ 
+  refrescar(id){
     this.id = this.route.snapshot.params['id'];
     this.servi.getu(this.id).subscribe(resultado =>{
       this.noti=resultado;
-      this.imagen_actual="http://piedrasdeltunjo.tk/images/getImage?tipo=noticias&nombre="+this.noti.imagenesUrl;   
+      this.imagen_actual="http://piedrasdeltunjo.tk/images/getImage?tipo=noticias&nombre="+this.noti.imagenesUrl;
       });
-    this.ngOnInit();      
+    this.ngOnInit();
   }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.servi.getu(this.id).subscribe(resultado =>{
       this.noti=resultado;

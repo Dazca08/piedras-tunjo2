@@ -7,40 +7,36 @@ import { ok } from 'assert';
 const httpOptions =
 {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-}; 
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicioNoticiasService {
-
   private Url: string = "http://piedrasdeltunjo.tk/Noticias/";
-
- // private Url: string = "http://localhost:61629/Noticias/";
+  //private Url: string = "http://localhost:61629/Noticias/";
   private Url2: string = "http://piedrasdeltunjo.tk/";
-  
+
   constructor(private http: HttpClient) { }
-  
+
   Obtener():Observable<any>{
-    //return this.http.get(`${this.Url}Subscripcion/Ver_Subscripciones?estadoFiltro=${1}`)
-    return this.http.get(`${this.Url}noticias`)
- 
+    return this.http.get(this.Url+'noticias')
   }
 
   async insertar(Datos): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.post(this.Url+"agregarNoticia" , Datos, httpOptions).toPromise().then(Datos => resolve(Datos),      
-      error => reject(error))      
+      this.http.post(this.Url+"Agregar" , Datos, httpOptions).toPromise().then(Datos => resolve(Datos),
+      error => reject(error))
       console.log(resolve);
       console.log(reject);
     });
   }
   public postFileImagen(imagenParaSubir: File){
-    const formData = new FormData(); 
-    formData.append('imagenPropia', imagenParaSubir, imagenParaSubir.name); 
+    const formData = new FormData();
+    formData.append('imagenPropia', imagenParaSubir, imagenParaSubir.name);
     return this.http.post(this.Url2 +"images/uploadImage?tipo=noticias", formData);
   }
-  
+
   getu(id):Observable<any>{
     return this.http.get(this.Url + id, httpOptions)
   }
@@ -54,8 +50,8 @@ export class ServicioNoticiasService {
   async Eliminar(id): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.get(`${this.Url}eliminarNoticia?id=${id}`).toPromise()
-      console.log("Noticia eliminada");      
+      console.log("Noticia eliminada");
     });
   }
-  
+
 }

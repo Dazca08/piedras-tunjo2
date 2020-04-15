@@ -1,122 +1,55 @@
-<header>
-    <h1 class="titulo">Agregar Noticias</h1>
-
 <section>
-    <div align = "center">
-        <div class="container">
-            <div class="row">
-                <div class = "boton" > 
-                    <a 
-                        class="letra" 
-                        routerLink="/noticias" 
-                        role="button"
-                        >
-                        Regresar al Inicio
-                    </a>                             
+  <div class="container">
+    <div class="row" style="padding-right:20%; padding-left:20%;">
+      <div class="col-md-8">
+        <h4>Agregar Noticia</h4>
+      </div>
+      <div class="col-md-4">
+        <a class="btn btn-dark btn-block" routerLink="/noticias">Regresar al inicio</a>
+      </div>
+      <div class="col-md-12">
+        <div class="card" style="margin-top:2%">
+          <div class="card-body">
+            <form #notiForm ="ngForm" (ngSubmit)="agregar(notiForm)">
+              <div class="form-group">
+                <label for="titulo">Titulo</label>
+                <input type="text" name="titulo" class="form-control" #titulo="ngModel" [(ngModel)]="noti.titulo" [ngClass]="{'is-invalid': titulo.errors && titulo.touched}" required minlength="2">
+                <div [hidden]="!titulo.errors?.required" class="invalid-feedback">
+                  Titulo requerido
                 </div>
-            </div>    
+                <div [hidden]="!titulo.errors?.minlength" class="invalid-feedback">
+                  Debe contener al menos 2 caracteres
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="descripcion">Contenido</label>
+                <input type="text" name="descripcion" class="form-control" #descripcion="ngModel" [(ngModel)]="noti.descripcion" [ngClass]="{'is-invalid': descripcion.errors && descripcion.touched}" required minlength="2">
+                <div [hidden]="!descripcion.errors?.required" class="invalid-feedback">
+                    Contenido requerido
+                </div>
+                <div [hidden]="!descripcion.errors?.minlength" class="invalid-feedback">
+                    Debe tener al menos 2 caracteres
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="fechaPublicacion">Fecha de publicación</label>
+                <input type="date" name="fechaPublicacion" class="form-control" #fechaPublicacion="ngModel" [(ngModel)]="noti.fechaPublicacion" [ngClass]="{'is-invalid': fechaPublicacion.errors && fechaPublicacion.touched}" required minlength="2">
+                <div [hidden]="!fechaPublicacion.errors?.required" class="invalid-feedback">
+                    Fecha requerido
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="imagenesUrl">Seleccione una imagen</label>
+                <input type="file" class="form-control-file" (change)="onFileSelected($event)">
+                <input type="hidden" name="imagenesUrl" class="form-control" #imagenesUrl="ngModel" [(ngModel)]="noti.imagenesUrl">
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary btn-block">Agregar</button>
+              </div>
+            </form>
+          </div>
         </div>
-       <br>
-    </div>  
-</section>
-</header>
-
-
-<div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 mx-auto">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 style="text-align: center;">
-                            Agregar Noticia
-                        </h4>
-                        <form #notiForm ="ngForm" (ngSubmit)="agregar(notiForm)">
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label for="titulo">Titulo:</label>
-                                        <input 
-                                        type="text"
-                                        name="titulo" 
-                                        class="form-control" 
-                                        #titulo="ngModel"
-                                        [(ngModel)]="noti.titulo"
-                                        [ngClass]="{'is-invalid': titulo.errors && titulo.touched}" 
-                                        required minlength="2">
-                                    <div 
-                                        [hidden]="!titulo.errors?.required" class="invalid-feedback">
-                                        Titulo requerido
-                                    </div>
-                                    <div 
-                                        [hidden]="!titulo.errors?.minlength" class="invalid-feedback">
-                                        Debe contener al menos 2 caracteres
-                                    </div>
-
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="descripcion">CONTENIDO:</label>
-                                    <input                                         
-                                        type="text" 
-                                        name="descripcion" 
-                                        class="form-control" 
-                                        #descripcion="ngModel" 
-                                        [(ngModel)]="noti.descripcion"
-                                        [ngClass]="{'is-invalid': descripcion.errors && descripcion.touched}" 
-                                        required minlength="2"
-                                    >
-                                    <div 
-                                        [hidden]="!descripcion.errors?.required" class="invalid-feedback">
-                                        Contenido requerido
-                                    </div>
-                                    <div
-                                        [hidden]="!descripcion.errors?.minlength" class="invalid-feedback">
-                                        Debe tener al menos 2 caracteres
-                                    </div>
-
-                                </div>
-                                <div class="form-group">
-                                    <label for="fecha_publicacion">FECHA DE PUBLICACION:</label>
-                                    <input
-                                        type="date" 
-                                        name="fecha_publicacion" 
-                                        class="form-control" 
-                                        #fecha_publicacion="ngModel" 
-                                        [(ngModel)]="noti.fecha_publicacion"
-                                        [ngClass]="{'is-invalid': fecha_publicacion.errors && fecha_publicacion.touched}" 
-                                        required minlength="2"
-                                    >
-                                    <div 
-                                        [hidden]="!fecha_publicacion.errors?.required" class="invalid-feedback">
-                                        Fecha requerido
-                                    </div>                                   
-
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="imagenesUrl">SELECCIONE UNA IMAGEN:</label>
-                                    <input type="file" (change)="onFileSelected($event)">
-                                    <input 
-                                        type="hidden" 
-                                        name="imagenesUrl" 
-                                        class="form-control" 
-                                        #imagenesUrl="ngModel" 
-                                        [(ngModel)]="noti.imagenesUrl"
-                                    >                                   
-                                </div>
-
-
-                                
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary" >Agregar</button>
-                      
-                              </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>                
+      </div>
     </div>
-</div>
+  </div>
+</section>
