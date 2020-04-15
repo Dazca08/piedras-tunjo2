@@ -76,6 +76,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/usuarios/usuarios.module').then(mod => mod.UsuariosModule),
     canLoad: [AuthGuard],
   },
+   {
+    path: 'pqr',
+    loadChildren: () => import('./pages/pqr/pqr.module').then(mod => mod.PqrModule),
+    canLoad: [AuthGuard],
+  },
+
   { path: '', pathMatch: 'full', redirectTo: 'tablero' },
   { path: '**', pathMatch: 'full', redirectTo: 'tablero' }
 ];

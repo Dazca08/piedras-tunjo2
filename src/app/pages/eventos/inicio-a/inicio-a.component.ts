@@ -49,7 +49,7 @@ eventos: Evento[];
       this.eventos[this.i].Fecha=this.fechatemp;
       this.eventos[this.i].FechaPublicacion=this.fechaPtemp;
    }
-    
+    console.log(this.eventos)
    console.log("Informacion ya tiene resultado");
   
  },
