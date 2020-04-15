@@ -13,8 +13,8 @@ const httpOptions =
   providedIn: 'root'
 })
 export class ServicioNoticiasService {
-  //private Url: string = "http://piedrasdeltunjo.tk/Noticias/";
-  private Url: string = "http://localhost:61629/Noticias/";
+  private Url: string = "http://piedrasdeltunjo.tk/Noticias/";
+  //private Url: string = "http://localhost:61629/Noticias/";
   private Url2: string = "http://piedrasdeltunjo.tk/";
 
   constructor(private http: HttpClient) { }
