@@ -14,4 +14,7 @@ export class ServicioInfoService {
   getInformacion() {
     return this.http.get(`${ apiUrl }/informacion`);
   }
+  getNoticias(){
+  	return this.http.get(`${ apiUrl }/noticias/inicio`);
+  }
 }

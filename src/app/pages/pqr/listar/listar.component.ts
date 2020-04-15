@@ -12,11 +12,24 @@ import { ServiciopqrService } from 'src/app/services/serviciopqr.service';
 export class ListarComponent implements OnInit {
 pqrs:Pqr[];
 PageActual:number=1;
+i:number=0;
+fechatemp:string='';
   constructor(private servi:ServiciopqrService) { }
 
     ObtenerPqrs(){
  this.servi.ObtenerJson().subscribe(resultado =>{
    this.pqrs=resultado.results;
+   for(this.i=0;this.i<this.pqrs.length;this.i++){
+     this.fechatemp=this.pqrs[this.i].FechaPublicacion;
+  
+     var splitted = this.fechatemp.split("T", 2); 
+  
+    // console.log(splitted)
+      this.fechatemp=splitted[0];
+ 
+      this.pqrs[this.i].FechaPublicacion=this.fechatemp;
+     
+   }
     
     console.log(this.pqrs)
    console.log("Informacion ya tiene resultado");
