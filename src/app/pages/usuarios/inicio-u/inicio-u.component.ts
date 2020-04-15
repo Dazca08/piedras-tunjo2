@@ -17,17 +17,17 @@ usuarios: Usuarios[];
     Id:'',
     Nombre: '',
     Apellido: '',
-     TipoDocumento: '',
-   NumeroDocumento: '',
+    TipoDocumento: '',
+    NumeroDocumento: '',
     LugarExpedicion: '',
-   CorreoElectronico: '',
-       Clave: '',
+    CorreoElectronico: '',
+    Clave: '',
     Icono_url: '',
-   VerificacionCuenta: '',
+    VerificacionCuenta: '',
     EstadoCuenta: '',
-   RolId: '',
-     
+    RolId: '',
     Imagen_documento: '',
+    estadoc: '',
 
    
   }
@@ -36,7 +36,7 @@ usuarios: Usuarios[];
  PageActual:number=1;
  ObtenerUsuarios(){
  this.servi.ObtenerJson().subscribe(resultado =>{
-
+   
    this.usuarios=resultado;
  // console.log(this.usuarios);
    
@@ -91,12 +91,38 @@ this.Router.navigateByUrl('/iniciou');*/
   
 }
 
+deshabilitar(id){
+
+  Swal.fire({
+title: 'Esta seguro?',
+text: "El usuario aparecera ahora como Deshabilitado",
+icon: 'warning',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: 'Si, Deshabilitar!'
+}).then((result) => {
+if (result.value) {
+  Swal.fire(
+
+    'Deshabilitado!',
+    'El usuario ha sido Deshabilitado.',
+    'success'
+   
+  )
+    this.refrescar(id);
+     this.refrescar(id);
+}
+})
+
+
+}
+
 refrescar(id){
-   console.log(id);
-     this.servi.Eliminar(id);
- //this.usuarios=this.usuarios.filter(x=>x.Id==id);
- this.ObtenerUsuarios();
-  this.ngOnInit();
+      console.log(id);
+      this.servi.Deshabilitar(id);
+      this.ObtenerUsuarios();
+      this.ngOnInit();
 
 
 }

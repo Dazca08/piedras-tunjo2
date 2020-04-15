@@ -7,6 +7,10 @@ const routes: Routes = [
     loadChildren: () => import('./inicio-u/inicio-u.module').then(mod => mod.InicioUModule)
   },
   {
+    path: 'deshabilitados',
+    loadChildren: () => import('./inicio-ud/inicio-ud.module').then(mod => mod.InicioUdModule)
+  },
+  {
     path: 'agregar',
     loadChildren: () => import('./agregar-u/agregar-u.module').then(mod => mod.AgregarUModule)
   },

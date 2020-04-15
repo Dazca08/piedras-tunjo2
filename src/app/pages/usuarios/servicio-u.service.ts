@@ -13,9 +13,13 @@ const httpOptions =
 export class ServicioUService {
 
   constructor(private http: HttpClient) { }
-private url: string = "http://piedrasdeltunjo.tk/Usuarios";
+//private url: string = "http://piedrasdeltunjo.tk/Usuarios";
+private url: string = "http://localhost:61629/Usuarios";
   ObtenerJson():Observable<any>{
- return this.http.get(this.url)
+    return this.http.get(this.url+'/ver_Usuarios?estadoFiltro=1')
+  }
+  ObtenerDeshabilitados():Observable<any>{
+    return this.http.get(this.url+'/ver_Usuarios?estadoFiltro=2')
   }
  
 getu(id):Observable<any>{
@@ -35,6 +39,29 @@ async Eliminar(id): Promise<any> {
       
     });
   }
+
+  async Deshabilitar(id): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(`${this.url}/Estado_Usuario?estadoFiltro=1&id_Usuario=${id}`).toPromise()
+      console.log("Usuario Deshabilitado");      
+    });
+  }
+  async Habilitar(id): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(`${this.url}/Estado_Usuario?estadoFiltro=2&id_Usuario=${id}`).toPromise()
+      console.log("Usuario Habilitado");      
+    });
+  }
+
+
+ /* async Deshabilitar(id): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url+' /Estado_Usuario?estadoFiltro=1&id_Usuario='+id).toPromise()
+      console.log("archivo Deshabilitado");
+      
+    });
+  }*/
+
 
 /*async insertar(Datos): Promise<any> {
     return new Promise((resolve, reject) => {

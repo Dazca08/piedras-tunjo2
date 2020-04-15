@@ -11,8 +11,9 @@ export interface Usuarios{
     Icono_url?:string;
     VerificacionCuenta?:string;
     EstadoCuenta?:string;
-   RolId?:string;
+    RolId?:string;
     //rolNombre?:string;
     Imagen_documento?:string;
+    estadoc?:string;
   
 }
