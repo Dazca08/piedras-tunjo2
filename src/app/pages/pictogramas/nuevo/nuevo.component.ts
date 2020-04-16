@@ -25,9 +25,10 @@ export class NuevoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // Inicializar el ReactiveForm
     this.formPic = this.fb.group({
-      Nombre: ['', Validators.required],
-      Descripcion: ['', Validators.required]
+      Nombre: ['', Validators.required], // en HTML formControlName="Nombre" en el input
+      Descripcion: ['', Validators.required]  // formControlName="Descripcion"
     });
   }
 
@@ -40,17 +41,20 @@ export class NuevoComponent implements OnInit {
   }
 
   async onSubmit() {
+    // tomamos la primer imagen
     const file = this.fileUpload.nativeElement.files[0];
+    // generamos un uuid para la imagen (universal unique id)
     const blob = file.slice(0, file.size, 'image/*');
     const uuidName = uuid.v4() + this.filename;
     const newFile = new File([blob], uuidName, {type: 'image/*'});
 
     const pictogram: Pictograma = {
-      ... this.formPic.value,
+      ... this.formPic.value,  // toma Nombre y Descripcion y los agrega al nuevo objeto
       ImagenesUrl: uuidName
     };
     const creado = await this.pictogramaService.agregar(pictogram);
     if (creado) {
+      // subir imagen
       const upload = await this.imagesService.imageUpload(newFile, 'picto');
       if (upload) {
         this.router.navigateByUrl('/pictogramas');
@@ -66,6 +70,7 @@ export class NuevoComponent implements OnInit {
     return {'is-valid': control.valid, 'is-invalid': control.invalid};
   }
 
+  // getters para acceder a los atributos del form
   get nombre() {
     return this.formPic.get('Nombre');
   }

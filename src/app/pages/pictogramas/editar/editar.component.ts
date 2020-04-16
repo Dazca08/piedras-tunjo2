@@ -44,13 +44,17 @@ export class EditarComponent implements OnInit {
     this.pictogram.Nombre = Nombre;
     this.pictogram.Descripcion = Descripcion;
 
+    // Cuando se cambia la imagen del pictograma
     if (this.pictogram.ImagenesUrl !== this.filename) {
+      // Obtener file y agregarle un uuid para que su nombre sea único
       const file = this.fileUpload.nativeElement.files[0];
       const blob = file.slice(0, file.size, 'image/*');
       const uuidName = uuid.v4() + this.filename;
       const newFile = new File([blob], uuidName, {type: 'image/*'});
       const upload = await this.imageService.imageUpload(newFile, 'picto');
-      // ImagenesUrl
+      // Eliminar imagen anterior
+      this.imageService.deleteImage(this.pictogram.ImagenesUrl, 'picto');
+      // Reemplazar ImagenUrl
       this.pictogram.ImagenesUrl = uuidName;
     }
     const actualizado = await this.pictogramService.actualizar(this.pictogram);

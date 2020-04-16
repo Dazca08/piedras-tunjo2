@@ -23,4 +23,13 @@ export class ImagesService {
                   });
     });
   }
+
+  deleteImage(fileName: string, tipo: string) {
+    return new Promise(resolve => {
+      this.http.delete(`${ apiUrl }/images/deleteImage?tipo=${ tipo }&nombre=${ fileName }`)
+                .subscribe(res => {
+                  resolve(res['ok']);
+                });
+    });
+  }
 }

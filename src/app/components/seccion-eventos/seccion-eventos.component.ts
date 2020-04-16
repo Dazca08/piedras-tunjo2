@@ -205,7 +205,7 @@ else{
 
   this.servicioeventoservice.ObtenerJson().subscribe(resultado => {
       this.eventos = resultado;
- console.log(this.eventos);
+//  console.log(this.eventos);
 
     this.eventos.length
    for(this.i=0 ;this.i<this.eventos.length;this.i++){

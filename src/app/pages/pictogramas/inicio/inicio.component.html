@@ -2,6 +2,9 @@
     <button class="btn btn-success" routerLink="/pictogramas/nuevo">Agregar nuevo</button>
 </div>
 <hr>
+<div class="container" *ngIf="pictogramas.length === 0">
+    <h6>No hay pictogramas para mostrar</h6>
+</div>
 <div class="row">
     <div *ngFor="let picto of pictogramas" class="col-md-4 col-sm-6 col-xs-12">
         <div class="card shadow mb-2">
@@ -18,7 +21,7 @@
                         <button class="btn btn-sm btn-block btn-primary" routerLink="/pictogramas/editar/{{ picto.Id }}">Editar</button>
                     </div>
                     <div class="col">
-                        <button class="btn btn-sm btn-block btn-danger" (click)=showConfirmAlert(picto.Id)>Eliminar</button>
+                        <button class="btn btn-sm btn-block btn-danger" (click)=showConfirmAlert(picto)>Eliminar</button>
                     </div>
                 </div>
             </div>
