@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PictogramasRoutingModule } from './pictogramas-routing.module';
-
+import { PruebaRoutingModule } from './prueba-routing.module';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    PictogramasRoutingModule
+    PruebaRoutingModule
   ]
 })
-export class PictogramasModule { }
+export class PruebaModule { }

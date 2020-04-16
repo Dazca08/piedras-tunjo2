@@ -1,0 +1,27 @@
+<div class="container">
+    <button class="btn btn-success" routerLink="/pictogramas/nuevo">Agregar nuevo</button>
+</div>
+<hr>
+<div class="row">
+    <div *ngFor="let picto of pictogramas" class="col-md-4 col-sm-6 col-xs-12">
+        <div class="card shadow mb-2">
+            <img [src]="picto.ImagenesUrl | imgServer: 'picto'" class="card-img-to">
+            <div class="card-body">
+                <b class="text-muted">{{ picto.Nombre }}</b>
+                <p class="card-text">
+                    {{ picto.Descripcion }}
+                </p>
+            </div>
+            <div class="card-footer text-center">
+                <div class="row">
+                    <div class="col">
+                        <button class="btn btn-sm btn-block btn-primary" routerLink="/pictogramas/editar/{{ picto.Id }}">Editar</button>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-sm btn-block btn-danger" (click)=showConfirmAlert(picto.Id)>Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
