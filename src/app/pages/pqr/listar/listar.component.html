@@ -71,15 +71,17 @@
  
         <div class="card-body">
         	<form #pqrForm="ngForm" (ngSubmit)="guardar(pqrForm )" > 
-          <h5 class="card-title"> Pregunta:{{pqr.Pregunta}}</h5>
-           
+          <h5 class="card-title"> Asunto: {{pqr.Pregunta}}</h5>
+           <p class="card-text">Usuario que hace la pregunta queja o reclamo : {{pqr.UUsuario.Nombre}} {{pqr.UUsuario.Apellido}}</p>
+              <p class="card-text">fecha de la peticion : {{pqr.FechaPublicacion}} </p>
+
            <input type="hidden" name="FechaPublicacion" class="form-control" #respuesta="ngModel" [(ngModel)]="pqr.FechaPublicacion">
            <input type="hidden" name="Id" class="form-control" #respuesta="ngModel" [(ngModel)]="pqr.Id">
            <input type="hidden" name="LastModification" class="form-control" #respuesta="ngModel" [(ngModel)]="pqr.LastModification">
            <input type="hidden" name="Pregunta" class="form-control" #respuesta="ngModel" [(ngModel)]="pqr.Pregunta">
             <label for="nombre"> Ingrese la respuesta</label>
                <input type="text" name="Respuesta" class="form-control" #respuesta="ngModel" [(ngModel)]="pqr.Respuesta">
-         <p class="card-text">Respuesta : {{pqr.Respuesta }}</p>
+         <!--<p class="card-text">Respuesta : {{pqr.Respuesta }}</p>-->
            <input type="hidden" name="Token" class="form-control" #respuesta="ngModel" [(ngModel)]="pqr.Token">
            
            <input type="hidden" name="UEstadoPQR" class="form-control" #respuesta="ngModel" [(ngModel)]="pqr.UEstadoPQR">
@@ -88,16 +90,19 @@
            <input type="hidden" name="UUsuario" class="form-control" #respuesta="ngModel" [(ngModel)]="pqr.UUsuario">
              <input type="hidden" name="UUsuarioId" class="form-control" #respuesta="ngModel" [(ngModel)]="pqr.UUsuarioId">
            
-          <p class="card-text">Usuario : {{pqr.UUsuario.Nombre}} {{pqr.UUsuario.Apellido}}</p>
+          <br>
           
-           <form (submit)="eliminar(pqr.Id)">
+           <!--<form (submit)="eliminar(pqr.Id)">
                 	 <button type="submit" style="width:100" class="btn btn-danger btn-block">
              Eliminar
           </button>
-           </form>
-             	 <button type="submit" style="width:100" class="btn btn-primary btn-block">
-             guardar
+           </form>-->
+           <div align="center">
+             <button type="submit" style="width:200 ;" class="btn btn-primary btn-block">
+             guardar respuesta
           </button>
+           </div>
+             	 
            </form>
         </div>
       </div>
