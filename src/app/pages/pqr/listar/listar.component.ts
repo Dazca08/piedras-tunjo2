@@ -14,6 +14,7 @@ pqrs:Pqr[];
 PageActual:number=1;
 i:number=0;
 fechatemp:string='';
+filterpregunta ='';
   constructor(private servi:ServiciopqrService) { }
 
     ObtenerPqrs(){
@@ -30,6 +31,7 @@ fechatemp:string='';
       this.pqrs[this.i].FechaPublicacion=this.fechatemp;
      
    }
+   this.pqrs=this.pqrs.filter(x=>x.Respuesta=='');
     
     console.log(this.pqrs)
    console.log("Informacion ya tiene resultado");
@@ -62,9 +64,9 @@ console.log(id);
       'success'
     )
 
-      this.refrescar(id);
-  this.ObtenerPqrs();
-  this.ngOnInit();
+      this.refrescar();
+  //this.ObtenerPqrs();
+  //this.ngOnInit();
 
   }
 })
@@ -73,10 +75,10 @@ console.log(id);
   
 }
 
-refrescar(id){
+refrescar(){
  
-   console.log(id);
-     this.servi.Eliminar(id);
+  // console.log(id);
+     //this.servi.Eliminar(id);
  //this.usuarios=this.usuarios.filter(x=>x.Id==id);
  this.ObtenerPqrs();
   this.ngOnInit();
@@ -85,12 +87,27 @@ refrescar(id){
 }
 
  guardar({value, valid }: {value:Pqr, valid: boolean}){
-   console.log(value)
+   if(value.Respuesta==""){
+               Swal.fire(
+  'Por favor Ingrese una respuesta!',
+  'Respuesta no  enviada!',
+  'error'
+)
+   }
+   else if(value.Respuesta.length<10){
+         Swal.fire(
+  'La respuesta debe tener como minimo 10 caracteres!',
+  'Respuesta no  enviada!',
+  'error'
+)
+   }
+   else{
+     console.log(value)
     console.log(value.Id)
 
         Swal.fire({
   title: 'Esta seguro?',
-  text: "Desea guardar los cambios?",
+  text: "Desea enviar esta respuesta?",
   icon: 'warning',
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
@@ -106,15 +123,17 @@ refrescar(id){
      
     )
 
-      value.UEstadoPQR.Nombre='atendida';
+      value.UEstadoPQR={Id:1 , Nombre:"atendida"};
       console.log(value.UEstadoPQR.Nombre)
       console.log(value)
    this.servi.update(value,value.Id);  
   //this.Router.navigate(['/admin/editarevento/'+this.id])
    
-  //  this.refrescar(this.id);
+  this.refrescar();
   }
 })
+   }
+   
    
 
 }

@@ -25,8 +25,6 @@ eventos: Evento[];
    
   }
  @ViewChild("eventoForm") eventoForm:FormGroup;
-    public respuestaImagenEnviada;
-    public resultadoCarga;
    
   constructor(private formBuilder: FormBuilder,
       private servi: ServicioEventoService ,
@@ -88,13 +86,19 @@ this.refrescar();
  
 //this.eventoForm.resetForm();
   }
-selectedfile:File=null;
-
+selectedfile:FileList=null;
+i:number=0;
 onFileSelected(evento){
-  console.log(this.k)
-this.selectedfile=<File>evento.target.files[0];
-this.evento.ImagenesUrl=this.selectedfile.name.toString();
-console.log("new k "+this.k)
+
+
+//this.selectedfile=<FileList>evento.target.files;
+this.selectedfile=evento;
+for(this.i=0;this.i<this.selectedfile.length;this.i++){
+  this.evento.ImagenesUrl=this.evento.ImagenesUrl+this.selectedfile[this.i].name.toString()+"@";
+}
+
+
+console.log(this.evento.ImagenesUrl);
 }
 refrescar(){
  this.evento.Nombre="";
@@ -108,35 +112,11 @@ this.evento.ListaComentariosEvento="";
 }
 
    public cargandoImagen(){
-    
-
-
-  console.log("si entro");
-  this.servi.postFileImagen(this.selectedfile).subscribe(
-
-      response => {
-        this.respuestaImagenEnviada = response; 
-        if(this.respuestaImagenEnviada <= 1){
-          console.log("Error en el servidor"); 
-        }else{
-
-          if(this.respuestaImagenEnviada.code == 200 && this.respuestaImagenEnviada.status == "success"){
-             console.log("enviada");
-            this.resultadoCarga = 1;
-
-          }else{
-            this.resultadoCarga = 2;
-          }
-
-        }
-      },
-      error => {
-        console.log(<any>error);
-      }
-
-    );//FIN DE METODO SUBSCRIBE
-
-
+  //console.log("si entro");
+  console.log(this.selectedfile.length)
+ for(this.i=0;this.i<this.selectedfile.length;this.i++){
+   this.servi.postFileImagen(this.selectedfile[this.i]).subscribe();
+ }
     
   }
 

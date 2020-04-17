@@ -9,6 +9,7 @@ import { ImgServerPipe } from './img-server.pipe';
 import { FiltropicPipe } from './filtropic.pipe';
 import { FiltroNoticiasPipe } from './filtro-noticias.pipe';
 import { FiltropromPipe } from './filtroprom.pipe';
+import { FiltropqrsPipe } from './filtropqrs.pipe';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { FiltropromPipe } from './filtroprom.pipe';
     FiltropicPipe,
     FiltroNoticiasPipe,
     FiltropromPipe,
+    FiltropqrsPipe,
 
   ],
   imports: [
@@ -36,7 +38,8 @@ import { FiltropromPipe } from './filtroprom.pipe';
     ImgServerPipe,
     FiltropicPipe,
     FiltroNoticiasPipe,
-    FiltropromPipe
+    FiltropromPipe,
+      FiltropqrsPipe
 
     
   ]
