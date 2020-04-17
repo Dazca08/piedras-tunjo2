@@ -47,11 +47,6 @@ const routes: Routes = [
     canLoad: [AuthGuard],
   },
   {
-    path: 'pictogramas',
-    loadChildren: () => import('./pages/pictogramas/pictogramas.module').then(mod => mod.PictogramasModule),
-    canLoad: [AuthGuard],
-  },
-  {
     path: 'preguntas-frecuentes',
     loadChildren: () => import('./pages/preguntas-frecuentes/preguntas-frecuentes.module').then(mod => mod.PreguntasFrecuentesModule),
     canLoad: [AuthGuard],
@@ -81,7 +76,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/pqr/pqr.module').then(mod => mod.PqrModule),
     canLoad: [AuthGuard],
   },
-
+  {
+    path: 'pictogramas',
+    loadChildren: () => import('./pages/pictogramas/prueba.module').then(mod => mod.PruebaModule),
+    canLoad: [AuthGuard]
+  },
   { path: '', pathMatch: 'full', redirectTo: 'tablero' },
   { path: '**', pathMatch: 'full', redirectTo: 'tablero' }
 ];

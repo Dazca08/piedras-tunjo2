@@ -32,14 +32,14 @@ ObtenerUltimasNoticias(){
       this.Noticias[this.i].fechaPublicacion=this.fechatemp;
      
    }
- console.log(this.Noticias)
-   console.log("Informacion ya tiene resultado");
+//  console.log(this.Noticias)
+//    console.log("Informacion ya tiene resultado");
     this.noticia1=this.Noticias[0];
     this.noticia2=this.Noticias[1];
     this.noticia3=this.Noticias[2];
-    console.log(this.noticia1);
-    console.log(this.noticia2);
-    console.log(this.noticia3);
+    // console.log(this.noticia1);
+    // console.log(this.noticia2);
+    // console.log(this.noticia3);
  
  },
  error=>{

@@ -1,0 +1,8 @@
+export interface Pictograma {
+    Id?: number;
+    Nombre?: string;
+    Descripcion?: string;
+    ImagenesUrl?: string;
+    Calificacion?: number;
+    Estado?: number;
+}

@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { EditarPicComponent } from './editar-pic.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { EditarComponent } from './editar.component';
 import { PipesModule } from '../../../pipes/pipes.module';
-import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [EditarPicComponent],
+  declarations: [EditarComponent],
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     PipesModule,
-    RouterModule.forChild([{ path: '', component: EditarPicComponent }])
+    RouterModule.forChild([{ path: '', component: EditarComponent }])
   ]
 })
-export class EditarPicModule { }
+export class EditarModule { }
