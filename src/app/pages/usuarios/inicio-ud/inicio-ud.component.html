@@ -1,98 +1,89 @@
 <header id="main-header" class="py-2 bg-info text-white">
-	<div class="container">
-	  <div class="row">
-		  <div class="col-md-4">
-			  <h1>
-			  Inicio Usuarios Deshabilitados
-			  </h1>
-			  <div class="form-group">
-				<!--<input type="text" class="form-control" name="filterPost" placeholder="Buscar usuario por numero de documento ..." [(ngModel)]="filterPost">-->
-			</div>
-		  </div>
-		  <div class="col-md-4">
-			  <div class="container">
-				  <div align="center">
-					  <h3 >Total de Usuarios deshabilitados</h3>
-						  <h4 class="display-4">
-						  <!--<i class="fas fa-users"></i> {{clientes?.length}}-->
-						  {{usuarios?.length}}
-						  </h4>
-				  </div>
-			  </div>
-		  </div>
-		  <div class="col-md-3">
-				  <div class="container">
-					  <div align="center">
-						  <br>
-							  <a class="btn btn-info"  href="usuarios/inicio-u" role="button" >
-								  <h4> <i   class="fas fa-plus"></i> Usuarios habilitados</h4>
-							  </a>
-							  
-					  </div>
-				  </div>
-		  </div>
-	  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h1>
+          Inicio Usuarios Deshabilitados
+        </h1>
+        <div class="form-group">
+          <!--<input type="text" class="form-control" name="filterPost" placeholder="Buscar usuario por numero de documento ..." [(ngModel)]="filterPost">-->
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="container">
+          <div align="center">
+            <h3>Total de Usuarios deshabilitados</h3>
+            <h4 class="display-4">
+              <!--<i class="fas fa-users"></i> {{clientes?.length}}-->
+              {{usuarios?.length}}
+            </h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="container">
+          <div align="center">
+            <br>
+            <a class="btn btn-info" href="usuarios/inicio-u" role="button">
+              <h4> <i class="fas fa-plus"></i> Usuarios habilitados</h4>
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
 
 <br><br>
 
-<section id ="Usuarios" >
-	<div class="container" >
-		<div align="center"> 
-			<div class="col-md-6">
-				<div class="card" >
-						<h4 >Listado de Usuarios Deshabilitados</h4>
-				</div>
-					
-				<div class="table-responsive ">
-					<table class="table  table-bordered table-striped"  style="background-color:white;"  >
-						<thead class="thead-dark">
-							<tr>
-								<th>##</th>
-								
-							</tr>
-						</thead>
-						<tbody>
-<!--|filter:filterPost | paginate:{itemsPerPage :2 , currentPage:PageActual}-->
-							<tr *ngFor="let usuario of usuarios; index as i" >
-								
-								<td>{{i+1}}
-									<div class="col mb-4">
-										<div class="card" style="width: 25rem;">
-											<!--<img src="http://piedrasdeltunjo.tk/images/getImage?tipo=usuario&nombre={{usuario.Icono_url}}" class="card-img-top" width="100" height="200" >-->
-											<div class="card-body">	
-																						
-												<h5 class="card-title"> Usuario:{{usuario.Nombre}} {{usuario.Apellido}}</h5>
-												<p class="card-text">Tipo de Documento : {{usuario.TipoDocumento}}</p>
-												<p class="card-text">Numero de Documento : {{usuario.NumeroDocumento}}</p>
-												<p class="card-text">Lugar de Expedicion: {{usuario.LugarExpedicion}}</p>
-												<p class="card-text">Correo Electronico: {{usuario.CorreoElectronico}}</p>
-												<button class="btn btn-secondary" (click)="habilitar(usuario.Id)">Habilitar</button>
-												
-											</div>
-										</div>
-									</div>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				<!--<pagination-controls (pageChange)="PageActual = $event"></pagination-controls>-->	
-				</div>
-				<br><br>
-				<br><br>
-			</div>
-		</div>
-	</div>
+<section id="Usuarios">
+  <div class="container">
+    <div align="center">
+      <div class="col-md-6">
+        <div class="card">
+          <h4>Listado de Usuarios Deshabilitados</h4>
+        </div>
+
+        <div class="table-responsive ">
+          <table class="table  table-bordered table-striped" style="background-color:white;">
+            <thead class="thead-dark">
+              <tr>
+                <th>##</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <!--|filter:filterPost | paginate:{itemsPerPage :2 , currentPage:PageActual}-->
+              <tr *ngFor="let usuario of usuarios; index as i">
+
+                <td>{{i+1}}
+                  <div class="col mb-4">
+                    <div class="card" style="width: 25rem;">
+                      <!--<img src="http://piedrasdeltunjo.tk/images/getImage?tipo=usuario&nombre={{usuario.Icono_url}}" class="card-img-top" width="100" height="200" >-->
+                      <div class="card-body">
+
+                        <h5 class="card-title"> Usuario:{{usuario.Nombre}} {{usuario.Apellido}}</h5>
+                        <p class="card-text">Tipo de Documento : {{usuario.TipoDocumento}}</p>
+                        <p class="card-text">Numero de Documento : {{usuario.NumeroDocumento}}</p>
+                        <p class="card-text">Lugar de Expedicion: {{usuario.LugarExpedicion}}</p>
+                        <p class="card-text">Correo Electronico: {{usuario.CorreoElectronico}}</p>
+                        <button class="btn btn-secondary" (click)="habilitar(usuario.Id)">Habilitar</button>
+
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!--<pagination-controls (pageChange)="PageActual = $event"></pagination-controls>-->
+        </div>
+        <br><br>
+        <br><br>
+      </div>
+    </div>
+  </div>
 
 
 </section>
-
-
-
-
-  
-
- 
-
-

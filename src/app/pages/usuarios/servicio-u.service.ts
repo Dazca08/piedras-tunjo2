@@ -13,15 +13,15 @@ const httpOptions =
 export class ServicioUService {
 
   constructor(private http: HttpClient) { }
-//private url: string = "http://piedrasdeltunjo.tk/Usuarios";
-private url: string = "http://localhost:61629/Usuarios";
+private url: string = "http://piedrasdeltunjo.tk/Usuarios";
+//private url: string = "http://localhost:61629/Usuarios";
   ObtenerJson():Observable<any>{
     return this.http.get(this.url+'/ver_Usuarios?estadoFiltro=1')
   }
   ObtenerDeshabilitados():Observable<any>{
     return this.http.get(this.url+'/ver_Usuarios?estadoFiltro=2')
   }
- 
+
 getu(id):Observable<any>{
   return this.http.get(this.url + id, httpOptions)
   }
@@ -36,7 +36,7 @@ async Eliminar(id): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.delete(this.url+'/'+id).toPromise()
       console.log("archvio eliminado");
-      
+
     });
   }
 
@@ -59,7 +59,7 @@ async Eliminar(id): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.get(this.url+' /Estado_Usuario?estadoFiltro=1&id_Usuario='+id).toPromise()
       console.log("archivo Deshabilitado");
-      
+
     });
   }*/
 
@@ -68,9 +68,9 @@ async Eliminar(id): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.post(this.url , Datos, httpOptions).toPromise()
     });
-   
- 
-    
+
+
+
   }*/
   funcion(boolean , string  ){
     console.log(string);
@@ -100,7 +100,7 @@ async Eliminar(id): Promise<any> {
    }
   }
   async insertar(Datos) {
-    
+
           return this.http.post(this.url , Datos).pipe(catchError(err => {
                     return of( err.error );
                 }))
@@ -109,23 +109,23 @@ async Eliminar(id): Promise<any> {
                     //console.log(res.ok);
                 },
                 (err) => { console.log(err)
-                       this.funcion(err.ok , err.message);           
+                       this.funcion(err.ok , err.message);
 
 
 
 
   },
-              
+
             );
 
 
- 
-   
- 
-    
+
+
+
+
   }
-  
-  
- 
+
+
+
 
 }
