@@ -5,7 +5,7 @@
         <h1>Gestion de usuarios</h1>
       </div>
       <div class="col-md-3">
-        <h5>Total de usuario: {{usuarios?.length}}</h5>
+        <h6>Total de usuario: {{usuarios?.length}}</h6>
       </div>
       <div class="col-md-4">
         <div class="form-group">
@@ -18,10 +18,10 @@
         </div>
       </div>
       <div class="col-md-2">
-        <a class="btn btn-primary" href="usuarios/agregar" role="button"><i class="fas fa-plus"></i> Nuevo Usuario</a>
+        <a class="btn btn-success btn-block" href="usuarios/agregar" role="button"><i class="fas fa-plus"></i> Nuevo Usuario</a>
       </div>
       <div class="col-md-3">
-        <a class="btn btn-dark" href="usuarios/deshabilitados" role="button"><i class="fas fa-user-slash"></i> Usuario Deshabilitados</a>
+        <a class="btn btn-dark btn-block" href="usuarios/deshabilitados" role="button"><i class="fas fa-user-slash"></i> Usuario Deshabilitados</a>
       </div>
     </div>
   </div>
@@ -31,10 +31,10 @@
         <div class="row row-cols-1 row-cols-md-3">
           <div class="col mb-4" *ngFor="let usuario of usuarios  |filter:filterPost | paginate:{itemsPerPage :6 , currentPage:PageActual}  ; index as i">
             <div class="card h-100">
-              <div class="card-header">
+              <div class="card-header text-center">
                 <h4>Usuario {{i+1}}</h4>
               </div>
-              <div class="car-body container">
+              <div class="card-body container">
                 <div class="row" style="padding: 3%;">
                   <div class="col-md-8">
                     <p class="card-title"><b>Nombre:</b> {{usuario.Nombre}}</p>
@@ -51,12 +51,12 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-6">
-                    <a class="btn btn-primary btn-block" align="center" routerLink="editar/{{usuario.Id}}">Editar</a>
+                  <div class="col-md-5">
+                    <a class="btn btn-primary btn-block" align="center" routerLink="editar/{{usuario.Id}}"><i class="fas fa-user-edit"></i> Editar</a>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-7">
                     <form (submit)="deshabilitar(usuario.Id)">
-                      <button type="submit" class="btn btn-warning text-white btn-block">Deshabilitar</button>
+                      <button type="submit" class="btn btn-warning text-white btn-block"><i class="fas fa-user-times"></i> Deshabilitar</button>
                     </form>
                   </div>
                 </div>
