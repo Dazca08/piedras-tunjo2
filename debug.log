@@ -12,3 +12,7 @@
 [0416/170726.654:WARNING:minidump_to_upload_parameters.cc(36)] duplicate key guid, discarding value 48719761-032f-40d3-8738-984977f3d971
 [0416/170808.762:WARNING:minidump_to_upload_parameters.cc(36)] duplicate key guid, discarding value 48719761-032f-40d3-8738-984977f3d971
 [0416/172556.555:WARNING:minidump_to_upload_parameters.cc(36)] duplicate key guid, discarding value 48719761-032f-40d3-8738-984977f3d971
+[0417/184236.180:WARNING:minidump_to_upload_parameters.cc(36)] duplicate key guid, discarding value 48719761-032f-40d3-8738-984977f3d971
+[0417/235228.381:WARNING:minidump_to_upload_parameters.cc(36)] duplicate key guid, discarding value 48719761-032f-40d3-8738-984977f3d971
+[0417/235347.497:WARNING:minidump_to_upload_parameters.cc(36)] duplicate key guid, discarding value 48719761-032f-40d3-8738-984977f3d971
+[0417/235428.096:WARNING:minidump_to_upload_parameters.cc(36)] duplicate key guid, discarding value 48719761-032f-40d3-8738-984977f3d971

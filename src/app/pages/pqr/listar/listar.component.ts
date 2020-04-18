@@ -15,10 +15,14 @@ PageActual:number=1;
 i:number=0;
 fechatemp:string='';
 filterpregunta ='';
+indicador:boolean=true;
+indicadorBoton:string="PQR Contestados"
   constructor(private servi:ServiciopqrService) { }
 
     ObtenerPqrs(){
- this.servi.ObtenerJson().subscribe(resultado =>{
+      console.log(this.indicador)
+      if(this.indicador==true){
+          this.servi.ObtenerJson().subscribe(resultado =>{
    this.pqrs=resultado.results;
    for(this.i=0;this.i<this.pqrs.length;this.i++){
      this.fechatemp=this.pqrs[this.i].FechaPublicacion;
@@ -41,6 +45,47 @@ filterpregunta ='';
 console.log(JSON.stringify(error));
 
  }); 
+      }
+      else if (this.indicador==false){
+               this.servi.ObtenerJson().subscribe(resultado =>{
+   this.pqrs=resultado.results;
+   for(this.i=0;this.i<this.pqrs.length;this.i++){
+     this.fechatemp=this.pqrs[this.i].FechaPublicacion;
+  
+     var splitted = this.fechatemp.split("T", 2); 
+  
+    // console.log(splitted)
+      this.fechatemp=splitted[0];
+ 
+      this.pqrs[this.i].FechaPublicacion=this.fechatemp;
+     
+   }
+   this.pqrs=this.pqrs.filter(x=>x.Respuesta!='');
+    
+    console.log(this.pqrs)
+   console.log("Informacion ya tiene resultado");
+  
+ },
+ error=>{
+console.log(JSON.stringify(error));
+
+ });
+      }
+
+   }
+   listarContestados(){
+   console.log('me listarom :v')
+   if(this.indicador==true){
+     this.indicador=false;
+     this.indicadorBoton="PQR Sin contestar"
+   }
+   else if(this.indicador==false){
+    this.indicador=true;
+    this.indicadorBoton="PQR Contestados"
+   }
+   
+   console.log(this.indicador)
+   this.refrescar();
    }
   ngOnInit(): void {
   	this.ObtenerPqrs();

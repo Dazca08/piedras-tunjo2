@@ -16,9 +16,9 @@
            	<div class="col-md-4">
       <div class="container">
         <div align="center">
-	  <h3 >Total de eventos</h3>
+	  <h3 >   <i class="fas fa-list-ol"></i> Total de eventos</h3>
             <h4 class="display-4">
-              <!--<i class="fas fa-users"></i> {{clientes?.length}}-->
+          
           {{eventos?.length}}
             </h4>
         </div>
@@ -28,9 +28,9 @@
       <div class="container">
         <div align="center">
         	<br>
-	<a class="btn btn-info"  href="eventos/agregar" role="button" >
-	<h4> <i class="fas fa-plus"></i> Nuevo Evento</h4>
-   </a>
+	      <a class="btn btn-info"  href="eventos/agregar" role="button" >
+	         <h4> <i class="fas fa-plus"></i> Nuevo Evento</h4>
+        </a>
         </div>
       </div>
        
@@ -42,29 +42,37 @@
 
 </header>
 
-<br><br>
+
+         <div *ngIf="(eventos.length===0)">
+             <hr>
+            <div>
+             <h6>Lo sentimos en este momento no existen eventos, puede crear uno nuevo</h6>
+            </div>
+        </div>
+        <br><br>
 <section id ="eventos">
 <div class="container"  >
  <div class="col-md-12">
     <div class="row row-cols-1 row-cols-md-3">
        <div class="col mb-4"  *ngFor="let evento of eventos | filtroN:filterEvento | paginate:{itemsPerPage :3 , currentPage:PageActual}; let i =index">
           <div class="card h-100">
+
               <div class="card-header">
-                <h4>Evento {{i+1}}</h4>
+                <h4> Evento: {{evento.Nombre}}</h4>
               </div>
               <div class="car-body container">
                 
-        <img src="http://piedrasdeltunjo.tk/images/getImage?tipo=evento&nombre={{evento.ImagenesUrl}}" class="card-img-top" width="100" height="200" >
+        <img src="http://piedrasdeltunjo.tk/images/getImage?tipo=evento&nombre={{evento.ImagenesUrl}}" class="card-img-top" width="100" height="150" >
         
         <div class="card-body">
-          <h5 class="card-title"> Evento: {{evento.Nombre}}</h5>
+          <!--<h5 class="card-title"> Evento: {{evento.Nombre}}</h5>-->
           <p class="card-text"> <i class="fas fa-align-justify"></i> Descripcion : {{evento.Descripcion }}</p>
           <p class="card-text"><i class="fas fa-calendar"></i> Fecha publicacion : {{evento.FechaPublicacion}}</p>
           <p class="card-text"><i class="fas fa-calendar"></i> Fecha del evento : {{evento.Fecha}}</p>
           <p class="card-text"> <i class="fas fa-check-circle"></i> Calificacion del evento : {{evento.Calificacion}}</p>
           <div class="row">
           	  <div class="col-md-6">
-          	  <a style=" width:120;"routerLink="editar/{{evento.Id}}" class="btn btn-secondary">
+          	  <a style=" width:120;"routerLink="editar/{{evento.Id}}" class="btn btn-primary">
                    <i class="fas fa-edit"></i>Editar
                   </a>
               </div>
@@ -86,7 +94,10 @@
         </div>
 
     </div>
-      <pagination-controls (pageChange)="PageActual = $event"></pagination-controls>
+    <div align="center">
+        <pagination-controls (pageChange)="PageActual = $event"></pagination-controls>
+    </div>
+    
  </div>
 			
 	</div>

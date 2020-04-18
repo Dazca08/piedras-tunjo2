@@ -33,12 +33,15 @@ eventos: Evento[];
     public respuestaImagenEnviada;
     public resultadoCarga;
 
-  selectedfile:File=null;
+
 
 fechatemp:string="";
 rutaImagen:string="";
 imagen:string="";
-
+ fechaActual:any;
+   fechaActualtemp:any;
+   fechaEvento:any;
+   resultadoComparacion:any;
   ngOnInit(): void {
      this.id = this.route.snapshot.params['id'];
       this.servi.getu('/'+this.id).subscribe(resultado =>{
@@ -62,28 +65,103 @@ imagen:string="";
 
 
 
-
+  this.FechaActual()
   }
-  onFileSelected(evento){
-  console.log(this.Vtemp)
-this.selectedfile=<File>evento.target.files[0];
-this.Vtemp=this.selectedfile.name.toString();
-console.log("new Vtemp "+this.Vtemp)
-    this.evento.ImagenesUrl=this.Vtemp;
+
+   FechaActual(){
+  var hoy = new Date();
+  var dd=hoy.getDate();
+  var mm=hoy.getMonth()+1;
+  var yyyy=hoy.getFullYear();
+ dd=this.agregarCero(dd);
+ mm=this.agregarCero(mm);
+  this.fechaActual=yyyy+'-'+mm+'-'+dd;
+ 
+  }
+
+  agregarCero(i){
+  if(i<10){
+    i="0"+i;
+  }
+  return i
+  }
+
+splitfecha(fecha){
+var split=fecha.split('-')
+return split
 }
 
+Comparacion(fecha , fechaactual){
+var añofe=parseInt(fecha[0],10);
+var añofa=parseInt(fechaactual[0],10)
+var me=parseInt(fecha[1],10);
+var ma=parseInt(fechaactual[1],10)
+var de=parseInt(fecha[2],10);
+var da=parseInt(fechaactual[2],10)
+var resultado="valida";
+if(añofe<añofa){
+
+   resultado="invalida";
+
+}
+else if(añofe==añofa && me<ma){
+ 
+     resultado="invalida";
+   
+}
+else if(añofe==añofa && me==ma && de<da){
+
+    resultado="invalida";
+
+}
+else if(añofe==añofa && me==ma && de==da){
+
+    resultado="invalida";
+
+}
+
+ return resultado;
+}
+
+ selectedfile:FileList=null;
+i:number=0;
+onFileSelected(evento){
+//this.selectedfile=<FileList>evento.target.files;
+this.selectedfile=evento;
+this.evento.ImagenesUrl="";
+for(this.i=0;this.i<this.selectedfile.length;this.i++){
+  this.evento.ImagenesUrl=this.evento.ImagenesUrl+this.selectedfile[this.i].name.toString()+"@";
+}
+}
      guardar({value, valid}: {value:Evento, valid: boolean}){
+
     console.log(this.evento.ImagenesUrl)
     console.log(this.Vtemp)
 
     console.log(this.evento.ImagenesUrl)
   console.log(this.id);
+   this.fechaEvento=this.evento.Fecha
+  this.fechaActualtemp=this.fechaActual
+
+
+this.fechaEvento=this.splitfecha(this.fechaEvento);
+this.fechaActualtemp=this.splitfecha(this.fechaActualtemp);
+console.log(this.fechaEvento);
+this.resultadoComparacion=this.Comparacion(this.fechaEvento,this.fechaActualtemp);
+console.log(this.resultadoComparacion)
   if(this.evento.Fecha ==""){
    console.log('error');
   console.log('error seleccione una Fecha');
                      Swal.fire(
   'Por favor seleccione una  fecha para el evento !',
   'evento no  Editado!',
+  'error'
+)
+ }
+  else if(this.resultadoComparacion=="invalida"){
+       Swal.fire(
+  'La fecha del evento debe ser mayor a la fecha actual !',
+  'evento no  Agregado!',
   'error'
 )
  }
@@ -95,7 +173,7 @@ console.log("new Vtemp "+this.Vtemp)
   'error'
 )
  }
- else if(this.evento.Calificacion=='' || this.evento.Descripcion=='' || this.evento.Nombre==''){
+ else if( this.evento.Descripcion=='' || this.evento.Nombre==''){
    console.log('llene todos los campos')
              Swal.fire(
   'Por favor llene todos los campos!',
@@ -103,15 +181,8 @@ console.log("new Vtemp "+this.Vtemp)
   'error'
 )
  }
- else if(this.evento.Calificacion=='0'){
- console.log('La calificacion del evento no puede ser cero')
-             Swal.fire(
-  ' el valor de la calificacion! no puede ser cero',
-  'evento no  Editado!',
-  'error')
- }
-
-        Swal.fire({
+else{
+   Swal.fire({
   title: 'Esta seguro?',
   text: "Desea guardar los cambios?",
   icon: 'warning',
@@ -136,6 +207,9 @@ console.log("new Vtemp "+this.Vtemp)
     this.refrescar(this.id);
   }
 })
+}
+
+       
    
 
 }
@@ -146,48 +220,21 @@ console.log("new Vtemp "+this.Vtemp)
 
     
   
-   public cargandoImagen(){
-    
-
-
-  console.log("si entro");
-  this.servi.postFileImagen(this.selectedfile).subscribe(
-
-      response => {
-        this.respuestaImagenEnviada = response; 
-        if(this.respuestaImagenEnviada <= 1){
-          console.log("Error en el servidor"); 
-        }else{
-
-          if(this.respuestaImagenEnviada.code == 200 && this.respuestaImagenEnviada.status == "success"){
-             console.log("enviada");
-            this.resultadoCarga = 1;
-
-          }else{
-            this.resultadoCarga = 2;
-          }
-
-        }
-      },
-      error => {
-        console.log(<any>error);
-      }
-
-    );//FIN DE METODO SUBSCRIBE
-
+ public cargandoImagen(){
+  //console.log("si entro");
+  if(this.selectedfile!=null){
+    for(this.i=0;this.i<this.selectedfile.length;this.i++){
+   this.servi.postFileImagen(this.selectedfile[this.i]).subscribe();
+ }
+  }
+  
 
     
   }
 refrescar(id){
  
 
- //this.usuarios=this.usuarios.filter(x=>x.Id==id);
-    this.id = this.route.snapshot.params['id'];
-      this.servi.getu('/'+this.id).subscribe(resultado =>{
- this.evento=resultado;
-  this.rutaImagen="http://piedrasdeltunjo.tk/images/getImage?tipo=evento&nombre="+this.evento.ImagenesUrl;
-
- });
+ 
   this.ngOnInit();
 
   this.ngOnInit();
