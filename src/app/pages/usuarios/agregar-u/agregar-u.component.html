@@ -111,8 +111,8 @@
                         class="form-control"
                         #VerificacionCuenta="ngModel"
                         [(ngModel)]="usuario.VerificacionCuenta">
-                    <option selected>true</option>
-                    <option>false</option>
+                    <option value="true"selected>Activado</option>
+                    <option value="false">Desactivado</option>
                   </select>
                 </div>
                 <div class="form-group col-md-6">
@@ -121,15 +121,15 @@
                         class="form-control"
                         #EstadoCuenta="ngModel"
                         [(ngModel)]="usuario.EstadoCuenta">
-                    <option selected>true</option>
-                    <option>false</option>
+                    <option value="true"selected>Activado</option>
+                    <option value="false">Desactivado</option>
                   </select>
                 </div>
                 <div class="form-group col-md-12">
-                  <label for="RolId">Seleccione el rol del ususario, teniendo en cuenta que 2 es usuario comun y 3 empleado</label>
+                  <label for="RolId">Seleccione el rol del ususario</label>
                   <select name="RolId" class="form-control" #RolId="ngModel" [(ngModel)]="usuario.RolId">
-                    <option selected>2</option>
-                    <option>3</option>
+                    <option value="2" selected>Usuario común</option>
+                    <option value="3">Empleado</option>
                   </select>
                 </div>
                 <div class="col-md-12">
