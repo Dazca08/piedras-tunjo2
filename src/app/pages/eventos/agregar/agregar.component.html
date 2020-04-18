@@ -17,7 +17,7 @@
       <div class="row">
         <div class="col-md-3">
           <a routerLink="/eventos" class="btn btn-dark text-white btn-block">
-             Regresar al Inicio
+             <i class="fas fa-arrow-left"></i> Regresar al Inicio
           </a>
         </div>
       </div>
@@ -98,7 +98,7 @@
 
               <div class="form-group">
                 <label for="ImagenesUrl">Por favor suba la imagen que tendra este evento</label>
-                <input type="file" (change)="onFileSelected($event)">
+                <input type="file" (change)="onFileSelected($event.target.files)" multiple>
          <input type="hidden" name="ImagenesUrl" class="form-control" #ImagenesUrl="ngModel" [(ngModel)]="evento.ImagenesUrl"
                 >
               

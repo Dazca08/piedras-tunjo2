@@ -7,7 +7,7 @@
         </h1>
          <div class="form-group">
 		 		<input type="text" class="form-control" name="filterEvento" placeholder="Buscar Evento por nombre ..." [(ngModel)]="filterEvento">
-		 	</div>
+		 </div>
       </div>
  
     
@@ -21,129 +21,74 @@
               <!--<i class="fas fa-users"></i> {{clientes?.length}}-->
           {{eventos?.length}}
             </h4>
-</div>
-  </div>
-
-
+        </div>
       </div>
+            </div>
            	<div class="col-md-3">
       <div class="container">
         <div align="center">
         	<br>
 	<a class="btn btn-info"  href="eventos/agregar" role="button" >
-
-
-
-	<h4> <i   class="fas fa-plus"></i> Nuevo Evento</h4>
-</a>
-</div>
-  </div>
-
-
-          
-       
-
- 
+	<h4> <i class="fas fa-plus"></i> Nuevo Evento</h4>
+   </a>
+        </div>
+      </div>
        
       </div>
 
     
 	</div>
-	</div>
+  </div>
 
 </header>
 
 <br><br>
 <section id ="eventos">
 <div class="container"  >
-		
-			<div align="center">
-		 <div  class="col-md-6">
-		 	<div class="card">
-		 		<h4>listado de Eventos</h4>
-
-		 	</div>
-		 	<div class="table-responsive ">
-		 		<table class="table  table-bordered table-striped"  style="background-color:white;">
-		 			<thead class="thead-dark">
-		 				<tr>
-		 					<!--<th>editar</th>
-		 					<th>eliminar</th>-->
-		 					<th>#</th>
-		 				   <!--<th>Nombre</th>
-		 				    <th>FechaPublicacion</th>
-		 					<th>Fecha</th>
-		 					<th>Descripcion</th>
-		 					<th>Calificacion</th>
-		 					<th>ImagenesUrl</th>-->
-		 					<!--<th>ComentariosId</th>
-		 					<th>ListaComentariosEvento </th>-->
-		 					
-		 				
-		 					
-                            
-		 				</tr>
-		 			</thead>
-		 			<tbody>
-		 				 <tr *ngFor="let evento of eventos | filtroN:filterEvento | paginate:{itemsPerPage :2 , currentPage:PageActual}; let i =index">
-		 				 	 	<!-- <td>
-                  <a routerLink="editar/{{evento.Id}}" class="btn btn-secondary">
-                   Editar
-                  </a>
-                </td>-->
-               <!--  <td> <a   (click)="eliminar(usuario.Id)"  class="btn btn-success btn-block" >  eliminar</a>
-                	 <form (submit)="eliminar(evento.Id)">
-                	 <button type="submit"  class="btn btn-danger btn-block">
-             Eliminar
-          </button>
-           </form>
-         </td>-->
-		 				 	<td>{{i+1}}
-                              <div class="col mb-4">
-      <div class="card" style="width: 25rem;">
+ <div class="col-md-12">
+    <div class="row row-cols-1 row-cols-md-3">
+       <div class="col mb-4"  *ngFor="let evento of eventos | filtroN:filterEvento | paginate:{itemsPerPage :3 , currentPage:PageActual}; let i =index">
+          <div class="card h-100">
+              <div class="card-header">
+                <h4>Evento {{i+1}}</h4>
+              </div>
+              <div class="car-body container">
+                
         <img src="http://piedrasdeltunjo.tk/images/getImage?tipo=evento&nombre={{evento.ImagenesUrl}}" class="card-img-top" width="100" height="200" >
-        <!--class="d-block w-50"-->
+        
         <div class="card-body">
-          <h5 class="card-title"> Evento:{{evento.Nombre}}</h5>
-          <p class="card-text">Descripcion : {{evento.Descripcion }}</p>
-          <p class="card-text">Fecha de publicacion : {{evento.FechaPublicacion}}</p>
-          <p class="card-text">Fecha del evento : {{evento.Fecha}}</p>
-          <p class="card-text">Calificacion del evento : {{evento.Calificacion}}</p>
-           <a  style="width:358px; "routerLink="editar/{{evento.Id}}" class="btn btn-secondary">
-                   Editar
+          <h5 class="card-title"> Evento: {{evento.Nombre}}</h5>
+          <p class="card-text"> <i class="fas fa-align-justify"></i> Descripcion : {{evento.Descripcion }}</p>
+          <p class="card-text"><i class="fas fa-calendar"></i> Fecha publicacion : {{evento.FechaPublicacion}}</p>
+          <p class="card-text"><i class="fas fa-calendar"></i> Fecha del evento : {{evento.Fecha}}</p>
+          <p class="card-text"> <i class="fas fa-check-circle"></i> Calificacion del evento : {{evento.Calificacion}}</p>
+          <div class="row">
+          	  <div class="col-md-6">
+          	  <a style=" width:120;"routerLink="editar/{{evento.Id}}" class="btn btn-secondary">
+                   <i class="fas fa-edit"></i>Editar
                   </a>
+              </div>
+                <div class="col-md-6">
                   	 <form (submit)="eliminar(evento.Id)">
                 	 <button type="submit"  class="btn btn-danger btn-block">
-             Eliminar
-          </button>
-           </form>
+                   <i class="fas fa-trash-alt"></i> Eliminar
+                     </button>
+                    </form>
+                </div>
+          </div>
+         
 
         </div>
-      </div>
+    
+              </div>
+          </div>
+      
+        </div>
+
     </div>
-
-
-		 				 	   </td>
-		 				 	<!--<td>{{evento.Nombre}}</td>
-		 				 	<td>{{evento.FechaPublicacion}}</td>
-		 				 	<td>{{evento.Fecha}}</td>
-		 				 	<td>{{evento.Descripcion }}</td>
-		 				    <td>{{evento.Calificacion}}</td>
-		 				 	<td>{{evento.ImagenesUrl }}</td>-->
-		 				 	<!--<td>{{evento.ComentariosId}}</td>
-		 				 	<td>{{evento.ListaComentariosEvento}}</td>-->
-		 				
-		 				 	
-		 				 
-		 				 	
-		 				 </tr>
-		 			</tbody>
-		 		</table>
-		 		<pagination-controls (pageChange)="PageActual = $event"></pagination-controls>
-		 	</div>
-		 
-		</div>
-	</div>
+      <pagination-controls (pageChange)="PageActual = $event"></pagination-controls>
+ </div>
+			
 	</div>
 
 		
@@ -153,6 +98,5 @@
 
  
 
-  
 
 	

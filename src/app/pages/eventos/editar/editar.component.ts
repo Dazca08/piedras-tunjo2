@@ -37,7 +37,7 @@ eventos: Evento[];
 
 fechatemp:string="";
 rutaImagen:string="";
-
+imagen:string="";
 
   ngOnInit(): void {
      this.id = this.route.snapshot.params['id'];
@@ -48,6 +48,14 @@ rutaImagen:string="";
     // console.log(splitted)
       this.fechatemp=splitted[0];
       this.evento.Fecha=this.fechatemp;
+       if(this.evento.ImagenesUrl.includes('@' , 0)==true){
+             console.log(this.evento.ImagenesUrl);
+             this.imagen=this.evento.ImagenesUrl;
+             var split=this.imagen.split("@");
+             console.log(split);
+             this.imagen=split[0];
+             this.evento.ImagenesUrl=this.imagen;
+      }
   this.rutaImagen="http://piedrasdeltunjo.tk/images/getImage?tipo=evento&nombre="+this.evento.ImagenesUrl;
 
  });
@@ -123,7 +131,7 @@ console.log("new Vtemp "+this.Vtemp)
      value.Id = this.id;
       
    this.servi.update(value,this.id);  
-  this.Router.navigate(['/admin/editarevento/'+this.id])
+  //this.Router.navigate(['/admin/editarevento/'+this.id])
     this.cargandoImagen();
     this.refrescar(this.id);
   }
