@@ -1,21 +1,23 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Pictograma } from '../../../interfaces/pictograma.interface';
 import { PictogramaService } from 'src/app/services/pictograma.service';
 import { Router } from '@angular/router';
 import { ImagesService } from '../../../services/images.service';
-import * as uuid from 'uuid';
+import { basicAnimate } from '../../../animations';
 
 @Component({
   selector: 'app-nuevo',
   templateUrl: './nuevo.component.html',
-  styleUrls: ['./nuevo.component.css']
+  styleUrls: ['./nuevo.component.css'],
+  animations: [
+    basicAnimate
+  ]
 })
 export class NuevoComponent implements OnInit {
 
-  @ViewChild('fileUpload', { static: false }) fileUpload: ElementRef;
   formPic: FormGroup;
-  filename: string;
+  files: File[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -32,31 +34,19 @@ export class NuevoComponent implements OnInit {
     });
   }
 
-  onChangeFile(event: any) {
-    if (event.target.files.length > 0) {
-      this.filename = event.target.files[0].name;
-    } else {
-      this.filename = undefined;
-    }
+  onChangeFile(files: File[]) {
+    this.files = files;
   }
 
   async onSubmit() {
-    // tomamos la primer imagen
-    const file = this.fileUpload.nativeElement.files[0];
-    // generamos un uuid para la imagen (universal unique id)
-    const blob = file.slice(0, file.size, 'image/*');
-    const uuidName = uuid.v4() + this.filename;
-    const newFile = new File([blob], uuidName, {type: 'image/*'});
-
-    const pictogram: Pictograma = {
-      ... this.formPic.value,  // toma Nombre y Descripcion y los agrega al nuevo objeto
-      ImagenesUrl: uuidName
-    };
-    const creado = await this.pictogramaService.agregar(pictogram);
-    if (creado) {
-      // subir imagen
-      const upload = await this.imagesService.imageUpload(newFile, 'picto');
-      if (upload) {
+    const ImagenesUrl = await this.imagesService.uploadMultipleImages(this.files, 'picto');
+    if (ImagenesUrl !== '') {
+      const pictogram: Pictograma = {
+        ... this.formPic.value,  // toma Nombre y Descripcion y los agrega al nuevo objeto
+        ImagenesUrl
+      };
+      const creado = await this.pictogramaService.agregar(pictogram);
+      if (creado) {
         this.router.navigateByUrl('/pictogramas');
       }
     }

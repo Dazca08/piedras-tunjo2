@@ -15,6 +15,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { AvatarSelectorComponent } from './avatar-selector/avatar-selector.component';
 import { MapaComponent } from './mapa/mapa.component';
 import { EventosComponent } from './seccion-eventos/seccion-eventos.component';
+import { ImagesUploadComponent } from './images-upload/images-upload.component';
+import { CarouselImagesComponent } from './carousel-images/carousel-images.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { EventosComponent } from './seccion-eventos/seccion-eventos.component';
     NavbarComponent,
     SidebarComponent,
     MapaComponent,
-    AvatarSelectorComponent
+    AvatarSelectorComponent,
+    ImagesUploadComponent,
+    CarouselImagesComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +47,9 @@ import { EventosComponent } from './seccion-eventos/seccion-eventos.component';
     NavbarComponent,
     SidebarComponent,
     MapaComponent,
-    AvatarSelectorComponent
+    AvatarSelectorComponent,
+    ImagesUploadComponent,
+    CarouselImagesComponent
   ]
 })
 export class ComponentsModule { }

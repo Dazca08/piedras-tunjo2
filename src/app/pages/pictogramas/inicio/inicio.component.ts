@@ -3,11 +3,16 @@ import { Pictograma } from '../../../interfaces/pictograma.interface';
 import { PictogramaService } from '../../../services/pictograma.service';
 import Swal from 'sweetalert2';
 import { ImagesService } from '../../../services/images.service';
+import { basicAnimate } from '../../../animations';
 
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
-  styleUrls: ['./inicio.component.css']
+  styleUrls: ['./inicio.component.css'],
+  animations: [
+    basicAnimate,
+    // otros triggers
+  ]
 })
 export class InicioComponent implements OnInit {
 
@@ -39,7 +44,7 @@ export class InicioComponent implements OnInit {
       if (result.value) {
         const deleted = await this.pictogramaService.eliminar(pictograma.Id);
         if (deleted) {
-          await this.imagesService.deleteImage(pictograma.ImagenesUrl, 'picto');
+          await this.imagesService.deleteImages(pictograma.ImagenesUrl, 'picto');
           this.pictogramas = this.pictogramas.filter(x => x.Id !== pictograma.Id);
           Swal.fire(
             'Deleted!',

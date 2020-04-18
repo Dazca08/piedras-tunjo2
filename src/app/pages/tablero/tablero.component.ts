@@ -14,13 +14,15 @@ export class TableroComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit(): void {
-    this.authService.validateToken(false)
-                    .then(ok => {
-                      if (ok === true) {
-                        this.router.navigateByUrl('/home');
-                      }
-                    });
+  ngOnInit() {
+    this.redirect();
+  }
+
+  async redirect() {
+    const auth = await this.authService.validateToken(false);
+    if (auth) {
+      this.router.navigateByUrl('/home');
+    }
   }
 
 }

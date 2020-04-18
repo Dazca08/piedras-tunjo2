@@ -81,6 +81,7 @@ export class AuthService {
                     this.usuario = res['usuario'];
                     resolve(true);
                   } else {
+                    this.usuario = undefined;
                     resolve(false);
                   }
                 });

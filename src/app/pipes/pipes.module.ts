@@ -10,6 +10,7 @@ import { FiltropicPipe } from './filtropic.pipe';
 import { FiltroNoticiasPipe } from './filtro-noticias.pipe';
 import { FiltropromPipe } from './filtroprom.pipe';
 import { FiltropqrsPipe } from './filtropqrs.pipe';
+import { ImgUrlToArrayPipe } from './img-url-to-array.pipe';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import { FiltropqrsPipe } from './filtropqrs.pipe';
     FiltroNoticiasPipe,
     FiltropromPipe,
     FiltropqrsPipe,
-
+    ImgUrlToArrayPipe
   ],
   imports: [
     CommonModule
@@ -39,9 +40,8 @@ import { FiltropqrsPipe } from './filtropqrs.pipe';
     FiltropicPipe,
     FiltroNoticiasPipe,
     FiltropromPipe,
-      FiltropqrsPipe
-
-    
+    FiltropqrsPipe,
+    ImgUrlToArrayPipe
   ]
 })
 export class PipesModule { }

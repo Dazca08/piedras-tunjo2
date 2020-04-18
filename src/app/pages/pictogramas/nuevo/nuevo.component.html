@@ -1,48 +1,46 @@
 <div class="row justify-content-center mt-2">
-    <div class="col-md-6 col-sm-10">
+    <div class="col-md-8 col-sm-12">
         <button class="btn btn-primary" routerLink="/pictogramas">
             <i class="fas fa-arrow-left"></i>
         </button>
         <form (ngSubmit)="onSubmit()" [formGroup]="formPic">
-            <div class="card shadow">
+            <div class="card shadow" @basicAnimate>
                 <div class="card-header text-center">
                     <b class="text-muted">NUEVO PICTOGRAMA</b>
                 </div>
                 <div class="card-body">
-                    <div class="form-group">
-                        <b class="text-muted">Nombre</b>
-                        <input type="text" class="form-control" [ngClass]="getValidationClass('Nombre')"
-                         formControlName="Nombre">
-                        <div class="valid-feedback">Ok!</div>
-                        <div class="invalid-feedback">
-                          <span *ngIf="nombre.errors?.required">
-                              El nombre es requerido
-                          </span>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <b class="text-muted">Nombre</b>
+                                <input type="text" class="form-control" [ngClass]="getValidationClass('Nombre')"
+                                 formControlName="Nombre">
+                                <div class="valid-feedback">Ok!</div>
+                                <div class="invalid-feedback">
+                                  <span *ngIf="nombre.errors?.required">
+                                      El nombre es requerido
+                                  </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <b class="text-muted">Descripción</b>
+                                <input type="text" class="form-control" [ngClass]="getValidationClass('Descripcion')" 
+                                formControlName="Descripcion">
+                                <div class="valid-feedback">Ok!</div>
+                                <div class="invalid-feedback">
+                                  <span *ngIf="descripcion.errors?.required">
+                                      La descripción es requerida
+                                  </span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <b class="text-muted">Descripción</b>
-                        <input type="text" class="form-control" [ngClass]="getValidationClass('Descripcion')" 
-                        formControlName="Descripcion">
-                        <div class="valid-feedback">Ok!</div>
-                        <div class="invalid-feedback">
-                          <span *ngIf="descripcion.errors?.required">
-                              La descripción es requerida
-                          </span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <b class="text-muted">Selecciona una imagen</b>
-                        <div class="custom-file">
-                            <input #fileUpload type="file" fornControlName="Img" (change)="onChangeFile($event)" accept="image/*" class="custom-file-input" id="customFile">
-                            <label class="custom-file-label" for="customFile">
-                                {{ filename || 'Choose image' }}
-                            </label>
+                        <div class="col-md-6 col-sm-12">
+                            <app-images-upload (changeFiles)="onChangeFile($event)"></app-images-upload>
                         </div>
                     </div>
                 </div>
                 <div class="card-footer text-center">
-                    <button [disabled]="formPic.invalid || !filename" class="btn btn-success" type="submit">Guardar</button>
+                    <button [disabled]="formPic.invalid || files.length === 0" class="btn btn-success" type="submit">Guardar</button>
                 </div>
             </div>
         </form>

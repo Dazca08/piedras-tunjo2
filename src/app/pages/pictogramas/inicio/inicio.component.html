@@ -6,9 +6,10 @@
     <h6>No hay pictogramas para mostrar</h6>
 </div>
 <div class="row">
-    <div *ngFor="let picto of pictogramas" class="col-md-4 col-sm-6 col-xs-12">
+    <div @basicAnimate *ngFor="let picto of pictogramas" class="col-md-4 col-sm-6 col-xs-12">
         <div class="card shadow mb-2">
-            <img [src]="picto.ImagenesUrl | imgServer: 'picto'" class="card-img-to">
+            <!-- <img [src]="picto.ImagenesUrl | imgServer: 'picto'" class="card-img-to"> -->
+            <app-carousel-images [imagenes]="picto.ImagenesUrl | imgUrlToArray" tipo="picto"></app-carousel-images>
             <div class="card-body">
                 <b class="text-muted">{{ picto.Nombre }}</b>
                 <p class="card-text">

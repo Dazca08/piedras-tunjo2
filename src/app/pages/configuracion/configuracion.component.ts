@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfiguracionComponent implements OnInit {
 
+  files: File[] = [];
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  changeFiles(files: File[]) {
+    // console.log(files);
   }
 
 }
