@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-6">
         <h1>
-           Agregar Evento
+          Agregar Evento
         </h1>
       </div> 
     </div>
@@ -28,38 +28,26 @@
 
 <div class="container">
       <div class="row">
-        <div class="col-md-6 mx-auto">
+        <div class="col-md-5 mx-auto">
           <div class="card">
             <div class="card-header">
 <form #eventoForm="ngForm" (ngSubmit)="agregar(eventoForm)"> 
         <div class="modal-body">
           <div class="form-group">
-                <label for="nombre"> Ingrese el Nombre del evento</label>
+                <label for="nombre"><i class="fas fa-align-justify"></i> Ingrese el Nombre del evento</label>
                 <input type="text" name="nombre" class="form-control" #nombre="ngModel" [(ngModel)]="evento.Nombre"
-                  [ngClass]="{'is-invalid': nombre.errors && nombre.touched}" required minlength="2">
-                <div [hidden]="!nombre.errors?.required" class="invalid-feedback">
+                 >
+               <!-- <div [hidden]="!nombre.errors?.required" class="invalid-feedback">
                   Nombre requerido
                 </div>
                 <div [hidden]="!nombre.errors?.minlength" class="invalid-feedback">
                   Debe contener al menos 2 caracteres
-                </div>
+                </div>-->
               </div>
-
-            <!--  <div class="form-group">
-                <label for="  FechaPublicacion">Fecha de publicacion</label>
-                <input type="date" name="FechaPublicacion" class="form-control" #FechaPublicacion="ngModel" [(ngModel)]="evento.FechaPublicacion"
-                  [ngClass]="{'is-invalid': FechaPublicacion.errors && FechaPublicacion.touched}" required minlength="2">
-                <div [hidden]="!FechaPublicacion.errors?.required" class="invalid-feedback">
-                  Fecha publicacion requerida
-                </div>
-                <div [hidden]="!FechaPublicacion.errors?.minlength" class="invalid-feedback">
-                  Debe contener al menos 2 caracteres
-                </div>
-              </div>-->
 
             
               <div class="form-group">
-                <label for="Fecha">Ingrese la Fecha en la que se realizara el evento</label>
+                <label for="Fecha"><i class="fas fa-calendar"></i> Ingrese la Fecha en la que se realizara el evento</label>
                 <input type="date" name="Fecha" class="form-control" #Fecha="ngModel" [(ngModel)]="evento.Fecha"
                   [ngClass]="{'is-invalid': Fecha.errors && Fecha.touched}">
                 <div [hidden]="!Fecha.errors?.required" class="invalid-feedback">
@@ -71,34 +59,35 @@
 
 
               <div class="form-group">
-                <label for="  Descripcion">Descripcion</label>
-                <input type="text" name="Descripcion" class="form-control" #Descripcion="ngModel" [(ngModel)]="evento.Descripcion"
-                  [ngClass]="{'is-invalid': Descripcion.errors && Descripcion.touched}" required minlength="10">
-                <div [hidden]="!Descripcion.errors?.required" class="invalid-feedback">
+                <label for="Descripcion"><i class="fas fa-align-justify"></i> Escriba la Descripcion del evento</label>
+                    <textarea name="Descripcion" rows="3" cols="45" [(ngModel)]="evento.Descripcion"></textarea>
+                <input type="hidden" name="Descripcion" class="form-control" #Descripcion="ngModel" [(ngModel)]="evento.Descripcion"
+                 >
+                <!--<div [hidden]="!Descripcion.errors?.required" class="invalid-feedback">
                   Decripcion requerida
                 </div>
                 <div [hidden]="!Descripcion.errors?.minlength" class="invalid-feedback">
                   Debe contener al menos 10 caracteres
-                </div>
+                </div>-->
               </div>
 
 
 
               <div class="form-group">
-                <label for="  Calificacion">Calificacion</label>
-                <input type="number" name="Calificacion" class="form-control" #Calificacion="ngModel" [(ngModel)]="evento.Calificacion"
+                <!--<label for="  Calificacion"><i class="fas fa-check-circle"></i> Calificacion</label>-->
+                <input type="hidden" name="Calificacion" class="form-control" #Calificacion="ngModel" [(ngModel)]="evento.Calificacion"
                   [ngClass]="{'is-invalid': Calificacion.errors && Calificacion.touched}" >
-                <div [hidden]="!Calificacion.errors?.required" class="invalid-feedback">
+                <!--<div [hidden]="!Calificacion.errors?.required" class="invalid-feedback">
                   Calificacion requerida
-                </div>
+                </div>-->
                
               </div>
 
 
 
               <div class="form-group">
-                <label for="ImagenesUrl">Por favor suba la imagen que tendra este evento</label>
-                <input type="file" (change)="onFileSelected($event.target.files)" multiple>
+                <label for="ImagenesUrl"> <i class="fas fa-images"></i> Por favor suba la imagen que tendra este evento</label>
+                <input type="file" (change)="onFileSelected($event.target.files)" multiple accept="image/x-png,image/gif,image/jpeg">
          <input type="hidden" name="ImagenesUrl" class="form-control" #ImagenesUrl="ngModel" [(ngModel)]="evento.ImagenesUrl"
                 >
               
@@ -135,7 +124,7 @@
         </div>
 
         <div class="modal-footer">
-          <button type="submit" style="width:700px; " class="btn btn-primary" >Agregar</button>
+          <button type="submit" style="width:700px; " class="btn btn-primary" > <i class="fas fa-plus"></i> Agregar</button>
 
         </div>
 

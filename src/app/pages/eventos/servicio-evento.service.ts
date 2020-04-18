@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
+import Swal from 'sweetalert2';
 const httpOptions =
 {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -38,14 +39,52 @@ async Eliminar(id): Promise<any> {
     });
   }
 
-async insertar(Datos): Promise<any> {
+/*async insertar(Datos): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.post(this.url , Datos, httpOptions).toPromise().then(Datos => resolve(Datos),
              error => reject(error))
+              });
+  }*/
+ MensajedeExitoOfracaso(ok){
+   if(ok==true){
+       Swal.fire(
+         'Evento agregado con exito!',
+           'Evento Agregado!',
+          'success'
+                  )
+
+   }
+else if(ok==false){
+
+          Swal.fire(
+         'Lo sentimos ha ocurrido un error!',
+           'Evento no Agregado!',
+          'error'
+                  )
+   
+}
+
       
- console.log(resolve);
- console.log(reject);
-    });
+   }
+
+   async insertar(Datos){
+          return this.http.post(this.url , Datos).pipe(catchError(err => {
+                    return of( err.error );
+                }))
+                .subscribe(res => {
+                console.log(res.ok ,res.message);
+                this.MensajedeExitoOfracaso(res.ok)
+                    //console.log(res.ok);
+                },
+                (err) => { console.log(err)
+                 this.MensajedeExitoOfracaso(err.ok)
+                       console.log(err.ok , err.message);
+
+  },
+
+            );
+
+
   }
     public postFileImagen(imagenParaSubir: File){
 

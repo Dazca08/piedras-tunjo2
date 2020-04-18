@@ -19,12 +19,12 @@
       <div class="row">
         <div class="col-md-3">
           <a routerLink="/eventos" class="btn btn-dark text-white btn-block">
-             Regresar al Inicio
+            <i class="fas fa-arrow-left"></i> Regresar al Inicio
           </a>
         </div>
         <div class="col-md-3">
           <button type="submit" class="btn btn-success btn-block">
-             Guardar cambios
+            <i class="fas fa-save"></i> Guardar cambios
           </button>
         </div>
        <!-- <div class="col-md-3">
@@ -39,14 +39,14 @@
   <section id="details">
     <div class="container">
       <div class="row">
-        <div class="col-md-6 mx-auto">
+        <div class="col-md-5 mx-auto">
           <div class="card">
             <div class="card-header">
               <h4>Editar </h4>
             </div>
             <div class="card-body">
              <div class="form-group">
-                <label for="nombre"> Ingrese el Nombre del evento</label>
+                <label for="nombre"><i class="fas fa-align-justify"></i> Ingrese el Nombre del evento</label>
                 <input type="text" name="nombre" class="form-control" #nombre="ngModel" [(ngModel)]="evento.Nombre"
                   [ngClass]="{'is-invalid': nombre.errors && nombre.touched}" required minlength="2">
                 <div [hidden]="!nombre.errors?.required" class="invalid-feedback">
@@ -72,7 +72,7 @@
             
               <div class="form-group">
                 
-                <label style="color:#FF0000"> esta es la fecha actual del evento {{evento.Fecha}}</label>
+                <label style="color:#FF0000"><i class="fas fa-calendar"></i> esta es la fecha actual del evento {{evento.Fecha}}</label>
                 <label>para modificarla seleccione la nueva fecha aqui</label>
                  <input type="date" name="Fecha" class="form-control" #Fecha="ngModel" [(ngModel)]="evento.Fecha">
            
@@ -85,26 +85,25 @@
 
 
               <div class="form-group">
-                <label for="  Descripcion">Descripcion</label>
-                <input type="text" name="Descripcion" class="form-control" #Descripcion="ngModel" [(ngModel)]="evento.Descripcion"
-                  [ngClass]="{'is-invalid': Descripcion.errors && Descripcion.touched}" required minlength="10">
-                <div [hidden]="!Descripcion.errors?.required" class="invalid-feedback">
+                <label for="Descripcion"><i class="fas fa-align-justify"></i> Escriba la Descripcion del evento</label>
+                    <textarea name="Descripcion" rows="3" cols="45" [(ngModel)]="evento.Descripcion"></textarea>
+                <input type="hidden" name="Descripcion" class="form-control" #Descripcion="ngModel" [(ngModel)]="evento.Descripcion"
+                 >
+                <!--<div [hidden]="!Descripcion.errors?.required" class="invalid-feedback">
                   Decripcion requerida
                 </div>
                 <div [hidden]="!Descripcion.errors?.minlength" class="invalid-feedback">
                   Debe contener al menos 10 caracteres
-                </div>
+                </div>-->
               </div>
 
 
 
               <div class="form-group">
-                <label for="  Calificacion">Calificacion</label>
-                <input type="number" name="Calificacion" class="form-control" #Calificacion="ngModel" [(ngModel)]="evento.Calificacion"
+         
+                <input type="hidden" name="Calificacion" class="form-control" #Calificacion="ngModel" [(ngModel)]="evento.Calificacion"
                   [ngClass]="{'is-invalid': Calificacion.errors && Calificacion.touched}" >
-                <div [hidden]="!Calificacion.errors?.required" class="invalid-feedback">
-                  Calificacion requerida
-                </div>
+               
                
               </div>
 
@@ -112,9 +111,9 @@
 
               <div class="form-group">
                <div>
-                <div><label>Imagen Actual del evento</label></div>
+                <div><label> <i class="fas fa-images"></i> Imagen Actual del evento</label></div>
                <div align="center">
-                  <img class="pick-avatar" class="card-img-top" class="img-fluid" alt="Responsive image"width="400" height="400"
+                  <img class="pick-avatar" class="card-img-top" class="img-fluid" alt="Responsive image"width="300" height="300"
                  src={{rutaImagen}}
                        >    
                </div>
@@ -124,7 +123,7 @@
 
 
 
-                <input type="file" (change)="onFileSelected($event)">
+                <input type="file" (change)="onFileSelected($event.target.files)" multiple accept="image/x-png,image/gif,image/jpeg">
          <input type="hidden" name="ImagenesUrl" class="form-control" #ImagenesUrl="ngModel" [(ngModel)]="evento.ImagenesUrl"
                 >
               
