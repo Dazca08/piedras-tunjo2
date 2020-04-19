@@ -18,9 +18,10 @@ export class SidebarComponent implements OnInit {
 
   // rutas para cuando el usuario se haya autenticado
   routes = [
+    { label: 'Panel Admin', path: '/home', icon: 'dragon' },
     { label: 'Usuarios', path: '/usuarios', icon: 'users' },
     { label: 'Pictogramas', path: '/pictogramas', icon: 'skull' },
-     { label: 'Promociones', path: '/promociones', icon:  'bullhorn'},
+    { label: 'Promociones', path: '/promociones', icon:  'bullhorn'},
     { label: 'QR', path: '/modulo-qr', icon: 'qrcode' },
     { label: 'Eventos', path: '/eventos', icon: 'republican' },
     { label: 'Preguntas Frecuentes', path: '/preguntas-frecuentes', icon: 'question' },
