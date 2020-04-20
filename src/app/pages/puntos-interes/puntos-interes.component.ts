@@ -2,8 +2,11 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as Mapboxgl from 'mapbox-gl';
 import { environment } from '../../../environments/environment';
 import Swal from 'sweetalert2';
-import { PuntosInteresService } from './puntos-interes.service';
+import { PuntosInteresService } from '../../services/puntos-interes.service';
 import { PuntoInteres } from 'src/app/interfaces/punto-interes.interface';
+
+
+declare var $: any;
 
 @Component({
   selector: 'app-puntos-interes',
@@ -51,28 +54,24 @@ export class PuntosInteresComponent implements OnInit, AfterViewInit {
       allowOutsideClick: false
     });
     Swal.showLoading();
-    
+
     // Cargar los puntos de interes
-    this.puntosService.getPuntosInteres()
-                      .subscribe(puntos => {
-                        this.puntosInteres = puntos;
-                        this.addMarkersToMap();
-                        Swal.close();
-                      });
+    this.puntosService.getPuntosInteres().then(res => {
+      this.puntosInteres = res;
+      this.addMarkersToMap();
+      Swal.close();
+    });
   }
 
   addMarkersToMap() {
     this.currentMarkers = [];
     this.puntosInteres.forEach((punto) => {
-      // const popup = new Mapboxgl.Popup({offset: 25})
-      //                             .setText(punto.Descripcion);
       const marker = new Mapboxgl.Marker()
                                 .setLngLat([punto.Longitud, punto.Latitud])
-                                // .setPopup(popup)
                                 .addTo(this.mapa);
       this.currentMarkers.push(marker);
       // const { lng, lat } = marker._lngLat;
-      // click
+
       marker.getElement().addEventListener('click', () => {
         setTimeout(() => {
           // actualizar marcador
@@ -80,7 +79,8 @@ export class PuntosInteresComponent implements OnInit, AfterViewInit {
         }, 10);
         // el timeout es para esperar a que el mapa click se adelante y poder cerrarlo con esta nueva llamada
       });
-      // mouseenter cambiar cursor
+
+      // mouseenter cambiar cursor  //_element y getElemento son iguales
       marker._element.addEventListener('mouseenter', () => {
         marker._element.style.cursor = 'pointer';
       });
@@ -89,7 +89,7 @@ export class PuntosInteresComponent implements OnInit, AfterViewInit {
 
   async processMarker(lng: number, lat: number, desc: string = '') {
     Swal.fire({
-      title: (desc === '' ? 'Crear' : 'Modificar') + ' punto de interés',
+      title: (desc === '' ? 'CREAR' : 'MODIFICAR') + ' PUNTO DE INTERÉS',
       text: 'Ingresa una descripción',
       input: 'text',
       inputValue: desc,
@@ -103,7 +103,7 @@ export class PuntosInteresComponent implements OnInit, AfterViewInit {
           return 'Necesitas escribir algo!';
         }
       }
-    }).then(res => {
+    }).then(async (res) => {
       if (res.value) {
         if (desc === '') {
           // Nuevo punto de interes
@@ -112,23 +112,16 @@ export class PuntosInteresComponent implements OnInit, AfterViewInit {
             Latitud: lat,
             Longitud: lng
           };
-          this.puntosService.postPuntosInteres(punto)
-                            .subscribe((res: any) => {
-                              if (res['ok'] === true) {
-                                this.loadPuntosInteres();
-                              }
-                            });
+          const created = await this.puntosService.postPuntosInteres(punto);
         } else {
           // Actualizar punto de interes
           const punto = this.puntosInteres.find(x => x.Longitud === lng && x.Latitud === lat);
           punto.Descripcion = res.value;
-          this.puntosService.putPuntosInteres(punto)
-                            .subscribe(res => {
-                              if (res['ok'] === true) {
-                                this.loadPuntosInteres();
-                              }
-                            });
+          const updated = await this.puntosService.putPuntosInteres(punto);
         }
+        setTimeout(() => {
+          this.loadPuntosInteres();
+        }, 500);
       } else {
         if (res.dismiss.toString() === 'cancel') {
           // Eliminar punto de interes
@@ -150,21 +143,19 @@ export class PuntosInteresComponent implements OnInit, AfterViewInit {
       confirmButtonText: 'Si, eliminar'
     }).then(async (result) => {
       if (result.value) {
-        this.eliminarCurrentMarkers();
         const deleted = await this.puntosService.deletePuntosInteres(id);
         if (deleted) {
-          this.loadPuntosInteres();
+          $('#form1').submit();
         }
       }
     });
   }
 
-  eliminarCurrentMarkers() {
-    for (let i = this.currentMarkers.length - 1; i >= 0; i--) {
-      if (this.currentMarkers[i]) {
-        this.currentMarkers[i].remove();
-      }
-    }
-  }
+  // deleteCurrentMarkers() {
+  //   this.currentMarkers.forEach((x, index) => {
+  //     this.currentMarkers[index].remove();
+  //   });
+  //   this.currentMarkers = [];
+  // }
 
 }

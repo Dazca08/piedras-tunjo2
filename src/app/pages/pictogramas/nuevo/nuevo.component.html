@@ -1,6 +1,6 @@
 <div class="row justify-content-center mt-2">
-    <div class="col-md-8 col-sm-12">
-        <button class="btn btn-primary" routerLink="/pictogramas">
+    <div class="col-md-10 col-sm-12">
+        <button class="btn btm-sm btn-primary" routerLink="/pictogramas">
             <i class="fas fa-arrow-left"></i>
         </button>
         <form (ngSubmit)="onSubmit()" [formGroup]="formPic">
@@ -10,7 +10,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-6 col-sm-12">
+                        <div class="col-md-4 col-sm-12">
                             <div class="form-group">
                                 <b class="text-muted">Nombre</b>
                                 <input type="text" class="form-control" [ngClass]="getValidationClass('Nombre')"
@@ -33,14 +33,15 @@
                                   </span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6 col-sm-12">
                             <app-images-upload (changeFiles)="onChangeFile($event)"></app-images-upload>
+                        </div>
+                        <div class="col-md-8 col-sm-12">
+                            <app-select-coordinates height="310px" (selectCoordinate)="coordenada = $event"></app-select-coordinates>
                         </div>
                     </div>
                 </div>
                 <div class="card-footer text-center">
-                    <button [disabled]="formPic.invalid || files.length === 0" class="btn btn-success" type="submit">Guardar</button>
+                    <button [disabled]="formPic.invalid || files.length === 0 || !coordenada" class="btn btn-success" type="submit">Guardar</button>
                 </div>
             </div>
         </form>

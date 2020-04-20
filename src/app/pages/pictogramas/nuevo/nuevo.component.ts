@@ -5,6 +5,7 @@ import { PictogramaService } from 'src/app/services/pictograma.service';
 import { Router } from '@angular/router';
 import { ImagesService } from '../../../services/images.service';
 import { basicAnimate } from '../../../animations';
+import { Coordenada } from '../../../interfaces/coordenada.interface';
 
 @Component({
   selector: 'app-nuevo',
@@ -18,6 +19,7 @@ export class NuevoComponent implements OnInit {
 
   formPic: FormGroup;
   files: File[] = [];
+  coordenada: Coordenada = undefined;
 
   constructor(
     private fb: FormBuilder,
@@ -43,6 +45,7 @@ export class NuevoComponent implements OnInit {
     if (ImagenesUrl !== '') {
       const pictogram: Pictograma = {
         ... this.formPic.value,  // toma Nombre y Descripcion y los agrega al nuevo objeto
+        ... this.coordenada,   // contiene Latitud y Longitud
         ImagenesUrl
       };
       const creado = await this.pictogramaService.agregar(pictogram);

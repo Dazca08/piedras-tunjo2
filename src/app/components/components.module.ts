@@ -17,7 +17,7 @@ import { MapaComponent } from './mapa/mapa.component';
 import { EventosComponent } from './seccion-eventos/seccion-eventos.component';
 import { ImagesUploadComponent } from './images-upload/images-upload.component';
 import { CarouselImagesComponent } from './carousel-images/carousel-images.component';
-
+import { SelectCoordinatesComponent } from './select-coordinates/select-coordinates.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,8 @@ import { CarouselImagesComponent } from './carousel-images/carousel-images.compo
     MapaComponent,
     AvatarSelectorComponent,
     ImagesUploadComponent,
-    CarouselImagesComponent
+    CarouselImagesComponent,
+    SelectCoordinatesComponent
   ],
   imports: [
     CommonModule,
@@ -49,7 +50,8 @@ import { CarouselImagesComponent } from './carousel-images/carousel-images.compo
     MapaComponent,
     AvatarSelectorComponent,
     ImagesUploadComponent,
-    CarouselImagesComponent
+    CarouselImagesComponent,
+    SelectCoordinatesComponent
   ]
 })
 export class ComponentsModule { }

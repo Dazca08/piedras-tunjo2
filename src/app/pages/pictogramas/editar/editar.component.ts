@@ -5,6 +5,7 @@ import { PictogramaService } from '../../../services/pictograma.service';
 import { Pictograma } from '../../../interfaces/pictograma.interface';
 import { ImagesService } from '../../../services/images.service';
 import { basicAnimate } from '../../../animations';
+import { Coordenada } from '../../../interfaces/coordenada.interface';
 
 @Component({
   selector: 'app-editar',
@@ -16,9 +17,11 @@ import { basicAnimate } from '../../../animations';
 })
 export class EditarComponent implements OnInit {
 
+  siguiente = false;
   formEditPic: FormGroup;
   pictogram: Pictograma;
   files: File[] = [];
+  coordenada: Coordenada = undefined;
 
   constructor(
     private pictogramService: PictogramaService,
@@ -41,6 +44,13 @@ export class EditarComponent implements OnInit {
     const { Nombre, Descripcion } = this.formEditPic.value;
     this.pictogram.Nombre = Nombre;
     this.pictogram.Descripcion = Descripcion;
+
+    // nueva coordenada
+    if (this.coordenada) {
+      const { Latitud, Longitud } = this.coordenada;
+      this.pictogram.Latitud = Latitud;
+      this.pictogram.Longitud = Longitud;
+    }
 
     // nuevas imagenes
     if (this.files.length > 0) {

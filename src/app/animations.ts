@@ -3,7 +3,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
 export const basicAnimate = trigger('basicAnimate', [
     transition(':enter', [ // void => *
         style({ opacity: 0, transform: 'translateX(-200px)' }),
-        animate('1s', style({ opacity: 1, transform: 'none'}))
+        animate(500, style({ opacity: 1, transform: 'none'}))
     ])
 ]);
 

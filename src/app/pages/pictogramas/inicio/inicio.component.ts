@@ -29,6 +29,7 @@ export class InicioComponent implements OnInit {
 
   async obtenerPictogramas() {
     this.pictogramas = await this.pictogramaService.getPictogramas();
+    // console.log(this.pictogramas);
   }
 
   showConfirmAlert(pictograma: Pictograma) {

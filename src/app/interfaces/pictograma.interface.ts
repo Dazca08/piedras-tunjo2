@@ -5,4 +5,6 @@ export interface Pictograma {
     ImagenesUrl?: string;
     Calificacion?: number;
     Estado?: number;
+    Latitud?: number;
+    Longitud?: number;
 }

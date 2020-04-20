@@ -1,6 +1,6 @@
 <div class="row justify-content-center">
     <div class="col-md-10 col-sm-12">
-        <button class="btn btn-primary" routerLink="/pictogramas">
+        <button class="btn btn-sm btn-primary" routerLink="/pictogramas">
             <i class="fas fa-arrow-left"></i>
         </button>
         <form (ngSubmit)="onSubmit()" [formGroup]="formEditPic" *ngIf="formEditPic">
@@ -9,7 +9,7 @@
                     <b class="text-muted">EDITAR PICTOGRAMA</b>
                 </div>
                 <div class="card-body">
-                    <div class="row justify-content-center">
+                    <div class="row justify-content-center" *ngIf="!siguiente">
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                                 <b class="text-muted">Nombre</b>
@@ -39,9 +39,17 @@
                             <app-carousel-images [imagenes]="pictogram.ImagenesUrl | imgUrlToArray" tipo="picto"></app-carousel-images>
                         </div>
                     </div>
+                    <div class="row justify-content-center" *ngIf="siguiente">
+                        <div class="col-10 mt-2">
+                            <app-select-coordinates [pictograma]="pictogram" height="350px"
+                                (selectCoordinate)="coordenada = $event"></app-select-coordinates>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-footer text-center">
-                    <button [disabled]="formEditPic.invalid" class="btn btn-success" type="submit">Guardar</button>
+                    <button *ngIf="!siguiente" [disabled]="formEditPic.invalid" (click)="siguiente = true" class="btn btn-sm btn-primary">Siguiente</button>
+                    <button *ngIf="siguiente" class="btn btn-sm btn-primary mr-3" (click)="siguiente = false">Anterior</button>
+                    <button *ngIf="siguiente" class="btn btn-sm btn-success" type="submit" type="submit">Actualizar</button>
                 </div>
             </div>
         </form>

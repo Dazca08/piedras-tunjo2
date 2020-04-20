@@ -14,6 +14,10 @@ const routes: Routes = [
     path: 'editar/:id',
     loadChildren: () => import('./editar/editar.module').then(mod => mod.EditarModule)
   },
+  {
+    path: 'mapa',
+    loadChildren: () => import('./mapa-picto/mapa-picto.module').then(mod => mod.MapaPictoModule)
+  },
   { path: '', pathMatch: '', redirectTo: 'inicio' }
 ];
 
