@@ -18,7 +18,7 @@
       <div class="row">
         <div class="col-md-3">
           <a routerLink="/preguntas-frecuentes" class="btn btn-dark text-white btn-block">
-             Regresar al Inicio
+          <i class="fas fa-arrow-left"></i> Regresar al Inicio
           </a>
         </div>
       </div>
@@ -27,63 +27,54 @@
   </section>
 <div class="container">
       <div class="row">
-        <div class="col-md-6 mx-auto">
+        <div class="col-md-5 mx-auto">
           <div class="card">
             <div class="card-header">
-                <h4>En este formulario podra agregar una nueva pregunta</h4>
+                <h4>En este formulario podra agregar una nueva pregunta frecuente</h4>
             </div>
 <form #preguntaForm="ngForm" (ngSubmit)="agregar(preguntaForm)"> 
         <div class="modal-body">
           <div class="form-group">
-            <label for="nombre">Nombre de la pregunta</label>
+            <label for="nombre"> <i class="fa fa-pencil-alt"></i> Ingrese la pregunta</label>
             <input 
               type="text" 
               name="nombre" 
               class="form-control"
               #nombre="ngModel"
               [(ngModel)]="pregunta.nombre"
-              [ngClass]="{'is-invalid': nombre.errors && nombre.touched}"
-              required
-              minlength="2">
-              <div [hidden]="!nombre.errors?.required" class="invalid-feedback">
-                Nombre requerido
-              </div> 
-              <div [hidden]="!nombre.errors?.minlength" class="invalid-feedback">
-                Debe contener al menos 2 caracteres
-              </div>
+              >
+             
           </div>
 
           <div class="form-group">
-            <label for="apellido">Descripcion de la pregunta</label>
+            <label for="apellido"> <i class="fa fa-pencil-alt"></i> Ingrese la descripcion de la pregunta</label>
+            <div align="center">
+                 <textarea name="descripcion" rows="4" cols="38" [(ngModel)]="pregunta.descripcion"></textarea>
             <input 
-              type="text" 
+              type="hidden" 
               name="descripcion" 
               class="form-control"
               #descripcion="ngModel"
               [(ngModel)]="pregunta.descripcion"
-              [ngClass]="{'is-invalid': descripcion.errors && descripcion.touched}"
-              required
-              minlength="10">
-              <div [hidden]="!descripcion.errors?.required" class="invalid-feedback">
-                Descripcion requerida 
-              </div> 
-              <div [hidden]="!descripcion.errors?.minlength" class="invalid-feedback">
-                Debe contener al menos 10 caracteres
-              </div>
+              >
+            </div>
+           
+          
           </div>
 
           
         
         </div>
 
-        <div class="modal-footer">
-          <button type="submit" style="width:700px;"class="btn btn-primary" >Agregar </button>
-
-        </div>
+      
+          <div align="center">
+          <button type="submit" style="width:150px;"class="btn btn-primary" ><i class="fas fa-plus"></i> Agregar </button>
+          </div>
+      
 
       </form>
-</div>
-</div>
-</div>
+          </div>
+        </div>
+      </div>
 </div>
 

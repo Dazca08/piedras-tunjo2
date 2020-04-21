@@ -19,27 +19,40 @@ preguntas: Pregunta[];
    @ViewChild("preguntaForm") preguntaForm: FormGroup;
   constructor(private formBuilder: FormBuilder,
       private servi: ServicioLService,
-      Router: Router,
-       ) { }
+      Router: Router, ) { }
 agregar({value, valid}: {value: Pregunta, valid: boolean}){ 
-      //Agregar el nuevo cliente
-      if(this.pregunta.nombre=='' || this.pregunta.descripcion==''){
+    
+      if(value.nombre=='' || value.descripcion==''){
             Swal.fire(
-  'Por favor llene todos los campos!',
-  'Pregunta no  Agregada!',
-  'error'
-)
-      }else{
+                  'Por favor llene todos los campos!',
+                  'Pregunta no  Agregada!',
+                  'error'
+                     )
+      }
+
+      else if(value.nombre.length<5 || value.descripcion.length<10){
+          Swal.fire(
+           'La pregunta debe tener minimo 5 caracteres y la descripcion 10',
+           'Pregunta no agregada',
+           'error'
+
+            )
+      }
+      else{
         this.servi.insertar(value);
-        this.preguntaForm.reset();
+        this.refrescar();
                          Swal.fire(
-  'Pregunta agregada con exito!',
-  'Prregunta agregada!',
-  'success'
-)
+                    'Pregunta agregada con exito!',
+                    'Pregunta agregada!',
+                    'success'
+                                  )
       }
 
       
+  }
+  refrescar(){
+   this.pregunta.nombre="";
+   this.pregunta.descripcion=""; 
   }
   ngOnInit(): void {
   }

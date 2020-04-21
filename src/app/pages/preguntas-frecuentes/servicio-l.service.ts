@@ -47,12 +47,7 @@ async insertar(Datos): Promise<any> {
 
 
 
-  /*async updateUsuario(cadena,id): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.http.put(this.Url+'/'+id, cadena, httpOptions).toPromise()
-    });
-}
-}*/
+  
 
 
 

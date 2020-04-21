@@ -28,7 +28,7 @@ export class SidebarComponent implements OnInit {
     { label: 'Cabañas', path: '/cabanas', icon: 'home' },
     { label: 'Puntos de Interés', path: '/puntos-interes', icon: 'map-marker-alt' },
     { label: 'Noticias', path: '/noticias', icon: 'newspaper'},
-    { label: 'PQR', path: '/pqr', icon: 'question'}
+    { label: 'PQRS', path: '/pqr', icon: 'question'}
   ];
 
   constructor(

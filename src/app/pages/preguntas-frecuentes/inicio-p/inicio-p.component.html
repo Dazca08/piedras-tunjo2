@@ -1,14 +1,39 @@
 <header id="main-header" class="py-2 bg-info text-white">
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-4">
+        <div align="center">
         <h1>
            Preguntas Frecuentes
         </h1>
         <div class="form-group">
         <input type="text" class="form-control" name="filterPregunta" placeholder="Buscar pregunta por nombre...." [(ngModel)]="filterPregunta">
+        </div>
+        </div>
       </div>
+      <div class="col-md-4">
+        <div align="center">
+                 <h3 ><i class="fas fa-list-ol"></i> Total preguntas frecuentes</h3>
+            <h4 class="display-4">
+               {{preguntas?.length}}
+            </h4>
+        </div>
       </div>
+    <div class="col-md-3">
+      
+        <div align="center">
+          <br>
+        <a class="btn btn-info"  href="preguntas-frecuentes/agregar" role="button" >
+           <h4> <i class="fas fa-plus"></i> Nueva pregunta frecuente</h4>
+        </a>
+        </div>
+      
+       
+    </div>
+
+
+
+
     </div>
   </div>
 </header>
@@ -16,6 +41,84 @@
 
 <br><br>
 
+<section id ="pqrs">
+<div class="container"  >
+    <div class="col-md-12">
+        <div class="row row-cols-1 row-cols-md-3">
+          <div class="col mb-4"  *ngFor="let pregunta of preguntas |filtern:filterPregunta| paginate:{itemsPerPage :3 , currentPage:PageActual} ; let i = index ">
+            <div class="card h-100">
+              <div class="card-header">
+                <h5><i class="fa fa-question-circle"></i> Pregunta: {{pregunta.nombre}}</h5>
+              </div>
+              <div class="car-body container">
+                <form #preguntaForm="ngForm" (ngSubmit)="guardar(preguntaForm )" >
+           
+            <p class="card-text"><i class="fa fa-pencil-alt"></i> Pregunta 
+            </p>
+               <input type="text" name="nombre" class="form-control" #nombre="ngModel" [(ngModel)]="pregunta.nombre">
+
+           <p class="card-text"><i class="fa fa-pencil-alt"></i> Descripcion </p>
+            <textarea name="descripcion" rows="4" cols="38" [(ngModel)]="pregunta.descripcion"></textarea>
+            <br>
+               <input type="hidden" name="descripcion" class="form-control" #descripcion="ngModel" [(ngModel)]="pregunta.descripcion">
+                 <input type="hidden" name="id" class="form-control" #id="ngModel" [(ngModel)]="pregunta.id">
+          
+           
+          <br>
+       
+            <div class="row">
+            <div class="col-md-6">
+              <div align="center">
+                
+                  <form (submit)="eliminar(pregunta.id)">
+                   <button type="submit" style="width:130" class="btn btn-danger btn-block">
+            <i class="fas fa-trash"></i> Eliminar
+          </button>
+           </form>
+              </div>
+            
+            </div>
+          <div class="col-md-6">
+            <div align="center">
+               <button type="submit" style="width:130 ;" class="btn btn-primary btn-block">
+             <i class="fas fa-edit"></i> Editar </button>
+            </div>
+             
+       
+          </div>
+         
+            
+          
+            </div> 
+               
+           </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <pagination-controls (pageChange)="PageActual = $event"></pagination-controls>
+        </div>
+      </div>
+  
+  </div>
+
+    
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<!--
 <section id="preguntas">
   <div class="container"align="center">
     <div class="row">
@@ -43,7 +146,7 @@
                  </a>
 
                 </td>
-                 <td>  <!--<a   (click)="eliminar(usuario.Id)"  class="btn btn-success btn-block" >  eliminar</a>-->
+                 <td>  
                    <form (submit)="eliminar(pregunta.id)">
                    <button type="submit"  class="btn btn-danger btn-block">Eliminar
           </button>
@@ -60,34 +163,10 @@
         </div>
         </div>
       </div>
-    <div class="col-md-3">
-        <div class="card text-center bg-white text-white mb-3">
-          <div class="card-body">
-      
-            <img src="assets/imagenes/pregunta.jpg" class="card-img-top" width="150" height="150" >
-      <div class="container">
-        <div align="center">
-  <a class="btn btn-primary" routerLink="agregar" role="button">Nueva pregunta</a>
-</div>
-  </div>
-
-
-          </div>
-        </div>
-
-        <div class="card text-center bg-white text-black mb-3">
-          <div class="card-body">
-            <h3>Total de preguntas</h3>
-            <h4 class="display-4">
-              <!--<i class="fas fa-users"></i> {{clientes?.length}}-->
-          {{preguntas?.length}}
-          
-            </h4>
-          </div>
-        </div>
-      </div>
+ 
 
     </div>
   </div>
 </section>
 <br><br>
+-->

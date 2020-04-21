@@ -73,7 +73,7 @@
               </div>
               <div class="car-body container">
                 <form #pqrForm="ngForm" (ngSubmit)="guardar(pqrForm )" > 
-          <!--<h5 class="card-title"> <i class="fa fa-question-circle"></i> Asunto: {{pqr.Pregunta}}</h5>-->
+ 
            <p class="card-text"> Usuario que hace la pregunta , queja , reclamo o sugerencia : 
            </p>
            <p class="card-text"><i class="fa fa-user"></i> 
@@ -86,7 +86,7 @@
            <input type="hidden" name="LastModification" class="form-control" #LastModification="ngModel" [(ngModel)]="pqr.LastModification">
            <input type="hidden" name="Pregunta" class="form-control" #Pregunta="ngModel" [(ngModel)]="pqr.Pregunta">
            <p class="card-text"><i class="fa fa-pencil-alt"></i> Ingrese la respuesta </p>
-            <textarea name="comentarios" rows="4" cols="38" [(ngModel)]="pqr.Respuesta">Escribe aquí tus comentarios</textarea>
+            <textarea name="comentarios" rows="4" cols="38" [(ngModel)]="pqr.Respuesta"></textarea>
             <br>
                <input type="hidden" name="Respuesta" class="form-control" #Respuesta="ngModel" [(ngModel)]="pqr.Respuesta">
        
@@ -100,11 +100,7 @@
              <input type="hidden" name="UUsuarioId" class="form-control" #UUsuarioId="ngModel" [(ngModel)]="pqr.UUsuarioId">
            
           <br>
-          <!--<form (submit)="eliminar(pqr.Id)">
-                   <button type="submit" style="width:100" class="btn btn-danger btn-block">
-             Eliminar
-          </button>
-           </form>-->
+       
            <div align="center">
              <button type="submit" style="width:200 ;" class="btn btn-primary btn-block">
              <i class="fas fa-share-square"></i> Enviar respuesta
@@ -150,7 +146,7 @@
               </div>
               <div class="car-body container">
                 <form #pqrForm="ngForm" (ngSubmit)="guardar(pqrForm )" > 
-          <!--<h5 class="card-title"> <i class="fa fa-question-circle"></i> Asunto: {{pqr.Pregunta}}</h5>-->
+         
            <p class="card-text"> Usuario que hace la pregunta , queja , reclamo o sugerencia : 
            </p>
            <p class="card-text"><i class="fa fa-user"></i> 
@@ -192,7 +188,7 @@
           <div class="col-md-6">
             <div align="center">
                <button type="submit" style="width:130 ;" class="btn btn-primary btn-block">
-             <i class="fas fa-share-square"></i> Enviar   </button>
+             <i class="fas fa-share-square"></i> Enviar </button>
             </div>
              
        
