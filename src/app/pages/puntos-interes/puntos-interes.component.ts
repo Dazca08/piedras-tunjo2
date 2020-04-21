@@ -26,7 +26,7 @@ export class PuntosInteresComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     Mapboxgl.accessToken = environment.mapboxToken;
     this.mapa = new Mapboxgl.Map({
-      container: 'map',
+      container: 'map-puntos-interes',
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [-74.3451602, 4.8154681],
       zoom: 15

@@ -22,13 +22,14 @@ export class SidebarComponent implements OnInit {
     { label: 'Usuarios', path: '/usuarios', icon: 'users' },
     { label: 'Pictogramas', path: '/pictogramas', icon: 'skull' },
     { label: 'Promociones', path: '/promociones', icon:  'bullhorn'},
-    { label: 'QR', path: '/modulo-qr', icon: 'qrcode' },
+    { label: 'Recorridos', path: '/recorridos', icon: 'route'},
     { label: 'Eventos', path: '/eventos', icon: 'republican' },
     { label: 'Preguntas Frecuentes', path: '/preguntas-frecuentes', icon: 'question' },
     { label: 'Cabañas', path: '/cabanas', icon: 'home' },
+    { label: 'PQR', path: '/pqr', icon: 'question'},
     { label: 'Puntos de Interés', path: '/puntos-interes', icon: 'map-marker-alt' },
     { label: 'Noticias', path: '/noticias', icon: 'newspaper'},
-    { label: 'PQR', path: '/pqr', icon: 'question'}
+    { label: 'QR', path: '/modulo-qr', icon: 'qrcode' },
   ];
 
   constructor(

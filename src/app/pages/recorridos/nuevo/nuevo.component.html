@@ -1,0 +1,29 @@
+<div class="row justify-content-center">
+    <div class="col-md-8 col-sm-12">
+        <form #form1="ngForm" (ngSubmit)="onSubmit(form1)">
+            <div class="card shadow">
+                <div class="card-header">
+                    <b class="text-muted">Nombre del nuevo recorrido</b>
+                    <input type="text" class="form-control"
+                            [ngClass]="getValidationClass(name)"
+                            [(ngModel)]="nombre"
+                            name="nombre" #name="ngModel"
+                            required>
+                    <div class="valid-feedback">Ok!</div>
+                    <div class="invalid-feedback">
+                        <span *ngIf="name.errors?.required">El nombre de la ruta es necesario</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <app-draw-line-map (changeRuta)="ruta = $event"
+                                        (changeIds)="idPuntosInteres = $event"></app-draw-line-map>
+                </div>
+                <div class="card-footer text-center">
+                    <button class="btn btn-success" 
+                    [disabled]="form1.invalid || ruta.length < 3"
+                    type="submit">Guardar recorrido</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

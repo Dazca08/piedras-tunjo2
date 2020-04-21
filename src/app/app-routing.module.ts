@@ -81,6 +81,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/pictogramas/prueba.module').then(mod => mod.PruebaModule),
     canLoad: [AuthGuard]
   },
+  {
+    path: 'recorridos',
+    loadChildren: () => import('./pages/recorridos/recorridos.module').then(mod => mod.RecorridosModule),
+    canLoad: [AuthGuard]
+  },
   { path: '', pathMatch: 'full', redirectTo: 'tablero' },
   { path: '**', pathMatch: 'full', redirectTo: 'tablero' }
 ];

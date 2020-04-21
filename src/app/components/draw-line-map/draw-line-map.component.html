@@ -1,0 +1,17 @@
+<div class="card">
+    <div class="card-body text-center">
+        <button class="btn btn-sm btn-warning mr-3" [disabled]="coordenadas.length === 0" (click)="deshacer()">
+            Deshacer
+            <i class="fas fa-undo"></i>
+        </button>
+        <button class="btn btn-sm btn-danger" [disabled]="coordenadas.length === 0" (click)="limpiar()">
+            Limpiar
+            <i class="fas fa-eraser"></i>
+        </button>
+    </div>
+</div>
+<div id="map"></div>
+
+<!-- <pre>
+    {{ idsPuntosInt | json }}
+</pre> -->

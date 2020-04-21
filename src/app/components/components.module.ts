@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 // PipesModule
 import { PipesModule } from '../pipes/pipes.module';
-
 // Components
 import { PiePaginaComponent } from './pie-pagina/pie-pagina.component';
 import { GaleriaComponent } from './galeria/galeria.component';
@@ -18,6 +17,7 @@ import { EventosComponent } from './seccion-eventos/seccion-eventos.component';
 import { ImagesUploadComponent } from './images-upload/images-upload.component';
 import { CarouselImagesComponent } from './carousel-images/carousel-images.component';
 import { SelectCoordinatesComponent } from './select-coordinates/select-coordinates.component';
+import { DrawLineMapComponent } from './draw-line-map/draw-line-map.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,8 @@ import { SelectCoordinatesComponent } from './select-coordinates/select-coordina
     AvatarSelectorComponent,
     ImagesUploadComponent,
     CarouselImagesComponent,
-    SelectCoordinatesComponent
+    SelectCoordinatesComponent,
+    DrawLineMapComponent
   ],
   imports: [
     CommonModule,
@@ -51,7 +52,8 @@ import { SelectCoordinatesComponent } from './select-coordinates/select-coordina
     AvatarSelectorComponent,
     ImagesUploadComponent,
     CarouselImagesComponent,
-    SelectCoordinatesComponent
+    SelectCoordinatesComponent,
+    DrawLineMapComponent
   ]
 })
 export class ComponentsModule { }
