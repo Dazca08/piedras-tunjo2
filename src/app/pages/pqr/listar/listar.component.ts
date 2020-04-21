@@ -108,10 +108,8 @@ console.log(id);
       ' la informacion ha sido eliminada',
       'success'
     )
-
+       this.servi.Eliminar(id);
       this.refrescar();
-  //this.ObtenerPqrs();
-  //this.ngOnInit();
 
   }
 })
@@ -122,10 +120,9 @@ console.log(id);
 
 refrescar(){
  
-  // console.log(id);
-     //this.servi.Eliminar(id);
- //this.usuarios=this.usuarios.filter(x=>x.Id==id);
+  
  this.ObtenerPqrs();
+  this.ObtenerPqrs();
   this.ngOnInit();
 
 

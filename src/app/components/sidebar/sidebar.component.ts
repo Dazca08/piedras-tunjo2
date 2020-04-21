@@ -26,10 +26,10 @@ export class SidebarComponent implements OnInit {
     { label: 'Eventos', path: '/eventos', icon: 'republican' },
     { label: 'Preguntas Frecuentes', path: '/preguntas-frecuentes', icon: 'question' },
     { label: 'Cabañas', path: '/cabanas', icon: 'home' },
-    { label: 'PQR', path: '/pqr', icon: 'question'},
     { label: 'Puntos de Interés', path: '/puntos-interes', icon: 'map-marker-alt' },
     { label: 'Noticias', path: '/noticias', icon: 'newspaper'},
     { label: 'QR', path: '/modulo-qr', icon: 'qrcode' },
+    { label: 'PQRS', path: '/pqr', icon: 'question'}
   ];
 
   constructor(

@@ -24,7 +24,7 @@ filterPregunta='';
  this.servi.ObtenerJson().subscribe(resultado =>{
    this.preguntas=resultado;
    
-   console.log("Informacion ya tiene resultado");
+   console.log(this.preguntas);
   
  },
  error=>{
@@ -53,24 +53,63 @@ console.log(JSON.stringify(error));
       'success'
      
     )
-      this.refrescar(id);
-       this.refrescar(id);
+       this.servi.Eliminar(id);
+      this.refrescar();
+    
   }
 })
- /*console.log(id);
-     this.servi.Eliminar(id);
- this.usuarios=this.usuarios.filter(x=>x.Id==id);
- this.ObtenerUsuarios();
 
-this.Router.navigateByUrl('/iniciou');*/
 }
-refrescar(id){
-   console.log(id);
-     this.servi.Eliminar(id);
- //this.usuarios=this.usuarios.filter(x=>x.Id==id);
+refrescar(){
  this.ObtenerPreguntas();
+  this.ObtenerPreguntas();
   this.ngOnInit();
 
+
+}
+ guardar({value, valid }: {value:Pregunta, valid: boolean}){
+   console.log(value.descripcion)
+   if(value.nombre=="" || value.descripcion==""){
+           Swal.fire(
+  'Por favor llene todos los campos!',
+  'pregunta no editada!',
+  'error'
+)
+   }
+   else if(value.nombre.length<5 || value.descripcion.length<10){
+           Swal.fire(
+  'la pregunta debe tener al menos 5 caracteres y la descripcion al menos 10!',
+  'pregunta no editada!',
+  'error'
+)
+   }
+
+
+   else{
+         Swal.fire({
+  title: 'Esta seguro?',
+  text: "Desea editar esta pregunta?",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Si, guardar!'
+}).then((result) => {
+  if (result.value) {
+    Swal.fire(
+
+      'Guardado!',
+      'La pregunta ha sido editada ',
+      'success'
+     
+    )
+
+   this.servi.update(value,value.id)
+   this.refrescar();
+  }
+})
+   }
+ 
 
 }
 

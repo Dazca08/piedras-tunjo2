@@ -11,10 +11,6 @@ const routes: Routes = [
     path: 'agregar',
     loadChildren: () => import('./agregar-p/agregar-p.module').then(mod => mod.AgregarPModule)
   },
-  {
-    path: 'editar/:id',
-    loadChildren: () => import('./editar-p/editar-p.module').then(mod => mod.EditarPModule)
-  },
 ];
 
 @NgModule({

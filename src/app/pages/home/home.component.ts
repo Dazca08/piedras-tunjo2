@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
     },
     {
       title: 'Preguntas frecuentes',
-      image: 'pregunta.jpg',
+      image: 'PF.jpg',
       route: '/preguntas-frecuentes'
     },
     {
@@ -55,6 +55,16 @@ export class HomeComponent implements OnInit {
       title: 'Configuración',
       image: 'settings.png',
       route: '/configuracion'
+    },
+    {
+      title: 'PQRS',
+      image: 'pregunta.jpg',
+      route: '/pqr'
+    },
+    {
+      title: 'Noticias',
+      image: 'noti.jpg',
+      route: '/noticias'
     },
   ];
 
