@@ -41,6 +41,10 @@ export class PuntosInteresComponent implements OnInit, AfterViewInit {
       // nuevo marcador
       this.processMarker(lng, lat);
     });
+
+    // navigation controls
+    this.mapa.addControl(new Mapboxgl.NavigationControl());
+    this.mapa.addControl(new Mapboxgl.FullscreenControl());
   }
 
   ngOnInit(): void {

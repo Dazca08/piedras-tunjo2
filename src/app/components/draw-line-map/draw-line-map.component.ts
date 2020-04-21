@@ -13,6 +13,7 @@ export class DrawLineMapComponent implements OnInit, AfterViewInit {
 
   @Output() changeRuta = new EventEmitter<number[][]>();
   @Output() changeIds = new EventEmitter<number[]>();
+  ruta = true;
   mapa: Mapboxgl.Map;
   puntosInteres: PuntoInteres[] = [];
   idsPuntosInt: number[] = []; // id´s de los puntos de interes seleccionados
@@ -74,14 +75,19 @@ export class DrawLineMapComponent implements OnInit, AfterViewInit {
           'line-opacity': 0.8
         }
       });
+      // navigation controls
+      this.mapa.addControl(new Mapboxgl.NavigationControl());
+      this.mapa.addControl(new Mapboxgl.FullscreenControl());
     });
 
     this.mapa.on('click', (e: any) => {
-      if (!this.isPuntoInteres) {
-        const { lng, lat } = e.lngLat;
-        this.agregarCoordenada(lng, lat);
-      } else {
-        this.isPuntoInteres = false;
+      if (this.ruta) {
+        if (!this.isPuntoInteres) {
+          const { lng, lat } = e.lngLat;
+          this.agregarCoordenada(lng, lat);
+        } else {
+          this.isPuntoInteres = false;
+        }
       }
     });
   }
@@ -96,8 +102,10 @@ export class DrawLineMapComponent implements OnInit, AfterViewInit {
                                   .addTo(this.mapa);
 
       marker._element.addEventListener('click', () => {
-        this.agregarCoordenada(punto.Longitud, punto.Latitud);
-        this.isPuntoInteres = true;
+        if (this.ruta) {
+          this.agregarCoordenada(punto.Longitud, punto.Latitud);
+          this.isPuntoInteres = true;
+        }
       });
     });
   }

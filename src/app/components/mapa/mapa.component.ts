@@ -27,7 +27,9 @@ export class MapaComponent implements OnInit , AfterViewInit {
     this.mapa1.on('load', () => {
       this.loadPuntosInteres();
     });
-
+    // navigation controls
+    this.mapa1.addControl(new Mapboxgl.NavigationControl());
+    this.mapa.addControl(new Mapboxgl.FullscreenControl());
   }
 
   ngOnInit(): void {
