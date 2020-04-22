@@ -1,11 +1,13 @@
 <div class="card shadow">
     <div class="card-header">
         <b class="text-muted">{{ recorrido.Nombre }}</b>
+        <div class="float-right">
+            <div class="btn btn-sm btn-outline-danger" (click)="eliminar()">
+                <i class="fas fa-trash"></i>
+            </div>
+        </div>
     </div>
     <div class="card-body">
         <div id="map" #mapa></div>
-    </div>
-    <div class="card-footer">
-        <button class="btn btn-sm btn-danger" (click)="eliminar(recorrido.Id)">Eliminar</button>
     </div>
 </div>

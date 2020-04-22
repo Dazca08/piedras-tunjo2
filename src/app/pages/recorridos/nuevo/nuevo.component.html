@@ -1,16 +1,13 @@
 <div class="row justify-content-center">
     <div class="col-md-12">
         <div class="card shadow">
-            <form #form1="ngForm" (ngSubmit)="onSubmit(form1)">
+            <form #form1="ngForm">
                 <div class="card-header">
                     <div class="row justify-content-center">
                         <div class="col-md-4 col-sm-10">
-                            <div class="btn-group mt-2" role="group">
-                                <button (click)="defineRuta = true" class="btn btn-sm"
-                                [ngClass]="defineRuta ? 'btn-primary' : 'btn-outline-primary'">TRAZADO DE RUTA</button>
-                                <button (click)="defineRuta = false" class="btn btn-sm"
-                                [ngClass]="defineRuta ? 'btn-outline-primary' : 'btn-primary'">PUNTOS DE CONTROL</button>
-                            </div>
+                            <button routerLink="/recorridos" class="mt-2 mr-1 btn btn-sm btn-light shadow-sm">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
                         </div>
                         <div class="col-md-6 col-sm-10 my-2">
                             <div class="row">
@@ -41,7 +38,7 @@
                             </div>
                         </div>
                         <div class="col-md-2 col-sm-10">
-                            <button type="submit" [disabled]="form1.invalid"
+                            <button (click)="onSubmit(form1)"[disabled]="form1.invalid"
                                     class="mt-2 btn btn-block btn-sm btn-success">
                                 Guardar
                             </button>
@@ -49,29 +46,39 @@
                     </div>
                 </div>
             </form>
-            <div class="card-body p-1">
+            <div class="card-body py-1">
                 <div class="row">
-                    <div class="col-md-4 col-sm-6">
-                        <button class="btn btn-sm btn-outline-warning mr-3" (click)="deshacer()">
-                            Deshacer
-                            <i class="fas fa-undo"></i>
-                        </button>
-                        <button class="btn btn-sm btn-outline-danger" (click)="limpiar()">
-                            Limpiar
-                            <i class="fas fa-eraser"></i>
-                        </button>
-                    </div>
-                    <div class="col-md-4 col-sm-6 text-center">
-                        <b class="text-muted mr-2">Puntos interés</b>
-                        <button class="btn btn-sm btn-info" (click)="verPtsInteres = !verPtsInteres; loadPuntosInteres();">
+                    <div class="col-md-4">
+                        <div class="btn-group mr-3" role="group">
+                            <button (click)="defineRuta = true" class="btn btn-sm"
+                            title="Trazar la ruta"
+                            [ngClass]="defineRuta ? 'btn-primary' : 'btn-outline-primary'">
+                                <i class="fas fa-route"></i>
+                            </button>
+                            <button (click)="defineRuta = false" class="btn btn-sm"
+                            title="Puntos de control"
+                            [ngClass]="defineRuta ? 'btn-outline-primary' : 'btn-primary'">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </button>
+                        </div>
+                        <button class="btn btn-sm btn-info" title="Puntos de interés"
+                            (click)="verPtsInteres = !verPtsInteres; loadPuntosInteres();">
                             <i class="fas fa-eye" *ngIf="!verPtsInteres"></i>
                             <i class="fas fa-eye-slash" *ngIf="verPtsInteres"></i>
                         </button>
                     </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="float-md-right">
-                            <span class="badge badge-primary mr-2">Punto de interés</span>
-                            <span class="badge badge-danger">Punto de control</span>
+                    <div class="col-md-4 text-center">
+                        <span class="badge badge-primary mr-2">Punto de interés</span>
+                        <span class="badge badge-danger">Punto de control</span>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="float-right">
+                            <button class="btn btn-sm btn-outline-warning mr-2" title="Deshacer último cambio" (click)="deshacer()">
+                                <i class="fas fa-undo"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger mr-2" title="Limpiar mapa" (click)="limpiar()">
+                                <i class="fas fa-eraser"></i>
+                            </button>
                         </div>
                     </div>
                 </div>

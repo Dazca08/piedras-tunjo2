@@ -72,7 +72,7 @@ export class RecorridosService {
 
   eliminarRecorrido(id: number) {
     return new Promise(resolve => {
-      this.http.delete(`${ apiUrl }/${ id }`)
+      this.http.delete(`${ apiUrl }/recorridos/${ id }`)
                 .pipe(
                   catchError(err => of({ok: false}))
                 )
