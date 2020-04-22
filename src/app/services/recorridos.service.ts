@@ -43,7 +43,7 @@ export class RecorridosService {
       return Promise.resolve([]);
     }
     return new Promise(resolve => {
-      this.http.get(`${ apiUrl }/recorridos`)
+      this.http.get(`${ apiUrl }/recorridos`, { headers: this.headers })
               .pipe(
                 catchError(err => of({ok: false}))
               )
@@ -59,8 +59,14 @@ export class RecorridosService {
 
 
   nuevoRecorrido(recorrido: Recorrido) {
+    // prepare headers
+    const prepare = this.prepareHeaders();
+    if (!prepare) {
+      console.log('Token not found');
+      return Promise.resolve([]);
+    }
     return new Promise(resolve => {
-      this.http.post(`${ apiUrl }/recorridos`, recorrido)
+      this.http.post(`${ apiUrl }/recorridos`, recorrido, { headers: this.headers })
                 .pipe(
                   catchError(err => of({ok: false}))
                 )
@@ -71,8 +77,14 @@ export class RecorridosService {
   }
 
   eliminarRecorrido(id: number) {
+    // prepare headers
+    const prepare = this.prepareHeaders();
+    if (!prepare) {
+      console.log('Token not found');
+      return Promise.resolve([]);
+    }
     return new Promise(resolve => {
-      this.http.delete(`${ apiUrl }/recorridos/${ id }`)
+      this.http.delete(`${ apiUrl }/recorridos/${ id }`, { headers: this.headers })
                 .pipe(
                   catchError(err => of({ok: false}))
                 )
