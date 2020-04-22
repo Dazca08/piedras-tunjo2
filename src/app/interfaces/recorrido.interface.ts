@@ -1,8 +1,11 @@
 export interface Recorrido {
-    id?: number;
-    nombre?: string;
-    ruta?: any[];
-    puntosInteres: string;
-    tiempoEstimado: number;
+    Id?: number;
+    Nombre?: string;
+    Ruta?: string;
+    RutaText?: string;
+    PuntosInteres?: string;
+    PuntosControl?: string;
+    TiempoEstimado?: number;
+    Token?: string;
 }
 
