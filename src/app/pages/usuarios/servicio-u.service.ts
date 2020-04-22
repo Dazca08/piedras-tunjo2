@@ -15,6 +15,9 @@ export class ServicioUService {
   constructor(private http: HttpClient) { }
 private url: string = "http://piedrasdeltunjo.tk/Usuarios";
 //private url: string = "http://localhost:61629/Usuarios";
+ObtenerRoles():Observable<any>{
+  return this.http.get(this.url+'/RolesUsuario')
+}
   ObtenerJson():Observable<any>{
     return this.http.get(this.url+'/ver_Usuarios?estadoFiltro=1')
   }

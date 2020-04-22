@@ -64,13 +64,41 @@
                 </div>
                 <div class="form-group col-md-4">
                   <label for="lugarExpedicion">Lugar de Expedición</label>
-                  <input type="text"
-                        name="lugarExpedicion"
-                        class="form-control"
-                        #lugarExpedicion="ngModel"
-                        [(ngModel)]="usuario.LugarExpedicion"
-                        [ngClass]="{'is-invalid': lugarExpedicion.errors && lugarExpedicion.touched}"
-                        required minlength="1">
+                  <select name="lugarExpedicion" class="form-control" #lugarExpedicion="ngModel" [(ngModel)]="usuario.LugarExpedicion" [ngClass]="{'is-invalid': lugarExpedicion.errors && lugarExpedicion.touched}">
+                    <option value="">Seleccionar</option>
+                    <option value="Amazonas">Amazonas, Leticia</option>
+                    <option value="Antioquia">Antioquia, Medellín</option>
+                    <option value="Arauca">Arauca, Arauca</option>
+                    <option value="Atlantico">Atlántico, Barranquilla</option>
+                    <option value="Bolivar">Bolívar, Cartagena de Indias</option>
+                    <option value="Boyaca">Boyacá, Tunja</option>
+                    <option value="Caldas">Caldas, Manizales</option>
+                    <option value="Caqueta">Caquetá, Florencia</option>
+                    <option value="Casanare">Casanare, Yopal</option>
+                    <option value="Cauca">Cauca, Popayán</option>
+                    <option value="Cesar">Cesar, Valledupar</option>
+                    <option value="Choco">Chocó, Quibdó</option>
+                    <option value="Cordona">Córdoba, Montería</option>
+                    <option value="Facatativa">Cundinamarca, Facatativa</option>
+                    <option value="Bogota">Cundinamarca, Bogotá</option>
+                    <option value="Guania">Guainía, Inírida</option>
+                    <option value="Guaviare">Guaviare, San José del Guaviare</option>
+                    <option value="Huila">Huila, Neiva</option>
+                    <option value="Guajira">La Guajira, Riohacha</option>
+                    <option value="Magdalena">Magdalena, Santa Marta</option>
+                    <option value="Meta">Meta, Villavicencio</option>
+                    <option value="Nariño">Nariño, Pasto</option>
+                    <option value="NorteSantander">Norte de Santander, San José de Cúcuta</option>
+                    <option value="Putumayo">Putumayo, Mocoa</option>
+                    <option value="Quindio">Quindío, Armenia</option>
+                    <option value="Risaralda">Risaralda, Pereira</option>
+                    <option value="SanAndres">San Andrés y Providencia, San Andrés</option>
+                    <option value="Santander">Santander, Bucaramanga</option>
+                    <option value="Sucre">Sucre, Sincelejo</option>
+                    <option value="ValleCauca">Valle del Cauca, Caoption</option>
+                    <option value="Vaupes">Vaupés, Mitú</option>
+                    <option value="Vichada">Vichada, Puerto Carreño</option>
+                  </select>
                   <div [hidden]="!lugarExpedicion.errors?.required" class="invalid-feedback">Lugar de expedicion requerido</div>
                   <div [hidden]="!lugarExpedicion.errors?.minlength" class="invalid-feedback">Debe contener al menos 2 caracteres</div>
                 </div>
@@ -108,25 +136,17 @@
                   <p *ngIf="( usuario.Icono_url=='av-4.png')">Avatar 4 seleccionado</p>
                   <input type="hidden" name="icono_url" [(ngModel)]="usuario.Icono_url">
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-12">
                   <label for="VerificacionCuenta">Verificacion en la cuenta</label>
                   <select name="VerificacionCuenta" class="form-control" #VerificacionCuenta="ngModel" [(ngModel)]="usuario.VerificacionCuenta">
                     <option value="true"selected>Activado</option>
                     <option value="false">Desactivado</option>
                   </select>
                 </div>
-                <div class="form-group col-md-6">
-                  <label for=" EstadoCuenta">Estado de cuenta</label>
-                  <select name="EstadoCuenta" class="form-control" #EstadoCuenta="ngModel" [(ngModel)]="usuario.EstadoCuenta">
-                    <option value="true"selected>Activado</option>
-                    <option value="false">Desactivado</option>
-                  </select>
-                </div>
                 <div class="form-group col-md-12">
                   <label for="RolId">Seleccione el rol del ususario</label>
-                  <select name="RolId" class="form-control" #RolId="ngModel" [(ngModel)]="usuario.RolId"  >
-                    <option value="2" selected>Usuario común</option>
-                    <option value="3">Empleado</option>
+                  <select name="RolId" class="form-control" #RolId="ngModel" [(ngModel)]="usuario.RolId">
+                    <option *ngFor="let rol of roles; index as i" value="{{rol.id}}">{{rol.nombre}}</option>
                   </select>
                 </div>
               </div>

@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./inicio-u.component.css']
 })
 export class InicioUComponent implements OnInit {
- 
+
 usuarios: Usuarios[];
   usuario: Usuarios ={
     Id:'',
@@ -29,36 +29,36 @@ usuarios: Usuarios[];
     Imagen_documento: '',
     estadoc: '',
 
-   
+
   }
-  constructor(private servi: ServicioUService, 
+  constructor(private servi: ServicioUService,
     private route: ActivatedRoute,
     private Router: Router
-  ) {this.ObtenerUsuarios }
+  ) {this.ObtenerUsuarios}
  filterPost ='';
  PageActual:number=1;
  ObtenerUsuarios(){
  this.servi.ObtenerJson().subscribe(resultado =>{
-   
+
    this.usuarios=resultado;
  // console.log(this.usuarios);
-   
-   
+
+
    console.log("Informacion ya tiene resultado");
   console.log(this.usuarios.length)
  },
  error=>{
 console.log(JSON.stringify(error));
 
- }); 
+ });
    }
     i:number;
-    
+
 
   ngOnInit(): void {
-   
+
   	this.ObtenerUsuarios();
-  
+
   }
   eliminar(id){
 
@@ -77,7 +77,7 @@ console.log(JSON.stringify(error));
       'Borrado!',
       'El usuario ha sido eliminado.',
       'success'
-     
+
     )
       this.refrescar(id);
        this.refrescar(id);
@@ -90,8 +90,8 @@ console.log(JSON.stringify(error));
  this.ObtenerUsuarios();
 
 this.Router.navigateByUrl('/iniciou');*/
-   
-  
+
+
 }
 
 deshabilitar(id){
@@ -111,7 +111,7 @@ if (result.value) {
     'Deshabilitado!',
     'El usuario ha sido Deshabilitado.',
     'success'
-   
+
   )
     this.refrescar(id);
      this.refrescar(id);
