@@ -3,40 +3,55 @@
         <div class="card shadow">
             <form #form1="ngForm" (ngSubmit)="onSubmit(form1)">
                 <div class="card-header">
-                    <div class="row">
-                        <div class="col-md-6 col-xs-12">
-                            <div class="btn-group" role="group">
+                    <div class="row justify-content-center">
+                        <div class="col-md-4 col-sm-10">
+                            <div class="btn-group mt-2" role="group">
                                 <button (click)="defineRuta = true" class="btn btn-sm"
                                 [ngClass]="defineRuta ? 'btn-primary' : 'btn-outline-primary'">TRAZADO DE RUTA</button>
                                 <button (click)="defineRuta = false" class="btn btn-sm"
                                 [ngClass]="defineRuta ? 'btn-outline-primary' : 'btn-primary'">PUNTOS DE CONTROL</button>
                             </div>
                         </div>
-                        <div class="col-md-4 col-xs-6">
-                            <input type="text" name="nombre" #name="ngModel" [(ngModel)]="nombre"
+                        <div class="col-md-6 col-sm-10 my-2">
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" name="nombre" #name="ngModel" [(ngModel)]="nombre"
                                     class="form-control form-control-sm"
                                     [ngClass]="getValidationClass(name)"
                                     required
                                     placeholder="Ingresa el nombre de la ruta">
-                            <!-- <div class="valid-feedback">Ok!</div> -->
-                            <div class="invalid-feedback">
-                                <span *ngIf="name.errors?.required">
-                                    El nombre de la ruta es requerido
-                                </span>
+                                    <!-- <div class="valid-feedback">Ok!</div> -->
+                                    <div class="invalid-feedback">
+                                        <span *ngIf="name.errors?.required">
+                                            El nombre de la ruta es requerido
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="input-group input-group-sm">
+                                        <input type="number" name="tiempoEst" #tiempoEst="ngModel"
+                                        [(ngModel)]="tiempoEstimado"
+                                        class="form-control form-control-sm"
+                                        [ngClass]="getValidationClass(tiempoEst)">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">Minutos</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-2 col-xs-6">
+                        <div class="col-md-2 col-sm-10">
                             <button type="submit" [disabled]="form1.invalid"
-                                    class="btn btn-block btn-sm btn-success">
+                                    class="mt-2 btn btn-block btn-sm btn-success">
                                 Guardar
                             </button>
                         </div>
                     </div>
                 </div>
             </form>
-            <div class="card-body">
+            <div class="card-body p-1">
                 <div class="row">
-                    <div class="col-md-4 col-xs-6">
+                    <div class="col-md-4 col-sm-6">
                         <button class="btn btn-sm btn-outline-warning mr-3" (click)="deshacer()">
                             Deshacer
                             <i class="fas fa-undo"></i>
@@ -46,15 +61,15 @@
                             <i class="fas fa-eraser"></i>
                         </button>
                     </div>
-                    <div class="col-md-4 col-xs-6 text-center">
+                    <div class="col-md-4 col-sm-6 text-center">
                         <b class="text-muted mr-2">Puntos interés</b>
                         <button class="btn btn-sm btn-info" (click)="verPtsInteres = !verPtsInteres; loadPuntosInteres();">
                             <i class="fas fa-eye" *ngIf="!verPtsInteres"></i>
                             <i class="fas fa-eye-slash" *ngIf="verPtsInteres"></i>
                         </button>
                     </div>
-                    <div class="col-md-4 col-xs-6">
-                        <div class="float-right">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="float-md-right">
                             <span class="badge badge-primary mr-2">Punto de interés</span>
                             <span class="badge badge-danger">Punto de control</span>
                         </div>

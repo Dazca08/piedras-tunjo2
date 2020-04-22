@@ -29,7 +29,7 @@ export class MapaComponent implements OnInit , AfterViewInit {
     });
     // navigation controls
     this.mapa1.addControl(new Mapboxgl.NavigationControl());
-    this.mapa.addControl(new Mapboxgl.FullscreenControl());
+    this.mapa1.addControl(new Mapboxgl.FullscreenControl());
   }
 
   ngOnInit(): void {

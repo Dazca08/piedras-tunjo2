@@ -1,5 +1,7 @@
 <div class="container">
     <button class="btn btn-sm btn-success" routerLink="/recorridos/nuevo">Nueva ruta</button>
 </div>
-<div class="row justify-content-center">
+<div class="row">
+    <app-card-recorrido class="col-md-4 col-sm-6" *ngFor="let reco of recorridos" [recorrido]="reco">
+    </app-card-recorrido>
 </div>

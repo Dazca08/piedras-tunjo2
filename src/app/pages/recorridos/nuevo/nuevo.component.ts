@@ -6,6 +6,10 @@ import { environment } from '../../../../environments/environment';
 import { PuntoInteres } from '../../../interfaces/punto-interes.interface';
 import Swal from 'sweetalert2';
 import { PuntoMap } from '../../../interfaces/punto-control.interface';
+import { Recorrido } from '../../../interfaces/recorrido.interface';
+import { GeometryService } from '../../../services/geometry.service';
+import { RecorridosService } from '../../../services/recorridos.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nuevo',
@@ -15,6 +19,8 @@ import { PuntoMap } from '../../../interfaces/punto-control.interface';
 export class NuevoComponent implements OnInit, AfterViewInit {
 
   nombre = '';
+  tiempoEstimado = 10;
+
   defineRuta = true;
   verPtsInteres = false;
   isPuntoInteres = false;
@@ -25,7 +31,7 @@ export class NuevoComponent implements OnInit, AfterViewInit {
   markersPtsInteres = [];
   markersPtsControl = [];
   puntosInteres: PuntoInteres[] = [];
-  idsPuntosInt: number[] = []; // id´s de los puntos de interes seleccionados
+  ptsInteresRuta: PuntoInteres[] = []; // id´s de los puntos de interes seleccionados
 
   geojson = {
     type: 'FeatureCollection',
@@ -44,7 +50,10 @@ export class NuevoComponent implements OnInit, AfterViewInit {
   };
 
   constructor(
-    private puntosIntService: PuntosInteresService
+    private puntosIntService: PuntosInteresService,
+    private geometryService: GeometryService,
+    private recorridosService: RecorridosService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -94,13 +103,13 @@ export class NuevoComponent implements OnInit, AfterViewInit {
         }
       } else {
         // nuevo punto de control
-        if (!this.existsPuntoCtrl) {
-          // el punto de NO control ya existe
+        if (!this.existsPuntoCtrl && !this.isPuntoInteres) {
+          // el punto de NO existe y mo es un punto de interés
           this.nuevoPuntoControl(lng, lat);
         } else {
           // el punto de control existe
-          alert('El punto de control ya existe');
-          this.existsPuntoCtrl = false;
+          // alert('El punto de control ya existe');
+          this.existsPuntoCtrl = this.isPuntoInteres = false;
         }
       }
     });
@@ -109,6 +118,7 @@ export class NuevoComponent implements OnInit, AfterViewInit {
     this.mapa.addControl(new Mapboxgl.FullscreenControl());
   }
 
+  // CREAR NUEVO MARKER DE PUNTO DE CONTROL
   nuevoPuntoControl(lng: number, lat: number) {
     Swal.fire({
       title: 'Nuevo punto de control',
@@ -161,6 +171,7 @@ export class NuevoComponent implements OnInit, AfterViewInit {
     this.mostrarPuntosInteres();
   }
 
+  // CREAR MARKERS DE PUNTOS DE INTERÉS
   mostrarPuntosInteres() {
     this.puntosInteres.forEach(punto => {
       const popup = new Mapboxgl.Popup({ offset: 25 }).setText(punto.Descripcion);
@@ -172,8 +183,8 @@ export class NuevoComponent implements OnInit, AfterViewInit {
       marker._element.addEventListener('click', () => {
         if (this.defineRuta) {
           this.agregarCoordenada(punto.Longitud, punto.Latitud);
-          this.isPuntoInteres = true;
         }
+        this.isPuntoInteres = true;
       });
     });
   }
@@ -194,7 +205,7 @@ export class NuevoComponent implements OnInit, AfterViewInit {
     if (this.defineRuta) {
       // eliminar todo el trazo
       this.geojson.features[0].geometry.coordinates = [];
-      this.idsPuntosInt = [];
+      this.ptsInteresRuta = [];
       this.mapa.getSource('line').setData(this.geojson);
     } else {
       // eliminar todos los puntos de control puestos
@@ -223,14 +234,14 @@ export class NuevoComponent implements OnInit, AfterViewInit {
   }
 
   buscarIdsPuntosInteres() {
-    this.idsPuntosInt = [];
+    this.ptsInteresRuta = [];
     this.coordenadas.forEach(coordenada => {
       const [lng, lat] = coordenada;
       const puntoInt = this.puntosInteres.find(x => Number(x.Longitud) === lng && Number(x.Latitud) === lat);
       if (puntoInt) {
-        const exists = this.idsPuntosInt.find(z => z === puntoInt.Id);
+        const exists = this.ptsInteresRuta.find(z => z.Id === puntoInt.Id);
         if (!exists) {
-          this.idsPuntosInt.push(puntoInt.Id);
+          this.ptsInteresRuta.push(puntoInt);
         }
       }
     });
@@ -241,13 +252,36 @@ export class NuevoComponent implements OnInit, AfterViewInit {
     return this.geojson.features[0].geometry.coordinates;
   }
 
-  onSubmit(form: NgForm) {
+  async onSubmit(form: NgForm) {
     if (form.valid) {
-      console.log(form.value);
-      console.log(this.coordenadas);
-      console.log(this.idsPuntosInt);
-      console.log(this.puntosControl);
+      const { nombre, tiempoEst } = form.value;
+      if (this.coordenadas.length < 3) {
+        this.showErrorMessage('La ruta trazada es demasiado corta');
+      } else {
+        const lineString = this.geometryService.buildLineString(this.coordenadas);
+        const recorrido: Recorrido = {
+          Nombre: nombre,
+          PuntosInteres: JSON.stringify(this.ptsInteresRuta),
+          PuntosControl: JSON.stringify(this.puntosControl),
+          Ruta: lineString,
+          RutaText: lineString,
+          TiempoEstimado: tiempoEst
+        };
+        const created = await this.recorridosService.nuevoRecorrido(recorrido);
+        if (created) {
+          this.router.navigateByUrl('/recorridos');
+        } else {
+          this.showErrorMessage('Ha ocurrido un error');
+        }
+      }
     }
+  }
+
+  showErrorMessage(message: string) {
+    Swal.fire({
+      icon: 'error',
+      text: message
+    });
   }
 
   getValidationClass(model: NgModel) {

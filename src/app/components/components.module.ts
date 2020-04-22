@@ -17,7 +17,7 @@ import { EventosComponent } from './seccion-eventos/seccion-eventos.component';
 import { ImagesUploadComponent } from './images-upload/images-upload.component';
 import { CarouselImagesComponent } from './carousel-images/carousel-images.component';
 import { SelectCoordinatesComponent } from './select-coordinates/select-coordinates.component';
-import { DrawLineMapComponent } from './draw-line-map/draw-line-map.component';
+import { CardRecorridoComponent } from './card-recorrido/card-recorrido.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,7 @@ import { DrawLineMapComponent } from './draw-line-map/draw-line-map.component';
     ImagesUploadComponent,
     CarouselImagesComponent,
     SelectCoordinatesComponent,
-    DrawLineMapComponent
+    CardRecorridoComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +53,7 @@ import { DrawLineMapComponent } from './draw-line-map/draw-line-map.component';
     ImagesUploadComponent,
     CarouselImagesComponent,
     SelectCoordinatesComponent,
-    DrawLineMapComponent
+    CardRecorridoComponent
   ]
 })
 export class ComponentsModule { }
