@@ -1,5 +1,5 @@
 export interface Usuarios{
-    
+
     Id?:string;
     Nombre?:string;
     Apellido?:string;
@@ -15,5 +15,10 @@ export interface Usuarios{
     //rolNombre?:string;
     Imagen_documento?:string;
     estadoc?:string;
-  
+
+}
+
+export interface Roles{
+  id?:string;
+  nombre:string;
 }

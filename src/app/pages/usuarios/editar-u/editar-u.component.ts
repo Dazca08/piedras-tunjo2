@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule , FormsModule } from '@angular/forms';
-import { Usuarios } from '../usuarios.model';
+import { Usuarios, Roles } from '../usuarios.model';
 import { ServicioUService  } from '../servicio-u.service';
 import { Router , ActivatedRoute} from '@angular/router';
 import Swal from 'sweetalert2';
@@ -10,24 +10,26 @@ import Swal from 'sweetalert2';
   styleUrls: ['./editar-u.component.css']
 })
 export class EditarUComponent implements OnInit {
-   id:string;
-usuarios: Usuarios[];
-  usuario: Usuarios ={
+  id: string;
+  roles: Roles[];
+  rol: Roles={
+    id: '',
+    nombre: ''
+  }
+  usuarios: Usuarios[];
+  usuario: Usuarios = {
     Nombre: '',
     Apellido: '',
-     TipoDocumento: '',
-   NumeroDocumento: '',
+    TipoDocumento: '',
+    NumeroDocumento: '',
     LugarExpedicion: '',
-   CorreoElectronico: '',
-       Clave: '',
+    CorreoElectronico: '',
+    Clave: '',
     Icono_url: '',
-   VerificacionCuenta: '',
+    VerificacionCuenta: '',
     EstadoCuenta: '',
-   RolId: '',
-     
+    RolId: '',
     Imagen_documento: '',
-
-   
   }
   constructor(private formBuilder: FormBuilder,
       private servi:  ServicioUService  ,
@@ -35,16 +37,18 @@ usuarios: Usuarios[];
        private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-        this.id = this.route.snapshot.params['id'];
-      this.servi.getu('/'+this.id).subscribe(resultado =>{
- this.usuario=resultado;
-  
- });
+    this.id = this.route.snapshot.params['id'];
+    this.servi.getu('/'+this.id).subscribe(resultado =>{
+      this.usuario=resultado;
+    });
+    this.servi.ObtenerRoles().subscribe(resultado=>{
+      this.roles=resultado;
+    });
   }
 
   guardar({value, valid}: {value:Usuarios, valid: boolean}){
-   
-    if(this.usuario.Nombre=='' || this.usuario.Apellido=='' 
+
+    if(this.usuario.Nombre=='' || this.usuario.Apellido==''
       ||this.usuario.TipoDocumento=='' || this.usuario.NumeroDocumento==''
       ||this.usuario.LugarExpedicion=='' || this.usuario.CorreoElectronico==''
       ||this.usuario.Clave=='' ||this.usuario.RolId==''||this.usuario.VerificacionCuenta==''
@@ -65,7 +69,7 @@ usuarios: Usuarios[];
     }
 
     else{
- 
+
         Swal.fire({
   title: 'Esta seguro?',
   text: "Desea guardar los cambios?",
@@ -81,20 +85,20 @@ usuarios: Usuarios[];
       'Guardado!',
       'El usuario ha sido Actualizado ',
       'success'
-     
+
     )
        value.Id = this.id;
-      
+
    this.servi.update(value,this.id);
   }
 })
-       
-     
+
+
     }
-   
-     
-  
-    
+
+
+
+
   }
 
 
