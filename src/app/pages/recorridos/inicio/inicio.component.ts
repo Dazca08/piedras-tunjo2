@@ -26,4 +26,8 @@ export class InicioComponent implements OnInit {
     this.recorridos = await this.recorridosService.getRecorridos();
   }
 
+  eliminar(id: number) {
+    this.recorridos = this.recorridos.filter(x => x.Id !== id);
+  }
+
 }

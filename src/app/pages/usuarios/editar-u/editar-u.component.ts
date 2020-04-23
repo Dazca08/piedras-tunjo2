@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./editar-u.component.css']
 })
 export class EditarUComponent implements OnInit {
+  rolid:string;
   id: string;
   roles: Roles[];
   rol: Roles={
@@ -40,7 +41,9 @@ export class EditarUComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.servi.getu('/'+this.id).subscribe(resultado =>{
       this.usuario=resultado;
+      this.rolid=this.usuario.RolId;
     });
+
     this.servi.ObtenerRoles().subscribe(resultado=>{
       this.roles=resultado;
     });

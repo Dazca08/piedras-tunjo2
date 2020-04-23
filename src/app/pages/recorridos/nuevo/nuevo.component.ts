@@ -11,6 +11,8 @@ import { GeometryService } from '../../../services/geometry.service';
 import { RecorridosService } from '../../../services/recorridos.service';
 import { Router } from '@angular/router';
 
+declare var $: any;
+
 @Component({
   selector: 'app-nuevo',
   templateUrl: './nuevo.component.html',

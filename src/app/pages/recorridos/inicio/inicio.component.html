@@ -1,7 +1,18 @@
-<div class="container">
+<div class="container p-2">
     <button class="btn btn-sm btn-success" routerLink="/recorridos/nuevo">Nueva ruta</button>
+    <div class="float-right">
+        <span class="badge badge-primary mr-2">Punto de interés</span>
+        <span class="badge badge-danger">Punto de control</span>
+    </div>
+</div>
+<hr>
+<div class="container" *ngIf="recorridos.length === 0">
+    <h5 class="text-muted">No hay rutas para mostrar</h5>
 </div>
 <div class="row">
-    <app-card-recorrido class="col-md-4 col-sm-6" *ngFor="let reco of recorridos" [recorrido]="reco">
+    <app-card-recorrido class="col-md-4 col-sm-6 mb-2"
+                        *ngFor="let reco of recorridos"
+                        (eliminado)="eliminar($event)"
+                        [recorrido]="reco">
     </app-card-recorrido>
 </div>

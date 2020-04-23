@@ -1,0 +1,75 @@
+
+<!--  
+	AUTOR: GABRIEL ZAPATA
+	COMPONENTE HTML QUE CONTIENE LA VISTA INICIAL DE LA GESTION DE LOS TICKETS REMOVIDOS
+	FECHA 20/04/2020
+-->
+
+
+<header id="main-header" class="py-2 bg-info text-white">
+    <div class="container">
+      <div class="row">
+          <div class="col-md-6">
+             <div>
+                <h1>
+                  Gestion De Tipos de Tickets Removidos
+                </h1>
+             
+              </div>
+            </div>        
+        </div>
+    </div>
+    <div class="boton_linea">
+      <div class="boton_linea">
+        <a class="btn btn-success btn-block" routerLink="/tickets" role="button"><i class="fa fa-arrow-left"></i> Regresar</a>     
+      </div>
+    </div>
+  
+  </header>  
+  
+  <section class="bg-transparent" id="Removidos">   
+    <br>
+    <div class="container">      
+        <div class="row center">   
+          <br>                   
+          <div class="col-md-12">
+            <div class="row row-cols-1 row-cols-md-3">         
+              <div *ngFor="let tk of tickets; index as i" class="col-md-4 col-sm-6 col-xs-12">
+                <div class="card h-100">
+                  <div class="card-header text-center">
+                    <h4>   Tipo</h4>
+                  </div>
+                  <div class="car-body container text-center">                  
+                    <p>
+                      <b>
+                        {{tk.Nombre}}
+                      </b>
+                      <br>
+                      <b>
+                        ${{tk.Precio}}
+                      </b>
+                      <br>
+                      <b>
+                        {{tk.Descripcion}}
+                      </b>                      
+                    </p>
+                    <div class="row center" >                      
+                      <div class="col-md-6">
+                        <form (submit)="habilitar(tk.Id)">
+                          <button type="submit" class="btn btn-danger btn-block">
+                            Habilitar
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> 
+            <div class="text-center">
+              <pagination-controls (pageChange)="PageActual = $event"></pagination-controls>
+            </div>         
+          </div>
+        </div>
+      </div>
+  </section>

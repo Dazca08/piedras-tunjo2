@@ -12,7 +12,7 @@ export class GeometryService {
     let lineString = 'LINESTRING(';
     coordenadas.forEach((coord, index) => {
       const [lng, lat] = coord;
-      lineString += `${ lat } ${ lng },`;
+      lineString += `${ lng } ${ lat },`;
     });
     lineString = lineString.slice(0, (lineString.length - 1));
     lineString += ')';
@@ -20,11 +20,11 @@ export class GeometryService {
   }
 
   getCoordinates(lineString: string) {
-    let coordinates = [];
+    const coordinates = [];
     lineString = lineString.split('(')[1].replace(')', '');
     // console.log(lineString);
     lineString.split(',').forEach(x => {
-      const [lat, lng] = x.split(' ');
+      const [lng, lat] = x.split(' ');
       coordinates.push([Number(lng), Number(lat)]);
     });
     return coordinates;
