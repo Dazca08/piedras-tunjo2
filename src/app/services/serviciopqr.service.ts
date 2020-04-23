@@ -9,19 +9,40 @@ import { catchError } from 'rxjs/operators';
 import * as jwt_decode from 'jwt-decode';
 import { Observable, of } from 'rxjs';
 const apiUrl = environment.apiUrl;
+
 @Injectable({
   providedIn: 'root'
 })
 export class ServiciopqrService {
 private pqr:Pqr[];
+private headers: any;
   constructor(  private http: HttpClient,
     private router: Router) { }
-   ObtenerJson():Observable<any>{
-   	 const token = localStorage.getItem('token') || undefined;
-   	   const headers = new HttpHeaders({
+  prepareHeaders() {
+    // obtener token del localStorage
+    const token = localStorage.getItem('token') || undefined;
+    if (!token) { // undefined
+      this.router.navigateByUrl('/login');
+      return false;
+    } else {
+      // construir headers
+      this.headers = new HttpHeaders({
         Authorization: 'Bearer ' + token
       });
- return this.http.get(`${ apiUrl }/pqr`, { headers })
+      return true;
+    }
+  }
+   ObtenerJson():Observable<any>{
+   	/* const token = localStorage.getItem('token') || undefined;
+   	   const headers = new HttpHeaders({
+        Authorization: 'Bearer ' + token
+      });*/
+       const prepare = this.prepareHeaders();
+    if (!prepare) {
+      console.log('Token not found');
+
+    }
+ return this.http.get(`${ apiUrl }/pqr`, { headers: this.headers })
   }
   async Eliminar(id): Promise<any> {
   		 const token = localStorage.getItem('token') || undefined;
@@ -38,7 +59,7 @@ private pqr:Pqr[];
         Authorization: 'Bearer ' + token
       });
     return new Promise((resolve, reject) => {
-      this.http.put(`${ apiUrl }/pqr`+'/'+id ,cadena,  { headers }).toPromise()
+      this.http.put(`${ apiUrl }/pqr`+'/responder/'+id ,cadena,{headers}).toPromise()
     });
   }
 

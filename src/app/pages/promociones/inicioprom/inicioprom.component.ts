@@ -29,7 +29,7 @@ export class IniciopromComponent implements OnInit {
       this.promo=resultado;
       
       console.log("Informacion ya tiene resultado");
-      console.log(this.promo.length)
+      console.log(this.promo)
      
     },
     error=>{

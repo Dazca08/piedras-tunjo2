@@ -12,13 +12,13 @@ const httpOptions =
 })
 export class ServiciopromService {
 
-  private Url: string = "http://piedrasdeltunjo.tk/promocion/";
+  private Url: string = "http://piedrasdeltunjo.tk/promocion";
 
 
   constructor(private http: HttpClient) { }
   Obtenerpromocion():Observable<any>{
     //return this.http.get(`${this.Url}Subscripcion/Ver_Subscripciones?estadoFiltro=${1}`)
-    return this.http.get(`${this.Url}`)
+    return this.http.get(this.Url)
  
   }
   

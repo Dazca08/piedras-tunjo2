@@ -7,20 +7,20 @@
            		Gestion De PQRS
         	    </h1>
                 <div class="form-group">
-       <input  type="text"  class="form-control" name="filterpregunta" placeholder="Buscar pqrs por Asunto ..." [(ngModel)]="filterpregunta"> 
+       <input  type="text"  class="form-control" name="filterpregunta" placeholder="Buscar pqrs por Asunto ..." [(ngModel)]="filterpregunta">
                 </div>
             </div>
           </div>
- 
-    
-      
-        	
+
+
+
+
            	<div class="col-md-4">
       <div class="container">
         <div align="center">
 	  <h3 ><i class="fas fa-list-ol"></i> Total de pqrs  </h3>
             <h4 class="display-4">
-         
+
           {{pqrs?.length}}
             </h4>
        </div>
@@ -38,7 +38,7 @@
                    <button type="submit"  class="btn btn-info ">
                    <h4><i class="fas fa-list"></i> {{indicadorBoton}}</h4>
                      </button>
-              
+
              </form>
        </div>
       </div>
@@ -72,16 +72,17 @@
                 <h5><i class="fa fa-question-circle"></i> Asunto: {{pqr.Pregunta}}</h5>
               </div>
               <div class="car-body container">
-                <form #pqrForm="ngForm" (ngSubmit)="guardar(pqrForm )" > 
- 
-           <p class="card-text"> Usuario que hace la pregunta , queja , reclamo o sugerencia : 
+                <form #pqrForm="ngForm" (ngSubmit)="guardar(pqrForm )" >
+
+           <p class="card-text"> Usuario que hace la pregunta , queja , reclamo o sugerencia :
            </p>
-           <p class="card-text"><i class="fa fa-user"></i> 
+           <p class="card-text"><i class="fa fa-user"></i>
            {{pqr.UUsuario.Nombre}} {{pqr.UUsuario.Apellido}}</p>
               <p class="card-text"><i class="fa fa-calendar"></i> fecha de la peticion : {{pqr.FechaPublicacion}} </p>
 
 
            <input type="hidden" name="FechaPublicacion" class="form-control" #FechaPublicacion="ngModel" [(ngModel)]="pqr.FechaPublicacion">
+           <input type="hidden" name="FechaRespuesta" class="form-control" #FechaRespuesta="ngModel" [(ngModel)]="pqr.FechaRespuesta">
            <input type="hidden" name="Id" class="form-control" #Id="ngModel" [(ngModel)]="pqr.Id">
            <input type="hidden" name="LastModification" class="form-control" #LastModification="ngModel" [(ngModel)]="pqr.LastModification">
            <input type="hidden" name="Pregunta" class="form-control" #Pregunta="ngModel" [(ngModel)]="pqr.Pregunta">
@@ -89,24 +90,24 @@
             <textarea name="comentarios" rows="4" cols="38" [(ngModel)]="pqr.Respuesta"></textarea>
             <br>
                <input type="hidden" name="Respuesta" class="form-control" #Respuesta="ngModel" [(ngModel)]="pqr.Respuesta">
-       
+
            <input type="hidden" name="Token" class="form-control" #Token="ngModel" [(ngModel)]="pqr.Token">
-           
+
            <input type="hidden" name="UEstadoPQR" class="form-control" #UEstadoPQR="ngModel" [(ngModel)]="pqr.UEstadoPQR">
-        
+
 
            <input type="hidden" name="UEstadoPQRId" class="form-control" #UEstadoPQRId="ngModel" [(ngModel)]="pqr.UEstadoPQRId">
            <input type="hidden" name="UUsuario" class="form-control" #UUsuario="ngModel" [(ngModel)]="pqr.UUsuario">
              <input type="hidden" name="UUsuarioId" class="form-control" #UUsuarioId="ngModel" [(ngModel)]="pqr.UUsuarioId">
-           
+
           <br>
-       
+
            <div align="center">
              <button type="submit" style="width:200 ;" class="btn btn-primary btn-block">
              <i class="fas fa-share-square"></i> Enviar respuesta
           </button>
            </div>
-               
+
            </form>
               </div>
             </div>
@@ -116,10 +117,10 @@
           <pagination-controls (pageChange)="PageActual = $event"></pagination-controls>
         </div>
       </div>
-  
+
   </div>
 
-    
+
 
 
 </section>
@@ -145,16 +146,18 @@
                 <h5><i class="fa fa-question-circle"></i> Asunto: {{pqr.Pregunta}}</h5>
               </div>
               <div class="car-body container">
-                <form #pqrForm="ngForm" (ngSubmit)="guardar(pqrForm )" > 
-         
-           <p class="card-text"> Usuario que hace la pregunta , queja , reclamo o sugerencia : 
+                <form #pqrForm="ngForm" (ngSubmit)="guardar(pqrForm )" >
+
+           <p class="card-text"> Usuario que hace la pregunta , queja , reclamo o sugerencia :
            </p>
-           <p class="card-text"><i class="fa fa-user"></i> 
+           <p class="card-text"><i class="fa fa-user"></i>
            {{pqr.UUsuario.Nombre}} {{pqr.UUsuario.Apellido}}</p>
               <p class="card-text"><i class="fa fa-calendar"></i> fecha de la peticion : {{pqr.FechaPublicacion}} </p>
 
-
+            
            <input type="hidden" name="FechaPublicacion" class="form-control" #FechaPublicacion="ngModel" [(ngModel)]="pqr.FechaPublicacion">
+           <p class="card-text"><i class="fa fa-calendar"></i> fecha de la Respuesta : {{pqr.FechaRespuesta}} </p>
+           <input type="hidden" name="FechaRespuesta" class="form-control" #FechaRespuesta="ngModel" [(ngModel)]="pqr.FechaRespuesta">
            <input type="hidden" name="Id" class="form-control" #Id="ngModel" [(ngModel)]="pqr.Id">
            <input type="hidden" name="LastModification" class="form-control" #LastModification="ngModel" [(ngModel)]="pqr.LastModification">
            <input type="hidden" name="Pregunta" class="form-control" #Pregunta="ngModel" [(ngModel)]="pqr.Pregunta">
@@ -162,41 +165,41 @@
             <textarea name="comentarios" rows="4" cols="38" [(ngModel)]="pqr.Respuesta">Escribe aquí tus comentarios</textarea>
             <br>
                <input type="hidden" name="Respuesta" class="form-control" #Respuesta="ngModel" [(ngModel)]="pqr.Respuesta">
-       
+
            <input type="hidden" name="Token" class="form-control" #Token="ngModel" [(ngModel)]="pqr.Token">
-           
+
            <input type="hidden" name="UEstadoPQR" class="form-control" #UEstadoPQR="ngModel" [(ngModel)]="pqr.UEstadoPQR">
-        
+
 
            <input type="hidden" name="UEstadoPQRId" class="form-control" #UEstadoPQRId="ngModel" [(ngModel)]="pqr.UEstadoPQRId">
            <input type="hidden" name="UUsuario" class="form-control" #UUsuario="ngModel" [(ngModel)]="pqr.UUsuario">
              <input type="hidden" name="UUsuarioId" class="form-control" #UUsuarioId="ngModel" [(ngModel)]="pqr.UUsuarioId">
-           
+
           <br>
           <div class="row">
             <div class="col-md-6">
               <div align="center">
-                
+
                   <form (submit)="eliminar(pqr.Id)">
                    <button type="submit" style="width:130" class="btn btn-danger btn-block">
             <i class="fas fa-trash"></i> Eliminar
           </button>
            </form>
               </div>
-            
+
             </div>
           <div class="col-md-6">
             <div align="center">
                <button type="submit" style="width:130 ;" class="btn btn-primary btn-block">
              <i class="fas fa-share-square"></i> Enviar </button>
             </div>
-             
-       
+
+
           </div>
-         
-            
-          
-            </div>   
+
+
+
+            </div>
            </form>
               </div>
             </div>
@@ -206,10 +209,10 @@
           <pagination-controls (pageChange)="PageActual = $event"></pagination-controls>
         </div>
       </div>
-  
+
   </div>
 
-    
+
 
 
 </section>

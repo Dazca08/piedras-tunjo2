@@ -43,10 +43,10 @@
 		 			</thead>
 		 			<tbody>
 		 				 <tr *ngFor="let prom of promo  |filtroprom:filtropromPost | paginate:{itemsPerPage :5 , currentPage:PageActual}  ; index as i">
-		 				 	<td>{{prom.id}}</td>
-							<td>{{prom.nombre}}</td>                            							 
-							<td>{{prom.descripcion}}</td>
-							<td>{{prom.precio}}</td>
+		 				 	<td>{{prom.Id}}</td>
+							<td>{{prom.Nombre}}</td>                            							 
+							<td>{{prom.Descripcion}}</td>
+							<td>{{prom.Precio}}</td>
 							<td><div> <a class="letra" routerLink="editar/{{prom.id}}" >Editar</a></div></td>					
                             <td>
 							<!--"-->

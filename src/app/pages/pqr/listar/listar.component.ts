@@ -14,67 +14,69 @@ pqrs:Pqr[];
 PageActual:number=1;
 i:number=0;
 fechatemp:string='';
+fechartemp:string='';
 filterpregunta ='';
 indicador:boolean=true;
 indicadorBoton:string="PQR Contestados"
   constructor(private servi:ServiciopqrService) { }
 
-    ObtenerPqrs(){
+   ObtenerPqrs(){
       console.log(this.indicador)
-      if(this.indicador==true){
-          this.servi.ObtenerJson().subscribe(resultado =>{
-   this.pqrs=resultado.results;
-   for(this.i=0;this.i<this.pqrs.length;this.i++){
-     this.fechatemp=this.pqrs[this.i].FechaPublicacion;
-  
-     var splitted = this.fechatemp.split("T", 2); 
-  
-    // console.log(splitted)
-      this.fechatemp=splitted[0];
- 
-      this.pqrs[this.i].FechaPublicacion=this.fechatemp;
-     
-   }
-   this.pqrs=this.pqrs.filter(x=>x.Respuesta=='');
-    
+     if(this.indicador==true){
+        this.servi.ObtenerJson().subscribe(resultado =>{
+          this.pqrs=resultado.results;
+          for(this.i=0;this.i<this.pqrs.length;this.i++){
+           this.fechatemp=this.pqrs[this.i].FechaPublicacion;
+           this.fechartemp=this.pqrs[this.i].FechaRespuesta;
+           var splitted = this.fechatemp.split("T", 2);
+           var splitted2=this.fechartemp.split("T",2);
+   
+           this.fechatemp=splitted[0];
+           this.fechartemp=splitted2[0];
+           this.pqrs[this.i].FechaPublicacion=this.fechatemp;
+           this.pqrs[this.i].FechaRespuesta=this.fechartemp;
+
+           }
+   this.pqrs=this.pqrs.filter(x=>x.Respuesta=="");
+
     console.log(this.pqrs)
    console.log("Informacion ya tiene resultado");
-  
- },
- error=>{
-console.log(JSON.stringify(error));
 
- }); 
+        },
+         error=>{
+            console.log(JSON.stringify(error));
+
+          });
+     }
+
+     else if (this.indicador==false){
+        this.servi.ObtenerJson().subscribe(resultado =>{
+          this.pqrs=resultado.results;
+         for(this.i=0;this.i<this.pqrs.length;this.i++){
+          this.fechatemp=this.pqrs[this.i].FechaPublicacion;
+           this.fechartemp=this.pqrs[this.i].FechaRespuesta;
+           var splitted = this.fechatemp.split("T", 2);
+           var splitted2=this.fechartemp.split("T",2);
+   
+           this.fechatemp=splitted[0];
+           this.fechartemp=splitted2[0];
+           this.pqrs[this.i].FechaPublicacion=this.fechatemp;
+           this.pqrs[this.i].FechaRespuesta=this.fechartemp;
+
+
+            }
+        this.pqrs=this.pqrs.filter(x=>x.Respuesta!="");
+
+         },
+         error=>{
+           console.log(JSON.stringify(error));
+           });
       }
-      else if (this.indicador==false){
-               this.servi.ObtenerJson().subscribe(resultado =>{
-   this.pqrs=resultado.results;
-   for(this.i=0;this.i<this.pqrs.length;this.i++){
-     this.fechatemp=this.pqrs[this.i].FechaPublicacion;
-  
-     var splitted = this.fechatemp.split("T", 2); 
-  
-    // console.log(splitted)
-      this.fechatemp=splitted[0];
- 
-      this.pqrs[this.i].FechaPublicacion=this.fechatemp;
-     
-   }
-   this.pqrs=this.pqrs.filter(x=>x.Respuesta!='');
-    
-    console.log(this.pqrs)
-   console.log("Informacion ya tiene resultado");
-  
- },
- error=>{
-console.log(JSON.stringify(error));
-
- });
-      }
 
    }
-   listarContestados(){
-   console.log('me listarom :v')
+
+ listarContestados(){
+
    if(this.indicador==true){
      this.indicador=false;
      this.indicadorBoton="PQR Sin contestar"
@@ -83,44 +85,44 @@ console.log(JSON.stringify(error));
     this.indicador=true;
     this.indicadorBoton="PQR Contestados"
    }
-   
-   console.log(this.indicador)
+
    this.refrescar();
-   }
+  }
+
   ngOnInit(): void {
   	this.ObtenerPqrs();
   }
+
  eliminar(id){
- 
-console.log(id);
        Swal.fire({
-  title: 'Estas seguro?',
-  text: " No se podra recuperar la informacion!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Si, Borrar!'
-}).then((result) => {
-  if (result.value) {
-    Swal.fire(
-      'Borrado!',
-      ' la informacion ha sido eliminada',
-      'success'
-    )
-       this.servi.Eliminar(id);
-      this.refrescar();
+            title: 'Estas seguro?',
+            text: " No se podra recuperar la informacion!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, Borrar!'
 
-  }
-})
+                }).then((result) => {
+                if (result.value) {
+                  Swal.fire(
+                   'Borrado!',
+                   ' la informacion ha sido eliminada',
+                   'success'
+                           )
+                this.servi.Eliminar(id);
+                this.refrescar();
 
-   
-  
-}
+                 }
+                   })
+
+
+
+   }
 
 refrescar(){
- 
-  
+
+
  this.ObtenerPqrs();
   this.ObtenerPqrs();
   this.ngOnInit();
@@ -128,56 +130,48 @@ refrescar(){
 
 }
 
- guardar({value, valid }: {value:Pqr, valid: boolean}){
+ guardar({value}: {value:Pqr}){
    if(value.Respuesta==""){
                Swal.fire(
-  'Por favor Ingrese una respuesta!',
-  'Respuesta no  enviada!',
-  'error'
-)
+               'Por favor Ingrese una respuesta!',
+               'Respuesta no  enviada!',
+               'error'
+                        )
    }
    else if(value.Respuesta.length<10){
          Swal.fire(
-  'La respuesta debe tener como minimo 10 caracteres!',
-  'Respuesta no  enviada!',
-  'error'
-)
+         'La respuesta debe tener como minimo 10 caracteres!',
+         'Respuesta no  enviada!',
+         'error'
+                  )
    }
    else{
-     console.log(value)
-    console.log(value.Id)
+
 
         Swal.fire({
-  title: 'Esta seguro?',
-  text: "Desea enviar esta respuesta?",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Si, guardar!'
-}).then((result) => {
-  if (result.value) {
-    Swal.fire(
+        title: 'Esta seguro?',
+        text: "Desea enviar esta respuesta?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, guardar!'
+                  }).then((result) => {
+                    if (result.value) {
+                      Swal.fire(
+                      'Guardado!',
+                      'La respuesta ha sido enviada ',
+                      'success'
 
-      'Guardado!',
-      'La respuesta ha sido enviada ',
-      'success'
-     
-    )
+                                )   
+               this.servi.update(value,value.Id);
+               this.refrescar();
+                    }
+                      })
+    }
 
-      value.UEstadoPQR={Id:1 , Nombre:"atendida"};
-      console.log(value.UEstadoPQR.Nombre)
-      console.log(value)
-   this.servi.update(value,value.Id);  
-  //this.Router.navigate(['/admin/editarevento/'+this.id])
-   
-  this.refrescar();
+
+
   }
-})
-   }
-   
-   
-
-}
 
 }
