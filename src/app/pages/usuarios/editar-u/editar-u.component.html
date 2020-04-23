@@ -12,36 +12,26 @@
           <a routerLink="/usuarios" class="btn btn-dark btn-block">Regresar al Inicio</a>
         </div>
         <div class="col-md-12" style="padding-top:5%;">
-          <div class="card">
+          <div class="card" *ngIf="rolid=='2';else empleado">
             <div class="card-header">
               <h5>En este formulario puede editar los datos del usuario.</h5>
             </div>
             <div class="card-body">
               <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="nombre">Nombre del usuario</label>
-                  <input type="text"
-                        name="nombre"
-                        class="form-control"
-                        #nombre="ngModel"
-                        [(ngModel)]="usuario.Nombre"
-                        [ngClass]="{'is-invalid': nombre.errors && nombre.touched}"
-                        required minlength="2">
-                  <div [hidden]="!nombre.errors?.required" class="invalid-feedback">Nombre requerido</div>
-                  <div [hidden]="!nombre.errors?.minlength" class="invalid-feedback">Debe contener al menos 2 caracteres</div>
+                <div class="form-group col-md-6 text-center">
+                  <div class="form-group col-md-12">
+                    <label for="nombre">Nombre del usuario</label>
+                    <input type="text" name="nombre" class="form-control" [(ngModel)]="usuario.Nombre" readonly>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label for="apellido">Apellido del usuario</label>
+                    <input type="text" name="apellido" class="form-control" [(ngModel)]="usuario.Apellido" readonly>
+                  </div>
                 </div>
-                <div class="form-group col-md-6">
-                  <label for="apellido">Apellido del usuario</label>
-                  <input type="text"
-                        name="apellido"
-                        class="form-control"
-                        #apellido="ngModel"
-                        [(ngModel)]="usuario.Apellido"
-                        [ngClass]="{'is-invalid': apellido.errors && apellido.touched}"
-                        required minlength="2">
-                  <div [hidden]="!apellido.errors?.required" class="invalid-feedback">Apellido requerido</div>
-                  <div [hidden]="!apellido.errors?.minlength" class="invalid-feedback">Debe contener al menos 2 caracteres</div>
+                <div class="form-group col-md-6 text-center">
+                  <img src="http://piedrasdeltunjo.tk/images/getImage?tipo=avatar&nombre={{usuario.Icono_url}}" width="50%">
                 </div>
+
                 <div class="form-group col-md-3">
                   <label for="tipoDocumento">Tipo de documento</label>
                   <select name="tipoDocumento" class="form-control" #tipoDocumento="ngModel" [(ngModel)]="usuario.TipoDocumento"  >
@@ -102,40 +92,6 @@
                   <div [hidden]="!lugarExpedicion.errors?.required" class="invalid-feedback">Lugar de expedicion requerido</div>
                   <div [hidden]="!lugarExpedicion.errors?.minlength" class="invalid-feedback">Debe contener al menos 2 caracteres</div>
                 </div>
-                <div class="form-group col-md-6">
-                  <label for="correoElectronico">Correo electronico</label>
-                  <input type="email"
-                        name="correoElectronico"
-                        class="form-control"
-                        #correoElectronico="ngModel"
-                        [(ngModel)]="usuario.CorreoElectronico"
-                        [ngClass]="{'is-invalid': correoElectronico.errors && correoElectronico.touched}"
-                        pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-                        required minlength="4">
-                  <div [hidden]="!correoElectronico.errors?.required" class="invalid-feedback">Correo electronico requerido</div>
-                  <div [hidden]="!correoElectronico.errors?.minlength" class="invalid-feedback">Debe contener al menos 4 caracteres</div>
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="clave">Digite la clave para el  usuario</label>
-                  <input type="text"
-                        name="clave"
-                        class="form-control"
-                        #clave="ngModel"
-                        [(ngModel)]="usuario.Clave"
-                        [ngClass]="{'is-invalid': clave.errors && clave.touched}"
-                        required minlength="8">
-                  <div [hidden]="!clave.errors?.required" class="invalid-feedback">Clave requerida</div>
-                  <div [hidden]="!clave.errors?.minlength" class="invalid-feedback">Debe contener al menos 8 caracteres</div>
-                </div>
-                <div class="form-group col-md-12">
-                  <app-avatar-selector (avatarSelected)="usuario.Icono_url = $event"></app-avatar-selector>
-                  <p *ngIf="( usuario.Icono_url=='')" >Ningun Avatar seleccionado</p>
-                  <p *ngIf="( usuario.Icono_url=='av-1.png')">Avatar 1 seleccionado</p>
-                  <p *ngIf="( usuario.Icono_url=='av-2.png')">Avatar 2 seleccionado</p>
-                  <p *ngIf="( usuario.Icono_url=='av-3.png')">Avatar 3 seleccionado</p>
-                  <p *ngIf="( usuario.Icono_url=='av-4.png')">Avatar 4 seleccionado</p>
-                  <input type="hidden" name="icono_url" [(ngModel)]="usuario.Icono_url">
-                </div>
                 <div class="form-group col-md-12">
                   <label for="VerificacionCuenta">Verificacion en la cuenta</label>
                   <select name="VerificacionCuenta" class="form-control" #VerificacionCuenta="ngModel" [(ngModel)]="usuario.VerificacionCuenta">
@@ -152,6 +108,148 @@
               </div>
             </div>
           </div>
+          <ng-template #empleado>
+            <div class="card" >
+              <div class="card-header">
+                <h5>En este formulario puede editar a los empleados.</h5>
+              </div>
+              <div class="card-body">
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="nombre">Nombre del usuario</label>
+                    <input type="text"
+                          name="nombre"
+                          class="form-control"
+                          #nombre="ngModel"
+                          [(ngModel)]="usuario.Nombre"
+                          [ngClass]="{'is-invalid': nombre.errors && nombre.touched}"
+                          required minlength="2">
+                    <div [hidden]="!nombre.errors?.required" class="invalid-feedback">Nombre requerido</div>
+                    <div [hidden]="!nombre.errors?.minlength" class="invalid-feedback">Debe contener al menos 2 caracteres</div>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="apellido">Apellido del usuario</label>
+                    <input type="text"
+                          name="apellido"
+                          class="form-control"
+                          #apellido="ngModel"
+                          [(ngModel)]="usuario.Apellido"
+                          [ngClass]="{'is-invalid': apellido.errors && apellido.touched}"
+                          required minlength="2">
+                    <div [hidden]="!apellido.errors?.required" class="invalid-feedback">Apellido requerido</div>
+                    <div [hidden]="!apellido.errors?.minlength" class="invalid-feedback">Debe contener al menos 2 caracteres</div>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="tipoDocumento">Tipo de documento</label>
+                    <select name="tipoDocumento" class="form-control" #tipoDocumento="ngModel" [(ngModel)]="usuario.TipoDocumento"  >
+                      <option selected>CC</option>
+                      <option>CE</option>
+                      <option>TI</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-5">
+                    <label for="numeroDocumento">Numero de documento</label>
+                    <input type="text"
+                          name="numeroDocumento"
+                          class="form-control"
+                          #numeroDocumento="ngModel"
+                          [(ngModel)]="usuario.NumeroDocumento"
+                          [ngClass]="{'is-invalid': numeroDocumento.errors && numeroDocumento.touched}"
+                          required minlength="10">
+                    <div [hidden]="!numeroDocumento.errors?.required" class="invalid-feedback">Numero de documento requerido</div>
+                    <div [hidden]="!numeroDocumento.errors?.minlength" class="invalid-feedback">Debe contener al menos 10 caracteres</div>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="lugarExpedicion">Lugar de Expedición</label>
+                    <select name="lugarExpedicion" class="form-control" #lugarExpedicion="ngModel" [(ngModel)]="usuario.LugarExpedicion" [ngClass]="{'is-invalid': lugarExpedicion.errors && lugarExpedicion.touched}">
+                      <option value="">Seleccionar</option>
+                      <option value="Amazonas">Amazonas, Leticia</option>
+                      <option value="Antioquia">Antioquia, Medellín</option>
+                      <option value="Arauca">Arauca, Arauca</option>
+                      <option value="Atlantico">Atlántico, Barranquilla</option>
+                      <option value="Bolivar">Bolívar, Cartagena de Indias</option>
+                      <option value="Boyaca">Boyacá, Tunja</option>
+                      <option value="Caldas">Caldas, Manizales</option>
+                      <option value="Caqueta">Caquetá, Florencia</option>
+                      <option value="Casanare">Casanare, Yopal</option>
+                      <option value="Cauca">Cauca, Popayán</option>
+                      <option value="Cesar">Cesar, Valledupar</option>
+                      <option value="Choco">Chocó, Quibdó</option>
+                      <option value="Cordona">Córdoba, Montería</option>
+                      <option value="Facatativa">Cundinamarca, Facatativa</option>
+                      <option value="Bogota">Cundinamarca, Bogotá</option>
+                      <option value="Guania">Guainía, Inírida</option>
+                      <option value="Guaviare">Guaviare, San José del Guaviare</option>
+                      <option value="Huila">Huila, Neiva</option>
+                      <option value="Guajira">La Guajira, Riohacha</option>
+                      <option value="Magdalena">Magdalena, Santa Marta</option>
+                      <option value="Meta">Meta, Villavicencio</option>
+                      <option value="Nariño">Nariño, Pasto</option>
+                      <option value="NorteSantander">Norte de Santander, San José de Cúcuta</option>
+                      <option value="Putumayo">Putumayo, Mocoa</option>
+                      <option value="Quindio">Quindío, Armenia</option>
+                      <option value="Risaralda">Risaralda, Pereira</option>
+                      <option value="SanAndres">San Andrés y Providencia, San Andrés</option>
+                      <option value="Santander">Santander, Bucaramanga</option>
+                      <option value="Sucre">Sucre, Sincelejo</option>
+                      <option value="ValleCauca">Valle del Cauca, Caoption</option>
+                      <option value="Vaupes">Vaupés, Mitú</option>
+                      <option value="Vichada">Vichada, Puerto Carreño</option>
+                    </select>
+                    <div [hidden]="!lugarExpedicion.errors?.required" class="invalid-feedback">Lugar de expedicion requerido</div>
+                    <div [hidden]="!lugarExpedicion.errors?.minlength" class="invalid-feedback">Debe contener al menos 2 caracteres</div>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="correoElectronico">Correo electronico</label>
+                    <input type="email"
+                          name="correoElectronico"
+                          class="form-control"
+                          #correoElectronico="ngModel"
+                          [(ngModel)]="usuario.CorreoElectronico"
+                          [ngClass]="{'is-invalid': correoElectronico.errors && correoElectronico.touched}"
+                          pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                          required minlength="4">
+                    <div [hidden]="!correoElectronico.errors?.required" class="invalid-feedback">Correo electronico requerido</div>
+                    <div [hidden]="!correoElectronico.errors?.minlength" class="invalid-feedback">Debe contener al menos 4 caracteres</div>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="clave">Digite la clave para el  usuario</label>
+                    <input type="text"
+                          name="clave"
+                          class="form-control"
+                          #clave="ngModel"
+                          [(ngModel)]="usuario.Clave"
+                          [ngClass]="{'is-invalid': clave.errors && clave.touched}"
+                          required minlength="8">
+                    <div [hidden]="!clave.errors?.required" class="invalid-feedback">Clave requerida</div>
+                    <div [hidden]="!clave.errors?.minlength" class="invalid-feedback">Debe contener al menos 8 caracteres</div>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <app-avatar-selector (avatarSelected)="usuario.Icono_url = $event"></app-avatar-selector>
+                    <p *ngIf="( usuario.Icono_url=='')" >Ningun Avatar seleccionado</p>
+                    <p *ngIf="( usuario.Icono_url=='av-1.png')">Avatar 1 seleccionado</p>
+                    <p *ngIf="( usuario.Icono_url=='av-2.png')">Avatar 2 seleccionado</p>
+                    <p *ngIf="( usuario.Icono_url=='av-3.png')">Avatar 3 seleccionado</p>
+                    <p *ngIf="( usuario.Icono_url=='av-4.png')">Avatar 4 seleccionado</p>
+                    <input type="hidden" name="icono_url" [(ngModel)]="usuario.Icono_url">
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label for="VerificacionCuenta">Verificacion en la cuenta</label>
+                    <select name="VerificacionCuenta" class="form-control" #VerificacionCuenta="ngModel" [(ngModel)]="usuario.VerificacionCuenta">
+                      <option value="true"selected>Activado</option>
+                      <option value="false">Desactivado</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label for="RolId">Seleccione el rol del ususario</label>
+                    <select name="RolId" class="form-control" #RolId="ngModel" [(ngModel)]="usuario.RolId">
+                      <option *ngFor="let rol of roles; index as i" value="{{rol.id}}">{{rol.nombre}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
         </div>
       </div>
     </form>
