@@ -86,6 +86,13 @@ const routes: Routes = [
     loadChildren: () => import('./pages/recorridos/recorridos.module').then(mod => mod.RecorridosModule),
     canLoad: [AuthGuard]
   },
+  {
+    path: 'tickets',
+    loadChildren: () => import('./pages/tickets/tickets.module').then(mod => mod.TicketsModule),
+    canLoad: [AuthGuard],
+  },
+
+
   { path: '', pathMatch: 'full', redirectTo: 'tablero' },
   { path: '**', pathMatch: 'full', redirectTo: 'tablero' }
 ];
