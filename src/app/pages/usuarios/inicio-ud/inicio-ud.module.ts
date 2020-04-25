@@ -6,10 +6,8 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 
-
-
 @NgModule({
-  declarations: [],
+  declarations: [InicioUdComponent],
   imports: [
     CommonModule,
     FormsModule,

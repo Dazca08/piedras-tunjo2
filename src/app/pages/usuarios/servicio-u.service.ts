@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, of, Subject} from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 import Swal from 'sweetalert2';
+import { Usuario } from '../../interfaces/usuario.interface';
+
 const httpOptions =
 {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -18,20 +20,24 @@ private url: string = "http://piedrasdeltunjo.tk/Usuarios";
 ObtenerRoles():Observable<any>{
   return this.http.get(this.url+'/RolesUsuario')
 }
-  ObtenerJson():Observable<any>{
+  ObtenerJson(): Observable<any>{
     return this.http.get(this.url+'/ver_Usuarios?estadoFiltro=1')
   }
-  ObtenerDeshabilitados():Observable<any>{
-    return this.http.get(this.url+'/ver_Usuarios?estadoFiltro=2')
+  ObtenerDeshabilitados(): Promise<Usuario[]> {
+    return new Promise(resolve => {
+      this.http.get(this.url + '/ver_Usuarios?estadoFiltro=2')
+                .subscribe((res: Usuario[]) => {
+                  resolve(res);
+                });
+    });
   }
 
-getu(id):Observable<any>{
-  return this.http.get(this.url + id, httpOptions)
+  getu(id): Observable<any>{
+    return this.http.get(this.url + id, httpOptions);
   }
-  async update(cadena,id): Promise<any> {
-
+  async update(cadena, id): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.put(this.url+'/'+id, cadena, httpOptions).toPromise()
+      this.http.put(this.url + '/' + id, cadena, httpOptions).toPromise();
     });
   }
 

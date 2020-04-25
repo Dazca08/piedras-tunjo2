@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, ReactiveFormsModule , FormsModule } from '@angular/forms';
-import { Usuarios } from '../usuarios.model';
 import { ServicioUService  } from '../servicio-u.service';
-import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Usuario } from 'src/app/interfaces/usuario.interface';
 
 @Component({
   selector: 'app-inicio-ud',
@@ -12,7 +10,7 @@ import Swal from 'sweetalert2';
 })
 export class InicioUdComponent implements OnInit {
 
-  usuarios: Usuarios[];
+  usuarios: Usuario[] = [];
   filterPost = '';
   i: number;
   PageActua = 1;
@@ -25,14 +23,11 @@ export class InicioUdComponent implements OnInit {
     this.obtenerUsuarios();
   }
 
-
-  obtenerUsuarios() {
-    this.servi.ObtenerDeshabilitados().subscribe(resultado => {
-      this.usuarios = resultado;
-    });
+  async obtenerUsuarios() {
+    this.usuarios = await this.servi.ObtenerDeshabilitados();
   }
 
-  habilitar(id: string) {
+  habilitar(id: number) {
     Swal.fire({
       title: 'Esta seguro?',
       text: 'El usuario aparecera ahora como habilitado',
@@ -53,7 +48,7 @@ export class InicioUdComponent implements OnInit {
     });
   }
 
-  refrescar(id: string) {
+  refrescar(id: number) {
     // console.log(id);
     this.servi.Habilitar(id);
     this.usuarios = this.usuarios.filter(x => x.Id !== id);

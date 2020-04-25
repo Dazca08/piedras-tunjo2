@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule , FormsModule } from '@angular/forms';
-import { Usuarios } from '../usuarios.model';
 import { ServicioUService  } from '../servicio-u.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Usuario } from 'src/app/interfaces/usuario.interface';
 
 @Component({
   selector: 'app-inicio-u',
@@ -12,25 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class InicioUComponent implements OnInit {
 
-usuarios: Usuarios[];
-  usuario: Usuarios ={
-    Id:'',
-    Nombre: '',
-    Apellido: '',
-    TipoDocumento: '',
-    NumeroDocumento: '',
-    LugarExpedicion: '',
-    CorreoElectronico: '',
-    Clave: '',
-    Icono_url: '',
-    VerificacionCuenta: '',
-    EstadoCuenta: '',
-    RolId: '',
-    Imagen_documento: '',
-    estadoc: '',
-
-
-  }
+usuarios: Usuario[] = [];
   constructor(private servi: ServicioUService,
     private route: ActivatedRoute,
     private Router: Router
