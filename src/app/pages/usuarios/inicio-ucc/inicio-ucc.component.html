@@ -2,13 +2,13 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12 text-center" style="padding-bottom:2%;">
-        <h1>Gestion de usuarios desabilitados</h1>
+        <h1>Gestion de usuarios desactivados</h1>
       </div>
       <div class="col-md-8">
-        <h5>Total de usuario desabilitados: {{usuarios?.length}}</h5>
+        <h5>Total de usuario desactivados: {{usuarios?.length}}</h5>
       </div>
       <div class="col-md-4">
-        <a class="btn btn-primary btn-block" href="/usuarios" role="button"><i class="fas fa-user-check"></i> Usuarios habilitados</a>
+        <a class="btn btn-primary btn-block" href="/usuarios" role="button"><i class="fas fa-user-check"></i> Usuarios activados</a>
       </div>
     </div>
   </div>
@@ -38,7 +38,7 @@
                     <p class="card-text"><b>Correo: </b>{{usuario.CorreoElectronico}}</p>
                   </div>
                   <div class="col-md-12">
-                    <button class="btn btn-success btn-block" (click)="habilitar(usuario.Id)"><i class="fas fa-user-plus"></i> Habilitar</button>
+                    <button class="btn btn-success btn-block" (click)="activar(usuario.Id)"><i class="fas fa-user-plus"></i> Acivar</button>
                   </div>
                 </div>
               </div>

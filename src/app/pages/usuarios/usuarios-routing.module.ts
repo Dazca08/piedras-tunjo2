@@ -11,6 +11,10 @@ const routes: Routes = [
     loadChildren: () => import('./inicio-ud/inicio-ud.module').then(mod => mod.InicioUdModule)
   },
   {
+    path: 'desactivados',
+    loadChildren: () => import('./inicio-ucc/inicio-ucc.module').then(mod => mod.InicioUccModule)
+  },
+  {
     path: 'agregar',
     loadChildren: () => import('./agregar-u/agregar-u.module').then(mod => mod.AgregarUModule)
   },
