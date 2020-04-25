@@ -49,7 +49,7 @@ async Eliminar(id): Promise<any> {
    if(ok==true){
        Swal.fire(
          'Evento agregado con exito!',
-           'Evento Agregado!',
+           'Evento agregado!',
           'success'
                   )
 
@@ -58,7 +58,7 @@ else if(ok==false){
 
           Swal.fire(
          'Lo sentimos ha ocurrido un error!',
-           'Evento no Agregado!',
+           'Evento no agregado!',
           'error'
                   )
    

@@ -37,12 +37,7 @@
                 <label for="nombre"><i class="fas fa-align-justify"></i> Ingrese el Nombre del evento</label>
                 <input type="text" name="nombre" class="form-control" #nombre="ngModel" [(ngModel)]="evento.Nombre"
                  >
-               <!-- <div [hidden]="!nombre.errors?.required" class="invalid-feedback">
-                  Nombre requerido
-                </div>
-                <div [hidden]="!nombre.errors?.minlength" class="invalid-feedback">
-                  Debe contener al menos 2 caracteres
-                </div>-->
+         
               </div>
 
             
@@ -63,23 +58,16 @@
                     <textarea name="Descripcion" rows="3" cols="45" [(ngModel)]="evento.Descripcion"></textarea>
                 <input type="hidden" name="Descripcion" class="form-control" #Descripcion="ngModel" [(ngModel)]="evento.Descripcion"
                  >
-                <!--<div [hidden]="!Descripcion.errors?.required" class="invalid-feedback">
-                  Decripcion requerida
-                </div>
-                <div [hidden]="!Descripcion.errors?.minlength" class="invalid-feedback">
-                  Debe contener al menos 10 caracteres
-                </div>-->
+            
               </div>
 
 
 
               <div class="form-group">
-                <!--<label for="  Calificacion"><i class="fas fa-check-circle"></i> Calificacion</label>-->
+           
                 <input type="hidden" name="Calificacion" class="form-control" #Calificacion="ngModel" [(ngModel)]="evento.Calificacion"
                   [ngClass]="{'is-invalid': Calificacion.errors && Calificacion.touched}" >
-                <!--<div [hidden]="!Calificacion.errors?.required" class="invalid-feedback">
-                  Calificacion requerida
-                </div>-->
+                
                
               </div>
 
@@ -97,26 +85,19 @@
 
            
      <div class="form-group">
-                <!--<label for="ComentariosId">ComentariosId</label>-->
+            
                 <input type="hidden" name="ComentariosId" class="form-control" #ComentariosId="ngModel" [(ngModel)]="evento.ComentariosId"
                   [ngClass]="{'is-invalid':ComentariosId.errors && ComentariosId.touched}" >
-                <!--<div [hidden]="!ComentariosId.errors?.required" class="invalid-feedback">
-                  ComentariosId requerida
-                </div>-->
+              
                 
               </div>
 
 
               <div class="form-group">
-                <!--<label for="ListaComentariosEvento">ListaComentariosEvento</label>-->
+               
                 <input type="hidden" name="ListaComentariosEvento" class="form-control" #ListaComentariosEvento="ngModel" [(ngModel)]="evento.ListaComentariosEvento"
                   [ngClass]="{'is-invalid': ListaComentariosEvento.errors && ListaComentariosEvento.touched}" required minlength="2">
-               <!-- <div [hidden]="!ListaComentariosEvento.errors?.required" class="invalid-feedback">
-                 ListaComentariosEvento requerida
-                </div>
-                <div [hidden]="!ListaComentariosEvento.errors?.minlength" class="invalid-feedback">
-                  Debe contener al menos 2 caracteres
-                </div>-->
+       
               </div>
 
           

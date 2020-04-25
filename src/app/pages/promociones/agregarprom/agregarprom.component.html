@@ -1,28 +1,18 @@
-<!-- 
-	AUTOR: Mary Alejandra Zapata Tellez
-	COMPONENTE: HTML para  agregar Pictograma
-  FECHA: 24/03/2020
--->
+
+<section id="actions" class="py-4 mb-4 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <a routerLink="/promociones" class="btn btn-dark text-white btn-block">
+             <i class="fas fa-arrow-left"></i> Regresar al Inicio
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
 
-
-    <header><h1 class="titulo">Agregar Promocion</h1>
   
-
-        <section id="actions" class="py-4 mb-4 bg-light">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-3">
-                  <a routerLink="/promociones" class="btn btn-light btn-block">
-                     Regresar al Inicio
-                  </a>
-                </div>
-                
-              </div>
-            </div>
-          </section>
-    </header>
-    
         <div>
             <div class="container">
                 <div class="row">
@@ -30,58 +20,105 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 style="text-align: center;">Agregar Promocion</h4>
-                                
+                                <hr>
     
                                 <form #insertarpromForm ="ngForm" (ngSubmit)="agregar(insertarpromForm)"  >
                                     
                                     <div class="modal-body">
-                                        <div class="form-group">
-    
-                                            <label for="nombre">Nombre</label>
-                                            <input type="text" name="nombre" class="form-control" #nombre="ngModel" [(ngModel)]="insertarprom.nombre"
-                                            [ngClass]="{'is-invalid': nombre.errors && nombre.touched}" required minlength="2">
-                                            <div [hidden]="!nombre.errors?.required" class="invalid-feedback">
-                                            Nombre requerido
+                                     <div class="form-group">
+                                         <div class="row">
+                                              <div class="col-md-6">
+                                                  <label for="Nombre"> <i class="fas fa-pencil-alt"></i> Nombre</label>
+                                            <input type="text" name="Nombre" class="form-control" #Nombre="ngModel" [(ngModel)]="insertarprom.Nombre">
+                                              </div>
+                                              <div class="col-md-6">
+                                                 <label for="Precio"><i class="fas fa-dollar-sign"></i> Precio</label>
+                                            <input type="number" name="Precio" class="form-control" #Precio="ngModel" [(ngModel)]="insertarprom.Precio" >
+                                              </div>
                                             </div>
-                                            <div [hidden]="!nombre.errors?.minlength" class="invalid-feedback">
-                                            Debe contener al menos 2 caracteres
-                                            </div>
-    
-                                        </div>
-                                        <div class="form-group">
-    
-                                            <label for="descripcion">descripcion</label>
-                                            <input type="text" name="descripcion" class="form-control" #descripcion="ngModel" [(ngModel)]="insertarprom.descripcion"
-                                            [ngClass]="{'is-invalid': descripcion.errors && descripcion.touched}" required minlength="2">
-                                            <div [hidden]="!descripcion.errors?.required" class="invalid-feedback">
-                                            descripcion requerido
-                                            </div>
-                                            <div [hidden]="!descripcion.errors?.minlength" class="invalid-feedback">
-                                            Debe contener al menos 2 caracteres
-                                            </div>
-    
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="precio">Precio</label>
-                                            <input type="text" name="precio" class="form-control" #precio="ngModel" [(ngModel)]="insertarprom.precio"
-                                              [ngClass]="{'is-invalid': precio.errors && precio.touched}" required minlength="2">
-                                            <div [hidden]="!precio.errors?.required" class="invalid-feedback">
-                                              ImagenesUrl requerida
-                                            </div>
-                                            <div [hidden]="!precio.errors?.minlength" class="invalid-feedback">
-                                              Debe contener al menos 2 caracteres
-                                            </div>
-                                          </div>
-    
+                                     </div>
                                           
+                                        <div class="form-group">
+    
+                                            <label for="Descripcion"><i class="fas fa-pencil-alt"></i> Descripcion</label>
+                                             <div align="center">
+                                       <textarea name="Descripcion" rows="3" cols="60" [(ngModel)]="insertarprom.Descripcion"></textarea>
+                                               </div>
+                                            <!--<input type="text" name="Descripcion" class="form-control" #Descripcion="ngModel" [(ngModel)]="insertarprom.Descripcion" >-->
+                                           
+    
+                                        </div>
+                                          <div class="form-group">
+    
+                                           
+                                            <input type="hidden" name="LastModification" class="form-control" #LastModification="ngModel" [(ngModel)]="insertarprom.LastModification"
+                                                                      >
+                                           </div>
+    
+                                      
+                                        
+                                           <div class="form-group">
+                                            <input type="hidden" name="Estado" class="form-control" #Estado="ngModel" [(ngModel)]="insertarprom.Estado"
+                                             >
+                                          </div>
+
+                                             <div class="form-group">
+                                              <div class="row">
+                                               
+                                                 <div class="col-md-6">
+                                                    <label for="FechaInicio"><i class="fas fa-calendar"></i> Fecha de inicio</label>
+
+                                            <input type="date" name="FechaInicio" class="form-control" #FechaInicio="ngModel" [(ngModel)]="insertarprom.FechaInicio"
+                                                      >
+                                                </div>
+                                                 <div class="col-md-6">
+                                                   <label for="FechaFin"> <i class="fas fa-calendar"></i> FechaFin</label>
+                                            <input type="date" name="FechaFin" class="form-control" #FechaFin="ngModel" [(ngModel)]="insertarprom.FechaFin"
+                                             >
+                                                </div>
+                                              </div>
+                                           
+                                          
+                                          </div>
+                                        
+                                           <div class="form-group">
+                                            <div align="center">
+                                               <label for="PorcentajeDescuento"><i class="fa fa-percent"></i> Porcentaje de descuento</label>
+                                            <select name="PorcentajeDescuento" style="width:200" class="form-control" #PorcentajeDescuento="ngModel" [(ngModel)]="insertarprom.PorcentajeDescuento">
+                                            <option selected>10</option>
+                                            <option>20</option>
+                                            <option>30</option>
+                                            <option>40</option>
+                                            <option>50</option>
+                                            <option>60</option>
+                                            <option>70</option>
+                                             </select>
+                                            </div>
+                                           
+                                          </div>
+
+                                             <div class="form-group">
+                                            <input type="hidden" name="TicketId" class="form-control" #TicketId="ngModel" [(ngModel)]="insertarprom.TicketId"
+                                              
+                                              >
+                                          </div>
+                                             <div class="form-group">
+                                           
+                                            <input type="hidden" name="Token" class="form-control" #Token="ngModel" [(ngModel)]="insertarprom.Token"
+                                              
+                                              >
+                                          </div>
                                         
     
                                     </div>
                                 
-                                    <div class="modal-footer">
-                                        <a><button type="submit"  class="btn btn-primary"  >Agregar</button></a>
-                                      
+                                   <hr>
+                                      <div align="center">
+                                        <a><button type="submit" style="width:200" class="btn btn-primary"> <i class="fa fa-plus"></i> Agregar</button></a>
                                       </div>
+                                        
+                                      
+                                    
                                 </form>
     
                             </div>

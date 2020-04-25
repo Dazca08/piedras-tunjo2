@@ -21,67 +21,27 @@ export class EditarpromComponent implements OnInit {
     promo: prom[];  
         
     editarprom: prom ={
-     id:"",
-     nombre: "",
-     descripcion: "",
-     precio: "",    
+    
+     Nombre: "",
+     Descripcion: "",
+     Precio: "",    
     }
   id:string;
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id'];
-    this.servi.getu(this.id).subscribe(resultado =>{
-    this.editarprom=resultado;
 
-});
-}
+   }
 
 
 guardar({value, valid}: {value: prom , valid: boolean}){
    
-  if(this.editarprom.nombre=='' || this.editarprom.descripcion=='' 
-    ||this.editarprom.precio==''){
-    console.log(this.editarprom.nombre);
-          Swal.fire(
-'Por favor llene todos los campos!',
-'Usuario no  Editado!',
-'error'
-)
-  }
-  
-  else{
-
-      Swal.fire({
-      title: 'Esta seguro?',
-      text: "Desea guardar los cambios?",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, guardar!'
-      
-}).then((result) => {
-if (result.value) {
-  Swal.fire(
-
-    'Guardado!',
-    'La promocion ha sido Actualizada ',
-    'success'
-   
-  )
-     value.id= this.id;
-    // this.router.navigateByUrl("/admin/promociones")
-    
-     this.servi.update(value,this.id);
-}
-})
-     
+ 
    
   }
  
    
 
   
-}
+
 
 }

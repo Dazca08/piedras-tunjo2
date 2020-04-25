@@ -1,10 +1,10 @@
 export interface prom{
 
-    id?:string;
-    nombre?:string;
-    descripcion?:string;
+    Id?:string;
+    Nombre?:string;
+    Descripcion?:string;
     LastModification?:string;
-    precio?:string;
+    Precio?:string;
     Estado?:string;
     FechaFin?:string;
     FechaInicio?:string;

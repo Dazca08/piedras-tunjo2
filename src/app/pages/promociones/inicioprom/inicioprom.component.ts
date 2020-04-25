@@ -3,7 +3,7 @@ import { Router,} from '@angular/router';
 import { ServiciopromService } from 'src/app/services/servicioprom.service';
 import { prom } from 'src/app/pages/promociones/promocion.model';
 import Swal from 'sweetalert2';
-
+declare var $: any;
 @Component({
   selector: 'app-inicioprom',
   templateUrl: './inicioprom.component.html',
@@ -13,70 +13,330 @@ export class IniciopromComponent implements OnInit {
 
   constructor(private ServiciopromService:ServiciopromService,private router: Router) {  this.ObtenerPromocion}
   filtropromPost ='';
+  fechatemp:string='';
+ fechartemp:string='';
   PageActual:number=1;
+  indicador:boolean=true;
+  indicadorBoton:string="Ver calendario de promociones"
   i:number;
-  promo: prom[];  
-        
-   prom: prom ={
-     id:"",
-     nombre: "",
-     descripcion: "",
-     precio: "",    
-   }
-
+  icono:string="calendar"
+   resultadoComparacion:any;
+  promo: prom[]; 
+  promotemp:prom[];
+  fechatempi1:string="";
+  fechatempF1:string="";
+  fechatempi2:string="";
+  fechatempF2:string="";
+  nombretemp:string="";
+  contador:number=0;
+arraiy =[
+    {
+   title:'',
+    start:'',
+    end:'',
+    color:''
+  }
+  ];
    ObtenerPromocion(){
-    this.ServiciopromService.Obtenerpromocion().subscribe(resultado =>{
+     if(this.indicador==true){
+        this.ServiciopromService.Obtenerpromocion().subscribe(resultado =>{
       this.promo=resultado;
-      
-      console.log("Informacion ya tiene resultado");
+      //this.promo=this.promo.filter(x=>x.Nombre=="");
+       for(this.i=0;this.i<this.promo.length;this.i++){
+           this.fechatemp=this.promo[this.i].FechaInicio;
+           this.fechartemp=this.promo[this.i].FechaFin;
+           var splitted = this.fechatemp.split("T", 2);
+           var splitted2=this.fechartemp.split("T",2);
+   
+           this.fechatemp=splitted[0];
+           this.fechartemp=splitted2[0];
+           this.promo[this.i].FechaInicio=this.fechatemp;
+           this.promo[this.i].FechaFin=this.fechartemp;
+
+           }
       console.log(this.promo)
      
-    },
-    error=>{
-   console.log(JSON.stringify(error));
-   
-    }); 
-      }
-
-
-
-      eliminar(id){
-
-        Swal.fire({
-        title: 'Esta seguro?',
-        text: "¿Realmente quiere eliminar el pictograma?",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Eliminar!'
-      }).then((result) => {
-          if (result.value) {
-            Swal.fire(
-      
-              'Eliminado!',
-              'La promocion ha sido eliminada....',
-              'success'
-            
-            )
-            this.refrescar(id);
-            this.refrescar(id);
-          }
-        })
-       // this.router.navigateByUrl("/admin/promociones");
-          
-      }
-      refrescar(id){
-        console.log(id);
-        this.ServiciopromService.Eliminar(id);
-       this.ObtenerPromocion();
-        this.ngOnInit();
+      },
+      error=>{
+       console.log(JSON.stringify(error));
      
-     
+      }); 
      }
+     else if(this.indicador==false){
+       this.contador++
+          console.log(this.contador)
+        this.ServiciopromService.Obtenerpromocion().subscribe(resultado =>{
+      this.promo=resultado;
+      this.promo=this.promo.filter(x=>x.Estado=="1");
+       for(this.i=0;this.i<this.promo.length;this.i++){
+           this.fechatemp=this.promo[this.i].FechaInicio;
+           this.fechartemp=this.promo[this.i].FechaFin;
+           var splitted = this.fechatemp.split("T", 2);
+           var splitted2=this.fechartemp.split("T",2);
+   
+           this.fechatemp=splitted[0];
+           this.fechartemp=splitted2[0];
+           this.promo[this.i].FechaInicio=this.fechatemp;
+           this.promo[this.i].FechaFin=this.fechartemp;
+           this.nombretemp=this.promo[this.i].Nombre;
+           if(this.contador==1){
+             this.arraiy.push({title:this.nombretemp,start:this.fechatemp,end:this.fechartemp,color:"#f9c66a"});
+           }
+          
+
+           }
+      console.log(this.promo)
+       this.funcion( this.arraiy , this.promo);
+      },
+      error=>{
+       console.log(JSON.stringify(error));
+     
+      });
+     }
+     
+    }
+        
+  eliminar(id){
+       Swal.fire({
+            title: 'Estas seguro?',
+            text: " No se podra recuperar la informacion!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, Borrar!'
+
+                }).then((result) => {
+                if (result.value) {
+                  Swal.fire(
+                   'Borrado!',
+                   ' la informacion ha sido eliminada',
+                   'success'
+                           )
+                this.ServiciopromService.Eliminar(id);
+                this.refrescar();
+
+                 }
+                   })
+
+
+
+   }
+
+
+ listarContestados(){
+
+   if(this.indicador==true){
+       this.ngOnInit();
+     this.indicador=false;
+     this.indicadorBoton="Inicio"
+     this.icono="home"
+   }
+   else if(this.indicador==false){
+     this.ngOnInit();
+    this.indicador=true;
+    this.indicadorBoton="Ver calendario de promociones"
+      this.icono="calendar"
+   }
+
+    this.ngOnInit();
+  }
+
+refrescar(){
+ this.ObtenerPromocion();
+ this.ObtenerPromocion();
+ this.ngOnInit();
+}
+ guardar({value}: {value:prom}){
+   console.log (value)
+   if(value.Nombre=="" || value.Descripcion==""){
+           Swal.fire(
+            'Por favor llene todos los campos!',
+            'pregunta no editada!',
+            'error'
+                     )
+   }
+   else if(value.Nombre.length<5 || value.Descripcion.length<10){
+           Swal.fire(
+            'el nombre de la promocion debe tener al menos 5 caracteres y la descripcion al menos 10!',
+            'pregunta no editada!',
+            'error'
+                     )
+   }
+
+
+   else{
+         Swal.fire({
+          title: 'Esta seguro?',
+          text: "Desea editar esta promocion?",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Si, guardar!'
+                 }).then((result) => {
+                      if (result.value) {
+                       /*Swal.fire(
+                       'Guardado!',
+                       'La promocion ha sido editada ',
+                          'success'
+                              )*/
+
+                  console.log(value)
+                  this.comparacion(value);
+               //this.ServiciopromService.update(value);
+                                         }
+                   })
+   }
+ 
+
+  }
+
+
+ funcion(eventoos , event ){
+    
+        $("#calendar").fullCalendar({  
+
+                        header: {
+                            left   : 'prev,next today',
+                            center : 'title',
+                            right  : 'month,agendaWeek,agendaDay'
+                        },
+                       locale: 'es',
+         monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+        monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+        dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+        dayNamesShort: ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],         
+                                
+    
+
+                        navLinks   : true,
+                        editable   : true,
+                        eventLimit : true,
+                        events:eventoos,
+  
+
+                    });
+    
+     }
+
+ 
+
+splitfecha(fecha){
+var split=fecha.split('-');
+return split
+}
+splitfechaT(fecha){
+
+  var split=fecha.toString();
+  var split2=split.split('T');
+return split2[0]
+}
+
+parseo(fecha){
+
+var añor=parseInt(fecha[0],10);
+
+var mesr=parseInt(fecha[1],10);
+
+var diar=parseInt(fecha[2],10);
+
+var array =
+    {
+   año:añor,
+    mes:mesr,
+    dia:diar,
+    
+  }
+  
+
+return array;
+
+}
+   Comparacionfecha(fechainicio1 , fechafin1 , fechainicio2 , fechafin2){
+
+
+var inicio1=this.parseo(fechainicio1);
+console.log(inicio1);
+var fin1=this.parseo(fechafin1);
+console.log(fin1);
+var inicio2=this.parseo(fechainicio2);
+console.log(inicio2);
+var fin2=this.parseo(fechafin2);
+console.log(fin2);
+var resultado="valida";
+
+if( inicio1.mes==inicio2.mes && inicio1.mes==fin2.mes && inicio1.dia>=inicio2.dia && inicio1.dia<=fin2.dia){
+
+   resultado="invalida";
+
+}
+
+else if( fin1.mes==inicio2.mes && fin1.mes==fin2.mes && fin1.dia>=inicio2.dia && fin1.dia<=fin2.dia){
+   resultado="invalida"
+}
+else if( fin1.mes>=fin2.mes && inicio1.mes<fin2.mes  && fin1.dia>fin2.dia ){
+    resultado="invalida"
+}
+else if( fin1.mes>=fin2.mes && inicio1.mes==fin2.mes && inicio1.dia<fin2.dia  && fin1.dia>fin2.dia ){
+    resultado="invalida"
+}
+else{
+  resultado="valida"
+}
+
+console.log(resultado)
+ return resultado;
+}
+   comparacion(value){
+     var bandera="no existe"
+     this.ServiciopromService.Obtenerpromocion().subscribe(resultado =>{
+        this.promotemp=resultado;
+     var splitinicial="";
+     var splitfinal="";
+   for(this.i=0;this.i<this.promotemp.length;this.i++){
+     if(value.Id != this.promotemp[this.i].Id){
+       splitinicial=this.splitfechaT(this.promotemp[this.i].FechaInicio)
+       splitfinal=this.splitfechaT(this.promotemp[this.i].FechaFin)
+           this.fechatempi1=this.splitfecha(value.FechaInicio);
+     this.fechatempF1=this.splitfecha(value.FechaFin);
+     this.fechatempi2=this.splitfecha(splitinicial);
+     this.fechatempF2=this.splitfecha(splitfinal);
+      this.resultadoComparacion=this.Comparacionfecha(this.fechatempi1,this.fechatempF1,this.fechatempi2,this.fechatempF2);
+        console.log(this.resultadoComparacion);
+        if(this.resultadoComparacion=="invalida"){
+           bandera="existe"
+        }
+
+     }
+   }
+
+   if(bandera=="existe"){
+        Swal.fire(
+           'La nueva fecha es incorrecta ya que en ese rango exite una promocion',
+           'Promocion no actualizada',
+           'error'
+            
+             )
+      this.refrescar();
+                        }
+   else{
+    this.ServiciopromService.update(value);
+    
+   }
+ })
+  
+  } 
+
+          
+     
+    
     
   ngOnInit(): void {
    this.ObtenerPromocion();
+
+
+   
   }
 
 }

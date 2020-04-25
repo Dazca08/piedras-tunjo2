@@ -29,6 +29,7 @@ constructor(private servi:ServicioLService) {  this.ObtenerPreguntas}
 
     this.servi.ObtenerJson().subscribe(resultado =>{
      this.preguntas=resultado;
+    
       },
       error=>{
        console.log(JSON.stringify(error));
@@ -106,9 +107,9 @@ refrescar(){
    }
  
 
-}
+  }
 
-  comparacion( value){
+  comparacion(value){
      var bandera="no existe"
      this.servi.ObtenerJson().subscribe(resultado =>{
         this.preguntastemp=resultado;

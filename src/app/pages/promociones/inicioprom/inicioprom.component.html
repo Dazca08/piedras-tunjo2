@@ -1,97 +1,212 @@
-
 <header id="main-header" class="py-2 bg-info text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div align="center">
+        <h1>
+           Promociones
+        </h1>
+        <div class="form-group">
+        <input type="text" class="form-control" name="filtropromPost" placeholder="Buscar promocion por nombre...." [(ngModel)]="filtropromPost">
+        </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div align="center">
+                 <h3 ><i class="fas fa-list-ol"></i> Total Promociones</h3>
+            <h4 class="display-4">
+               {{promo?.length}}
+            </h4>
+        </div>
+      </div>
+    <div class="col-md-3">
+      
+        <div align="center">
+          <br>
+        <a class="btn btn-info"  href="promociones/agregar" role="button" >
+           <h6> <i class="fas fa-plus"></i> Nueva Promocion</h6>
+        </a>
+        
+            <form (submit)="listarContestados()">
+                   <button type="submit"  class="btn btn-info ">
+                  <h6> <i class="fas fa-{{icono}}"></i> {{indicadorBoton}}</h6>
+                     </button>
 
-	<!--<META http-equiv=refresh content=10>-->
-
-
-	<div class="container">
-	  <div class="row">
-		<div class="col-md-6">
-		  <h1>
-			 Inicio Promociones
-		  </h1>
-		  <div class="form-group">
-			  <input type="text" class="form-control" name="filtropromPost" placeholder="Buscar...." [(ngModel)]="filtropromPost">  
-			   </div>
-		</div>
-	  </div>
-	</div>
-  </header>
-
-  <div><br><br></div>
-
-  <section id ="Promociones">
-	<div class="container">
-		<div class="row">
-		 <div class="col-md-9">
-		 	<div class="card">
-		 		<h4 text-align =center>LISTADO DE Promociones</h4>
-
-		 	</div>
-		 	<div>
-				<div class="table-responsive ">
-		 		<table class="table  table-bordered table-striped" >
-		 			<thead class="thead-dark">
-		 				<tr>
-								<th>#Id</th>
-								<th>Nombre</th>
-								<th>descripcion</th>
-								<th>Editar</th>
-								<th>Eliminar</th>
-								<th></th>
-		 				</tr>
-		 			</thead>
-		 			<tbody>
-		 				 <tr *ngFor="let prom of promo  |filtroprom:filtropromPost | paginate:{itemsPerPage :5 , currentPage:PageActual}  ; index as i">
-		 				 	<td>{{prom.Id}}</td>
-							<td>{{prom.Nombre}}</td>                            							 
-							<td>{{prom.Descripcion}}</td>
-							<td>{{prom.Precio}}</td>
-							<td><div> <a class="letra" routerLink="editar/{{prom.id}}" >Editar</a></div></td>					
-                            <td>
-							<!--"-->
-							<!--(submit)="eliminar(prom.id)"-->	
-
-							<form (submit)="eliminar(prom.id)" >
-									<button type="submit"  class="btn btn-danger btn-block">
-										Eliminar
-									</button>
-								</form>
-
-							</td>
-                            <td></td>
-		 				 </tr>
-		 			</tbody>
-				 </table>
-				 <pagination-controls (pageChange)="PageActual = $event"></pagination-controls>
-				</div>
-				<br><br><br><br>
-		 	</div>
-		 </div>	
-
-		 <div class="col-md-3">
-			<div class="card text-center bg-white text-white mb-3">
-			  <div class="card-body">
-				<img src="assets/imagenes/newpicto.jpg" class="card-img-top" width="100" height="200" >
-		  <div class="container">
-			<div align="center">
-		<a class="btn btn-primary" routerLink="agregar" role="button">Agregar Promoción</a>
-		<!--admin/insertprom-->
-	</div>
-	  </div>
-	
-	
-			  </div>
-			</div>
-		</div>
+             </form>
+        </div>
+      
+       
+    </div>
 
 
-		</div>
-	</div>
+
+
+    </div>
+  </div>
+</header>
+<br>
+<div *ngIf="(promo.length==0 )">
+<hr>
+  <div>
+  <h6>Lo sentimos en este momento no existen Promociones </h6>
+</div>
+</div>
+
+
+
+
+<div *ngIf="(indicador==true)">
+<section id ="promociones">
+<div class="container"  >
+    <div class="col-md-15">
+        <div class="row row-cols-1 row-cols-md-2">
+          <div class="col mb-5"  *ngFor="let prom of promo  |filtroprom:filtropromPost | paginate:{itemsPerPage :2 , currentPage:PageActual}  ; index as i">
+            <div class="card h-100">
+              <div class="card-header">
+
+                <h5><i class="fa fa-piggy-bank"></i> Promocion: {{prom.Nombre}}</h5>
+              </div>
+              <div class="car-body container">
+               <form #promocionForm="ngForm" (ngSubmit)="guardar(promocionForm)" >
+             <div class="row">
+              	<div class="col-md-6">
+              		<p class="card-text"><i class="fa fa-pencil-alt"></i> Nombre promocion 
+            </p>
+               <input type="text"  name="Nombre" class="form-control" #nombre="ngModel" [(ngModel)]="prom.Nombre">
+              	</div>
+              	<div class="col-md-6">
+              	<p class="card-text"><i class="fa fa-dollar-sign"></i> Precio 
+                               </p>
+                 <input type="text" name="Precio" class="form-control" #Precio="ngModel" [(ngModel)]="prom.Precio">
+              	</div>
+
+              </div>
+            
+
+           <p class="card-text"><i class="fa fa-pencil-alt"></i> Descripcion 
+           </p>
+           <div align="center">
+           	    <textarea name="Descripcion" rows="3" cols="65" [(ngModel)]="prom.Descripcion"></textarea>
+           </div>
+        
+            
+               <input type="hidden" name="Descripcion" class="form-control" #Descripcion="ngModel" [(ngModel)]="prom.Descripcion">
+                 <input type="hidden" name="Id" class="form-control" #id="ngModel" [(ngModel)]="prom.Id">
+
+                <input type="hidden" name="LastModification" class="form-control" #LastModification="ngModel" [(ngModel)]="prom.LastModification">
+              
+                
+                 
+                  
+                  <div class="row">
+                  	<div class="col-md-6">
+                  		 <p class="card-text"><i class="fa fa-calendar"></i> Inicio de promocion 
+                          </p>
+                   <input type="date" name="FechaInicio" class="form-control" #FechaInicio="ngModel" [(ngModel)]="prom.FechaInicio">
+                  	</div>
+                  	<div class="col-md-6">
+                  		 <p class="card-text"><i class="fa fa-calendar"></i> Final de promocion 
+                          </p>
+                  <input type="date" name="FechaFin" class="form-control" #FechaFin="ngModel" [(ngModel)]="prom.FechaFin">
+                  	</div>
+                  	
+                  </div>
+               
+                 <div class="row">
+                 	<div class="col-md-6">
+                 		 <p class="card-text"><i class="fa fa-eye-slash"></i> Estado
+                          </p>
+                    <select name="Estado" class="form-control" #Estado="ngModel" [(ngModel)]="prom.Estado">
+                    <option selected>1</option>
+                    <option>2</option>
+                    
+                  </select>
+                 	</div>
+                 	<div class="col-md-6">
+                 		   <p class="card-text"><i class="fa fa-percent"></i> Descuento
+                          </p>
+                      <select name="PorcentajeDescuento" class="form-control" #PorcentajeDescuento="ngModel" [(ngModel)]="prom.PorcentajeDescuento">
+                    <option selected>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>40</option>
+                    <option>50</option>
+                    <option>60</option>
+                    <option>70</option>
+                   
+                    
+                  </select>
+                 	</div>
+
+                 </div>
+                  
+                 
+                      <input type="hidden" name="TicketId" class="form-control" #TicketId="ngModel" [(ngModel)]="prom.TicketId">
+                       <input type="hidden" name="Token" class="form-control" #Token="ngModel" [(ngModel)]="prom.Token" >
+                                             
+                                             
+                                                                                                          
+           
+          <br>
+       
+            <div class="row">
+            <div class="col-md-6">
+              <div align="center">
+                
+                  <form (submit)="eliminar(prom.Id)">
+                   <button type="submit" style="width:130" class="btn btn-danger btn-block">
+            <i class="fas fa-trash"></i> Eliminar
+          </button>
+           </form>
+              </div>
+            
+            </div>
+          <div class="col-md-6">
+            <div align="center">
+               <button type="submit" style="width:130 ;" class="btn btn-primary btn-block">
+             <i class="fas fa-edit"></i> Editar </button>
+            </div>
+             
+       
+          </div>
+         
+            
+          
+            </div> 
+               
+           </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <pagination-controls (pageChange)="PageActual = $event"></pagination-controls>
+        </div>
+    </div>
+  
+  </div>
+
+    
+
 
 </section>
 
-<div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
+
+</div>
+<div *ngIf="(indicador==false)">
+	<div align="center">
+<div class="container">
+	<div class="col-md-9">
+		<h4>Calendario de Promociones</h4>
+		<hr>
+	<div id="calendar"style=" background: white"></div>
+	</div>
+</div>
+	
+</div>
+	</div>
+
+
 
 
 

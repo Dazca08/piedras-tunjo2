@@ -47,7 +47,8 @@
 </div>
 </div>
 
-<section id ="pqrs">
+<div *ngIf="(preguntas.length!=0 )">
+  <section id ="pqrs">
 <div class="container"  >
     <div class="col-md-12">
         <div class="row row-cols-1 row-cols-md-3">
@@ -61,7 +62,7 @@
            
             <p class="card-text"><i class="fa fa-pencil-alt"></i> Pregunta 
             </p>
-               <input type="text" name="nombre" class="form-control" #nombre="ngModel" [(ngModel)]="pregunta.nombre">
+               <input type="text" name="nombre"  style="width:285;" class="form-control" #nombre="ngModel" [(ngModel)]="pregunta.nombre">
 
            <p class="card-text"><i class="fa fa-pencil-alt"></i> Descripcion </p>
             <textarea name="descripcion" rows="4" cols="38" [(ngModel)]="pregunta.descripcion"></textarea>
@@ -113,6 +114,8 @@
 
 
 </section>
+</div>
+
 
 
 

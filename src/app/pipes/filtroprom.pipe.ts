@@ -11,7 +11,7 @@ export class FiltropromPipe implements PipeTransform {
     if (arg === '' || arg.length < 3) return value;
    const resultPosts = [];
    for (const post of value) {
-     if (post.nombre.toLowerCase().indexOf(arg.toLowerCase()) > -1) {
+     if (post.Nombre.toLowerCase().indexOf(arg.toLowerCase()) > -1) {
        resultPosts.push(post);
      };
    };
