@@ -91,6 +91,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/tickets/tickets.module').then(mod => mod.TicketsModule),
     canLoad: [AuthGuard],
   },
+  {
+    path: 'cajero',
+    loadChildren: () => import('./pages/cajero/cajero.module').then(mod => mod.CajeroModule),
+    canLoad: [AuthGuard],
+  },
 
 
   { path: '', pathMatch: 'full', redirectTo: 'tablero' },

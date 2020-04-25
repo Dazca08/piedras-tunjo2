@@ -28,7 +28,11 @@ export class ServiciopromService {
 
 
   async insertar(Datos){
-          return this.http.post(`${ apiUrl }/promocion/crear`,Datos).pipe(catchError(err => {
+    const token = localStorage.getItem('token') || undefined;
+        const headers = new HttpHeaders({
+        Authorization: 'Bearer ' + token
+      });
+          return this.http.post(`${ apiUrl }/promocion/crear`,Datos , {headers}).pipe(catchError(err => {
                     return of( err.error );
                 }))
                 .subscribe(res => {
@@ -63,9 +67,12 @@ export class ServiciopromService {
 
 
      async update(cadena): Promise<any> {
-   
+   const token = localStorage.getItem('token') || undefined;
+        const headers = new HttpHeaders({
+        Authorization: 'Bearer ' + token
+      });
     return new Promise((resolve, reject) => {
-      this.http.put(`${ apiUrl }/promocion/editar`,cadena).pipe(catchError(err => {
+      this.http.put(`${ apiUrl }/promocion/editar`,cadena ,{headers}).pipe(catchError(err => {
                     return of( err.error );
                 }))
                 .subscribe(res => {

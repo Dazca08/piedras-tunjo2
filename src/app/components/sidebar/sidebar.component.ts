@@ -15,7 +15,10 @@ export class SidebarComponent implements OnInit {
   anonymousRoutes = [
     { label: 'Contactanos', path: '/contactanos', icon: 'robot' }
   ];
-
+ //
+ cajeroRoutes = [
+    { label: 'Cajero', path: '/cajero', icon: 'robot' }
+  ];
   // rutas para cuando el usuario se haya autenticado
   routes = [
     { label: 'Panel Admin', path: '/home', icon: 'dragon' },

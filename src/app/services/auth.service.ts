@@ -51,7 +51,14 @@ export class AuthService {
                           this.auth$.emit(true);
                           this.router.navigateByUrl('/home');
                           Swal.close();
-                        } else {
+                        }
+                        else if(user['RolId'] === 3){
+                           this.guardarToken(res['token']);
+                          this.auth$.emit(true);
+                          this.router.navigateByUrl('/cajero');
+                          Swal.close();
+                        } 
+                        else {
                           this.mostrarAlert('Error', 'No eres un usuario administrador', 'warning');
                         }
                       } else {
@@ -102,6 +109,9 @@ export class AuthService {
   isAuthenticate() {
     // return await this.validateToken(false);
     return this.usuario?.Id !== undefined;
+  }
+  idUsuario(){
+    return this.usuario.RolId;
   }
 
   logout() {

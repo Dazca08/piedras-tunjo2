@@ -29,6 +29,7 @@ export class IniciopromComponent implements OnInit {
   fechatempF2:string="";
   nombretemp:string="";
   contador:number=0;
+  contador2:number=0
 arraiy =[
     {
    title:'',
@@ -37,6 +38,23 @@ arraiy =[
     color:''
   }
   ];
+ arraitemp=[
+{
+    title:'',
+    start:'',
+    end:'',
+    color:''
+
+}
+ ]
+ array =
+    {
+   title:'',
+    start:'',
+    end:'',
+    color:''
+  }
+  ;
    ObtenerPromocion(){
      if(this.indicador==true){
         this.ServiciopromService.Obtenerpromocion().subscribe(resultado =>{
@@ -79,9 +97,9 @@ arraiy =[
            this.promo[this.i].FechaInicio=this.fechatemp;
            this.promo[this.i].FechaFin=this.fechartemp;
            this.nombretemp=this.promo[this.i].Nombre;
-           if(this.contador==1){
-             this.arraiy.push({title:this.nombretemp,start:this.fechatemp,end:this.fechartemp,color:"#f9c66a"});
-           }
+           
+             this.arraiy.push({title:this.nombretemp,start:this.fechatemp,end:this.fechartemp,color:this.coloresAleatorios()});
+           
           
 
            }
@@ -138,10 +156,32 @@ arraiy =[
     this.indicadorBoton="Ver calendario de promociones"
       this.icono="calendar"
    }
-
+   //this.coloresAleatorios();
+   //console.log(this.coloresAleatorios())
     this.ngOnInit();
   }
-
+coloresAleatorios(){
+var myArray = ["#000099",
+ "#00FFCC", 
+ "#6699CC",
+  "#CC6600",
+   "#33CC00",
+    "#66CC99",
+  "#990099",
+  "#99FF00"
+];
+var cuatroRandom = "";
+var posicionesElegibles = [];
+var i, r;
+for (i = 0; i < myArray.length; i++) posicionesElegibles[i] = i;
+for (i = 0; i < 4; i++) {
+  r = Math.floor(Math.random() * posicionesElegibles.length);
+  cuatroRandom=myArray[posicionesElegibles[r]];
+  posicionesElegibles.splice(r, 1);
+}
+console.log(cuatroRandom);
+return cuatroRandom;
+}
 refrescar(){
  this.ObtenerPromocion();
  this.ObtenerPromocion();
@@ -194,7 +234,17 @@ refrescar(){
 
 
  funcion(eventoos , event ){
-    
+  console.log(eventoos)
+  //eventoos=eventoos.filter(x=>x.title=="") 
+console.log("Con repetidos es:", eventoos);
+let sinRepetidos = eventoos.filter((valorActual, indiceActual, arreglo) => {
+    //Podríamos omitir el return y hacerlo en una línea, pero se vería menos legible
+    return arreglo.findIndex(valorDelArreglo => JSON.stringify(valorDelArreglo.start) === JSON.stringify(valorActual.start)) === indiceActual
+});
+console.log("Sin repetidos es:", sinRepetidos);
+console.log(sinRepetidos.length);
+
+        
         $("#calendar").fullCalendar({  
 
                         header: {
@@ -213,10 +263,63 @@ refrescar(){
                         navLinks   : true,
                         editable   : true,
                         eventLimit : true,
-                        events:eventoos,
-  
+                        events:sinRepetidos,
+                         eventClick: function(info) {
+              
+   Swal.fire({
+      title: 'Espere por favor',
+      text: 'Cargando información',
+      icon: 'info',
+      allowOutsideClick: false
+    });
+    Swal.showLoading();
+this.nombretemmp=info.title;
 
+   this.filtronombre=eventoos.filter(x=>x.title==this.nombretemmp);
+
+if(this.filtronombre.length==0){
+
+                      Swal.fire(
+  'No existen eventos en este dia !',
+  'consulte los dias marcados con un evento para mas informacion',
+  'info'
+)
+}
+else{
+  
+     this.filtronombre=eventoos.filter(x=>x.title==this.nombretemmp);
+
+      this.array=this.filtronombre[0];
+
+       
+
+        if(this.array.title==this.nombretemmp){
+                       Swal.fire({
+
+  title: this.array.title,
+  text: "esta promocion va desde: "+this.array.start+", hasta : "+this.array.end,
+  icon:"info"
+}) 
+       
+        }
+        else{
+             Swal.fire({
+
+  title: "lo sentimos ",
+  text: "no hay eventos",
+  imageUrl: 'http://piedrasdeltunjo.tk/images/getImage?tipo=evento&nombre='+this.evento.ImagenesUrl,
+  imageWidth: 400,
+  imageHeight: 200,
+  imageAlt: 'Custom image',
+})
+        }
+}
+
+
+},
+ 
                     });
+     
     
      }
 

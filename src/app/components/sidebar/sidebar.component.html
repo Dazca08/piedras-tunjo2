@@ -1,6 +1,6 @@
 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
     <div class="sb-sidenav-menu">
-        <div class="nav" *ngIf="authService.isAuthenticate()">
+        <div class="nav" *ngIf="authService.isAuthenticate() && authService.idUsuario()===1">
             <div class="text-center sb-sidenav-menu-heading">Piedras del Tunjo</div>
                 <a *ngFor="let ruta of routes" class="nav-link" [routerLink]="ruta.path">
                     <i [class]="'fas fa-' + ruta.icon"></i>
@@ -11,6 +11,14 @@
         <div class="nav" *ngIf="!authService.isAuthenticate()">
             <div class="text-center sb-sidenav-menu-heading">Piedras del Tunjo</div>
                 <a *ngFor="let ruta of anonymousRoutes" class="nav-link" [routerLink]="ruta.path">
+                    <i [class]="'fas fa-' + ruta.icon"></i>
+                    &nbsp;&nbsp;
+                    {{ ruta.label }}
+                </a>
+        </div>
+         <div class="nav" *ngIf="authService.isAuthenticate() && authService.idUsuario()===3">
+            <div class="text-center sb-sidenav-menu-heading">Piedras del Tunjo</div>
+                <a *ngFor="let ruta of cajeroRoutes" class="nav-link" [routerLink]="ruta.path">
                     <i [class]="'fas fa-' + ruta.icon"></i>
                     &nbsp;&nbsp;
                     {{ ruta.label }}
