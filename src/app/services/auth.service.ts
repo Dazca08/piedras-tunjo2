@@ -54,7 +54,7 @@ export class AuthService {
                         } else if (user['RolId'] === 3) {
                           this.guardarToken(res['token']);
                           this.auth$.emit(true);
-                          this.router.navigateByUrl('/cajero');
+                          this.router.navigateByUrl('/home');
                           Swal.close();
                         } else {
                           this.mostrarAlert('Error', 'No eres un usuario administrador', 'warning');

@@ -17,7 +17,7 @@ export class SidebarComponent implements OnInit {
   ];
  //
  cajeroRoutes = [
-    { label: 'Cajero', path: '/cajero', icon: 'robot' }
+    { label: 'Venta de tickets', path: '/cajero', icon: 'hand-holding-usd' }
   ];
   // rutas para cuando el usuario se haya autenticado
   routes = [

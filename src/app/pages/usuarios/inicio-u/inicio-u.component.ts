@@ -23,7 +23,8 @@ usuarios: Usuario[] = [];
  this.servi.ObtenerJson().subscribe(resultado =>{
 
    this.usuarios=resultado;
- // console.log(this.usuarios);
+   this.usuarios=this.usuarios.filter(x=>x.RolId!=1);
+  console.log(this.usuarios);
 
 
    console.log("Informacion ya tiene resultado");

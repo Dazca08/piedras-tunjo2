@@ -9,7 +9,14 @@ import { basicAnimate } from '../../animations';
   animations: [basicAnimate]
 })
 export class HomeComponent implements OnInit {
+ itemc={
+    title:   'Venta de tickets',
+      image: 'registradora.jpg',
+      route: '/cajero'
+ }
 
+ bandera:any;
+ rolUsuario:any;
   items = [
     {
       title: 'Usuarios',
@@ -38,7 +45,7 @@ export class HomeComponent implements OnInit {
     },
     {
       title: 'Promociones',
-      image: '7.jpg',
+      image: 'promo.jpg',
       route: '/promociones'
     },
     {
@@ -71,8 +78,13 @@ export class HomeComponent implements OnInit {
   constructor(
     private authService: AuthService
   ) { }
-
+  
   ngOnInit(): void {
+    if(this.authService.isAuthenticate){
+    this.bandera=this.authService.isAuthenticate();
+    this.rolUsuario=this.authService.idUsuario();
+  }
+
     this.authService.getUsuario().then(res => console.log(res));
   }
 

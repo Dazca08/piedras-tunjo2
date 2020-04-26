@@ -198,7 +198,28 @@ else{
 
      
  i:number=0;
-
+coloresAleatorios(){
+var myArray = ["#000099",
+ "#00FFCC", 
+ "#6699CC",
+  "#CC6600",
+   "#33CC00",
+    "#66CC99",
+  "#990099",
+  "#99FF00"
+];
+var cuatroRandom = "";
+var posicionesElegibles = [];
+var i, r;
+for (i = 0; i < myArray.length; i++) posicionesElegibles[i] = i;
+for (i = 0; i < 4; i++) {
+  r = Math.floor(Math.random() * posicionesElegibles.length);
+  cuatroRandom=myArray[posicionesElegibles[r]];
+  posicionesElegibles.splice(r, 1);
+}
+console.log(cuatroRandom);
+return cuatroRandom;
+}
  
   ngOnInit(): void {
 
@@ -219,7 +240,7 @@ else{
    
       this.fechatemp=splitted[0];
     
-      this.arraiy.push({title:this.nombretemp,start:this.fechatemp,color:"#f9c66a"});
+      this.arraiy.push({title:this.nombretemp,start:this.fechatemp,color:this.coloresAleatorios()});
 
    }
 
