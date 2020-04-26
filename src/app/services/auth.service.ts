@@ -51,14 +51,12 @@ export class AuthService {
                           this.auth$.emit(true);
                           this.router.navigateByUrl('/home');
                           Swal.close();
-                        }
-                        else if(user['RolId'] === 3){
-                           this.guardarToken(res['token']);
+                        } else if (user['RolId'] === 3) {
+                          this.guardarToken(res['token']);
                           this.auth$.emit(true);
                           this.router.navigateByUrl('/cajero');
                           Swal.close();
-                        } 
-                        else {
+                        } else {
                           this.mostrarAlert('Error', 'No eres un usuario administrador', 'warning');
                         }
                       } else {
@@ -67,7 +65,7 @@ export class AuthService {
                     });
   }
 
-  validateToken(redirect: boolean): Promise<boolean> {
+  validateToken(redirect: boolean = false): Promise<boolean> {
     const token = localStorage.getItem('token') || undefined;
     if (!token) {
       if (redirect) {
@@ -98,11 +96,11 @@ export class AuthService {
   async guardarToken(token: string) {
     localStorage.clear();
     localStorage.setItem('token', token);
-    await this.validateToken(false);
+    await this.validateToken();
   }
 
   async getUsuario() {
-    await this.validateToken(false);
+    await this.validateToken();
     return { ...this.usuario };
   }
 
@@ -110,7 +108,8 @@ export class AuthService {
     // return await this.validateToken(false);
     return this.usuario?.Id !== undefined;
   }
-  idUsuario(){
+
+  idUsuario() {
     return this.usuario.RolId;
   }
 

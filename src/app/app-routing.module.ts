@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
+import { InicioGuard } from './guards/inicio.guard';
 
 const routes: Routes = [
   {
     path: 'tablero',
+    canLoad: [ InicioGuard ],
     loadChildren: () => import('./pages/tablero/tablero.module').then(mod => mod.TableroModule)
   },
   {
