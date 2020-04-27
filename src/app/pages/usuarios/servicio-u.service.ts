@@ -15,8 +15,8 @@ const httpOptions =
 export class ServicioUService {
 
   constructor(private http: HttpClient) { }
-private url: string = "http://piedrasdeltunjo.tk/Usuarios";
-//private url: string = "http://localhost:61629/Usuarios";
+//private url: string = "http://piedrasdeltunjo.tk/Usuarios";
+private url: string = "http://localhost:61629/Usuarios";
 ObtenerRoles():Observable<any>{
   return this.http.get(this.url+'/RolesUsuario')
 }
@@ -34,6 +34,11 @@ ObtenerRoles():Observable<any>{
   ObtenerDesactivados(): Promise<Usuario[]>{
     return new Promise(resolve =>{
       this.http.get(this.url+'/leer/no-verificados').subscribe((res: Usuario[])=>{resolve(res)});
+    });
+  }
+  async Activar(cadena): Promise<any>{
+    return new Promise((resolve,reject) =>{
+      this.http.put(this.url+'actualizar/no-verificado/',cadena,httpOptions).toPromise();
     });
   }
   getu(id): Observable<any>{

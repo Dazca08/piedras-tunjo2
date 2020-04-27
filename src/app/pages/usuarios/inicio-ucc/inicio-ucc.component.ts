@@ -25,7 +25,29 @@ export class InicioUccComponent implements OnInit {
     this.usuarios = await this.servi.ObtenerDesactivados();
   }
 
-  activar(id: number){
-
+  activar(user: Usuario){
+    Swal.fire({
+      title: 'Esta seguro?',
+      text: 'El usuario aparecera ahora como Activado',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Activar!'
+      }).then((result) => {
+        if (result.value) {
+          Swal.fire(
+            'Activado!',
+            'El usuario ha sido Activado.',
+            'success'
+          );
+          this.refrescar(user);
+        }
+    });
+  }
+  refrescar(user: Usuario) {
+    // console.log(id);
+    this.servi.Activar(user);
+    this.usuarios = this.usuarios.filter(x => x.Id !== user.Id);
   }
 }
