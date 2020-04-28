@@ -12,6 +12,8 @@ import { RecorridosService } from '../../../services/recorridos.service';
 import { Router } from '@angular/router';
 
 declare var $: any;
+const LONGITUD = -74.3451602;
+const LATITUD = 4.8154681;
 
 @Component({
   selector: 'app-nuevo',
@@ -66,7 +68,7 @@ export class NuevoComponent implements OnInit, AfterViewInit {
     this.mapa = new Mapboxgl.Map({
       container: 'map-recorrido',
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-74.3451602, 4.8154681],
+      center: [LONGITUD, LATITUD],
       zoom: 15
     });
     // cargar el mapa
