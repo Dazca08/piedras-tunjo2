@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Pictograma } from '../../../interfaces/pictograma.interface';
 import { PictogramaService } from '../../../services/pictograma.service';
 import Swal from 'sweetalert2';
 import { ImagesService } from '../../../services/images.service';
 import { basicAnimate } from '../../../animations';
+
+declare var document: any;
+declare var $: any;
 
 @Component({
   selector: 'app-inicio',
@@ -29,7 +32,21 @@ export class InicioComponent implements OnInit {
 
   async obtenerPictogramas() {
     this.pictogramas = await this.pictogramaService.getPictogramas();
-    // console.log(this.pictogramas);
+
+    // igualar height de las cards de pictogramas
+    setTimeout(() => {
+      const cards = $('.card-picto');
+      let maxHeight = 0;
+      cards.each((e) => {
+        const height = cards[e].offsetHeight;
+        if (height > maxHeight) {
+          maxHeight = height;
+        }
+      });
+      cards.each((e) => {
+        cards[e].style.height = maxHeight;
+      });
+    }, 1000);
   }
 
   showConfirmAlert(pictograma: Pictograma) {
