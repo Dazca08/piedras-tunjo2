@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServicioUService  } from '../servicio-u.service';
 import Swal from 'sweetalert2';
 import { Usuario } from 'src/app/interfaces/usuario.interface';
+import { Roles } from '../usuarios.model';
 
 @Component({
   selector: 'app-inicio-ucc',
@@ -9,6 +10,11 @@ import { Usuario } from 'src/app/interfaces/usuario.interface';
   styleUrls: ['./inicio-ucc.component.css']
 })
 export class InicioUccComponent implements OnInit {
+  roles: Roles[];
+  rol: Roles={
+    id: '',
+    nombre: ''
+  }
   usuarios: Usuario[] = [];
   filterPost = '';
   i: number;
@@ -19,13 +25,16 @@ export class InicioUccComponent implements OnInit {
 
   ngOnInit(){
     this.ObtenerUsuario();
+    this.servi.ObtenerRoles().subscribe(resultado=>{
+      this.roles=resultado;
+    });
   }
 
   async ObtenerUsuario(){
     this.usuarios = await this.servi.ObtenerDesactivados();
   }
 
-  activar(user: Usuario){
+  activar({value}: {value:Usuario, valid: boolean}){
     Swal.fire({
       title: 'Esta seguro?',
       text: 'El usuario aparecera ahora como Activado',
@@ -41,7 +50,7 @@ export class InicioUccComponent implements OnInit {
             'El usuario ha sido Activado.',
             'success'
           );
-          this.refrescar(user);
+          this.refrescar(value);
         }
     });
   }

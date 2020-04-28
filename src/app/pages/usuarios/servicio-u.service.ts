@@ -38,7 +38,7 @@ ObtenerRoles():Observable<any>{
   }
   async Activar(cadena): Promise<any>{
     return new Promise((resolve,reject) =>{
-      this.http.put(this.url+'actualizar/no-verificado/',cadena,httpOptions).toPromise();
+      this.http.put(this.url+'/actualizar/no-verificado/'+cadena,httpOptions).toPromise();
     });
   }
   getu(id): Observable<any>{
