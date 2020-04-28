@@ -119,7 +119,7 @@
                 </div>
                 <div class="form-group col-md-12">
                   <label for="VerificacionCuenta">Verificacion en la cuenta</label>
-                  <select name="VerificacionCuenta" class="form-control" #VerificacionCuenta="ngModel" [(ngModel)]="usuario.VerificacionCuenta">
+                  <select name="VerificacionCuenta" class="form-control" #VerificacionCuenta="ngModel" [(ngModel)]="usuario.VerificacionCuenta" disabled>
                     <option value="true"selected>Activado</option>
                     <option value="false">Desactivado</option>
                   </select>
