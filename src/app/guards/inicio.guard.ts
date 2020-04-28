@@ -17,7 +17,13 @@ export class InicioGuard implements CanActivate, CanLoad {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+      return new Promise(async resolve => {
+        const auth = await this.authService.validateToken();
+        if (auth) {
+          this.router.navigateByUrl('/home');
+        }
+        resolve(!auth); // si está auttenticado no carga la página pero es redireccionado a home
+      });
   }
   canLoad(
     route: Route,
