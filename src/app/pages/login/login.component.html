@@ -7,18 +7,29 @@
       <div class="card-body">
         <form [formGroup]="formLogin" (ngSubmit)="login()">
           <div class="form-group">
-            <b>Correo Electrónico</b>
+            <b>Correo electrónico</b>
             <input type="text" [ngClass]="getValidationClass('correo')" formControlName="correo" class="form-control">
             <div class="valid-feedback">Ok!</div>
             <div class="invalid-feedback">
               <span *ngIf="correo.errors?.required">
                   El correo es requerido
               </span>
+              <span *ngIf="correo.errors?.pattern">
+                  El campo no tiene formato de correo
+              </span>
             </div>
           </div>
           <div class="form-group">
             <b>Contraseña</b>
-            <input type="password" [ngClass]="getValidationClass('clave')" formControlName="clave" class="form-control">
+            <div class="input-group">
+              <input [type]="seePassword ? 'text' : 'password'" [ngClass]="getValidationClass('clave')" formControlName="clave" class="form-control">
+                <div class="input-group-append">
+                  <span class="input-group-text" (click)="seePassword = !seePassword">
+                    <i *ngIf="seePassword" style="color: #007bff;" class="fas fa-eye"></i>
+                    <i *ngIf="!seePassword" class="fas fa-eye-slash"></i>
+                  </span>
+                </div>
+            </div>
             <div class="valid-feedback">Ok!</div>
             <div class="invalid-feedback">
               <span *ngIf="clave.errors?.required">La contraseña es requerida</span>
