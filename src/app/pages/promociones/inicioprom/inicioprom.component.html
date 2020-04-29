@@ -68,25 +68,17 @@
               </div>
               <div class="car-body container">
                <form #promocionForm="ngForm" (ngSubmit)="guardar(promocionForm)" >
-             <div class="row">
-              	<div class="col-md-6">
+           
               		<p class="card-text"><i class="fa fa-pencil-alt"></i> Nombre promocion 
             </p>
                <input type="text"  name="Nombre" class="form-control" #nombre="ngModel" [(ngModel)]="prom.Nombre">
-              	</div>
-              	<div class="col-md-6">
-              	<p class="card-text"><i class="fa fa-dollar-sign"></i> Precio 
-                               </p>
-                 <input type="text" name="Precio" class="form-control" #Precio="ngModel" [(ngModel)]="prom.Precio">
-              	</div>
-
-              </div>
-            
-
+          <hr>
+              	
+              
            <p class="card-text"><i class="fa fa-pencil-alt"></i> Descripcion 
            </p>
            <div align="center">
-           	    <textarea name="Descripcion" rows="3" cols="65" [(ngModel)]="prom.Descripcion"></textarea>
+           	    <textarea name="Descripcion" rows="2" cols="65" [(ngModel)]="prom.Descripcion"></textarea>
            </div>
         
             
@@ -96,7 +88,7 @@
                 <input type="hidden" name="LastModification" class="form-control" #LastModification="ngModel" [(ngModel)]="prom.LastModification">
               
                 
-                 
+                <hr>
                   
                   <div class="row">
                   	<div class="col-md-6">
@@ -111,7 +103,7 @@
                   	</div>
                   	
                   </div>
-               
+               <hr>
                  <div class="row">
                  	<div class="col-md-6">
                  		 <p class="card-text"><i class="fa fa-eye-slash"></i> Estado
@@ -139,9 +131,31 @@
                  	</div>
 
                  </div>
-                  
+                 <hr>
+                  <div class="row">
+                    
+                    <div class="col-md-6">
+                      <div align="center">
+                            <p class="card-text"> Precio de ticket con promocion 
+                               </p>
+                               <p class="card-text"><i class="fa fa-dollar-sign"></i> {{prom.Precio}} 
+                               </p>             
+                          <input type="hidden" name="Precio" class="form-control" #Precio="ngModel" [(ngModel)]="prom.Precio">
+                      </div>
+                    
+                    </div>
+                    <div class="col-md-6">
+                        <p class="card-text"><i class="fa fa-ticket-alt"></i> Ticket en que es valida la promocion
+                          </p>
+
+                    <select name="TicketId" style="width:200" class="form-control" #TicketId="ngModel" [(ngModel)]="prom.TicketId">
+                                            <option value="{{opcion.Id}}" *ngFor="let opcion of ticketTemp">{{opcion.Nombre}} </option>
+                                          
+                                             </select>
+                    </div>
+                  </div>
                  
-                      <input type="hidden" name="TicketId" class="form-control" #TicketId="ngModel" [(ngModel)]="prom.TicketId">
+                    <hr>
                        <input type="hidden" name="Token" class="form-control" #Token="ngModel" [(ngModel)]="prom.Token" >
                                              
                                              

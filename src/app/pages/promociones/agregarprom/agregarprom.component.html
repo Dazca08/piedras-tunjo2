@@ -2,10 +2,17 @@
 <section id="actions" class="py-4 mb-4 bg-light">
     <div class="container">
       <div class="row">
-        <div class="col-md-3">
-          <a routerLink="/promociones" class="btn btn-dark text-white btn-block">
-             <i class="fas fa-arrow-left"></i> Regresar al Inicio
+        <div class="col-md-4">
+          <a routerLink="/promociones" style="width:200" class="btn btn-dark text-white btn-block">
+             <i class="fas fa-arrow-circle-left"></i> Regresar al Inicio
           </a>
+        </div>
+      
+        <div class="col-md-5">
+        
+              <h3>Agregar Promocion</h3>
+         
+        
         </div>
       </div>
     </div>
@@ -19,7 +26,7 @@
                     <div class="col-md-6 mx-auto">
                         <div class="card">
                             <div class="card-header">
-                                <h4 style="text-align: center;">Agregar Promocion</h4>
+                                <h4 style="text-align: center;">Diligencie este formulario para ingresar una nueva promocion</h4>
                                 <hr>
     
                                 <form #insertarpromForm ="ngForm" (ngSubmit)="agregar(insertarpromForm)"  >
@@ -27,17 +34,16 @@
                                     <div class="modal-body">
                                      <div class="form-group">
                                          <div class="row">
-                                              <div class="col-md-6">
+                                              
                                                   <label for="Nombre"> <i class="fas fa-pencil-alt"></i> Nombre</label>
                                             <input type="text" name="Nombre" class="form-control" #Nombre="ngModel" [(ngModel)]="insertarprom.Nombre">
-                                              </div>
-                                              <div class="col-md-6">
-                                                 <label for="Precio"><i class="fas fa-dollar-sign"></i> Precio</label>
-                                            <input type="number" name="Precio" class="form-control" #Precio="ngModel" [(ngModel)]="insertarprom.Precio" >
-                                              </div>
+                                            
+                                                 <!--<label for="Precio"><i class="fas fa-dollar-sign"></i>{{insertarprom.Precio}}</label>-->
+                                            <input type="hidden" name="Precio" class="form-control" #Precio="ngModel" [(ngModel)]="insertarprom.Precio" >
+                                          
                                             </div>
                                      </div>
-                                          
+                                          <hr>
                                         <div class="form-group">
     
                                             <label for="Descripcion"><i class="fas fa-pencil-alt"></i> Descripcion</label>
@@ -61,7 +67,7 @@
                                             <input type="hidden" name="Estado" class="form-control" #Estado="ngModel" [(ngModel)]="insertarprom.Estado"
                                              >
                                           </div>
-
+                                             <hr>
                                              <div class="form-group">
                                               <div class="row">
                                                
@@ -80,10 +86,11 @@
                                            
                                           
                                           </div>
-                                        
+                                            <hr>
                                            <div class="form-group">
-                                            <div align="center">
-                                               <label for="PorcentajeDescuento"><i class="fa fa-percent"></i> Porcentaje de descuento</label>
+                                            <div class="row">
+                                              <div class="col-md-6">
+                                                  <label for="PorcentajeDescuento"><i class="fa fa-percent"></i> Porcentaje de descuento</label>
                                             <select name="PorcentajeDescuento" style="width:200" class="form-control" #PorcentajeDescuento="ngModel" [(ngModel)]="insertarprom.PorcentajeDescuento">
                                             <option selected>10</option>
                                             <option>20</option>
@@ -93,14 +100,31 @@
                                             <option>60</option>
                                             <option>70</option>
                                              </select>
+                                              </div>
+                                               <div class="col-md-6">
+                                                <label for="TicketId"><i class="fa fa-ticket-alt"></i> Tipo de ticket en que es valida la promocion</label>
+
+                                                    <select name="TicketId" style="width:200" class="form-control" #TicketId="ngModel" [(ngModel)]="insertarprom.TicketId">
+                                            <option value="{{opcion.Id}}" *ngFor="let opcion of ticket">{{opcion.Nombre}} </option>
+                                          
+                                             </select>
+
+                                                 <!--<select name="TicketId" style="width:200" class="form-control" #TicketId="ngModel" [(ngModel)]="insertarprom.TicketId">
+                                            <option selected>residente</option>
+                                            <option>visitante</option>
+                                             </select>-->
+                                            
+                                              </div>
                                             </div>
+
+                                             
+                                            
                                            
                                           </div>
-
+                                
                                              <div class="form-group">
-                                            <input type="hidden" name="TicketId" class="form-control" #TicketId="ngModel" [(ngModel)]="insertarprom.TicketId"
-                                              
-                                              >
+                                            
+                                             
                                           </div>
                                              <div class="form-group">
                                            

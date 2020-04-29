@@ -30,7 +30,16 @@ export class IniciopromComponent implements OnInit {
   nombretemp:string="";
   contador:number=0;
   contador2:number=0
+  ticketTemp:any;
 arraiy =[
+    {
+   title:'',
+    start:'',
+    end:'',
+    color:''
+  }
+  ];
+temp =[
     {
    title:'',
     start:'',
@@ -46,7 +55,8 @@ arraiy =[
     color:''
 
 }
- ]
+ ];
+
  array =
     {
    title:'',
@@ -54,7 +64,30 @@ arraiy =[
     end:'',
     color:''
   }
-  ;
+clean(){
+  this.temp =[
+    {
+   title:'',
+    start:'',
+    end:'',
+    color:''
+  }
+  ];
+}
+ ObtenerTicket(){
+   this.ServiciopromService.getTickets().subscribe(resultado=>{
+  this.ticketTemp=resultado;
+  this.ticketTemp=this.ticketTemp.filter(x=>x.Precio!=0)
+ 
+
+   },
+      error=>{
+       console.log(JSON.stringify(error));
+     
+      }); 
+ }
+
+
    ObtenerPromocion(){
      if(this.indicador==true){
         this.ServiciopromService.Obtenerpromocion().subscribe(resultado =>{
@@ -65,7 +98,14 @@ arraiy =[
            this.fechartemp=this.promo[this.i].FechaFin;
            var splitted = this.fechatemp.split("T", 2);
            var splitted2=this.fechartemp.split("T",2);
-   
+           /*if(this.promo[this.i].TicketId=="3"){
+             this.ticketTemp="residente"
+             this.promo[this.i].TicketId=this.ticketTemp;
+           }
+           else if(this.promo[this.i].TicketId=="4"){
+                 this.ticketTemp="visitante"
+             this.promo[this.i].TicketId=this.ticketTemp;
+           }*/
            this.fechatemp=splitted[0];
            this.fechartemp=splitted2[0];
            this.promo[this.i].FechaInicio=this.fechatemp;
@@ -85,6 +125,13 @@ arraiy =[
           console.log(this.contador)
         this.ServiciopromService.Obtenerpromocion().subscribe(resultado =>{
       this.promo=resultado;
+       if(this.contador>1){
+             this.clean();
+             console.log(this.temp)
+             console.log(this.arraiy)
+             this.arraiy=this.temp;
+          
+           }
       this.promo=this.promo.filter(x=>x.Estado=="1");
        for(this.i=0;this.i<this.promo.length;this.i++){
            this.fechatemp=this.promo[this.i].FechaInicio;
@@ -98,8 +145,12 @@ arraiy =[
            this.promo[this.i].FechaFin=this.fechartemp;
            this.nombretemp=this.promo[this.i].Nombre;
            
-             this.arraiy.push({title:this.nombretemp,start:this.fechatemp,end:this.fechartemp,color:this.coloresAleatorios()});
+             console.log(this.temp)
+             console.log(this.arraiy)
+             this.arraiy=this.temp;
+           this.arraiy.push({title:this.nombretemp,start:this.fechatemp,end:this.fechartemp,color:this.coloresAleatorios()});
            
+       
           
 
            }
@@ -132,7 +183,7 @@ arraiy =[
                    'success'
                            )
                 this.ServiciopromService.Eliminar(id);
-                this.refrescar();
+               setTimeout(() => { this.refrescar() }, 2000);
 
                  }
                    })
@@ -182,11 +233,16 @@ for (i = 0; i < 4; i++) {
 console.log(cuatroRandom);
 return cuatroRandom;
 }
+
 refrescar(){
- this.ObtenerPromocion();
- this.ObtenerPromocion();
- this.ngOnInit();
+ //this.ObtenerPromocion();
+ //this.ObtenerPromocion();
+ for(this. i=0;this.i<1;this.i++){
+    this.ObtenerPromocion()
+ }
+
 }
+
  guardar({value}: {value:prom}){
    console.log (value)
    if(value.Nombre=="" || value.Descripcion==""){
@@ -222,8 +278,23 @@ refrescar(){
                           'success'
                               )*/
 
+                   var tickete=this.ticketTemp.filter(x=>x.Id==value.TicketId)
+
+               var parseoDescuento=parseInt(value.PorcentajeDescuento,10)
+
+
+                  console.log(tickete[0].Precio)
+             var precioTemp=parseoDescuento/100*tickete[0].Precio
+            var precioCondescuento=tickete[0].Precio-precioTemp
+                console.log(precioCondescuento)
+           value.Precio=precioCondescuento.toString();
+               
+         
+
                   console.log(value)
                   this.comparacion(value);
+            
+                 setTimeout(() => { this.refrescar() }, 2000);
                //this.ServiciopromService.update(value);
                                          }
                    })
@@ -297,7 +368,9 @@ else{
                        Swal.fire({
 
   title: this.array.title,
-  text: "esta promocion va desde: "+this.array.start+", hasta : "+this.array.end,
+  text: "esta promocion va desde: "+this.array.start+
+  ", hasta : "+this.array.end  ,
+
   icon:"info"
 }) 
        
@@ -438,8 +511,9 @@ console.log(resultado)
   ngOnInit(): void {
    this.ObtenerPromocion();
 
-
+  this.ObtenerTicket();
    
   }
+
 
 }

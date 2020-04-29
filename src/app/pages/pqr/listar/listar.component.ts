@@ -18,7 +18,7 @@ fechartemp:string='';
 filterpregunta ='';
 indicador:boolean=true;
 indicadorBoton:string="PQR Contestados"
-  constructor(private servi:ServiciopqrService) { }
+  constructor(private servi:ServiciopqrService ,private route:Router ) { }
 
    ObtenerPqrs(){
       console.log(this.indicador)
@@ -76,7 +76,7 @@ indicadorBoton:string="PQR Contestados"
    }
 
  listarContestados(){
-
+  this.route.navigateByUrl('/promociones');
    if(this.indicador==true){
      this.indicador=false;
      this.indicadorBoton="PQR Sin contestar"
@@ -115,14 +115,9 @@ indicadorBoton:string="PQR Contestados"
 
                  }
                    })
-
-
-
    }
 
 refrescar(){
-
-
  this.ObtenerPqrs();
   this.ObtenerPqrs();
   this.ngOnInit();
@@ -131,6 +126,7 @@ refrescar(){
 }
 
  guardar({value}: {value:Pqr}){
+   console.log(value);
    if(value.Respuesta==""){
                Swal.fire(
                'Por favor Ingrese una respuesta!',
@@ -163,7 +159,11 @@ refrescar(){
                       'La respuesta ha sido enviada ',
                       'success'
 
-                                )   
+                                ) 
+                                value.UEstadoPQRId=2;
+                                value.UEstadoPQR.Id=2
+                                value.UEstadoPQR.Nombre="Resuelto";
+                                console.log(value)  
                this.servi.update(value,value.Id);
                this.refrescar();
                     }

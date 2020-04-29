@@ -89,7 +89,7 @@ else if(añofe==añofa && me==ma && de==da){
 
  return resultado;
 }
-agregar({value, valid}: {value: Evento, valid: boolean}){
+agregar({value}:{value:Evento}){
 
 
 

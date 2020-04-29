@@ -32,14 +32,30 @@ export class AgregarpromComponent implements OnInit {
     }
   promotemp:prom[];
   fechatempi1:string="";
-   fechatempF1:string="";
-    fechatempi2:string="";
-     fechatempF2:string="";
-     resultadoComparacion:any;
+  fechatempF1:string="";
+  fechatempi2:string="";
+  fechatempF2:string="";
+  resultadoComparacion:any;
+  ticket:any;
+  ticketselect:any
  i:number;
+ ObtenerTicket(){
+   this.servi.getTickets().subscribe(resultado=>{
+  this.ticket=resultado;
+  this.ticket=this.ticket.filter(x=>x.Precio!=0)
+  console.log(this.insertarprom.Nombre)
+
+   },
+      error=>{
+       console.log(JSON.stringify(error));
+     
+      }); 
+ }
     agregar({value}: {value: prom}){
-     console.log(value);
-   if(value.Nombre=="" || value.Descripcion=="" || value.Precio=="" || value.PorcentajeDescuento==""|| value.FechaInicio==""|| value.FechaFin=="" ){
+     
+    
+     
+   if(value.Nombre=="" || value.Descripcion=="" ||value.TicketId==""  || value.PorcentajeDescuento==""|| value.FechaInicio==""|| value.FechaFin=="" ){
           Swal.fire(
          'Lllene todos los campos por favor!',
            'Promocion no agregada!',
@@ -55,21 +71,32 @@ export class AgregarpromComponent implements OnInit {
                   )
    }
    else{
-      console.log(value)
+    
+      var tickete=this.ticket.filter(x=>x.Id==this.insertarprom.TicketId)
+
+    var parseoDescuento=parseInt(this.insertarprom.PorcentajeDescuento,10)
+
+
+      console.log(tickete[0].Precio)
+    var precioTemp=parseoDescuento/100*tickete[0].Precio
+     var precioCondescuento=tickete[0].Precio-precioTemp
+    console.log(precioCondescuento)
+    this.insertarprom.Precio=precioCondescuento.toString();
+    value.Precio=this.insertarprom.Precio;
+    console.log(value)
        this.comparacion(value);
    }
  
 
     }
     refrescar(){
-     
-
       this.insertarprom.Nombre="";
       this.insertarprom.Descripcion="";
       this.insertarprom.Precio="";
-       this.insertarprom.FechaFin="";
-       this.insertarprom.FechaInicio="";
-       this.insertarprom.PorcentajeDescuento="";
+      this.insertarprom.FechaFin="";
+      this.insertarprom.FechaInicio="";
+      this.insertarprom.PorcentajeDescuento="";
+      this.insertarprom.TicketId="";
     }
 
 splitfecha(fecha){
@@ -177,6 +204,7 @@ console.log(resultado)
       
                         }
    else{
+     console.log(value)
     this.servi.insertar(value);
     this.refrescar();
    }
@@ -185,6 +213,7 @@ console.log(resultado)
   } 
 
   ngOnInit(): void {
+    this.ObtenerTicket();
   }
 
 }
