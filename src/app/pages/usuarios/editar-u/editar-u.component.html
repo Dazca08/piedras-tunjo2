@@ -30,6 +30,7 @@
                 </div>
                 <div class="form-group col-md-6 text-center">
                   <img src="http://piedrasdeltunjo.tk/images/getImage?tipo=avatar&nombre={{usuario.Icono_url}}" width="50%">
+                  <input type="hidden" name="icono_url" [(ngModel)]="usuario.Icono_url" readonly>
                 </div>
                 <div class="form-group col-md-3">
                   <label for="tipoDocumento">Tipo de documento</label>
@@ -118,7 +119,7 @@
                 </div>
                 <div class="form-group col-md-12">
                   <label for="VerificacionCuenta">Verificacion en la cuenta</label>
-                  <select name="VerificacionCuenta" class="form-control" #VerificacionCuenta="ngModel" [(ngModel)]="usuario.VerificacionCuenta">
+                  <select name="VerificacionCuenta" class="form-control" #VerificacionCuenta="ngModel" [(ngModel)]="usuario.VerificacionCuenta" disabled>
                     <option value="true"selected>Activado</option>
                     <option value="false">Desactivado</option>
                   </select>
@@ -284,6 +285,13 @@
                     <div class="form-group col-md-12">
                       <label for="VerificacionCuenta">Verificacion en la cuenta</label>
                       <select name="VerificacionCuenta" class="form-control" #VerificacionCuenta="ngModel" [(ngModel)]="usuario.VerificacionCuenta">
+                        <option value="true"selected>Activado</option>
+                        <option value="false">Desactivado</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-12">
+                      <label for="EstadoCuenta">Estado cuenta</label>
+                      <select name="EstadoCuenta" class="form-control" #EstadoCuenta="ngModel" [(ngModel)]="usuario.EstadoCuenta">
                         <option value="true"selected>Activado</option>
                         <option value="false">Desactivado</option>
                       </select>

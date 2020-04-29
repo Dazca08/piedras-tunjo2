@@ -15,33 +15,109 @@
   <div class="container" style="padding-top: 2%;">
     <div class="row" *ngIf="usuarios">
       <div class="col-md-12">
-        <div class="row row-cols-1 row-cols-md-3">
+        <div class="row row-cols-1 row-cols-md-2">
           <!--|paginate:{itemsPerPage :6 , currentPage:PageActual}-->
           <div class="col md-4" *ngFor="let usuario of usuarios; let i = index;">
             <div class="card h-100">
               <div class="card-header text-center">
                 <h4>Usuario {{i+1}}</h4>
               </div>
-              <div class="card-body">
-                <div class="row" style="padding: 3%;">
-                  <div class="col-md-8">
-                    <p class="card-title"><b>Nombre:</b> {{usuario.Nombre}}</p>
-                    <p class="card-title"><b>Apellido:</b> {{usuario.Apellido}}</p>
-                  </div>
-                  <div class="col-md-4">
-                    <img src="http://piedrasdeltunjo.tk/images/getImage?tipo=avatar&nombre={{usuario.Icono_url}}" class="card-img-top" width="50%">
-                  </div>
-                  <div class="col-md-12" style="padding-top: 1%;">
-                    <p class="card-text"><b>Tipo de Documento: </b>{{usuario.TipoDocumento}}</p>
-                    <p class="card-text"><b>Numero de Documento: </b>{{usuario.NumeroDocumento}}</p>
-                    <p class="card-text"><b>Lugar de Expedicion: </b>{{usuario.LugarExpedicion}}</p>
-                    <p class="card-text"><b>Correo: </b>{{usuario.CorreoElectronico}}</p>
-                  </div>
-                  <div class="col-md-12">
-                    <button class="btn btn-success btn-block" (click)="activar(usuario.Id)"><i class="fas fa-user-plus"></i> Acivar</button>
+              <form #usuarioForm="ngForm" (ngSubmit)="activar(usuarioForm)">
+                <div class="card-body">
+                  <div class="form-row">
+                    <input type="hidden" name="icono_url" [(ngModel)]="usuario.Icono_url" readonly>
+                    <div class="form-group col-md-6">
+                      <label for="nombre"><b>Nombre del usuario</b></label>
+                      <input type="text" name="nombre" class="form-control" [(ngModel)]="usuario.Nombre" readonly>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="apellido"><b>Apellido del usuario</b></label>
+                      <input type="text" name="apellido" class="form-control" [(ngModel)]="usuario.Apellido" readonly>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label for="tipoDocumento"><b>Tipo de documento</b></label>
+                      <select name="tipoDocumento" class="form-control" #tipoDocumento="ngModel" [(ngModel)]="usuario.TipoDocumento"  >
+                        <option selected>CC</option>
+                        <option>CE</option>
+                        <option>TI</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-8">
+                      <label for="numeroDocumento"><b>Numero de documento</b></label>
+                      <input type="text" name="numeroDocumento" class="form-control" [(ngModel)]="usuario.NumeroDocumento">
+                    </div>
+                    <div class="form-group col-md-12">
+                      <label for="lugarExpedicion"><b>Lugar de expedición</b></label>
+                      <select name="lugarExpedicion" class="form-control" #lugarExpedicion="ngModel" [(ngModel)]="usuario.LugarExpedicion" [ngClass]="{'is-invalid': lugarExpedicion.errors && lugarExpedicion.touched}">
+                        <option value="">Seleccionar</option>
+                        <option value="Amazonas">Amazonas, Leticia</option>
+                        <option value="Antioquia">Antioquia, Medellín</option>
+                        <option value="Arauca">Arauca, Arauca</option>
+                        <option value="Atlantico">Atlántico, Barranquilla</option>
+                        <option value="Bolivar">Bolívar, Cartagena de Indias</option>
+                        <option value="Boyaca">Boyacá, Tunja</option>
+                        <option value="Caldas">Caldas, Manizales</option>
+                        <option value="Caqueta">Caquetá, Florencia</option>
+                        <option value="Casanare">Casanare, Yopal</option>
+                        <option value="Cauca">Cauca, Popayán</option>
+                        <option value="Cesar">Cesar, Valledupar</option>
+                        <option value="Choco">Chocó, Quibdó</option>
+                        <option value="Cordona">Córdoba, Montería</option>
+                        <option value="Facatativa">Cundinamarca, Facatativa</option>
+                        <option value="Bogota">Cundinamarca, Bogotá</option>
+                        <option value="Guania">Guainía, Inírida</option>
+                        <option value="Guaviare">Guaviare, San José del Guaviare</option>
+                        <option value="Huila">Huila, Neiva</option>
+                        <option value="Guajira">La Guajira, Riohacha</option>
+                        <option value="Magdalena">Magdalena, Santa Marta</option>
+                        <option value="Meta">Meta, Villavicencio</option>
+                        <option value="Nariño">Nariño, Pasto</option>
+                        <option value="NorteSantander">Norte de Santander, San José de Cúcuta</option>
+                        <option value="Putumayo">Putumayo, Mocoa</option>
+                        <option value="Quindio">Quindío, Armenia</option>
+                        <option value="Risaralda">Risaralda, Pereira</option>
+                        <option value="SanAndres">San Andrés y Providencia, San Andrés</option>
+                        <option value="Santander">Santander, Bucaramanga</option>
+                        <option value="Sucre">Sucre, Sincelejo</option>
+                        <option value="ValleCauca">Valle del Cauca, Caoption</option>
+                        <option value="Vaupes">Vaupés, Mitú</option>
+                        <option value="Vichada">Vichada, Puerto Carreño</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="correoElectronico"><b>Correo electronico</b></label>
+                      <input type="email" name="correoElectronico" class="form-control" [(ngModel)]="usuario.CorreoElectronico" readonly>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="clave"><b>Contraseña</b></label>
+                      <input type="password" name="clave" class="form-control" [(ngModel)]="usuario.Clave" readonly>
+                    </div>
+                    <div class="form-group col-md-12">
+                      <label for="VerificacionCuenta">Verificacion en la cuenta</label>
+                      <select name="VerificacionCuenta" class="form-control" #VerificacionCuenta="ngModel" [(ngModel)]="usuario.VerificacionCuenta" disabled>
+                        <option value="true"selected>Activado</option>
+                        <option value="false">Desactivado</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-12">
+                      <label for="EstadoCuenta">Estado cuenta</label>
+                      <select name="EstadoCuenta" class="form-control" #EstadoCuenta="ngModel" [(ngModel)]="usuario.EstadoCuenta" disabled>
+                        <option value="true"selected>Activado</option>
+                        <option value="false">Desactivado</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-12">
+                      <label for="RolId">Seleccione el rol del ususario</label>
+                      <select name="RolId" class="form-control" #RolId="ngModel" [(ngModel)]="usuario.RolId" disabled>
+                        <option *ngFor="let rol of roles; index as i" value="{{rol.id}}">{{rol.nombre}}</option>
+                      </select>
+                    </div>
+                    <div class="col-md-12">
+                      <button type="submit" class="btn btn-success btn-block"><i class="fas fa-user-plus"></i> Acivar</button>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>

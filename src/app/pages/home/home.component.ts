@@ -39,6 +39,11 @@ export class HomeComponent implements OnInit {
       route: '/pictogramas'
     },
     {
+      title: 'Recorridos',
+      image: 'recorridos.jpg',
+      route: '/recorridos'
+    },
+    {
       title: 'Eventos',
       image: '4.jpg',
       route: '/eventos'

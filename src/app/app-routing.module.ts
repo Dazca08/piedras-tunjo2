@@ -7,6 +7,7 @@ const routes: Routes = [
   {
     path: 'tablero',
     canLoad: [ InicioGuard ],
+    canActivate: [ InicioGuard ],
     loadChildren: () => import('./pages/tablero/tablero.module').then(mod => mod.TableroModule)
   },
   {
