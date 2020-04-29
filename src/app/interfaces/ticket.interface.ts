@@ -1,12 +1,11 @@
 export interface Ticket {
 	   
-    Id?:string,
-    Nombre?:string,
-    Precio?:string,
-    Descripcion?:any,
-    Token?:string,
-    LastModificacion?:string,
-    Estado?:any
-    
+    Id?:string;
+    Nombre?:string;
+    Precio?:any;
+    Descripcion?:string;
+    Token?:string;
+    LastModificacion?:any;
+    Estado?:string; 
    
 }

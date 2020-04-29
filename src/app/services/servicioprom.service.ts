@@ -80,6 +80,7 @@ export class ServiciopromService {
                 console.log(res.ok)
                 this.MensajedeExitoOfracaso(res.ok);
                 this.MensajedeExitoOfracaso(res.Message);
+                
                   
                 },
                 (err) => { console.log(err)
@@ -93,6 +94,14 @@ export class ServiciopromService {
                     );
                   });
       }
+
+       getTickets():Observable<any>{
+      const token = localStorage.getItem('token') || undefined;
+        const headers = new HttpHeaders({
+        Authorization: 'Bearer ' + token
+      });
+    return this.http.get(`${ apiUrl }/tickets`, { headers});
+  }
 
 
 
@@ -154,7 +163,7 @@ else if(ok=="No fue posible actualizar"){
 }
 else if(ok=="Ya existe una reserva en este rango de fechas"){
     Swal.fire(
-         'La promocion no puede ser actualizada porque en ese rango de tiempo ya existe otra promocion!',
+         'error no se ha podido actualizar la promocion!',
            'Informacion no guardada!',
           'error'
                   ) 

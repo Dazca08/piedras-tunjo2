@@ -13,13 +13,15 @@ export class SidebarComponent implements OnInit {
 
   // las rutas para usuarios no autetincados
   anonymousRoutes = [
-    { label: 'Contactanos', path: '/contactanos', icon: 'robot' }
+    { label: 'Contactanos', path: '/contactanos', icon: 'phone-square-alt' }
   ];
- //
+ // las rutas para cuando el usuario se haya autenticado y sea el cajero
  cajeroRoutes = [
-    { label: 'Venta de tickets', path: '/cajero', icon: 'hand-holding-usd' }
+     { label: 'Inicio cajero', path: '/home', icon: 'home' },
+    { label: 'Venta de tickets', path: '/cajero', icon: 'hand-holding-usd' },
+   
   ];
-  // rutas para cuando el usuario se haya autenticado
+  // rutas para cuando el usuario se haya autenticado y sea el administrador
   routes = [
     { label: 'Panel Admin', path: '/home', icon: 'dragon' },
     { label: 'Usuarios', path: '/usuarios', icon: 'users' },

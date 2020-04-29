@@ -1,1 +1,146 @@
-<p>venta-t works!</p>
+
+<!--<ngx-qrcode qrc-element-type="url" [qrc-value]="ngxQrcode2" ></ngx-qrcode>-->
+<!--<ngx-qrcode qrc-element-type="url" [qrc-value]="techiediaries" ></ngx-qrcode>
+<ngx-qrcode qrc-element-type="url" [qrc-value]="letsboot" ></ngx-qrcode>-->
+<header id="main-header" >
+  	<div class="container">
+    	<div class="row">
+    		
+    			<div class="col-md-4">
+    				<div *ngIf="bandera!=null">
+    			<form (submit)="Inicio()">
+                   <button type="submit" class="btn btn-info ">
+                   <h4><i class="fas fa-arrow-circle-left"></i> Volver al inicio</h4>
+                     </button>
+
+             </form>
+                  </div>
+    		</div>
+    		
+    		
+    		 
+      		<div class="col-md-8">
+             <div align="left">
+        		<h4>
+           		<i class="fas fa-ticket-alt"></i> {{titulo}}
+        	    </h4>
+            </div>
+          </div>
+
+
+        
+           </div>
+
+
+       </div>
+	
+</header>
+<hr>
+<h5></h5>
+<div *ngIf="bandera==null">
+	<div align="center">
+	
+	<div class="container">
+
+    <div class="col-md-8">
+    	
+    		
+       <div class="card">
+       
+            <div class="card-header">
+            	<h4>seleccione el tipo de cliente al que se va a vender el ticket </h4>
+            </div>
+            <div class="row">
+            	  <div class="col-md-6">
+     
+        	<br>
+	   
+             <form (submit)="DatosClienteRegistrado()">
+                   <button type="submit" style="height:200" class="btn btn-info ">
+                   <h4><i class="fas fa-user"></i> Clientes Registrados</h4>
+                     </button>
+
+             </form>
+       
+           </div>
+
+
+
+             	<div class="col-md-6">
+      
+        	<br>
+             <form (submit)="DatosClienteNoRegistrado()">
+                   <button type="submit" style="height:200"  class="btn btn-info ">
+                   <h4><i class="fas fa-user-times"></i> Clientes No registrados</h4>
+                     </button>
+
+             </form>
+       
+  </div>
+
+            </div>
+           
+
+             
+
+
+            </div>
+
+       
+	 	
+    	
+	
+</div>
+  
+</div>
+
+</div>
+</div>
+<div *ngIf="bandera==false">
+	
+</div>
+<div *ngIf="bandera==true">
+
+	<div class="col-md-10" style="padding-top:5%;">
+        <div class="card">
+          <div class="card-header">
+            <h5>Diligencie este formulario para vender un ticket.</h5>
+          </div>
+          <div class="card-body">
+           <form #VentaForm="ngForm" (ngSubmit)="RealizarVenta(VentaForm)"> 
+        <div class="modal-body">
+          <div class="form-group">
+                <label for="UUsuario"><i class="fas fa-align-justify"></i> Ingrese el correo electronico del usuario</label>
+                <input type="text" name="UUsuario" class="form-control" #UUsuario="ngModel" [(ngModel)]="ticket.UUsuario"
+                 >
+         
+              </div>
+
+              <div class="form-group">
+                <label for="Cantidad"><i class="fas fa-align-justify"></i> Cantidad de boletas a comprar</label>
+                <input type="number" name="Cantidad" class="form-control" #Cantidad="ngModel" [(ngModel)]="ticket.Cantidad"
+                 >
+         
+              </div>
+
+              <div class="form-group">
+                <label for="idTicket"><i class="fas fa-align-justify"></i>Tipo de Ticket</label>
+                <select name="idTicket" style="width:200" class="form-control" #idTicket="ngModel" [(ngModel)]="ticket.idTicket">
+                                            <option *ngFor="let opcion of ticktes">{{opcion.Nombre}}</option>
+                                          
+                                             </select>
+                           <input type="hidden" name="Precio" class="form-control" #Precio="ngModel" [(ngModel)]="ticket.Precio"
+                 >
+              </div>
+          </div>
+           <div class="modal-footer">
+          <button type="submit" style="width:700px; " class="btn btn-primary" > <i class="fas fa-plus"></i> Agregar</button>
+
+        </div>
+      </form>
+
+         </div>
+         </div>
+     </div>
+</div>
+

@@ -13,8 +13,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
     
    CommonModule,
     FormsModule,
+
     NgxPaginationModule,
     PipesModule,
+
     RouterModule.forChild([{ path: '', component: VentaTComponent}])
   ]
 })
