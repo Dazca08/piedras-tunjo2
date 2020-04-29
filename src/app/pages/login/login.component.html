@@ -22,11 +22,12 @@
           <div class="form-group">
             <b>Contraseña</b>
             <div class="input-group">
-              <input [type]="seePassword ? 'text' : 'password'" [ngClass]="getValidationClass('clave')" formControlName="clave" class="form-control">
-                <div class="input-group-append">
-                  <span class="input-group-text" (click)="seePassword = !seePassword">
-                    <i *ngIf="seePassword" style="color: #007bff;" class="fas fa-eye"></i>
-                    <i *ngIf="!seePassword" class="fas fa-eye-slash"></i>
+              <input [type]="seePassword ? 'text' : 'password'" 
+                      [ngClass]="getValidationClass('clave')" formControlName="clave" class="form-control">
+                <div *ngIf="clave.value.length > 0" class="input-group-append">
+                  <span class="input-group-text" style="cursor: pointer;" (click)="seePassword = !seePassword">
+                    <i *ngIf="!seePassword" class="fas fa-eye"></i>
+                    <i *ngIf="seePassword" class="fas fa-eye-slash"></i>
                   </span>
                 </div>
             </div>
