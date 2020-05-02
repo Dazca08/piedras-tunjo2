@@ -1,5 +1,28 @@
 <div class="row justify-content-center">
-    <div class="col-6">
-        <app-images-upload (changeFiles)="changeFiles($event)"></app-images-upload>
+    <div class="col-md-12" *ngIf="configuracion">
+        <form #editarconfigForm="ngForm" (ngSubmit)="actualizar(editarconfigForm)">
+            
+            <div class="form-group text-center">
+                <button [disabled]="editarconfigForm.invalid" type="submit" 
+                class="btn btn-success">Guardar cambios</button>
+            </div>
+
+            <div class="form-group">
+                <textarea cols="70" rows="10" type="text" 
+                name="descripcion" 
+                class="form-control" 
+                #desc="ngModel"
+                        [(ngModel)]="descripcion" 
+                        [ngClass]="{'is-invalid': desc.errors && desc.touched}"
+                        required minlength="50"></textarea>
+                <div [hidden]="!desc.errors?.required" class="invalid-feedback">
+                            Terminos requeridos
+                    </div>
+                <div [hidden]="!desc.errors?.minlength" class="invalid-feedback">
+                    Debe escribir los terminos y condiciones completos
+                </div>
+            </div>
+
+        </form>
     </div>
 </div>
