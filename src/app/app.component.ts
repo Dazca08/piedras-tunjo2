@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
 
-const appId = 'c9b72292-e3e6-478d-a6cd-601e195ff462';
+const appId = '94a25d89-60f4-4c25-a379-96dfc39c61c6';
 declare var window: any;
 const OneSignal = window.OneSignal || [];
 
