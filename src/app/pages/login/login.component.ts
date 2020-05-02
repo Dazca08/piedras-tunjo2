@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
   formLogin: FormGroup;
   email: string;
   password: string;
+  seePassword = false;
 
   constructor(
     private fb: FormBuilder,
@@ -30,7 +31,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.formLogin = this.fb.group({
-      correo: ['', Validators.required],
+      correo: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       clave: ['', [Validators.required, Validators.minLength(5)]]
     });
   }
