@@ -32,12 +32,14 @@ export class AppComponent implements OnInit {
       if (!auth) {
         return;
       }
-      const state =  await this.getSubscriptionState();
-      OneSignal.init({
-        appId,
-        notifyButton: {
-          enable: (!state.isPushEnabled || state.isOptedOut)
-        },
+      this.getSubscriptionState().then(state => {
+        OneSignal.init({
+          appId,
+          notifyButton: {
+            // enable: (!state.isPushEnabled || state.isOptedOut)
+            enable: true
+          },
+        });
       });
     });
   }
