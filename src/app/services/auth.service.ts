@@ -45,19 +45,14 @@ export class AuthService {
                         // decode
                         const decode = jwt_decode(res['token']);
                         const user = JSON.parse(decode['usuario']);
-                        // verificar que sea el administrador
-                        if (user['RolId'] === 1) {
-                          this.guardarToken(res['token']);
-                          this.auth$.emit(true);
-                          this.router.navigateByUrl('/home');
-                          Swal.close();
-                        } else if (user['RolId'] === 3) {
+                        // verificar que sea el administrador o cajero
+                        if (user['RolId'] === 1 || user['RolId'] === 3) {
                           this.guardarToken(res['token']);
                           this.auth$.emit(true);
                           this.router.navigateByUrl('/home');
                           Swal.close();
                         } else {
-                          this.mostrarAlert('Error', 'No eres un usuario administrador', 'warning');
+                          this.mostrarAlert('Error', 'Acceso denegado, usuario no valido', 'warning');
                         }
                       } else {
                         this.mostrarAlert('Error', 'Correo y/o contraseña incorrectas', 'warning');

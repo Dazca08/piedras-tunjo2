@@ -19,6 +19,11 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.authService.auth$.subscribe(res => {
+      if (res === true) {
+        this.oneSignalManage();
+      }
+    });
     this.oneSignalManage();
   }
 
