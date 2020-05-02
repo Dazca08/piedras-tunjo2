@@ -56,19 +56,32 @@ export class VentaTicketsServiceService {
                     return of( err.error );
                 }))
                 .subscribe(res => {
-                console.log(res);
-              this.MensajedeExitoOfracaso(res);
+                console.log(res.ok);
+              this.MensajedeExitoOfracaso(res.ok);
                   
                 },
-                (err) => { console.log(err)
+                (err) => { console.log(err.ok)
                
-                       console.log(err);
-                   this.MensajedeExitoOfracaso(err);
+                       console.log(err.ok);
+                   this.MensajedeExitoOfracaso(err.ok);
                            },
 
                    );
   }
   MensajedeExitoOfracaso(ok){
-
+ if(ok==true){
+  Swal.fire(
+            'La reserva ha sido creada!',
+            'venta realizada!',
+            'success'
+                     )
+ }
+ else if(ok==false){
+    Swal.fire(
+            'La reserva  no ha sido creada!',
+            'venta no realizada!',
+            'error'
+                     )
+ }
   }
 }

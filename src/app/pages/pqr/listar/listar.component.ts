@@ -76,7 +76,7 @@ indicadorBoton:string="PQR Contestados"
    }
 
  listarContestados(){
-  this.route.navigateByUrl('/promociones');
+
    if(this.indicador==true){
      this.indicador=false;
      this.indicadorBoton="PQR Sin contestar"

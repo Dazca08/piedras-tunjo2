@@ -22,7 +22,7 @@ export class AgregarpromComponent implements OnInit {
     Nombre:"",
     Descripcion:"",
     LastModification:"",
-    Precio:"",
+   // Precio:"",
     Estado:"",
     FechaFin:"",
     FechaInicio:"",
@@ -81,8 +81,8 @@ export class AgregarpromComponent implements OnInit {
     var precioTemp=parseoDescuento/100*tickete[0].Precio
      var precioCondescuento=tickete[0].Precio-precioTemp
     console.log(precioCondescuento)
-    this.insertarprom.Precio=precioCondescuento.toString();
-    value.Precio=this.insertarprom.Precio;
+    //this.insertarprom.Precio=precioCondescuento.toString();
+    //value.Precio=this.insertarprom.Precio;
     console.log(value)
        this.comparacion(value);
    }
@@ -92,7 +92,7 @@ export class AgregarpromComponent implements OnInit {
     refrescar(){
       this.insertarprom.Nombre="";
       this.insertarprom.Descripcion="";
-      this.insertarprom.Precio="";
+    //  this.insertarprom.Precio="";
       this.insertarprom.FechaFin="";
       this.insertarprom.FechaInicio="";
       this.insertarprom.PorcentajeDescuento="";
@@ -177,6 +177,7 @@ console.log(resultado)
         this.promotemp=resultado;
      var splitinicial="";
      var splitfinal="";
+
    for(this.i=0;this.i<this.promotemp.length;this.i++){
      if(value.Id != this.promotemp[this.i].Id){
        splitinicial=this.splitfechaT(this.promotemp[this.i].FechaInicio)
@@ -194,7 +195,7 @@ console.log(resultado)
      }
    }
 
-   if(bandera=="existe"){
+   if(bandera=="existe" ){
         Swal.fire(
            'La nueva fecha es incorrecta ya que en ese rango exite una promocion',
            'Promocion no Creada',
@@ -203,7 +204,7 @@ console.log(resultado)
              )
       
                         }
-   else{
+   else if(bandera!="existe" || this.promotemp.length==null){
      console.log(value)
     this.servi.insertar(value);
     this.refrescar();

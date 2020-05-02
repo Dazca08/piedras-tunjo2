@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { VentaTComponent } from './venta-t.component';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
-
+//import { NgxQRCodeModule} from 'ngx-qrcode2';
 
 @NgModule({
   declarations: [VentaTComponent],
@@ -13,7 +13,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     
    CommonModule,
     FormsModule,
-
+    //NgxQRCodeModule,
     NgxPaginationModule,
     PipesModule,
 

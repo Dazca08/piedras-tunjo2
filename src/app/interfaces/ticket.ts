@@ -4,12 +4,14 @@ export interface VentaTicket {
     FechaCompra?:string,
     FechaIngreso?:string,
     Precio?:string,
-    Cantidad?:string,
+    Cantidad?:number,
     Qr?:string,
     Token?:string,
     LastModification?:string,
     EstadoId?:string,
-    idTicket?:string,
-    UUsuarioId?:string,
-    UUsuario?:any
+    idTicket?:number,
+    NumeroDocumento?:any,
+    UUsuarioId?:number,
+    UUsuario?:any,
+
 }

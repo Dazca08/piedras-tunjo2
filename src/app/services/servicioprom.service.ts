@@ -15,8 +15,11 @@ export class ServiciopromService {
 
   constructor(private http: HttpClient) { }
   Obtenerpromocion():Observable<any>{
-  
-    return this.http.get(`${ apiUrl }/promocion`)
+  const token = localStorage.getItem('token') || undefined;
+        const headers = new HttpHeaders({
+        Authorization: 'Bearer ' + token
+      });
+    return this.http.get(`${ apiUrl }/promocion`,{headers})
  
   }
 

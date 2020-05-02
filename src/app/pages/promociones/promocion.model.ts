@@ -4,7 +4,7 @@ export interface prom{
     Nombre?:string;
     Descripcion?:string;
     LastModification?:string;
-    Precio?:string;
+   // Precio?:string;
     Estado?:string;
     FechaFin?:string;
     FechaInicio?:string;

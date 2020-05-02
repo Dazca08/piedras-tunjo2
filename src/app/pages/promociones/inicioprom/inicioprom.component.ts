@@ -92,6 +92,7 @@ clean(){
      if(this.indicador==true){
         this.ServiciopromService.Obtenerpromocion().subscribe(resultado =>{
       this.promo=resultado;
+      console.log(this.promo)
       //this.promo=this.promo.filter(x=>x.Nombre=="");
        for(this.i=0;this.i<this.promo.length;this.i++){
            this.fechatemp=this.promo[this.i].FechaInicio;
@@ -287,7 +288,7 @@ refrescar(){
              var precioTemp=parseoDescuento/100*tickete[0].Precio
             var precioCondescuento=tickete[0].Precio-precioTemp
                 console.log(precioCondescuento)
-           value.Precio=precioCondescuento.toString();
+          // value.Precio=precioCondescuento.toString();
                
          
 
