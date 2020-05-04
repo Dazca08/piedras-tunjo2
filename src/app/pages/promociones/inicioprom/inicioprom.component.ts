@@ -74,7 +74,7 @@ clean(){
   }
   ];
 }
- ObtenerTicket(){
+/* ObtenerTicket(){
    this.ServiciopromService.getTickets().subscribe(resultado=>{
   this.ticketTemp=resultado;
   this.ticketTemp=this.ticketTemp.filter(x=>x.Precio!=0)
@@ -85,7 +85,7 @@ clean(){
        console.log(JSON.stringify(error));
      
       }); 
- }
+ }*/
 
 
    ObtenerPromocion(){
@@ -279,15 +279,15 @@ refrescar(){
                           'success'
                               )*/
 
-                   var tickete=this.ticketTemp.filter(x=>x.Id==value.TicketId)
+                   //var tickete=this.ticketTemp.filter(x=>x.Id==value.TicketId)
 
-               var parseoDescuento=parseInt(value.PorcentajeDescuento,10)
+               //var parseoDescuento=parseInt(value.PorcentajeDescuento,10)
 
 
-                  console.log(tickete[0].Precio)
-             var precioTemp=parseoDescuento/100*tickete[0].Precio
-            var precioCondescuento=tickete[0].Precio-precioTemp
-                console.log(precioCondescuento)
+                 // console.log(tickete[0].Precio)
+             //var precioTemp=parseoDescuento/100*tickete[0].Precio
+            //var precioCondescuento=tickete[0].Precio-precioTemp
+              //  console.log(precioCondescuento)
           // value.Precio=precioCondescuento.toString();
                
          
@@ -512,7 +512,7 @@ console.log(resultado)
   ngOnInit(): void {
    this.ObtenerPromocion();
 
-  this.ObtenerTicket();
+  //this.ObtenerTicket();
    
   }
 

@@ -27,7 +27,6 @@ export class AgregarpromComponent implements OnInit {
     FechaFin:"",
     FechaInicio:"",
     PorcentajeDescuento:"",
-    TicketId:"",
     Token:"",   
     }
   promotemp:prom[];
@@ -39,7 +38,7 @@ export class AgregarpromComponent implements OnInit {
   ticket:any;
   ticketselect:any
  i:number;
- ObtenerTicket(){
+ /*ObtenerTicket(){
    this.servi.getTickets().subscribe(resultado=>{
   this.ticket=resultado;
   this.ticket=this.ticket.filter(x=>x.Precio!=0)
@@ -50,12 +49,12 @@ export class AgregarpromComponent implements OnInit {
        console.log(JSON.stringify(error));
      
       }); 
- }
+ }*/
     agregar({value}: {value: prom}){
      
     
      
-   if(value.Nombre=="" || value.Descripcion=="" ||value.TicketId==""  || value.PorcentajeDescuento==""|| value.FechaInicio==""|| value.FechaFin=="" ){
+   if(value.Nombre=="" || value.Descripcion==""   || value.PorcentajeDescuento==""|| value.FechaInicio==""|| value.FechaFin=="" ){
           Swal.fire(
          'Lllene todos los campos por favor!',
            'Promocion no agregada!',
@@ -72,7 +71,7 @@ export class AgregarpromComponent implements OnInit {
    }
    else{
     
-      var tickete=this.ticket.filter(x=>x.Id==this.insertarprom.TicketId)
+      /*var tickete=this.ticket.filter(x=>x.Id==this.insertarprom.TicketId)
 
     var parseoDescuento=parseInt(this.insertarprom.PorcentajeDescuento,10)
 
@@ -82,7 +81,7 @@ export class AgregarpromComponent implements OnInit {
      var precioCondescuento=tickete[0].Precio-precioTemp
     console.log(precioCondescuento)
     //this.insertarprom.Precio=precioCondescuento.toString();
-    //value.Precio=this.insertarprom.Precio;
+    //value.Precio=this.insertarprom.Precio;*/
     console.log(value)
        this.comparacion(value);
    }
@@ -96,7 +95,7 @@ export class AgregarpromComponent implements OnInit {
       this.insertarprom.FechaFin="";
       this.insertarprom.FechaInicio="";
       this.insertarprom.PorcentajeDescuento="";
-      this.insertarprom.TicketId="";
+     // this.insertarprom.TicketId="";
     }
 
 splitfecha(fecha){
@@ -214,7 +213,7 @@ console.log(resultado)
   } 
 
   ngOnInit(): void {
-    this.ObtenerTicket();
+    //this.ObtenerTicket();
   }
 
 }

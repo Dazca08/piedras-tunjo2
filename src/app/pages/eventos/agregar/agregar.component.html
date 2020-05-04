@@ -40,7 +40,7 @@
          
               </div>
 
-            
+            <hr>
               <div class="form-group">
                 <label for="Fecha"><i class="fas fa-calendar"></i> Ingrese la Fecha en la que se realizara el evento</label>
                 <input type="date" name="Fecha" class="form-control" #Fecha="ngModel" [(ngModel)]="evento.Fecha"
@@ -51,7 +51,7 @@
                
               </div>
 
-
+                <hr>
 
               <div class="form-group">
                 <label for="Descripcion"><i class="fas fa-align-justify"></i> Escriba la Descripcion del evento</label>
@@ -72,7 +72,7 @@
               </div>
 
 
-
+                 <hr>
               <div class="form-group">
                 <label for="ImagenesUrl"> <i class="fas fa-images"></i> Por favor suba la imagen que tendra este evento</label>
                 <input type="file" (change)="onFileSelected($event.target.files)" multiple accept="image/x-png,image/gif,image/jpeg">

@@ -88,8 +88,8 @@
                                           </div>
                                             <hr>
                                            <div class="form-group">
-                                            <div class="row">
-                                              <div class="col-md-6">
+                                            <div align="center">
+                                               
                                                   <label for="PorcentajeDescuento"><i class="fa fa-percent"></i> Porcentaje de descuento</label>
                                             <select name="PorcentajeDescuento" style="width:200" class="form-control" #PorcentajeDescuento="ngModel" [(ngModel)]="insertarprom.PorcentajeDescuento">
                                             <option selected>10</option>
@@ -100,22 +100,11 @@
                                             <option>60</option>
                                             <option>70</option>
                                              </select>
-                                              </div>
-                                               <div class="col-md-6">
-                                                <label for="TicketId"><i class="fa fa-ticket-alt"></i> Tipo de ticket en que es valida la promocion</label>
-
-                                                    <select name="TicketId" style="width:200" class="form-control" #TicketId="ngModel" [(ngModel)]="insertarprom.TicketId">
-                                            <option value="{{opcion.Id}}" *ngFor="let opcion of ticket">{{opcion.Nombre}} </option>
-                                          
-                                             </select>
-
-                                                 <!--<select name="TicketId" style="width:200" class="form-control" #TicketId="ngModel" [(ngModel)]="insertarprom.TicketId">
-                                            <option selected>residente</option>
-                                            <option>visitante</option>
-                                             </select>-->
-                                            
-                                              </div>
+                                              
                                             </div>
+                                            
+                                              
+                                         
 
                                              
                                             

@@ -1,8 +1,7 @@
 
 <!--<ngx-qrcode qrc-element-type="url" [qrc-value]="ngxQrcode2" ></ngx-qrcode>-->
+<!--<ngx-qrcode qrc-element-type="url" [qrc-value]="techiediaries" ></ngx-qrcode>-->
 
-<!--<ngx-qrcode qrc-element-type="url" [qrc-value]="techiediaries" ></ngx-qrcode>
-<ngx-qrcode qrc-element-type="url" [qrc-value]="letsboot" ></ngx-qrcode>-->
 <header id="main-header" >
   	<div class="container">
     
@@ -134,7 +133,6 @@
 	
 
 </div>
-
 <div *ngIf="bandera==false">
 	<div align="center">
       <div class="col-md-6" >
@@ -161,7 +159,7 @@
 
            <div class="col-md-6">
             <label>
-               Precio</label>
+               Precio Unitario</label>
             <br>
 
              <label><i class="fas fa-dollar-sign"></i>  {{ticktes[ticket.idTicket].Precio}}</label>
@@ -172,14 +170,14 @@
           <div class="col-md-6">
                <div class="form-group">
                 <label for="NumeroDocumento"><i class="fas fa-pencil-alt"></i> Numero de documento</label>
-                <input type="text" name="NumeroDocumento" class="form-control" #NumeroDocumento="ngModel" [(ngModel)]="ticket.NumeroDocumento"
+                <input type="number" name="NumeroDocumento" class="form-control" #NumeroDocumento="ngModel" [(ngModel)]="ticket.NumeroDocumento"
                  >
                
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label for="Cantidad"><i class="fas fa-list-ol"></i> Cantidad de boletas </label>
+                <label for="Cantidad"><i class="fas fa-list-ol"></i> Cantidad de Tickets </label>
                 <input type="number" name="Cantidad" class="form-control" #Cantidad="ngModel" [(ngModel)]="ticket.Cantidad"
                  >
               </div>
@@ -202,13 +200,21 @@
           <div align="center">
               
           <button type="submit" style="width:200px; " class="btn btn-primary" > <i class="fas fa-hand-holding-usd"></i> Realizar venta</button>
-
+ 
       
 
           </div>
          
       </form>
- 
+    
+    
+<!--<div id="content">
+    <ngx-qrcode qrc-element-type="url" [qrc-value]="letsboot" ></ngx-qrcode>
+    <img src="assets/imagenes/1.jpg">
+</div>
+
+<div id="elementH"></div>-->
+    
          </div>
          </div>
      </div>
@@ -235,7 +241,7 @@
             </div>
              <div class="col-md-6">
                <div class="form-group">
-                <label for="Cantidad"><i class="fas fa-list-ol"></i> Cantidad de boletas a comprar</label>
+                <label for="Cantidad"><i class="fas fa-list-ol"></i> Cantidad de tickets a comprar</label>
                 <input type="number" name="Cantidad" class="form-control" #Cantidad="ngModel" [(ngModel)]="ticket.Cantidad"
                  >
          
@@ -260,7 +266,7 @@
 
            <div class="col-md-6">
             <label>
-               Precio</label>
+               Precio unitario</label>
             <br>
 
              <label><i class="fas fa-dollar-sign"></i>  {{ticktes[ticket.idTicket].Precio}}</label>

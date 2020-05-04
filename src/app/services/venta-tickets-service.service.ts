@@ -47,6 +47,13 @@ export class VentaTicketsServiceService {
       });
     return this.http.get(`${ apiUrl }/tickets`, { headers});
   }
+   getReservas():Observable<any>{
+      const token = localStorage.getItem('token') || undefined;
+        const headers = new HttpHeaders({
+        Authorization: 'Bearer ' + token
+      });
+    return this.http.get(`${ apiUrl }/reserva-tickets`, { headers});
+  }
  async insertar(Datos){
     const token = localStorage.getItem('token') || undefined;
         const headers = new HttpHeaders({
@@ -68,6 +75,12 @@ export class VentaTicketsServiceService {
 
                    );
   }
+
+
+
+
+
+
   MensajedeExitoOfracaso(ok){
  if(ok==true){
   Swal.fire(

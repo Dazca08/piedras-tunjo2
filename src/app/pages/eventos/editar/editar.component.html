@@ -56,7 +56,7 @@
                   Debe contener al menos 2 caracteres
                 </div>
               </div>
-
+             <hr>
             <!--  <div class="form-group">
                 <label for="  FechaPublicacion">Fecha de publicacion</label>
                 <input type="date" name="FechaPublicacion" class="form-control" #FechaPublicacion="ngModel" [(ngModel)]="evento.FechaPublicacion"
@@ -82,7 +82,7 @@
                
               </div>
 
-
+                 <hr>
 
               <div class="form-group">
                 <label for="Descripcion"><i class="fas fa-align-justify"></i> Escriba la Descripcion del evento</label>
@@ -107,7 +107,7 @@
                
               </div>
 
-              
+              <hr>
 
               <div class="form-group">
                <div>
@@ -117,11 +117,11 @@
                  src={{rutaImagen}}
                        >    
                </div>
-                 </div>      
-                <br><br>
+                 </div> 
+                
                 <label for="ImagenesUrl"> Si desea cambiar la imagen actual del evento</label>
 
-
+                 
 
                 <input type="file" (change)="onFileSelected($event.target.files)" multiple accept="image/x-png,image/gif,image/jpeg">
          <input type="hidden" name="ImagenesUrl" class="form-control" #ImagenesUrl="ngModel" [(ngModel)]="evento.ImagenesUrl"

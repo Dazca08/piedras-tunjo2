@@ -9,7 +9,7 @@ export interface prom{
     FechaFin?:string;
     FechaInicio?:string;
     PorcentajeDescuento?:string;
-    TicketId?:string;
+    //TicketId?:string;
     Token?:string;
 
 }

@@ -13,7 +13,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     
    CommonModule,
     FormsModule,
-    //NgxQRCodeModule,
+   //NgxQRCodeModule,
     NgxPaginationModule,
     PipesModule,
 

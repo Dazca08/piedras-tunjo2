@@ -59,9 +59,9 @@ export class HomeComponent implements OnInit {
       route: '/preguntas-frecuentes'
     },
     {
-      title: 'Gestión de Qr',
-      image: 'qr.png',
-      route: '/modulo-qr'
+    title:   'Venta de tickets',
+      image: 'registradora.jpg',
+      route: '/cajero'
     },
     {
       title: 'Configuración',

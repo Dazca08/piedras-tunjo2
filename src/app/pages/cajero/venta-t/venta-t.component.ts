@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewChild,ElementRef} from '@angular/core';
 import {VentaTicket } from 'src/app/interfaces/ticket';
 import { AuthService } from 'src/app/services/auth.service';
 import {VentaTicketsServiceService } from 'src/app/services/venta-tickets-service.service';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule , FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import * as jsPDF from "jspdf";
+import  html2canvas from 'html2canvas';
+import html2pdf from 'html2pdf.js'
 declare var $: any;
 @Component({
   selector: 'app-venta-t',
@@ -51,17 +54,29 @@ export class VentaTComponent implements OnInit {
 date:any;
 k:any;
 
-
-  ;
+exportAsConfig={
+  type:'png',
+  elementId:'element'
+} 
   constructor(private router: Router, private ServicioTicket:VentaTicketsServiceService ,private authService: AuthService) {    }
  // ngxQrcode2 = "10732538042";
   //techiediaries = "tickete1";
-  //letsboot = 'ikji';
+letsboot = '';
   ngOnInit(): void {
         //this.ObtenerUsuarios();
         //  this.ObtenerRoles();
         this.ObtenerTickets();
+         var k= Date.now();
+    console.log(k)
       
+  }
+  MensajePrecio(Precio){
+       Swal.fire(
+            'Tickets Verificados!',
+            'Precio total en la transaccion :'+Precio,
+            'info'
+                     )
+       this.refrescar();
   }
  ObtenerUsuarioCajero(){
   
@@ -72,11 +87,11 @@ k:any;
     this.k=this.k.filter(x=>x.Id==res.Id);
     console.log(this.k)
     console.log(this.ticket)
-  this.ticket.FechaCompra=Date.now().toString();
+  this.ticket.FechaCompra=new Date().toString()
     this.ticket.FechaIngreso=this.ticket.FechaCompra
  
  this.ticket.EstadoId="1";
- this.ticket.LastModification=Date.now().toString();
+ this.ticket.LastModification=new Date().toString();
 
 
  this.ticket.UUsuarioId=this.k[0].Id
@@ -88,11 +103,15 @@ k:any;
  this.ticket.Qr=ticketee;
   //this.ticket.Qr="1073253903"
   //this.ticket.UUsuario.NumeroDocumento="1073253903"
- 
+ //this.letsboot = JSON.stringify(this.ticket)
+ this.letsboot = this.ticket.NumeroDocumento;
  console.log("ticket antes de enviar")
  console.log(this.ticket)
  this.ServicioTicket.insertar(this.ticket);
-this.refrescar();
+ setTimeout(() => { this.CreatePdf(this.ticket) }, 2000);
+ 
+
+
 
   })
       
@@ -150,7 +169,9 @@ else{
  console.log(value)
   //console.log(this.usuarios.length)
 this.ServicioTicket.insertar(value);
- this.refrescar();
+ setTimeout(() => { this.MensajePrecio(value.Precio) }, 2000);
+ 
+  //this.refrescar()
 }
 
 console.log(value)
@@ -246,9 +267,9 @@ else if(this.bandera==true && value.UUsuario.length<5){
             'error'
                      )
 }
-else if(this.bandera==false && value.NumeroDocumento==0 || value.NumeroDocumento<1000000000){
+else if(this.bandera==false && value.NumeroDocumento<10000000 || value.NumeroDocumento>9999999999){
      Swal.fire(
-            'El numero de documento no puede estar vacio y debe contener 10 digitos!',
+            'El numero de documento es invalido , debe tener al menos 8 digitos y maximo 10!',
             'venta no realizada!',
             'error'
                      )
@@ -256,7 +277,7 @@ else if(this.bandera==false && value.NumeroDocumento==0 || value.NumeroDocumento
 
 else if(value.Cantidad>10){
    Swal.fire(
-            'La cantidad maxima de tickets que puede comprar un usuario es 10!',
+            'La cantidad maxima de tickets que puede comprar un usuario son 10!',
             'venta no realizada!',
             'error'
                      )
@@ -303,4 +324,89 @@ refrescar(){
      this.ticket=this.ticketVacio
      console.log(this.ticket)
 }
+
+
+reservaCreada:any
+comparativo:number=0
+public CreatePdf(parametro){
+ // alert('downloadig....Ticket');
+ const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  onOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
+Toast.fire({
+  icon: 'success',
+  title: 'Descargando Tickets'
+})
+  this.ServicioTicket.getReservas().subscribe(resultado=>{
+    this.reservaCreada=resultado.reservas;
+ //console.log(parametro.FechaCompra)
+ //console.log(this.reservaCreada[0].FechaCompra)
+ //var fechaAct=new Date().toString()
+
+
+// console.log(fechaAct)
+   this.reservaCreada=this.reservaCreada.filter(x=>x.NumeroDocumento==parametro.NumeroDocumento);
+   // this.usuarios=this.usuarios.filter(x=>x.CorreoElectronico==value.UUsuario);
+     //var fecha =new Date(this.reservaCreada[0].FechaCompra).toString()
+     // console.log(fecha)
+    console.log(this.reservaCreada)
+    var tipoticket="";
+    
+ this.ServicioTicket.getTickets().subscribe(resultado =>{
+    var Ticket=resultado
+    console.log(Ticket)
+    console.log(parametro.idTicket)
+    this.comparativo =parseInt(parametro.idTicket,10)+1;
+    console.log(this.comparativo)
+    Ticket=Ticket.filter(x=>x.Id==this.comparativo)
+    console.log(Ticket)
+    tipoticket=Ticket[0].Nombre
+    var imgsrc= new Image;
+var nombreqr=this.reservaCreada[0].Qr;
+console.log(this.reservaCreada.length)
+
+imgsrc.src='http://piedrasdeltunjo.tk/images/getImage?tipo=reserva-tickets&nombre='+nombreqr+'.JPEG'
+
+    const doc =new jsPDF();
+     //var ii=i+1;
+  doc.text("Recibo compra de ticket piedras del tunjo",55,10)
+   doc.addImage(imgsrc,'jpg',80,40,50,50)
+  doc.text("Identificacion  : "+parametro.NumeroDocumento.toString() ,70, 120);
+  doc.text("Tipo de ticket : "+tipoticket ,70, 130);
+  doc.text("Precio Total : "+parametro.Precio ,70,140);
+   doc.text("Cantidad de tiquets para este recibo:"+parametro.Cantidad ,70, 150);
+    doc.text("Nota : Para ingresar al parque debes presentar este Recibo en la entrada  " ,20,180);
+
+  
+  doc.save("ticket : "+nombreqr)
+ 
+setTimeout(() => { this.MensajePrecio(parametro.Precio) }, 1500);
+//this.refrescar();
+
+ })
+   /*if(parametro.idTicket==0)
+  {
+     tipoticket="Visitante"
+  }
+  else if(parametro.idTicket==1){
+      tipoticket="Residente"
+  }
+  else if(parametro.idTicket==2){
+      tipoticket="niño"
+  }*/
+
+
+  })
+
+  }
+ 
 }
