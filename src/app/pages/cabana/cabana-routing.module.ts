@@ -3,16 +3,21 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
-    loadChildren: () => import('./inicioc/inicioc.module').then(mod => mod.IniciocModule)
-  },
-  {
-    path: 'editar/:id',
-    loadChildren: () => import('./editarc/editarc.module').then(mod => mod.EditarcModule)
+    path: 'inicio',
+    loadChildren: () => import('./inicio/inicio.module').then(mod => mod.InicioModule)
   },
   {
     path: 'agregar',
-    loadChildren: () => import('./agregarc/agregarc.module').then(mod => mod.AgregarcModule)
+    loadChildren: () => import('./agregar/agregar.module').then(mod => mod.AgregarModule)
+  },
+  {
+    path: 'editar',
+    loadChildren: () => import('./editar/editar.module').then(mod => mod.EditarModule)
+  },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'inicio'
   }
 ];
 
