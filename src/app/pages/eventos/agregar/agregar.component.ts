@@ -31,6 +31,7 @@ eventos: Evento[];
    fechaActualtemp:any;
    fechaEvento:any;
    resultadoComparacion:any;
+   eventostemp:any;
   constructor(private formBuilder: FormBuilder,
       private servi: ServicioEventoService ,
       Router: Router  ) { }
@@ -145,11 +146,13 @@ console.log(this.resultadoComparacion);
 
 
  else{
-
-this.servi.insertar(value)
-this.cargandoImagen();
+this.comparacion(value)
 this.selectedfile=null;
 this.refrescar();
+/*this.servi.insertar(value)
+this.cargandoImagen();
+this.selectedfile=null;
+this.refrescar();*/
       
     //this.eventoForm.reset();
 
@@ -164,8 +167,10 @@ onFileSelected(evento){
 
 //this.selectedfile=<FileList>evento.target.files;
 this.selectedfile=evento;
+console.log(this.selectedfile)
 for(this.i=0;this.i<this.selectedfile.length;this.i++){
   this.evento.ImagenesUrl=this.evento.ImagenesUrl+this.selectedfile[this.i].name.toString()+"@";
+  console.log(this.evento.ImagenesUrl)
 }
 
 
@@ -196,5 +201,40 @@ this.evento.ListaComentariosEvento="";
    console.log( this.fechaActual);
 
   }
+    comparacion(value){
+     var bandera="no existe"
+     this.servi.ObtenerJson().subscribe(resultado =>{
+        this.eventostemp=resultado;
+     console.log(this.eventostemp)
+     console.log(value)
+   for(this.i=0;this.i<this.eventostemp.length;this.i++){
+         if( value.nombre.toLowerCase()==this.eventostemp[this.i].Nombre.toLowerCase()  ){
+            bandera="existe";
+         }
+        
+  
+   }
+
+   if(bandera=="existe"){
+        Swal.fire(
+           'El nombre ya existe para otro evento',
+           'Evento no agregado',
+           'error'
+            
+             )
+      this.refrescar();
+                        }
+ 
+   else{
+          
+this.servi.insertar(value)
+this.cargandoImagen();
+
+      
+    
+   }
+ })
+  
+  } 
 
 }
