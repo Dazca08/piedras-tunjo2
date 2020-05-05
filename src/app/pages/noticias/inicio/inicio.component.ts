@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Cabana } from 'src/app/interfaces/cabana.interface';
-import { CabanasService } from '../../../services/cabanas.service';
+import { NoticiasService } from '../../../services/noticias.service';
+import { Noticia } from 'src/app/interfaces/noticia.interface';
 import Swal from 'sweetalert2';
 import { ImagesService } from '../../../services/images.service';
-
 
 @Component({
   selector: 'app-inicio',
@@ -12,23 +11,22 @@ import { ImagesService } from '../../../services/images.service';
 })
 export class InicioComponent implements OnInit {
 
-  cabanas: Cabana[] = [];
+  noticias: Noticia[] = [];
 
   constructor(
-    private cabanasService: CabanasService,
+    private noticiasService: NoticiasService,
     private imagesService: ImagesService
   ) { }
 
   ngOnInit(): void {
-    this.obtenerCabanas();
+    this.obtenerNoticias();
   }
 
-  async obtenerCabanas() {
-    this.cabanas = await this.cabanasService.getCabanas();
-    // console.log(this.cabanas);
+  async obtenerNoticias() {
+    this.noticias = await this.noticiasService.getNoticias();
   }
 
-  showConfirmAlert(cabana: Cabana) {
+  showConfirmAlert(noticia: Noticia) {
     Swal.fire({
       title: 'Are you sure?',
       text: 'You wont be able to revert this!',
@@ -39,10 +37,10 @@ export class InicioComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then(async (result) => {
       if (result.value) {
-        const deleted = await this.cabanasService.eliminar(cabana.Id);
+        const deleted = await this.noticiasService.eliminarNoticia(noticia.id);
         if (deleted) {
-          await this.imagesService.deleteImages(cabana.ImagenesUrl, 'cabana');
-          this.cabanas = this.cabanas.filter(x => x.Id !== cabana.Id);
+          await this.imagesService.deleteImages(noticia.imagenesUrl, 'noticia');
+          this.noticias = this.noticias.filter(x => x.id !== noticia.id);
           Swal.fire(
             'Deleted!',
             'Your file has been deleted.',
@@ -52,4 +50,5 @@ export class InicioComponent implements OnInit {
       }
     });
   }
+
 }
