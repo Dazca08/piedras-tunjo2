@@ -25,8 +25,8 @@ export class AgregarComponent implements OnInit {
   ngOnInit(): void {
     this.formCabana = this.fb.group({
       Nombre: ['', Validators.required],
-      Precio: [0, Validators.required],
-      Capacidad: [0, Validators.required]
+      Precio: [1, Validators.required],
+      Capacidad: [1, Validators.required]
     });
   }
 

@@ -25,6 +25,7 @@ export class InicioComponent implements OnInit {
 
   async obtenerCabanas() {
     this.cabanas = await this.cabanasService.getCabanas();
+    // console.log(this.cabanas);
   }
 
   showConfirmAlert(cabana: Cabana) {
@@ -40,7 +41,7 @@ export class InicioComponent implements OnInit {
       if (result.value) {
         const deleted = await this.cabanasService.eliminar(cabana.Id);
         if (deleted) {
-          await this.imagesService.deleteImages(cabana.ImagenesUrl, 'picto');
+          await this.imagesService.deleteImages(cabana.ImagenesUrl, 'cabana');
           this.cabanas = this.cabanas.filter(x => x.Id !== cabana.Id);
           Swal.fire(
             'Deleted!',

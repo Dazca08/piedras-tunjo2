@@ -88,7 +88,7 @@ export class CabanasService {
     });
   }
 
-  update(cabana: Cabana, id: number) {
+  update(cabana: Cabana) {
     // prepare headers
     const prepare = this.prepareHeaders();
     if (!prepare) {
@@ -96,7 +96,7 @@ export class CabanasService {
       return Promise.resolve([]);
     }
     return new Promise(resolve => {
-      this.http.put(`${ apiUrl }/cabana/${ id }`, cabana, { headers: this.headers })
+      this.http.put(`${ apiUrl }/cabana/${ cabana.Id }`, cabana, { headers: this.headers })
                 .pipe(
                   catchError(err => of({ ok: false }))
                 )

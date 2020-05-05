@@ -2,7 +2,7 @@
     <button class="btn btn-sm btn-success" routerLink="/cabanas/agregar">Nueva Cabaña</button>
 </div>
 <hr>
-<div class="row">
+<div class="row" *ngIf="cabanas">
     <div class="col-md-4 col-sm-6 col-xs-12" *ngFor="let cabana of cabanas">
         <div class="card mb-3 shadow">
             <app-carousel-images [imagenes]="cabana.ImagenesUrl | imgUrlToArray" 
@@ -19,10 +19,12 @@
             <div class="card-footer">
                 <div class="row">
                     <div class="col">
-                        <button class="btn btn-sm btn-block btn-primary" routerLink="/cabanas/editar/{{ cabana.Id }}">Editar</button>
+                        <button class="btn btn-sm btn-block btn-primary" 
+                        routerLink="/cabanas/editar/{{ cabana.Id }}">Editar</button>
                     </div>
                     <div class="col">
-                        <button class="btn btn-sm btn-block btn-danger" (click)=showConfirmAlert(cabana)>Eliminar</button>
+                        <button class="btn btn-sm btn-block btn-danger" 
+                        (click)=showConfirmAlert(cabana)>Eliminar</button>
                     </div>
                 </div>
             </div>
