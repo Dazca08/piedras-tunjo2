@@ -1,1 +1,31 @@
-<p>inicio works!</p>
+<div class="container">
+    <button class="btn btn-sm btn-success" routerLink="/cabanas/agregar">Nueva Cabaña</button>
+</div>
+<hr>
+<div class="row">
+    <div class="col-md-4 col-sm-6 col-xs-12" *ngFor="let cabana of cabanas">
+        <div class="card mb-3 shadow">
+            <app-carousel-images [imagenes]="cabana.ImagenesUrl | imgUrlToArray" 
+                                tipo="cabana"></app-carousel-images>
+            <div class="card-body">
+                <b class="text-muted">{{ cabana.Nombre }}</b>
+                <br>
+                <b class="text-muted">Precio: </b>
+                {{ cabana.Precio | currency: 'COP ' }}
+                <br>
+                <b class="text-muted">Capacidad: </b>
+                {{ cabana.Capacidad }}
+            </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col">
+                        <button class="btn btn-sm btn-block btn-primary" routerLink="/cabanas/editar/{{ cabana.Id }}">Editar</button>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-sm btn-block btn-danger" (click)=showConfirmAlert(cabana)>Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

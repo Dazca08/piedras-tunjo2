@@ -1,1 +1,60 @@
-<p>agregar works!</p>
+<div class="row justify-content-center mt-2">
+    <div class="col-md-8 col-sm-12">
+        <button class="btn btm-sm btn-primary" routerLink="/pictogramas">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <form (ngSubmit)="enviarForm()" [formGroup]="formCabana">
+            <div class="card shadow">
+                <div class="card-header text-center">
+                    <b class="text-muted">NUEVA CABAÑA</b>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <b class="text-muted">Nombre</b>
+                                <input type="text" class="form-control" [ngClass]="getValidationClass('Nombre')"
+                                 formControlName="Nombre">
+                                <div class="valid-feedback">Ok!</div>
+                                <div class="invalid-feedback">
+                                  <span *ngIf="nombre.errors?.required">
+                                      El nombre es requerido
+                                  </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <b class="text-muted">Precio</b>
+                                <input type="number" class="form-control" [ngClass]="getValidationClass('Precio')" 
+                                formControlName="Precio">
+                                <div class="valid-feedback">Ok!</div>
+                                <div class="invalid-feedback">
+                                  <span *ngIf="precio.errors?.required">
+                                      La precio es requerida
+                                  </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <b class="text-muted">Capacidad</b>
+                                <input type="number" class="form-control" [ngClass]="getValidationClass('Capacidad')" 
+                                formControlName="Capacidad">
+                                <div class="valid-feedback">Ok!</div>
+                                <div class="invalid-feedback">
+                                  <span *ngIf="precio.errors?.required">
+                                      La capacidad es requerida
+                                  </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <app-images-upload (changeFiles)="onChangeFile($event)"></app-images-upload>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="card-footer text-center">
+                    <button type="submit" [disabled]="formCabana.invalid || files.length === 0" class="btn btn-success">Guardar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

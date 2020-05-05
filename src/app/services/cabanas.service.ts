@@ -70,6 +70,24 @@ export class CabanasService {
     });
   }
 
+  agregar(cabana: Cabana): Promise<boolean> {
+    const prepare = this.prepareHeaders();
+    if (!prepare) {
+      console.log('Token not found');
+      return Promise.resolve(false);
+    }
+    return new Promise(resolve => {
+      this.http.post(`${ apiUrl }/cabana`, cabana, { headers: this.headers })
+                .pipe(
+                  catchError(err => of({ ok: false }))
+                )
+                .subscribe(res => {
+                  console.log(res);
+                  resolve(res['ok']);
+                });
+    });
+  }
+
   update(cabana: Cabana, id: number) {
     // prepare headers
     const prepare = this.prepareHeaders();
@@ -78,7 +96,7 @@ export class CabanasService {
       return Promise.resolve([]);
     }
     return new Promise(resolve => {
-      this.http.put(`${ apiUrl }/${ id }`, cabana, { headers: this.headers })
+      this.http.put(`${ apiUrl }/cabana/${ id }`, cabana, { headers: this.headers })
                 .pipe(
                   catchError(err => of({ ok: false }))
                 )
@@ -94,7 +112,7 @@ export class CabanasService {
       return Promise.resolve([]);
     }
     return new Promise(resolve => {
-      this.http.delete(`${ apiUrl }/${ id }`, { headers: this.headers })
+      this.http.delete(`${ apiUrl }/cabana/${ id }`, { headers: this.headers })
                 .pipe(
                   catchError(err => of({ ok: false }))
                 )

@@ -11,7 +11,7 @@ const routes: Routes = [
     loadChildren: () => import('./agregar/agregar.module').then(mod => mod.AgregarModule)
   },
   {
-    path: 'editar',
+    path: 'editar/:id',
     loadChildren: () => import('./editar/editar.module').then(mod => mod.EditarModule)
   },
   {
