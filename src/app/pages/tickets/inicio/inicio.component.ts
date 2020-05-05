@@ -16,12 +16,9 @@ export class InicioComponent implements OnInit {
   tickets:Ticket[];  
   ticketes: Ticket ={  	   
     Id:'',
-    LastModificacion:'',
     Nombre:'',
     Precio:'',
-    Token:'',
-    Descripcion:'',
-    Estado:''   
+    Descripcion:''
   }
 
   constructor(private router: Router, private ServicioTicket:ServicioTicketService) { }
@@ -30,6 +27,7 @@ export class InicioComponent implements OnInit {
 
   ngOnInit(): void {
     this.ObtenerTickets();
+
   }
 
   ObtenerTickets(){
@@ -47,8 +45,14 @@ export class InicioComponent implements OnInit {
    
   inhabilitar(id){
     console.log(id);
-    this.ServicioTicket.Habilitar(id,2);         
-    this.ngOnInit();
+    var inhab = this.ServicioTicket.Habilitar(id,2);   
+    /*if (inhab) {
+      this.ObtenerTickets();
+      this.ngOnInit();
+      this.ObtenerTickets();
+      //this.router.navigateByUrl('/tickets');
+    }       
+    */
   }
 
 
