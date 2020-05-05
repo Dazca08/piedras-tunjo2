@@ -107,10 +107,15 @@ else{
      this.filtronombre=eventoos.filter(x=>x.title==this.nombretemmp);
 
       this.array=this.filtronombre[0];
-
+      
        this.filtronombreE=event.filter(x=>x.Nombre==this.array.title);
         this.evento=this.filtronombreE[0];
-
+       if(this.evento.ImagenesUrl.includes("@")){
+         var splited = this.evento.ImagenesUrl.split("@", 2); 
+   
+      this.evento.ImagenesUrl=splited[0];
+    
+       }
         if(this.array.title==this.nombretemmp){
              
            const Toast = Swal.mixin({
@@ -128,6 +133,7 @@ else{
 
 Toast.fire({
 //title: this.evento.Nombre,
+
   text: this.evento.Descripcion,
   imageUrl: 'http://piedrasdeltunjo.tk/images/getImage?tipo=evento&nombre='+this.evento.ImagenesUrl,
   
