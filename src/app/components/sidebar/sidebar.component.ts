@@ -33,9 +33,10 @@ export class SidebarComponent implements OnInit {
     { label: 'Cabañas', path: '/cabanas', icon: 'home' },
     { label: 'Puntos de Interés', path: '/puntos-interes', icon: 'map-marker-alt' },
     { label: 'Noticias', path: '/noticias', icon: 'newspaper'},
-    { label: 'Venta de tiquets', path: '/cajero', icon: 'qrcode' },
+    { label: 'Venta de tiquets', path: '/cajero', icon: 'hand-holding-usd' },
     { label: 'PQRS', path: '/pqr', icon: 'question'},    
     { label: 'Gestion Ticket', path: '/tickets', icon: 'ticket-alt'},
+    { label: 'Terminos&Condiciones', path: '/configuracion', icon: 'search'},
 
   ];
 

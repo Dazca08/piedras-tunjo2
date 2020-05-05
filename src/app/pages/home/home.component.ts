@@ -64,8 +64,8 @@ export class HomeComponent implements OnInit {
       route: '/cajero'
     },
     {
-      title: 'Configuración',
-      image: 'settings.png',
+      title: 'Terminos y Condiciones',
+      image: 'T&R.png',
       route: '/configuracion'
     },
     {

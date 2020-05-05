@@ -17,22 +17,7 @@ export class ServiciomapaService {
   getPuntosInteres() {
     return this.http.get<PuntoInteres[]>(`${ URL }/puntos-interes`);
   }
-  /*  postPuntosInteres(punto: PuntoInteres) {
-    return this.http.post(`${ URL }/puntos-interes`, punto);
-  }
-
-  putPuntosInteres(punto: PuntoInteres) {
-    return this.http.put(`${ URL }/puntos-interes/${ punto.Id }`, punto);
-  }
-
-  deletePuntosInteres(id: number): Promise<boolean> {
-    return new Promise(resolve => {
-      this.http.delete(`${ URL }/puntos-interes/${ id }`)
-              .subscribe(res => {
-                resolve(res['ok']);
-              });
-    });
-  }*/
+  
    existsPunto(lng: number, lat: number): Promise<boolean> {
     return new Promise(resolve => {
       this.getPuntosInteres().subscribe(puntos => {

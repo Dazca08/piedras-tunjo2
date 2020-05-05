@@ -36,8 +36,9 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="nombre"> <i class="fa fa-pencil-alt"></i> Ingrese la pregunta</label>
+              <textarea name="nombre" rows="2" cols="53" [(ngModel)]="pregunta.nombre"></textarea>
             <input 
-              type="text" 
+              type="hidden" 
               name="nombre" 
               class="form-control"
               #nombre="ngModel"
@@ -45,7 +46,7 @@
               >
              
           </div>
-
+           <hr>
           <div class="form-group">
             <label for="apellido"> <i class="fa fa-pencil-alt"></i> Ingrese la descripcion de la pregunta</label>
             <div align="center">

@@ -62,8 +62,9 @@
            
             <p class="card-text"><i class="fa fa-pencil-alt"></i> Pregunta 
             </p>
-               <input type="text" name="nombre"  style="width:285;" class="form-control" #nombre="ngModel" [(ngModel)]="pregunta.nombre">
-
+            <textarea name="nombre" rows="2" cols="38" [(ngModel)]="pregunta.nombre"></textarea>
+               <input type="hidden" name="nombre"  style="width:285;" class="form-control" #nombre="ngModel" [(ngModel)]="pregunta.nombre">
+             <hr>
            <p class="card-text"><i class="fa fa-pencil-alt"></i> Descripcion </p>
             <textarea name="descripcion" rows="4" cols="38" [(ngModel)]="pregunta.descripcion"></textarea>
             <br>

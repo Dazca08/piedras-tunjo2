@@ -1,0 +1,142 @@
+<header id="main-header" class="py-2 bg-info text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <h1>
+         <i class="fas fa-phone"></i> Contactanos
+        </h1>
+      </div>
+      <div class="col-md-3">
+        <a href="#" class="btn btn-dark btn-block"  style="height:40;"data-toggle="modal" data-target="#agregarClienteModal">
+          <i class="fas fa-question-circle"></i> Preguntas frecuentes
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="row">
+  <div class="col-md-6">
+    <hr>
+    <div align="center">
+      <h4>Localizacion</h4>
+    </div>
+      <p style="text-align: left;">
+    El Parque Arqueológico de Facatativá está localizado en el municipio de Facatativá Calle 5 # 12A - 10, en el departamento de Cundinamarca y comprende aproximadamente 27 hectáreas donde se pueden encontrar abrigos rocosos, pintura rupestre y paisajes con gran riqueza ambiental. El parque se encuentra a una altura de 2.600 metros sobre el nivel del mar, se encuentra ubicado a 1.150 metros al nordeste de la plaza de Facatativá y a 40 km de Bogotá
+    </p>
+  </div>
+  <div class="col-md-6">
+    <hr>
+<div align="center">
+      <h4>Tarifas</h4>
+    </div>
+     <p style="text-align: left;">
+     - Adultos $ 4.800
+     </p>
+     <p style="text-align: left;">
+     - Nacidos en Facatativá $ 1.800 (debe presentarse documento de identidad, nacido o expedido en el municipio).
+     </p>
+     <p style="text-align: left;">
+     - Niños de los 5 a los 10 años $1.800
+     </p>
+     <p style="text-align: left;">
+     - Menores de 5 años y mayores de 65 años, exentos de pago.
+     </p>
+     <p style="text-align: left;">
+     - Personas en condición de discapacidad demostrable, exentos de pago.
+     </p>
+
+
+
+
+
+
+
+
+    
+  </div>
+</div>
+
+<br>
+<hr>
+<div class="container">
+
+          <div class="row">
+    
+         <div class="col-md-6">
+          <div align="center">
+          <h4>Caracteristicas</h4>
+          </div>
+          <p style="text-align: left;">
+     El Parque Arqueológico de Facatativá es valioso por el patrimonio pictográfico que alberga y por ser una reserva natural que evidencia la riqueza ambiental de la región. El patrimonio arqueológico que se encuentra en los predios del parque, hace referencia a conjuntos de pintura rupestre ubicados en las paredes de los abrigos rocosos.
+    
+      </p>
+         <!-- <div class="card">
+            <div class="card-header">
+              <div align="center">
+                 <h4>Preguntas Frecuentes (FAQ)</h4>
+              </div>
+             
+            </div>
+            <div class="card-body" *ngFor="let pregunta of preguntas ; let i = index ">
+              
+                 <h5>{{pregunta.nombre}}</h5>
+                <p>{{pregunta.descripcion}} </p>
+                  <hr>
+      </div>
+    </div>-->
+  </div>
+  <hr>
+<div class="col-md-6">
+  <div align="center">
+      <h4>Administrador del área</h4>
+    </div>
+     <p style="text-align: left;">
+     -Alcaldía Municipal de Facatativá en Cundinamarca - Calle 5 # 12A - 10 
+  
+      
+     </p>
+     <p style="text-align: left;">
+       -Teléfono: 315 670 25 07 
+     </p>
+     <p style="text-align: left;">
+      
+      -Correo electrónico: oficina.turismo@alcaldiafacatativa.gov.co
+     </p>
+</div>
+        
+</div>
+        
+      
+</div>
+
+
+
+<div class="col-md-6">
+  <div class="modal fade" id="agregarClienteModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-info text-white">
+        <h5 class="modal-title">Preguntas frecuentes</h5>
+        <button class="close" data-dismiss="modal" #botonCerrar>
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="card">
+            
+            <div class="card-body" *ngFor="let pregunta of preguntas ; let i = index ">
+              
+                 <h5>{{pregunta.nombre}}</h5>
+                <p>{{pregunta.descripcion}} </p>
+                  <hr>
+      </div>
+    </div>
+    
+
+    </div>
+  </div>
+</div>
+</div>
+
+
+
