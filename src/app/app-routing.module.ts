@@ -65,11 +65,6 @@ const routes: Routes = [
     canLoad: [AuthGuard],
   },
   {
-    path: 'subscripciones',
-    loadChildren: () => import('./pages/subscripciones/subscripciones.module').then(mod => mod.SubscripcionesModule),
-    canLoad: [AuthGuard],
-  },
-  {
     path: 'usuarios',
     loadChildren: () => import('./pages/usuarios/usuarios.module').then(mod => mod.UsuariosModule),
     canLoad: [AuthGuard],
@@ -99,8 +94,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/cajero/cajero.module').then(mod => mod.CajeroModule),
     canLoad: [AuthGuard],
   },
-
-
+  {
+    path: 'reportes',
+    loadChildren: () => import('./pages/reportes/reportes.module').then(mod => mod.ReportesModule),
+    canLoad: [AuthGuard],
+  },
   { path: '', pathMatch: 'full', redirectTo: 'tablero' },
   { path: '**', pathMatch: 'full', redirectTo: 'tablero' }
 ];
