@@ -1,6 +1,7 @@
 export const   routes = [
     // { label: 'Panel Admin', path: '/home', icon: 'dragon' },
     { label: 'Usuarios', path: '/usuarios', icon: 'users' },
+    { label: 'Usuarios Pendientes', path: '/usuarios-pendientes', icon: 'user-tie'},
     { label: 'Pictogramas', path: '/pictogramas', icon: 'skull' },
     { label: 'Promociones', path: '/promociones', icon:  'bullhorn'},
     { label: 'Recorridos', path: '/recorridos', icon: 'route'},
@@ -12,5 +13,6 @@ export const   routes = [
     { label: 'Venta de tiquets', path: '/cajero', icon: 'hand-holding-usd' },
     { label: 'PQRS', path: '/pqr', icon: 'question'},
     { label: 'Gestion Ticket', path: '/tickets', icon: 'ticket-alt'},
+    { label: 'Reportes', path: '/reportes', icon : 'table'},
     { label: 'Terminos&Condiciones', path: '/configuracion', icon: 'search'}
 ];

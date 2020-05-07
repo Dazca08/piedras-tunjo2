@@ -4,6 +4,7 @@ export interface Usuario {
     Apellido: string;
     TipoDocumento: string;
     NumeroDocumento: string;
+    FechaNacimiento: any;
     LugarExpedicion: string;
     CorreoElectronico: string;
     Clave: string;

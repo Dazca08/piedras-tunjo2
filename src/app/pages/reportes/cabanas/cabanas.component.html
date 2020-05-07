@@ -15,6 +15,7 @@
 <div class="container table-responsive" *ngIf="reservaCabanas && !verGrafica">
     <div class="row justify-content-end mb-2">
         <div class="col-md-3 col-sm-4 col-xs-6">
+            <b class="text-muted">Filtrar por mes </b>
             <select [(ngModel)]="selectedMonth" class="form-control">
                 <option *ngFor="let month of months; let i = index;" [value]="(i+1)">{{ months[i] }}</option>
             </select>
@@ -31,7 +32,7 @@
         </thead>
         <tbody>
             <tr *ngIf="(reservaCabanas | reservasMes:selectedMonth:'cabana').length === 0" class="text-center">
-                <td colspan="4">No hay reservas para mostrar</td>
+                <td colspan="4">No hay reservas para mostrar en el mes seleccionado</td>
             </tr>
             <tr *ngFor="let reserva of (reservaCabanas | reservasMes:selectedMonth:'cabana') ">
                 <td>{{ reserva.FechaReserva | date: 'dd MMM yyyy' }}</td>

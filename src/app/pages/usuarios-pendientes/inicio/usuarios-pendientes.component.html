@@ -1,0 +1,42 @@
+<b class="text-muted text-center d-block">USUARIOS PENDIENTES DE REVISIÓN</b>
+<hr>
+<div class="row justify-content-center mb-3" *ngIf="usuariosPendientes">
+    <div class="col-md-10 col-sm-12 mb-2" *ngFor="let user of usuariosPendientes">
+        <div class="card shadow" style="background-color: #ebeae8;">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 col-sm-10" *ngIf="user.Imagen_documento !== null">
+                        <app-carousel-images [imagenes]="[user.Imagen_documento]" 
+                            tipo="identificacion"></app-carousel-images>
+                    </div>
+                    <div class="col-md-6 col-sm-10" *ngIf="user.Imagen_documento === null">
+                        <img src="/assets/imagenes/no-image.png" width="100%" />
+                    </div>
+                    <div class="col-md-6 col-sm 10">
+                        <div class="container text-center mb-2">
+                            <img [src]="user.Icono_url | imgServer:'avatar'" alt="" width="80px" heigth="80px">
+                        </div>
+                        <table class="table table-sm">
+                            <tr>
+                                <td><b class="text-muted">Nombre completo</b></td>
+                                <td>{{ user.Nombre }} {{ user.Apellido }}</td>
+                            </tr>
+                            <tr>
+                                <td><b class="text-muted">Número documento</b></td>
+                                <td>{{ user.NumeroDocumento }}</td>
+                            </tr>
+                            <tr>
+                                <td><b class="text-muted">Correo electrónico</b></td>
+                                <td>{{ user.CorreoElectronico }}</td>
+                            </tr>
+                        </table>
+                        <div class="container text-center">
+                            <button [disabled]="user.Imagen_documento === null" class="btn btn-sm btn-primary" 
+                                routerLink="/usuarios-pendientes/verificar/{{ user.Id }}">Verificar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

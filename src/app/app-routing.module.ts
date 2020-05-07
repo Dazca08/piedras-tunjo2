@@ -69,7 +69,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/usuarios/usuarios.module').then(mod => mod.UsuariosModule),
     canLoad: [AuthGuard],
   },
-   {
+  {
+    path: 'usuarios-pendientes',
+    loadChildren: () => import('./pages/usuarios-pendientes/usuarios-pendientes.module').then(mod => mod.UsuariosPendientesModule),
+    canLoad: [AuthGuard],
+  },
+  {
     path: 'pqr',
     loadChildren: () => import('./pages/pqr/pqr.module').then(mod => mod.PqrModule),
     canLoad: [AuthGuard],
