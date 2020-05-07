@@ -189,33 +189,4 @@ export class ServicioTicketService {
     });
   }
 
-
-/*
-  ObtenerTicket(): Promise<Ticket[]> {
-    // prepare headers
-    const prepare = this.prepareHeaders();
-    if (!prepare) {
-      console.log('Token not found');
-      return Promise.resolve([]);    
-    }
-  
-    return new Promise(resolve => {
-      // Realizar la petición enviando los headers
-      
-      this.http.get(`${ apiUrl }/GestionTickets/Ver_Tickets?estadoFiltro=1`, { headers: this.headers })
-      //this.http.get(`${ this.Url }GestionTickets/Ver_Tickets?estadoFiltro=1`, { headers: this.headers })
-                .pipe( // captura el posible error 401 Unauthorize
-                  catchError(err => of({ ok: false }))
-                )
-                .subscribe(res => {
-                  if (res['ok'] === true) {
-                    resolve(res['tickets']);
-                  } else {
-                    resolve([]);
-                  }
-                });
-    });
-  }
-*/
-
 }

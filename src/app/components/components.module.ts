@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+// Chartjs
+import { ChartsModule } from 'ng2-charts';
 // PipesModule
 import { PipesModule } from '../pipes/pipes.module';
 // Components
@@ -18,6 +20,8 @@ import { ImagesUploadComponent } from './images-upload/images-upload.component';
 import { CarouselImagesComponent } from './carousel-images/carousel-images.component';
 import { SelectCoordinatesComponent } from './select-coordinates/select-coordinates.component';
 import { CardRecorridoComponent } from './card-recorrido/card-recorrido.component';
+import { ChartReservasTicketsComponent } from './chart-reservas-tickets/chart-reservas-tickets.component';
+import { ChartReservasCabanasComponent } from './chart-reservas-cabanas/chart-reservas-cabanas.component';
 
 @NgModule({
   declarations: [
@@ -32,14 +36,17 @@ import { CardRecorridoComponent } from './card-recorrido/card-recorrido.componen
     ImagesUploadComponent,
     CarouselImagesComponent,
     SelectCoordinatesComponent,
-    CardRecorridoComponent
+    CardRecorridoComponent,
+    ChartReservasTicketsComponent,
+    ChartReservasCabanasComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
-    PipesModule
+    PipesModule,
+    ChartsModule
   ],
   exports: [
     PiePaginaComponent,
@@ -53,7 +60,9 @@ import { CardRecorridoComponent } from './card-recorrido/card-recorrido.componen
     ImagesUploadComponent,
     CarouselImagesComponent,
     SelectCoordinatesComponent,
-    CardRecorridoComponent
+    CardRecorridoComponent,
+    ChartReservasTicketsComponent,
+    ChartReservasCabanasComponent
   ]
 })
 export class ComponentsModule { }

@@ -6,6 +6,14 @@ const routes: Routes = [
     path: 'inicio',
     loadChildren: () => import('./inicio/inicio.module').then(mod => mod.InicioModule)
   },
+  {
+    path: 'tickets',
+    loadChildren: () => import('./tickets/tickets.module').then(mod => mod.TicketsModule)
+  },
+  {
+    path: 'cabanas',
+    loadChildren: () => import('./cabanas/cabanas.module').then(mod => mod.CabanasModule)
+  },
   { path: '', pathMatch: 'full', redirectTo: 'inicio' }
 ];
 

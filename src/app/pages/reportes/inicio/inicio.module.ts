@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { InicioComponent } from './inicio.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [InicioComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([{ path: '', component: InicioComponent }])
