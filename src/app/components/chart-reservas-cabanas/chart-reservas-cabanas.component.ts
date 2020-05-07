@@ -13,6 +13,7 @@ import { ReservaCabanasService } from '../../services/reserva-cabanas.service';
 export class ChartReservasCabanasComponent implements OnInit {
 
   @Input() reservas: ReservaCabana[];
+  typeChart = 'line';
 
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -28,7 +29,7 @@ export class ChartReservasCabanasComponent implements OnInit {
   public barChartLabels: Label[] = ['Enero', 'Febrero', 'Marzo', 'Abril',
                                     'Mayo', 'Junio', 'Julio', 'Agosto',
                                     'Septiembre', 'Octubre', 'Noviembre', 'Diciembre', ''];
-  public barChartType: ChartType = 'line'; // bar
+  // public barChartType: ChartType = 'line'; // bar
   public barChartLegend = true;
 
   public barChartData: ChartDataSets[] = [

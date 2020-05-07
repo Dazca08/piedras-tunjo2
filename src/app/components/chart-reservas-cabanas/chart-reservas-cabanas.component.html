@@ -1,3 +1,15 @@
+<div class="container text-center">
+  <div class="btn-group" role="group">
+    <button class="btn btn-sm" (click)="typeChart = 'line'" 
+            [ngClass]="(typeChart === 'line')? 'btn-primary' : 'btn-outline-primary'">
+      <i class="fas fa-chart-area"></i>
+    </button>
+    <button class="btn btn-sm" (click)="typeChart = 'bar'" 
+            [ngClass]="(typeChart === 'bar')? 'btn-primary' : 'btn-outline-primary'">
+      <i class="fas fa-chart-bar"></i>
+    </button>
+  </div>
+</div>
 <div class="row justify-content-center mt-5">
     <div class="col-md-10">
       <canvas baseChart
@@ -5,7 +17,7 @@
         [labels]="barChartLabels"
         [options]="barChartOptions"
         [legend]="barChartLegend"
-        [chartType]="barChartType">
+        [chartType]="typeChart">
       </canvas>
     </div>
 </div>
