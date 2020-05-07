@@ -11,6 +11,9 @@ export class TicketsComponent implements OnInit {
 
   reservasTick: ReservaTicket[];
   verGrafica = false;
+  selectedMonth = (new Date().getMonth() + 1).toString();
+  months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto',
+            'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 
   constructor(
     private reservasTickService: ReservaTicketsService

@@ -7,7 +7,7 @@ import { ReservaTicket } from '../interfaces/reserva-ticket.interface';
 })
 export class ReservasMesPipe implements PipeTransform {
 
-  transform(reservas: any, mes: number, tipoReserva: string): ReservaCabana[] | ReservaTicket[] {
+  transform(reservas: any, mes: any, tipoReserva: string): ReservaCabana[] | ReservaTicket[] {
     const filterReservas = [];
     reservas.forEach(x => {
       let date;
@@ -17,11 +17,11 @@ export class ReservasMesPipe implements PipeTransform {
         date = x.FechaIngreso.split('T')[0];
       }
       const month = Number(date.split('-')[1]);
-      if (month === mes) {
+      if (month === Number(mes)) {
         filterReservas.push(x);
       }
     });
-    // console.log(filterReservas);
+    console.log(filterReservas);
     return filterReservas;
   }
 
