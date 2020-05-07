@@ -15,12 +15,9 @@ export class RemovidosComponent implements OnInit {
   tickets:Ticket[];  
   ticketes: Ticket ={  	   
     Id:'',
-    LastModificacion:'',
     Nombre:'',
     Precio:'',
-    Token:'',
-    Descripcion:'',
-    Estado:''   
+    Descripcion:''
   }
 
   constructor(private router: Router,private ServicioTicket:ServicioTicketService) {this.ObtenerTicketsRemovidos() }
@@ -29,6 +26,7 @@ export class RemovidosComponent implements OnInit {
 
   ngOnInit(): void {
     this.ObtenerTicketsRemovidos();
+
   }
   
   ObtenerTicketsRemovidos(){
@@ -45,8 +43,14 @@ export class RemovidosComponent implements OnInit {
 
   habilitar(id){
     console.log(id);
-    this.ServicioTicket.Habilitar(id,1);  
-    this.ngOnInit();
+    var habil  = this.ServicioTicket.Habilitar(id,1);  
+    /*if (habil) {
+      this.ObtenerTicketsRemovidos();
+      this.ngOnInit();
+      this.ObtenerTicketsRemovidos();
+      //this.router.navigateByUrl('/tickets');
+    }   
+    */
   }
   
 /* 

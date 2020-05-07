@@ -1,0 +1,43 @@
+<div class="container">
+    <button class="btn btn-sm btn-primary" routerLink="/noticias/agregar">Nuevo noticia</button>
+</div>
+<hr>
+<div class="container" *ngIf="noticias.length === 0">
+    <h6>No hay noticias para mostrar</h6>
+</div>
+<div class="row" *ngIf="noticias.length > 0">
+    <div class="col-md-4 col-sm-6 col-xs-12 mb-2" *ngFor="let noticia of noticias">
+        <div class="card shadow">
+            <div class="card-header">
+                <small>
+                    <b class="text-muted">Fecha: </b>
+                    {{ noticia.fechaPublicacion | date: 'dd MMM yyyy' }}
+                </small>
+                <div class="float-right">
+                    <button class="btn btn-sm btn-outline-success" routerLink="/noticias/detalle/{{ noticia.id }}">
+                        <i class="far fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <app-carousel-images [imagenes]="noticia.imagenesUrl | imgUrlToArray" tipo="noticia"></app-carousel-images>
+                <b class="text-muted">{{ noticia.titulo }}</b>
+                <p class="card-text">
+                    {{ noticia.descripcion | slice: 0:100 }}
+                    ...
+                </p>
+            </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col">
+                        <button routerLink="/noticias/editar/{{ noticia.id }}" 
+                        class="btn btn-sm btn-block btn-primary">Editar</button>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-sm btn-block btn-danger" (click)="showConfirmAlert(noticia)">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

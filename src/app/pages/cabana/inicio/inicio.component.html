@@ -2,7 +2,10 @@
     <button class="btn btn-sm btn-success" routerLink="/cabanas/agregar">Nueva Cabaña</button>
 </div>
 <hr>
-<div class="row" *ngIf="cabanas">
+<div class="container" *ngIf="cabanas.length === 0">
+    <h6>No hay cabañas para mostrar</h6>
+</div>
+<div class="row" *ngIf="cabanas.length > 0">
     <div class="col-md-4 col-sm-6 col-xs-12" *ngFor="let cabana of cabanas">
         <div class="card mb-3 shadow">
             <app-carousel-images [imagenes]="cabana.ImagenesUrl | imgUrlToArray" 

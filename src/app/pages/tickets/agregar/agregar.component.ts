@@ -16,12 +16,9 @@ export class AgregarComponent implements OnInit {
   tickets:Ticket[];  
   ticketes: Ticket ={  	   
     Id:'',
-    LastModificacion:'',
     Nombre:'',
     Precio:'',
-    Token:'',
-    Descripcion:'',
-    Estado:''   
+    Descripcion:'' 
   }
   
   @ViewChild("ticketForm") ticketForm:FormGroup;

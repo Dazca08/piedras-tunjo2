@@ -1,0 +1,27 @@
+<div class="row justify-content-center mt-2">
+    <div class="col-md-8 col-sm-12" *ngIf="noticia">
+        <button class="btn btm-sm btn-primary" routerLink="/noticias">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <div class="card shadow" *ngIf="noticia">
+            <div class="card-header text-center">
+                <b class="text-muted">{{ noticia.titulo }}</b>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <b class="text-muted">Descripción</b>
+                            <p>
+                                {{ noticia.descripcion }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <app-carousel-images [imagenes]="noticia.imagenesUrl | imgUrlToArray" tipo="noticia"></app-carousel-images>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

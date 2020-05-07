@@ -6,7 +6,7 @@
 <div class="container" *ngIf="pictogramas.length === 0">
     <h6>No hay pictogramas para mostrar</h6>
 </div>
-<div class="row">
+<div class="row" *ngIf="pictogramas.length > 0">
     <div @basicAnimate *ngFor="let picto of pictogramas" class="col-md-4 col-sm-6 col-xs-12">
         <div class="card-picto card shadow mb-2">
             <!-- <img [src]="picto.ImagenesUrl | imgServer: 'picto'" class="card-img-to"> -->

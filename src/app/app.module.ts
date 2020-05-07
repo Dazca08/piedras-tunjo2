@@ -6,6 +6,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { ComponentsModule } from './components/components.module';
 import { HttpClientModule } from '@angular/common/http';
 
+// Charts
+import { ChartsModule } from 'ng2-charts';
+import { AngularMaterialModule } from './angular-material.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     ComponentsModule,
     HttpClientModule,
+    ChartsModule,
+    AngularMaterialModule,
     AppRoutingModule
   ],
   providers: [],

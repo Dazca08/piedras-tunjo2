@@ -15,15 +15,14 @@ export class SidebarComponent implements OnInit {
   anonymousRoutes = [
     { label: 'Contactanos', path: '/contactanos', icon: 'phone-square-alt' }
   ];
- // las rutas para cuando el usuario se haya autenticado y sea el cajero
- cajeroRoutes = [
-     { label: 'Inicio cajero', path: '/home', icon: 'home' },
+   // las rutas para cuando el usuario se haya autenticado y sea el cajero
+  cajeroRoutes = [
+    { label: 'Inicio cajero', path: '/home', icon: 'home' },
     { label: 'Venta de tickets', path: '/cajero', icon: 'hand-holding-usd' },
-   
   ];
   // rutas para cuando el usuario se haya autenticado y sea el administrador
   routes = [
-    { label: 'Panel Admin', path: '/home', icon: 'dragon' },
+    // { label: 'Panel Admin', path: '/home', icon: 'dragon' },
     { label: 'Usuarios', path: '/usuarios', icon: 'users' },
     { label: 'Pictogramas', path: '/pictogramas', icon: 'skull' },
     { label: 'Promociones', path: '/promociones', icon:  'bullhorn'},
@@ -34,7 +33,7 @@ export class SidebarComponent implements OnInit {
     { label: 'Puntos de Interés', path: '/puntos-interes', icon: 'map-marker-alt' },
     { label: 'Noticias', path: '/noticias', icon: 'newspaper'},
     { label: 'Venta de tiquets', path: '/cajero', icon: 'hand-holding-usd' },
-    { label: 'PQRS', path: '/pqr', icon: 'question'},    
+    { label: 'PQRS', path: '/pqr', icon: 'question'},
     { label: 'Gestion Ticket', path: '/tickets', icon: 'ticket-alt'},
     { label: 'Terminos&Condiciones', path: '/configuracion', icon: 'search'},
 

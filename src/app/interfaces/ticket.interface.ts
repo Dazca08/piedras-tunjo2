@@ -4,8 +4,6 @@ export interface Ticket {
     Nombre?:string;
     Precio?:any;
     Descripcion?:string;
-    Token?:string;
-    LastModificacion?:any;
-    Estado?:string; 
+   
    
 }

@@ -3,17 +3,22 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
-    loadChildren: () => import('./ver-noticias/ver-noticias.module').then(mod => mod.VerNoticiasModule)
+    path: 'inicio',
+    loadChildren: () => import('./inicio/inicio.module').then(mod => mod.InicioModule)
   },
   {
     path: 'agregar',
-    loadChildren: () => import('./insert-noticias/insert.module').then(mod => mod.InsertModule)
+    loadChildren: () => import('./agregar/agregar.module').then(mod => mod.AgregarModule)
   },
   {
     path: 'editar/:id',
-    loadChildren: () => import('./editar-noticias/editar.module').then(mod => mod.EditarModule)
-  }
+    loadChildren: () => import('./editar/editar.module').then(mod => mod.EditarModule)
+  },
+  {
+    path: 'detalle/:id',
+    loadChildren: () => import('./detalle/detalle.module').then(mod => mod.DetalleModule)
+  },
+  { path: '', pathMatch: 'full', redirectTo: 'inicio' }
 ];
 
 @NgModule({

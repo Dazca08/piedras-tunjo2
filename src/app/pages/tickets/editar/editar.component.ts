@@ -15,14 +15,12 @@ export class EditarComponent implements OnInit {
   
   id:string;
   tickets:Ticket[];  
+  tick: Ticket = undefined;
   ticketes: Ticket ={  	   
     Id:'',
-    LastModificacion:'',
     Nombre:'',
     Precio:'',
-    Token:'',
-    Descripcion:'',
-    Estado:''   
+    Descripcion:''
   }
   @ViewChild("editarticketForm") editarticketForm:FormGroup;
 
@@ -32,14 +30,27 @@ export class EditarComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id'];
+    /*this.id = this.route.snapshot.params['id'];
     this.ServicioTicket.obtenertipo(this.id).subscribe(resultado =>{
     this.ticketes=resultado;
-    });
+    });*/
+    this.buildForm();
+  }
+  async buildForm() {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.ticketes.Id=id;
+    console.log(this.ticketes.Id);
+    this.ServicioTicket.obtenertipo(Number(id))
+                        .then(ticket => {
+                          
+                          this.ticketes = ticket;
+                         
+                        });
+                
   }
 
   actualizar({value, valid}: {value:Ticket, valid: boolean}){
-   
+    console.log(this.ticketes.Id);
     if(this.ticketes.Nombre == "" || this.ticketes.Descripcion == "" || this.ticketes.Precio < "0"){
       console.log('Debe llenar todos los campos')
       Swal.fire(
@@ -58,7 +69,10 @@ export class EditarComponent implements OnInit {
           confirmButtonText: 'Guardar!'
         }).then((result) => {
           value.Id = this.id;
-          this.ServicioTicket.actualizar(value,this.id);         
+          var actualizado=  this.ServicioTicket.actualizar(value,this.ticketes.Id);       
+          if (actualizado) {
+            this.router.navigateByUrl('/tickets');
+          }  
           if (result.value) {
             Swal.fire(
               'Guardado!',
