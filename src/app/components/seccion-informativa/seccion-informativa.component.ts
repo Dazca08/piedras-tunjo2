@@ -1,7 +1,7 @@
 import { Component, OnInit , ComponentFactoryResolver} from '@angular/core';
 import { ServicioInfoService } from './servicio-info.service';
 import { CommonModule } from '@angular/common';
-
+import { ImagesService } from 'src/app/services/images.service';
 @Component({
   selector: 'app-seccion-informativa',
   templateUrl: './seccion-informativa.component.html',
@@ -21,7 +21,7 @@ export class SeccionInformativaComponent implements OnInit {
   i:number=0;
   imagenes:any;
   constructor(
-    private infoService: ServicioInfoService
+    private infoService: ServicioInfoService , private imagesService: ImagesService
   ) {}
 
 ObtenerUltimasNoticias(){
@@ -45,8 +45,8 @@ ObtenerUltimasNoticias(){
       this.fechatemp=splitted[0];
  
       this.Noticias[this.i].fechaPublicacion=this.fechatemp;
-      this.imagenes=this.Noticias[this.i].imagenesUrl.split("@")
-     console.log(this.imagenes)
+     // this.imagenes=this.Noticias[this.i].imagenesUrl.split("@")
+     //console.log(this.imagenes)
 
    }
 //  console.log(this.Noticias)
