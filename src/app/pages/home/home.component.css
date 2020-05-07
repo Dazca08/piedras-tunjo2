@@ -11,3 +11,7 @@
         height: 240px;
     }
 }
+.slow-spin {
+    -webkit-animation: fa-spin 10s infinite linear;
+    animation: fa-spin 10s infinite linear;
+}

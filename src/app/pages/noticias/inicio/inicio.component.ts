@@ -4,6 +4,8 @@ import { Noticia } from 'src/app/interfaces/noticia.interface';
 import Swal from 'sweetalert2';
 import { ImagesService } from '../../../services/images.service';
 
+declare var $: any;
+
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
@@ -24,6 +26,20 @@ export class InicioComponent implements OnInit {
 
   async obtenerNoticias() {
     this.noticias = await this.noticiasService.getNoticias();
+    // igualar height de las cards de noticias
+    setTimeout(() => {
+      const cards = $('.card-noticia');
+      let maxHeight = 0;
+      cards.each((e) => {
+        const height = cards[e].offsetHeight;
+        if (height > maxHeight) {
+          maxHeight = height;
+        }
+      });
+      cards.each((e) => {
+        cards[e].style.height = maxHeight;
+      });
+    }, 1000);
   }
 
   showConfirmAlert(noticia: Noticia) {
