@@ -20,8 +20,8 @@ const httpOptions =
 })
 
 export class ServicioTicketService {
-  //private Url: string = "http://piedrasdeltunjo.tk/GestionTickets/";
-  private Url: string = "http://localhost:61629/GestionTickets/";
+  private Url: string = "http://piedrasdeltunjo.tk/GestionTickets/";
+  //private Url: string = "http://localhost:61629/GestionTickets/";
     private headers: HttpHeaders;
 
   private tickets:Ticket[];
