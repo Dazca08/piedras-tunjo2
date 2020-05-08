@@ -1,3 +1,5 @@
+import { Rol } from './rol.interface';
+
 export interface Usuario {
     Id: number;
     Nombre: string;
@@ -12,6 +14,7 @@ export interface Usuario {
     VerificacionCuenta: boolean;
     EstadoCuenta: boolean;
     RolId: number;
+    Rol: Rol;
     Imagen_documento: string;
     Token: string;
 }

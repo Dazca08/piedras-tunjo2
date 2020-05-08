@@ -6,9 +6,11 @@ import { Component, OnInit , Input, Output, EventEmitter} from '@angular/core';
   styleUrls: ['./avatar-selector.component.css']
 })
 export class AvatarSelectorComponent implements OnInit {
-	// @Input() current = 'av-1.png'; // default value (registro)
+
+  @Input() current = 'av-1.png'; // default value (registro)
   @Output() avatarSelected = new EventEmitter<string>();
-avatars = [
+
+  avatars = [
     {
       img: 'av-1.png',
       seleccionado: true
@@ -29,13 +31,13 @@ avatars = [
 
   constructor() { }
 
-  ngOnInit(): void {
-  	// this.avatars.forEach(av => av.seleccionado = (av.img === this.current) );
+  ngOnInit() {
+    this.avatars.forEach(av => av.seleccionado = (av.img === this.current) );
   }
-seleccionarAvatar(avatar: any) {
+
+  seleccionarAvatar(avatar: any) {
     this.avatars.forEach(av => av.seleccionado = false);
     avatar.seleccionado = true;
-    console.log(avatar.img)
     this.avatarSelected.emit(avatar.img);
   }
 }

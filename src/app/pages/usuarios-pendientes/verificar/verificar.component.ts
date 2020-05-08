@@ -55,7 +55,7 @@ export class VerificarComponent implements OnInit {
     this.usuario.LugarExpedicion = LugarExpedicion;
     this.usuario.VerificacionCuenta = true;
     // enviar para actualización
-    const updated = await this.usuarioService.actualizarUsuario(this.usuario);
+    const updated = await this.usuarioService.actualizarUsuarioNoVerificado(this.usuario);
     if (updated) {
       Swal.fire({
         title: 'Bien',

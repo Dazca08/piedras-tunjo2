@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AgregarUComponent } from './agregar-u.component';
-import { PipesModule } from '../../../pipes/pipes.module';
+import { InicioComponent } from './inicio.component';
 import { RouterModule } from '@angular/router';
+import { PipesModule } from '../../../pipes/pipes.module';
 import { FormsModule } from '@angular/forms';
 import { ComponentsModule } from '../../../components/components.module';
 
 @NgModule({
-  declarations: [AgregarUComponent],
+  declarations: [InicioComponent],
   imports: [
     CommonModule,
+    PipesModule,
     FormsModule,
     ComponentsModule,
-    PipesModule,
-    RouterModule.forChild([{ path: '', component: AgregarUComponent }])
+    RouterModule.forChild([{ path: '', component: InicioComponent }])
   ]
 })
-export class AgregarUModule { }
+export class InicioModule { }

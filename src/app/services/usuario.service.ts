@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { catchError, map } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { RolesService } from './roles.service';
 
 const apiUrl = environment.apiUrl;
 
@@ -17,6 +18,7 @@ export class UsuarioService {
 
   constructor(
     private http: HttpClient,
+    private rolesService: RolesService,
     private router: Router,
   ) { }
 
@@ -33,6 +35,34 @@ export class UsuarioService {
       });
       return true;
     }
+  }
+
+  // usuarios NO pendientes de revisión, ya con la cuenta verificada
+  getUsuarios(): Promise<Usuario[]> {
+    // prepare headers
+    const prepare = this.prepareHeaders();
+    if (!prepare) {
+      console.log('Token not found');
+      return Promise.resolve([]);
+    }
+    return new Promise(resolve => {
+      this.http.get(`${ apiUrl }/usuarios`, { headers: this.headers })
+                .pipe(
+                  catchError(err => of([])),
+                  map((res: Usuario[]) => {
+                    const aux = res.filter(x => x.VerificacionCuenta === true);
+                    const aux2 = [];
+                    aux.forEach(async x => {
+                      x.Rol = await this.rolesService.getRol(x.RolId);
+                      aux2.push(x);
+                    });
+                    return aux2;
+                  })
+                )
+                .subscribe((res: Usuario[]) => {
+                  resolve(res);
+                });
+    });
   }
 
   getUsuarioPendientes(): Promise<Usuario[]> {
@@ -64,12 +94,81 @@ export class UsuarioService {
     });
   }
 
+  getUsuario(id: number): Promise<Usuario> {
+    // prepare headers
+    const prepare = this.prepareHeaders();
+    if (!prepare) {
+      console.log('Token not found');
+      return Promise.resolve(undefined);
+    }
+    return new Promise(resolve => {
+      this.http.get(`${ apiUrl }/usuarios/${ id }`, { headers: this.headers })
+                .pipe(
+                  catchError(err => of(undefined))
+                )
+                .subscribe(async (res: Usuario) => {
+                  res.Rol = await this.rolesService.getRol(res.RolId);
+                  resolve(res);
+                });
+    });
+  }
+
+  agregarUsuario(usuario: Usuario) {
+    // prepare headers
+    const prepare = this.prepareHeaders();
+    if (!prepare) {
+      console.log('Token not found');
+      return Promise.resolve(false);
+    }
+    return new Promise(resolve => {
+      this.http.post(`${ apiUrl }/usuarios`, usuario, { headers: this.headers })
+                .pipe(
+                  catchError(err => of({ok: false}))
+                )
+                .subscribe(res => {
+                  resolve(res['ok']);
+                });
+    });
+  }
+
   actualizarUsuario(usuario: Usuario) {
     // prepare headers
     const prepare = this.prepareHeaders();
     if (!prepare) {
       console.log('Token not found');
-      return Promise.resolve([]);
+      return Promise.resolve(false);
+    }
+    return new Promise(resolve => {
+      this.http.put(`${ apiUrl }/usuarios/${ usuario.Id }`, usuario, { headers: this.headers })
+                .pipe(
+                  catchError(err => of({ ok: false }))
+                )
+                .subscribe(res => resolve(res['ok']));
+    });
+  }
+
+  eliminarUsuario(id: number) {
+    // prepare headers
+    const prepare = this.prepareHeaders();
+    if (!prepare) {
+      console.log('Token not found');
+      return Promise.resolve(false);
+    }
+    return new Promise(resolve => {
+      this.http.delete(`${ apiUrl }/usuarios/${ id }`, { headers: this.headers })
+                .pipe(
+                  catchError(err => of({ ok: false }))
+                )
+                .subscribe(res => resolve(res['ok']));
+    });
+  }
+
+  actualizarUsuarioNoVerificado(usuario: Usuario) {
+    // prepare headers
+    const prepare = this.prepareHeaders();
+    if (!prepare) {
+      console.log('Token not found');
+      return Promise.resolve(false);
     }
     return new Promise(resolve => {
       this.http.put(`${ apiUrl }/usuarios/actualizar/no-verificado`, usuario, { headers: this.headers })
@@ -79,6 +178,22 @@ export class UsuarioService {
                 .subscribe(res => {
                   resolve(res['ok']);
                 });
+    });
+  }
+
+  existeCorreo(correo: string) {
+    return new Promise(resolve => {
+      this.http.get(`${ apiUrl }/registro/existeCorreo?correo=${ correo }`)
+                    .pipe(map(res => res['existe']))
+                    .subscribe(res => resolve(res));
+    });
+  }
+
+  existeNumeroDoc(numeroDoc: string) {
+    return new Promise(resolve => {
+      this.http.get(`${ apiUrl }/registro/existeNumeroDoc?numeroDoc=${ numeroDoc }`)
+              .pipe(map(res => res['existe']))
+              .subscribe(res => resolve(res));
     });
   }
 }
