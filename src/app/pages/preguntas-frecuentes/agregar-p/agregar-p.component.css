@@ -1,0 +1,16 @@
+.textinput {
+            float: left;
+            width: 100%;
+            min-height: 65px;
+            outline: none;
+            resize: none;
+            border: 1px solid grey;
+        }
+.textinput1 {
+            float: left;
+            width: 100%;
+            min-height: 55px;
+            outline: none;
+            resize: none;
+            border: 1px solid grey;
+        }

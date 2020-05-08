@@ -62,12 +62,16 @@
            
             <p class="card-text"><i class="fa fa-pencil-alt"></i> Pregunta 
             </p>
-            <textarea name="nombre" rows="2" cols="38" [(ngModel)]="pregunta.nombre"></textarea>
+            <textarea class="textinput1"name="nombre" rows="2" cols="38" [(ngModel)]="pregunta.nombre"></textarea>
                <input type="hidden" name="nombre"  style="width:285;" class="form-control" #nombre="ngModel" [(ngModel)]="pregunta.nombre">
+               <br>
+               <br>
              <hr>
-           <p class="card-text"><i class="fa fa-pencil-alt"></i> Descripcion </p>
-            <textarea name="descripcion" rows="4" cols="38" [(ngModel)]="pregunta.descripcion"></textarea>
-            <br>
+          <p class="card-text"><i class="fa fa-pencil-alt"></i> Descripcion </p>
+       
+            
+            <textarea class="textinput"name="descripcion" rows="4" cols="38" [(ngModel)]="pregunta.descripcion"></textarea>
+   
                <input type="hidden" name="descripcion" class="form-control" #descripcion="ngModel" [(ngModel)]="pregunta.descripcion">
                  <input type="hidden" name="id" class="form-control" #id="ngModel" [(ngModel)]="pregunta.id">
           
@@ -77,7 +81,7 @@
             <div class="row">
             <div class="col-md-6">
               <div align="center">
-                
+                <hr>
                   <form (submit)="eliminar(pregunta.id)">
                    <button type="submit" style="width:130" class="btn btn-danger btn-block">
             <i class="fas fa-trash"></i> Eliminar
@@ -88,6 +92,7 @@
             </div>
           <div class="col-md-6">
             <div align="center">
+              <hr>
                <button type="submit" style="width:130 ;" class="btn btn-primary btn-block">
              <i class="fas fa-edit"></i> Editar </button>
             </div>
