@@ -36,7 +36,7 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="nombre"> <i class="fa fa-pencil-alt"></i> Ingrese la pregunta</label>
-              <textarea name="nombre" rows="2" cols="53" [(ngModel)]="pregunta.nombre"></textarea>
+              <textarea class="textinput1" name="nombre"  rows="2" cols="38" [(ngModel)]="pregunta.nombre"></textarea>
             <input 
               type="hidden" 
               name="nombre" 
@@ -48,9 +48,12 @@
           </div>
            <hr>
           <div class="form-group">
-            <label for="apellido"> <i class="fa fa-pencil-alt"></i> Ingrese la descripcion de la pregunta</label>
+            <br>
+            
+            <hr>
+            <label for="apellido">  <i class="fa fa-pencil-alt"></i>  Ingrese la descripcion de la pregunta  </label>
             <div align="center">
-                 <textarea name="descripcion" rows="4" cols="53" [(ngModel)]="pregunta.descripcion"></textarea>
+                 <textarea  class="textinput" name="descripcion" rows="3" cols="53" [(ngModel)]="pregunta.descripcion">  </textarea>
             <input 
               type="hidden" 
               name="descripcion" 
@@ -68,8 +71,12 @@
         </div>
 
       
+      <br>
+
+ <br>
           <div align="center">
-          <button type="submit" style="width:150px;"class="btn btn-primary" ><i class="fas fa-plus"></i> Agregar </button>
+              <hr>
+          <button type="submit" style="width:150px;"class="btn btn-primary" > <i class="fas fa-plus"></i> Agregar </button>
           </div>
       
 

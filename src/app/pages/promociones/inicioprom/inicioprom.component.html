@@ -78,7 +78,8 @@
            <p class="card-text"><i class="fa fa-pencil-alt"></i> Descripcion 
            </p>
            <div align="center">
-           	    <textarea name="Descripcion" rows="2" cols="65" [(ngModel)]="prom.Descripcion"></textarea>
+           	    <textarea  class="textinput" name="Descripcion" rows="2" cols="65"  [(ngModel)]="prom.Descripcion"></textarea>
+
            </div>
         
             
@@ -88,15 +89,18 @@
                 <input type="hidden" name="LastModification" class="form-control" #LastModification="ngModel" [(ngModel)]="prom.LastModification">
               
                 
-                <hr>
+                
                   
                   <div class="row">
+
                   	<div class="col-md-6">
+                         <hr>
                   		 <p class="card-text"><i class="fa fa-calendar"></i> Inicio de promocion 
                           </p>
                    <input type="date" name="FechaInicio" class="form-control" #FechaInicio="ngModel" [(ngModel)]="prom.FechaInicio">
                   	</div>
                   	<div class="col-md-6">
+                        <hr>
                   		 <p class="card-text"><i class="fa fa-calendar"></i> Final de promocion 
                           </p>
                   <input type="date" name="FechaFin" class="form-control" #FechaFin="ngModel" [(ngModel)]="prom.FechaFin">
@@ -106,6 +110,7 @@
                <hr>
                  <div class="row">
                  	<div class="col-md-6">
+                   
                  		 <p class="card-text"><i class="fa fa-eye-slash"></i> Estado
                           </p>
                     <select name="Estado" class="form-control" #Estado="ngModel" [(ngModel)]="prom.Estado">

@@ -19,9 +19,6 @@ constructor(private http: HttpClient) { }
   ObtenerJson():Observable<any>{
  return this.http.get(this.url)
   }
-   ObtenerJson1():Observable<any>{
- return this.http.get(this.url+'/16')
-  }
 
 getu(id):Observable<any>{
   return this.http.get(this.url + id, httpOptions)

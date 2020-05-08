@@ -5,7 +5,7 @@ import { InicioAComponent } from './inicio-a.component';
 import { PipesModule } from '../../../pipes/pipes.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
-
+import { ComponentsModule } from '../../../components/components.module';
 @NgModule({
   declarations: [InicioAComponent],
   imports: [
@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
     PipesModule,
     FormsModule,
     NgxPaginationModule,
+    ComponentsModule,
     RouterModule.forChild([{ path: '', component: InicioAComponent }]),
   ]
 })

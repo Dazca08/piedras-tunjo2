@@ -56,7 +56,7 @@ export class AgregarpromComponent implements OnInit {
      
    if(value.Nombre=="" || value.Descripcion==""   || value.PorcentajeDescuento==""|| value.FechaInicio==""|| value.FechaFin=="" ){
           Swal.fire(
-         'Lllene todos los campos por favor!',
+         'Llene todos los campos por favor!',
            'Promocion no agregada!',
           'error'
                   )

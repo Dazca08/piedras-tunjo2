@@ -66,3 +66,11 @@
 .letra:hover{
     color: white;
 }
+.textinput {
+            float: left;
+            width: 100%;
+            min-height: 50px;
+            outline: none;
+            resize: none;
+            border: 1px solid grey;
+        }

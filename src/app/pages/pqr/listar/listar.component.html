@@ -31,9 +31,7 @@
       <div class="container">
         <div align="center">
         	<br>
-	       <!-- <a class="btn btn-info"  href="pqr/agregar" role="button" >
-		         <h4> <i   class="fas fa-list"></i> PQRS contestados</h4>
-          </a>-->
+	     
              <form (submit)="listarContestados()">
                    <button type="submit"  class="btn btn-info ">
                    <h4><i class="fas fa-list"></i> {{indicadorBoton}}</h4>
@@ -87,7 +85,7 @@
            <input type="hidden" name="LastModification" class="form-control" #LastModification="ngModel" [(ngModel)]="pqr.LastModification">
            <input type="hidden" name="Pregunta" class="form-control" #Pregunta="ngModel" [(ngModel)]="pqr.Pregunta">
            <p class="card-text"><i class="fa fa-pencil-alt"></i> Ingrese la respuesta </p>
-            <textarea name="comentarios" rows="4" cols="38" [(ngModel)]="pqr.Respuesta"></textarea>
+            <textarea class="textinput" name="comentarios" rows="4" cols="38" [(ngModel)]="pqr.Respuesta"></textarea>
             <br>
                <input type="hidden" name="Respuesta" class="form-control" #Respuesta="ngModel" [(ngModel)]="pqr.Respuesta">
 
@@ -101,7 +99,10 @@
              <input type="hidden" name="UUsuarioId" class="form-control" #UUsuarioId="ngModel" [(ngModel)]="pqr.UUsuarioId">
 
           <br>
-
+           
+             <br>
+          <br>
+           <hr>
            <div align="center">
              <button type="submit" style="width:200 ;" class="btn btn-primary btn-block">
              <i class="fas fa-share-square"></i> Enviar respuesta
@@ -162,7 +163,7 @@
            <input type="hidden" name="LastModification" class="form-control" #LastModification="ngModel" [(ngModel)]="pqr.LastModification">
            <input type="hidden" name="Pregunta" class="form-control" #Pregunta="ngModel" [(ngModel)]="pqr.Pregunta">
            <p class="card-text"><i class="fa fa-pencil-alt"></i> Ingrese la respuesta </p>
-            <textarea name="comentarios" rows="4" cols="38" [(ngModel)]="pqr.Respuesta">Escribe aquí tus comentarios</textarea>
+            <textarea class="textinput" name="comentarios" rows="4" cols="38" [(ngModel)]="pqr.Respuesta">Escribe aquí tus comentarios</textarea>
             <br>
                <input type="hidden" name="Respuesta" class="form-control" #Respuesta="ngModel" [(ngModel)]="pqr.Respuesta">
 
@@ -175,7 +176,11 @@
            <input type="hidden" name="UUsuario" class="form-control" #UUsuario="ngModel" [(ngModel)]="pqr.UUsuario">
              <input type="hidden" name="UUsuarioId" class="form-control" #UUsuarioId="ngModel" [(ngModel)]="pqr.UUsuarioId">
 
+         <br>
+           
+             <br>
           <br>
+           <hr>
           <div class="row">
             <div class="col-md-6">
               <div align="center">

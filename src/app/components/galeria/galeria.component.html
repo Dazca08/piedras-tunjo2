@@ -1,7 +1,9 @@
-<div id="carouselExampleInterval" class="carousel slide w-100" data-ride="carousel">
+<div align="center">
+  <div class="col-md-11">
+  <div id="carouselExampleInterval" class="carousel slide w-100" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item" [ngClass]="{ 'active': i === 0 }" *ngFor="let img of images; let i = index;">
-      <img [src]="img | imgServer: 'info'" [alt]="img">
+      <img [src]="img | imgServer: 'info'" style="height: 460;">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
@@ -13,3 +15,7 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
+
+</div>
+</div>
+

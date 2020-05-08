@@ -205,20 +205,22 @@ else{
      
  i:number=0;
 coloresAleatorios(){
-var myArray = ["#000099",
- "#00FFCC", 
- "#6699CC",
-  "#CC6600",
-   "#33CC00",
-    "#66CC99",
-  "#990099",
-  "#99FF00"
+var myArray = [
+
+
+"#9999CC",
+"#99CC99",
+"#99FFCC",
+"#CCCC66",
+"#FFFF66",
+"#FFCCCC",
+"#CCFF99"
 ];
 var cuatroRandom = "";
 var posicionesElegibles = [];
 var i, r;
 for (i = 0; i < myArray.length; i++) posicionesElegibles[i] = i;
-for (i = 0; i < 4; i++) {
+for (i = 0; i < myArray.length; i++) {
   r = Math.floor(Math.random() * posicionesElegibles.length);
   cuatroRandom=myArray[posicionesElegibles[r]];
   posicionesElegibles.splice(r, 1);

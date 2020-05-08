@@ -6,6 +6,7 @@ import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 import { ServicioEventoService } from '../servicio-evento.service';
 import Swal from 'sweetalert2';
+import { ImagesService } from '../../../services/images.service';
 @Component({
   selector: 'app-agregar',
   templateUrl: './agregar.component.html',
@@ -34,7 +35,7 @@ eventos: Evento[];
    eventostemp:any;
   constructor(private formBuilder: FormBuilder,
       private servi: ServicioEventoService ,
-      Router: Router  ) { }
+      Router: Router ,  private imagesService: ImagesService, ) { }
 
   FechaActual(){
   var hoy = new Date();
@@ -120,14 +121,14 @@ console.log(this.resultadoComparacion);
   'error'
 )
  }
- else if(this.selectedfile==null){
+ /*else if(this.selectedfile==null){
   console.log('error seleccione una imagen');
                      Swal.fire(
   'Por favor suba una imagen !',
   'evento no  Agregado!',
   'error'
 )
- }
+ }*/
  else if(  this.evento.Descripcion=='' || this.evento.Nombre==''){
    console.log('llene todos los campos')
              Swal.fire(
@@ -161,21 +162,24 @@ this.refrescar();*/
 //this.eventoForm.resetForm();
   }
 selectedfile:FileList=null;
+  files: File[] = [];
 i:number=0;
 onFileSelected(evento){
-
-
 //this.selectedfile=<FileList>evento.target.files;
 this.selectedfile=evento;
-console.log(this.selectedfile)
+this.files=evento
+this.evento.ImagenesUrl="";
 for(this.i=0;this.i<this.selectedfile.length;this.i++){
   this.evento.ImagenesUrl=this.evento.ImagenesUrl+this.selectedfile[this.i].name.toString()+"@";
-  console.log(this.evento.ImagenesUrl)
 }
-
-
-console.log(this.evento.ImagenesUrl);
 }
+onChangeFile(files: File[]){
+    this.files = files;
+    for(this.i=0;this.i<this.files.length;this.i++){
+  this.evento.ImagenesUrl=this.evento.ImagenesUrl+this.files[this.i].name.toString()+"@";
+}
+  }
+
 refrescar(){
  this.evento.Nombre="";
 this.evento.FechaPublicacion= Date.now().toString();
@@ -188,11 +192,12 @@ this.evento.ListaComentariosEvento="";
 }
 
    public cargandoImagen(){
-  //console.log("si entro");
-  console.log(this.selectedfile.length)
- for(this.i=0;this.i<this.selectedfile.length;this.i++){
+ if(this.selectedfile!=null){
+    for(this.i=0;this.i<this.selectedfile.length;this.i++){
    this.servi.postFileImagen(this.selectedfile[this.i]).subscribe();
  }
+  }
+  
     
   }
 
@@ -228,8 +233,8 @@ this.evento.ListaComentariosEvento="";
    else{
           
 this.servi.insertar(value)
-this.cargandoImagen();
-
+//this.cargandoImagen();
+this.imagesService.uploadMultipleImages(this.files, 'evento');
       
     
    }
