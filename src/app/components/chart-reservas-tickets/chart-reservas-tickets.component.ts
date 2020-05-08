@@ -12,6 +12,7 @@ import { ReservaTicketsService } from '../../services/reserva-tickets.service';
 export class ChartReservasTicketsComponent implements OnInit {
 
   @Input() reservas: ReservaTicket[];
+  typeChart = 'line';
 
   public barChartOptions: ChartOptions = {
     responsive: true,
