@@ -1,6 +1,6 @@
 <div class="row mt-5 justify-content-center">
   <div class="col-md-6 col-sm-10">
-    <div @loginAnimate class="card shadow">
+    <div @loginAnimate class="card shadow" *ngIf="loginView">
       <div class="card-header">
         <b class="d-block text-center text-muted">INICIAR SESIÓN</b>
       </div>
@@ -39,9 +39,119 @@
             </div>
           </div>
 
+          <div class="form-group text-center">
+            <a href="#" (click)="$event.preventDefault(); recuperarClave = true; loginView = false;">¿Olvidaste la contraseña?</a>
+          </div>
+
           <div class="row">
             <div class="col-md-6 offset-sm-3 col-sm-6">
               <button [disabled]="formLogin.invalid" type="submit" class="btn btn-block btn-success">INGRESAR</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div @loginAnimate class="card shadow" *ngIf="recuperarClave">
+      <div class="card-header text-center">
+        <div class="float-left">
+          <button class="btn btm-sm btn-light shadow" (click)="recuperarClave = false; loginView = true;">
+            <i class="fas fa-arrow-left"></i>
+          </button>
+        </div>
+        <b class="text-muted">RECUPERAR CONTRASEÑA</b>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="recuperaClaveForm" (ngSubmit)="sendData()">
+          <div class="form-group">
+            <b class="text-muted">Correo electrónico</b>
+            <input type="text" [ngClass]="getValidationClass2('correo')" formControlName="correo" class="form-control">
+            <div class="valid-feedback">Ok!</div>
+            <div class="invalid-feedback">
+              <span *ngIf="correoRec.errors?.required">
+                  El correo es requerido
+              </span>
+              <span *ngIf="correoRec.errors?.pattern">
+                  El campo no tiene formato de correo
+              </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <b class="text-muted">Número documento</b>
+            <input type="number" [ngClass]="getValidationClass2('numeroDoc')" formControlName="numeroDoc" class="form-control">
+            <div class="valid-feedback">Ok!</div>
+            <div class="invalid-feedback">
+              <span *ngIf="numDocRec.errors?.required">
+                  El número de documento es requerido
+              </span>
+            </div>
+          </div>
+          <div class="container text-center" *ngIf="loading">
+            <span class="text-muted">
+                <i class="fas fa-spinner fa-spin fa-2x"></i>
+            </span>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 offset-sm-3 col-sm-6">
+              <button [disabled]="recuperaClaveForm.invalid || loading" type="submit" class="btn btn-block btn-success">
+                Solicitar recuperación
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div @loginAnimate class="card shadow" *ngIf="confirmarCodigo">
+      <div class="card-header text-center">
+        <div class="float-left">
+          <button class="btn btm-sm btn-light shadow" (click)="recuperarClave = true; confirmarCodigo = false;">
+            <i class="fas fa-arrow-left"></i>
+          </button>
+        </div>
+        <b class="text-muted">CONFIRMAR CÓDIGO DE VERIFICACIÓN</b>
+      </div>
+      <div class="card-body">
+        <form #lastForm="ngForm" (ngSubmit)="cambiarClave(lastForm)">
+          <div class="form-group">
+            <b class="text-muted">Nueva contraseña</b>
+            <input type="password" name="nuevaClave" #nuevaClave="ngModel" [(ngModel)]="newPass" 
+                class="form-control" 
+                [ngClass]="{ 'is-invalid': (nuevaClave.touched && nuevaClave.errors), 'is-valid': nuevaClave.valid }" required minlength="5">
+            <div class="valid-feedback">Ok!</div>
+            <div class="invalid-feedback">
+              <span *ngIf="nuevaClave.errors?.required">
+                  La contraseña es requerida
+              </span>
+              <span *ngIf="nuevaClave.errors?.minlength">
+                  Debe contener mínimo {{ nuevaClave.errors?.minlength.requiredLength }} caracteres
+              </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <b class="text-muted">Código de verificación</b>
+            <input type="text" name="codigo" #codigo="ngModel" 
+            [(ngModel)]="codigoVer" class="form-control"
+            [ngClass]="{'is-valid': codigo.valid, 'is-invalid': (codigo.touched && codigo.errors)}"  required>
+            <div class="valid-feedback">Ok!</div>
+            <div class="invalid-feedback">
+              <span *ngIf="codigo.errors?.required">
+                  El codigo es requerido
+              </span>
+            </div>
+          </div>
+          <div class="container text-center" *ngIf="loading">
+            <span class="text-muted">
+                <i class="fas fa-spinner fa-spin fa-2x"></i>
+            </span>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 offset-sm-3 col-sm-6">
+              <button [disabled]="lastForm.invalid || loading" type="submit" class="btn btn-block btn-success">
+                Cambiar contraseña
+              </button>
             </div>
           </div>
         </form>

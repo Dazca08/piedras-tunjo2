@@ -196,4 +196,26 @@ export class UsuarioService {
               .subscribe(res => resolve(res));
     });
   }
+
+  solicitarRecuperacionClave(correo: string, numeroDoc: string) {
+    return new Promise(resolve => {
+      // tslint:disable-next-line: max-line-length
+      this.http.get(`${ apiUrl }/cuenta/recuperar-clave/generar-codigo?correoElectronico=${ correo }&numeroDocumento=${ numeroDoc }`)
+                .pipe(
+                  catchError(err => of(err.error)) //  {ok: false, message: ''} enviado desde core
+                )
+                .subscribe(res => resolve(res));
+    });
+  }
+
+  recuperarClave(codigo: string, nuevaClave: string) {
+    return new Promise(resolve => {
+      // tslint:disable-next-line: max-line-length
+      this.http.get(`${ apiUrl }/cuenta/recuperar-clave/cambiar?codigoVerificacion=${ codigo }&clave=${ nuevaClave }`)
+                .pipe(
+                  catchError(err => of(err.error)) //  {ok: false, message: ''} enviado desde core
+                )
+                .subscribe(res => resolve(res));
+    });
+  }
 }
