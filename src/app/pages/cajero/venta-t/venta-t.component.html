@@ -1,19 +1,137 @@
 
-<!--<ngx-qrcode qrc-element-type="url" [qrc-value]="ngxQrcode2" ></ngx-qrcode>-->
-<!--<ngx-qrcode qrc-element-type="url" [qrc-value]="techiediaries" ></ngx-qrcode>-->
 
-<header id="main-header" >
-  <br>
+<div class="col-md-6">
+  <div class="modal fade" id="All">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-dark text-white">
+        <h6 class="modal-title">reservas de cabañas</h6>
+        <button class="close" data-dismiss="modal" #botonCerrar>
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="card">
+            <div *ngIf="(reservaCabanasAll.length>0)">
+      
+           
+                  <table class="table table-bordered table-striped" >
+              <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Fecha de la reserva</th>
+      <th scope="col">Valor de la cabaña</th>
+      <th scope="col">Id de la cabaña</th>
+      <th scope="col">Nombre de la cabaña</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let reserva of reservaCabanasAll ; let i = index ">
+      <td>  {{i}}</td>
+      <td>  {{reserva.FechaReserva}}</td>
+      <td>$ {{reserva.ValorTotal}} </td>
+        <td>  {{reserva.UCabanaId}}</td>
+      <td>  {{reserva.UCabana.Nombre}}</td>
+    </tr>
+    
+   
+  </tbody>
+</table>
+          
+              
+            </div>
+            <div *ngIf="(reservaCabanasAll.length==0)">
+              <h6>Lo sentimos no existen preguntas frecuentes en este momento</h6>
+            </div>
+           
+
+    </div>
+    
+
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="col-md-6">
+  <div class="modal fade" id="DAY">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-dark text-white">
+        <h6 class="modal-title">reservas de cabañas</h6>
+        <button class="close" data-dismiss="modal" #botonCerrar>
+          <span>&times;</span>
+        </button>
+      </div>
+    
+            <div *ngIf="(reservaCabanas.length>0)">
+             
+               <table class="table table-bordered table-striped" >
+              <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Fecha de la reserva</th>
+      <th scope="col">Valor de la cabaña</th>
+       <th scope="col">Id de la cabaña</th>
+      <th scope="col">Nombre de la cabaña</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let reserva of reservaCabanas ; let i = index ">
+      <td>  {{i}}</td>
+      <td>  {{reserva.FechaReserva}}</td>
+      <td>$ {{reserva.ValorTotal}}</td>
+       <td>  {{reserva.UCabanaId}}</td>
+      <td>  {{reserva.UCabana.Nombre}}</td>
+    </tr>
+    
+   
+  </tbody>
+</table>
+              
+            </div>
+            <div *ngIf="(reservaCabanas.length==0)">
+                <div class="card">
+                  <h6>Lo sentimos no existen reservas de cabañas el dia de hoy</h6>
+                </div>
+              
+            </div>
+           
+
+    
+    
+
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
   	<div class="container">
     
     		<div *ngIf="bandera==null">
-        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-4">
              <div align="center">
-            <h1>
+            <h3>
               <i class="fas fa-ticket-alt"></i> {{titulo}}
-              </h1>
+              </h3>
             </div>
           </div>
+              <div class="col-md-3">
+        <a href="#" class="btn btn-dark btn-block"  style="width:200;" data-toggle="modal" data-target="#All">
+          <i class="fas fa-home"></i> Reservas de cabañas
+        </a>
+      </div>
+          <div class="col-md-4">
+        <a href="#" class="btn btn-dark btn-block"   style="width:250;" data-toggle="modal" data-target="#DAY">
+          <i class="fas fa-home"></i> Reservas de cabañas del dia 
+        </a>
+      </div>
+        
+          </div>
+      
 
 
         </div>
@@ -33,9 +151,9 @@
         
         <div class="col-md-8">
              <div align="left">
-              <h2>
+              <h3>
               <i class="fas fa-ticket-alt "></i> {{titulo}}
-              </h2>
+              </h3>
             </div>
           </div>
          </div>
@@ -43,18 +161,11 @@
 
 
         </div>
-    		
-    		 
-      		
-
-
-        
-          
-
+    
 
        </div>
 <hr>
-</header>
+
 <br>
 <div *ngIf="bandera==null">
 
@@ -64,9 +175,9 @@
     
         <div align="center">
           <div class="row">
-            <div class="col-md-2">
-              
-            </div>
+           <div class="col-md-1">
+             
+           </div>
           <div class="col-md-4 ">
             <div class="card" style="width: 370">
           <br>
@@ -89,12 +200,10 @@
             
             </div>
           </div>
-          &nbsp;
-          &nbsp;
-          &nbsp;
-          &nbsp;
-          &nbsp;
-
+      
+<div class="col-md-2">
+              
+            </div>
           <div class="col-md-4">
             <div class="card">
              <div class="card" style="width: 370">    
@@ -116,7 +225,7 @@
 
             </div>
           </div>
-
+ 
         </div>       
       </div>
         

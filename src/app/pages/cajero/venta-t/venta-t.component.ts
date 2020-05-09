@@ -2,6 +2,8 @@ import { Component, OnInit ,ViewChild,ElementRef} from '@angular/core';
 import {VentaTicket } from 'src/app/interfaces/ticket';
 import { AuthService } from 'src/app/services/auth.service';
 import {VentaTicketsServiceService } from 'src/app/services/venta-tickets-service.service';
+import { ReservaCabana } from '../../../interfaces/reserva-cabana.interface';
+import { ReservaCabanasService } from 'src/app/services/reserva-cabanas.service';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule , FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -53,19 +55,22 @@ export class VentaTComponent implements OnInit {
  ticktes:any;
 date:any;
 k:any;
-
+fechatemp:any
+reservaCabanas: ReservaCabana[];
+reservaCabanasAll:ReservaCabana[];
 exportAsConfig={
   type:'png',
   elementId:'element'
 } 
-  constructor(private router: Router, private ServicioTicket:VentaTicketsServiceService ,private authService: AuthService) {    }
+  constructor(private router: Router, private ServicioTicket:VentaTicketsServiceService
+   ,private authService: AuthService,private reservaCabService: ReservaCabanasService) {    }
  // ngxQrcode2 = "10732538042";
   //techiediaries = "tickete1";
 letsboot = '';
   ngOnInit(): void {
-        //this.ObtenerUsuarios();
-        //  this.ObtenerRoles();
+ 
         this.ObtenerTickets();
+        this.prepare()
          var k= Date.now();
     console.log(k)
       
@@ -187,22 +192,48 @@ console.log(JSON.stringify(error));
 
   }
 
-  ObtenerRoles(){
-  	this.ServicioTicket.getRolesUsuario().subscribe(resultado =>{
+ yyyymmdd(dateIn) {
+   var yyyy = dateIn.getFullYear();
+   var mm = dateIn.getMonth()+1; // getMonth() is zero-based
+   var dd  = dateIn.getDate();
+   console.log(yyyy)
+ 
+   if(mm<10){
+    mm="0"+mm
+   }
 
-   this.roles=resultado;
+     console.log(mm)
+      if(dd<10){
+    dd="0"+dd
+   }
+   console.log(dd)
+   return String(yyyy +"-" + mm +"-" + dd); // Leading zeros for mm and dd
+}
+
+
+  async prepare() {
+    this.reservaCabanas = await this.reservaCabService.getReservasCabanas();
+    this.reservaCabanasAll=await this.reservaCabService.getReservasCabanas();
+    console.log(this.reservaCabanas)
+    for(var i=0;i<this.reservaCabanas.length;i++){
+          this.fechatemp=this.reservaCabanas[i].FechaReserva;
+    
+     var splitted = this.fechatemp.split("T", 2); 
+      this.fechatemp=splitted[0];
   
-  console.log(this.roles);
+      this.reservaCabanas[i].FechaReserva=this.fechatemp;
+      this.reservaCabanasAll[i].FechaReserva=this.fechatemp;
 
-
-   console.log("Informacion ya tiene resultado");
-  
- },
- error=>{
-console.log(JSON.stringify(error));
-
- });
+    }
+    var today = new Date();
+    var fechaactual=this.yyyymmdd(today)
+    console.log(fechaactual);
+   
+   this.reservaCabanas=this.reservaCabanas.filter(x=>x.FechaReserva.toString()==fechaactual)
+ console.log(this.reservaCabanas)
+ console.log(this.reservaCabanasAll)
   }
+
  ObtenerTickets(){
   	this.ServicioTicket.getTickets().subscribe(resultado =>{
 
@@ -212,13 +243,6 @@ console.log(JSON.stringify(error));
 
    }
    console.log(this.ticktes);
- // var id=parseInt(this.ticket.idTicket,10)
-  //var cantidad=parseInt(this.ticket.Cantidad,10)
-
- // this.k=this.ticktes[id-1].Precio*cantidad
-
-
-
    console.log("Informacion ya tiene resultado");
 
  },
@@ -228,7 +252,8 @@ console.log(JSON.stringify(error));
  });
   
   }
-  DatosClienteRegistrado(){
+
+ DatosClienteRegistrado(){
      if(this.bandera==null){
         this.bandera=true;
         this.titulo="Venta de tickets a clientes registrados"
@@ -328,6 +353,7 @@ refrescar(){
 
 reservaCreada:any
 comparativo:number=0
+
 public CreatePdf(parametro){
  // alert('downloadig....Ticket');
  const Toast = Swal.mixin({
@@ -393,17 +419,7 @@ setTimeout(() => { this.MensajePrecio(parametro.Precio) }, 1500);
 //this.refrescar();
 
  })
-   /*if(parametro.idTicket==0)
-  {
-     tipoticket="Visitante"
-  }
-  else if(parametro.idTicket==1){
-      tipoticket="Residente"
-  }
-  else if(parametro.idTicket==2){
-      tipoticket="niño"
-  }*/
-
+ 
 
   })
 
