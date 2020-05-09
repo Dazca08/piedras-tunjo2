@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReservaTicketsService } from '../../../services/reserva-tickets.service';
 import { ReservaTicket } from '../../../interfaces/reserva-ticket.interface';
+import * as jsPDF from "jspdf";
 
 @Component({
   selector: 'app-tickets',
@@ -26,6 +27,14 @@ export class TicketsComponent implements OnInit {
   async prepare() {
     this.reservasTick = await this.reservasTickService.getReservasTickets();
     console.log(this.reservasTick);
+  }
+  generarPdft(){
+    var id = document.getElementById("ticketreporte");
+    var pdf = new jsPDF();
+    pdf.text("Reporte de Tickets" ,70,50);
+    pdf.fromHTML(id,70,60);
+    pdf.save("ReporteTickets");
+
   }
 
 }
