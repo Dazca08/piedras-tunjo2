@@ -2,27 +2,29 @@
 <form #eventoForm="ngForm" (ngSubmit)="guardar(eventoForm)"> 
 
 
-  <section id="actions" class="py-4 mb-4 bg-light">
-    <div class="container">
+
+ 
       <div class="row">
         <div class="col-md-3">
-          <a routerLink="/eventos" class="btn btn-dark text-white btn-block">
+          <div align="right">
+              <a routerLink="/eventos" style="width: 200;" class="btn btn-dark text-white btn-block">
             <i class="fas fa-arrow-circle-left"></i> Regresar al Inicio
           </a>
+          </div>
+        
         </div>
         <div class="col-md-3">
-          <button type="submit" class="btn btn-success btn-block">
+          <div align="left">
+            <button type="submit" style="width: 200;" class="btn btn-success btn-block">
             <i class="fas fa-save"></i> Guardar cambios
           </button>
+          </div>
+          
         </div>
-       <!-- <div class="col-md-3">
-          <a href="/inicioeventos"   (click)="eliminar()" class="btn btn-danger btn-block">
-             Eliminar 
-          </a>
-        </div>-->
+   
       </div>
-    </div>
-  </section>
+
+<hr>
 
   <section id="details">
     <div class="container">
@@ -91,8 +93,37 @@
                 <label for="ImagenesUrl"> Si desea cambiar la imagen actual del evento</label>
 
                  
-
-                <input type="file" (change)="onFileSelected($event.target.files)"  accept="image/x-png,image/gif,image/jpeg">
+                    <!--<app-images-upload (changeFiles)="onChangeFile($event)"></app-images-upload>-->
+                <!--<input type="file" (change)="onFileSelected($event.target.files)"  accept="image/x-png,image/gif,image/jpeg">-->
+                      <div class="form-group">
+    <b class="text-muted">Selección de imágenes</b>
+    <div class="custom-file">
+        <input [disabled]="files.length >= 1" type="file" class="custom-file-input" id="customFile"
+                (change)="onChangeFile($event)" accept="image/*">
+        <label class="custom-file-label" for="customFile">Selecciona una imagen</label>
+    </div>
+</div>
+<div class="form-group" *ngIf="files.length > 0">
+    <table class="table text-center table-sm table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let file of files">
+                <td>{{ file.name }}</td>
+                <td>
+                    <button class="btn btn-sm btn-outline-danger" (click)="deleteFile(file)">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <small *ngIf="files.length >= 1" class="text-primary">Haz alcanzado el límite de imágenes</small>
+</div>
          <input type="hidden" name="ImagenesUrl" class="form-control" #ImagenesUrl="ngModel" [(ngModel)]="evento.ImagenesUrl"
                 >
               

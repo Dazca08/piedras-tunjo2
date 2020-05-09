@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild,EventEmitter, Output } from '@angular/core';
 import { ServicioEventoService } from '../servicio-evento.service';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Evento } from '../inicio-a/evento.model';
+import { ImagesService } from '../../../services/images.service';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-editar',
@@ -12,6 +13,7 @@ import Swal from 'sweetalert2';
 export class EditarComponent implements OnInit {
  id:string;
  Vtemp:string="";
+ files: File[] = [];
 eventos: Evento[];
   evento: Evento ={
     Nombre: '',
@@ -28,7 +30,7 @@ eventos: Evento[];
   constructor(private formBuilder: FormBuilder,
       private servi:  ServicioEventoService ,
       private Router: Router,
-       private route: ActivatedRoute) { }
+       private route: ActivatedRoute ,private imagesService:ImagesService) { }
 
     public respuestaImagenEnviada;
     public resultadoCarga;
@@ -133,6 +135,24 @@ for(this.i=0;this.i<this.selectedfile.length;this.i++){
   this.evento.ImagenesUrl=this.evento.ImagenesUrl+this.selectedfile[this.i].name.toString()+"@";
 }
 }
+ @Output() changeFiles = new EventEmitter<File[]>();
+    onChangeFile(event: any) {
+    const files = event.target.files;
+    if (files.length > 0) {
+      this.files.push(...files);
+    }
+    this.changeFiles.emit(this.files);
+    this.evento.ImagenesUrl=this.files[0].name.toString()+'@'
+
+    console.log(this.files[0].name)
+
+  }
+
+  deleteFile(file: File) {
+    this.files = this.files.filter(x => x.name !== file.name);
+    this.changeFiles.emit(this.files);
+  }
+
      guardar({value, valid}: {value:Evento, valid: boolean}){
 
     console.log(this.evento.ImagenesUrl)
@@ -202,6 +222,7 @@ else{
      value.Id = this.id;
       
    this.servi.update(value,this.id);  
+   this.imagesService.uploadMultipleImages(this.files, 'evento');
   //this.Router.navigate(['/admin/editarevento/'+this.id])
     this.cargandoImagen();
     this.refrescar(this.id);

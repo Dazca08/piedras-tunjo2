@@ -3,14 +3,15 @@
 <!--<ngx-qrcode qrc-element-type="url" [qrc-value]="techiediaries" ></ngx-qrcode>-->
 
 <header id="main-header" >
+  <br>
   	<div class="container">
     
     		<div *ngIf="bandera==null">
         <div class="col-md-12">
              <div align="center">
-            <h4>
+            <h1>
               <i class="fas fa-ticket-alt"></i> {{titulo}}
-              </h4>
+              </h1>
             </div>
           </div>
 
@@ -32,9 +33,9 @@
         
         <div class="col-md-8">
              <div align="left">
-            <h4>
-              <i class="fas fa-ticket-alt"></i> {{titulo}}
-              </h4>
+              <h2>
+              <i class="fas fa-ticket-alt "></i> {{titulo}}
+              </h2>
             </div>
           </div>
          </div>
@@ -54,7 +55,7 @@
        </div>
 <hr>
 </header>
-
+<br>
 <div *ngIf="bandera==null">
 
 
@@ -66,9 +67,9 @@
             <div class="col-md-2">
               
             </div>
-          <div class="col-md-4">
-            <div class="card">
-      
+          <div class="col-md-4 ">
+            <div class="card" style="width: 370">
+          <br>
                 <img [src]="'assets/imagenes/UR.png'" style="width: 100, height:200" alt="" >
       <div class="card-body">
         <b class="text-muted">Vender tickets a clientes que se encuentren registrados en el sistema </b>
@@ -88,39 +89,36 @@
             
             </div>
           </div>
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+
           <div class="col-md-4">
             <div class="card">
-             <div class="card">
-      
+             <div class="card" style="width: 370">    
+               <br>  
                 <img [src]="'assets/imagenes/UN.png'" style="width: 100, height:200" alt="" >
-      <div class="card-body">
-        <b class="text-muted">Vender tickets a clientes que  no se encuentren registrados en el sistema </b>
-      </div>
-      <div class="card-footer">
-      <form (submit)="DatosClienteNoRegistrado()">
-                <div align="center">
-                   <button type="submit"class="btn btn-danger ">
-                   <h4><i class="fas fa-user-times"></i> Clientes No registrados</h4>
-                     </button>
-                   </div>
-             </form>
-      </div>
-            
-                  
-            
-            </div>
-            
-            
-                    
-    
-             
-            
+                    <div class="card-body">
+                    <b class="text-muted">Vender tickets a clientes que  no se encuentren registrados en el sistema </b>
+                    </div>  
+                    <div class="card-footer">
+                        <form (submit)="DatosClienteNoRegistrado()">
+                          <div align="center">
+                            <button type="submit"class="btn btn-danger ">
+                            <h4><i class="fas fa-user-times "></i> Clientes No registrados</h4>
+                            </button>
+                          </div>
+                       </form>
+                    </div>                                   
+                  </div>
+
             </div>
           </div>
-        </div>
-       
 
-        </div>
+        </div>       
+      </div>
         
  
     
@@ -137,8 +135,8 @@
 	<div align="center">
       <div class="col-md-6" >
         <div class="card">
-          <div class="card-header">
-            <h5>Diligencie este formulario para vender tickets.</h5>
+          <div class="card-header" >
+            <h4>Formulario de Venta</h4> 
           </div>
           <div class="card-body">
            <form #VentaForm="ngForm" (ngSubmit)="RealizarVenta(VentaForm)"> 
@@ -158,18 +156,19 @@
            </div>
 
            <div class="col-md-6">
-            <label>
-               Precio Unitario</label>
+            <label class="fas fa-dollar-sign">
+               Precio Unitario
+            </label>
             <br>
 
-             <label><i class="fas fa-dollar-sign"></i>  {{ticktes[ticket.idTicket].Precio}}</label>
+             <label><i class=""></i>  ${{ticktes[ticket.idTicket].Precio}}</label>
            </div>
          </div>
          <hr>
          <div class="row">
           <div class="col-md-6">
                <div class="form-group">
-                <label for="NumeroDocumento"><i class="fas fa-pencil-alt"></i> Numero de documento</label>
+                <label for="NumeroDocumento"><i class="fas fa-pencil-alt"></i> Numero de Documento</label>
                 <input type="number" name="NumeroDocumento" class="form-control" #NumeroDocumento="ngModel" [(ngModel)]="ticket.NumeroDocumento"
                  >
                
@@ -185,21 +184,11 @@
             </div>
          </div>
               
-           
-            
-
-         
-    
-         
-
-             
-
-             
           </div>
           <hr>
           <div align="center">
               
-          <button type="submit" style="width:200px; " class="btn btn-primary" > <i class="fas fa-hand-holding-usd"></i> Realizar venta</button>
+          <button type="submit" style="width:200px; " class="btn btn-primary" > <i class="fas fa-hand-holding-usd"></i> Realizar Venta</button>
  
       
 
@@ -225,66 +214,71 @@
       <div class="col-md-6" >
         <div class="card">
           <div class="card-header">
-            <h5>Diligencie este formulario para vender tickets.</h5>
+            <h4>Formulario de Venta</h4>
           </div>
           <div class="card-body">
            <form #VentaForm="ngForm" (ngSubmit)="RealizarVenta(VentaForm)"> 
         <div class="modal-body">
-          <div class="row">
-            <div class="col-md-6">
-               <div class="form-group">
-                <label for="UUsuario"><i class="fas fa-pencil-alt"></i> Correo electronico del usuario</label>
-                <input type="text" name="UUsuario" class="form-control" #UUsuario="ngModel" [(ngModel)]="ticket.UUsuario"
-                 >
-         
-              </div>
-            </div>
-             <div class="col-md-6">
-               <div class="form-group">
-                <label for="Cantidad"><i class="fas fa-list-ol"></i> Cantidad de tickets a comprar</label>
-                <input type="number" name="Cantidad" class="form-control" #Cantidad="ngModel" [(ngModel)]="ticket.Cantidad"
-                 >
-         
-              </div>
-            </div>
-
-          </div>
-          <hr>
+          
          <div class="row">
-           <div class="col-md-6">
+           
+          <div class="col-md-6">
               <div class="form-group">
                 <label for="idTicket"><i class="fas fa-ticket-alt"></i> Tipo de Ticket</label>
-                <select name="idTicket" style="width:200" class="form-control" #idTicket="ngModel" [(ngModel)]="ticket.idTicket">
-                                            <option value="{{opcion.Id}}" *ngFor="let opcion of ticktes">{{opcion.Nombre}}</option>
-                                          
-                                             </select>
-                         
-                
-                 
+                <select 
+                  name="idTicket" 
+                  style="width:200" 
+                  class="form-control" 
+                  #idTicket="ngModel" 
+                  [(ngModel)]="ticket.idTicket">
+                  <option 
+                    value="{{opcion.Id}}" 
+                    *ngFor="let opcion of ticktes">{{opcion.Nombre}}
+                  </option>                                          
+                </select>                                                          
               </div>
            </div>
 
            <div class="col-md-6">
-            <label>
-               Precio unitario</label>
-            <br>
-
-             <label><i class="fas fa-dollar-sign"></i>  {{ticktes[ticket.idTicket].Precio}}</label>
+            <label class="fas fa-dollar-sign">              
+               Precio Unitario
+              </label>
+            <br>            
+             <label><i class="margin-top:70px "></i>  ${{ticktes[ticket.idTicket].Precio}}</label>
            </div>
          </div>
-
-             
-
-             
+         <hr>
+         <div class="row">
+          <div class="col-md-6">
+             <div class="form-group">
+              <label for="UUsuario"><i class="fas fa-pencil-alt"></i> E-mail del Usuario</label>
+              <input type="text" name="UUsuario" class="form-control" #UUsuario="ngModel" [(ngModel)]="ticket.UUsuario"
+               >
+       
+            </div>
           </div>
+           <div class="col-md-6">
+             <div class="form-group">
+              <label for="Cantidad"><i class="fas fa-list-ol"></i> Cantidad de Tickets</label>
+              <input type="number" name="Cantidad" class="form-control" #Cantidad="ngModel" [(ngModel)]="ticket.Cantidad"
+               >
+       
+            </div>
+          </div>
+
+        </div>
+             
+
+             
+        </div>
           <hr>
-          <div align="center">
+        <div align="center">
               
-          <button type="submit" style="width:200px; " class="btn btn-primary" > <i class="fas fa-hand-holding-usd"></i> Realizar venta</button>
+          <button type="submit" style="width:200px; " class="btn btn-primary" > <i class="fas fa-hand-holding-usd"></i> Realizar Venta</button>
 
       
 
-          </div>
+        </div>
          
       </form>
  

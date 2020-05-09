@@ -32,6 +32,7 @@ export class AgregarComponent implements OnInit {
   async onSubmit() {
     // console.log(this.formCabana.value);
     const imagenesUrl = await this.imagesService.uploadMultipleImages(this.files, 'noticia');
+    console.log(imagenesUrl);
     if (imagenesUrl !== '') {
       const noticia: Noticia = {
         ... this.formNoticia.value,
@@ -39,6 +40,7 @@ export class AgregarComponent implements OnInit {
         estado: 1,
         imagenesUrl
       };
+      console.log(imagenesUrl)
       const creado = await this.noticiasService.agregarNoticia(noticia);
       if (creado) {
         this.router.navigateByUrl('/noticias');
