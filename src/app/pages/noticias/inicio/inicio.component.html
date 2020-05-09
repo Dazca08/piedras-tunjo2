@@ -1,17 +1,19 @@
 <div class="row mt-2">
-    <div class ="col-md-4 col-sm-10':'col-md-8 col-sm10">
-        <input type="text" class="form-control" name="filterNoticia" placeholder="Buscar Noticia por el titulo ..." [(ngModel)]="filterNoticia">
+    <div class ="col-6">
+        <input type="text" class="form-control" name="filterNoticia" placeholder="Busqueda por titulo ..." [(ngModel)]="filterNoticia">
     </div >
-    <div class="float-right">
-        <button class="btn btn-sm btn-success" routerLink="/noticias/agregar">Nuevo noticia</button>
+    <div class="col-6">
+        <div class="float-right">
+            <button class="btn btn-sm btn-success" routerLink="/noticias/agregar">Nuevo noticia</button>
+        </div>
     </div>
 </div>
 <hr>
-<div class="container" *ngIf="noticias.length === 0">
-    <h6>No hay noticias para mostrar</h6>
+<div class="container" *ngIf="(noticias  | arrayFilter:'titulo':filterNoticia).length === 0">
+    <b class="text-muted">No hay resultados para la búsqueda</b>
 </div>
 <div class="row" *ngIf="noticias.length > 0">
-    <div class="col-md-4 col-sm-6 col-xs-12 mb-2" *ngFor="let noticia of noticias | noticiasfiltro:filterNoticia">
+    <div class="col-md-4 col-sm-6 col-xs-12 mb-2" *ngFor="let noticia of noticias | arrayFilter:'titulo':filterNoticia">
         <div class="card-noticia card shadow">
             <div class="card-header">
                 <small>
@@ -24,15 +26,10 @@
                     </button>
                 </div>
             </div>
-            <div class="card-body">
+            <div class="card-body pb-1">
                 <app-carousel-images [imagenes]="noticia.imagenesUrl | imgUrlToArray" tipo="noticia"></app-carousel-images>
-                <b class="text-muted">{{ noticia.titulo }}</b>
-                <p class="card-textarea">
-                    {{ noticia.descripcion | slice: 0:100 }}
-                    ...
-                </p>
-                
-                
+                <hr>
+                <h6 class="card-title">{{ noticia.titulo }}</h6>
             </div>
             <div class="card-footer">
                 <div class="row">

@@ -257,6 +257,14 @@ export class NuevoComponent implements OnInit, AfterViewInit {
   }
 
   async onSubmit(form: NgForm) {
+    if (isNaN(this.tiempoEstimado)) {
+      this.showErrorMessage('El tiempo estimado no tiene el formato correcto');
+      return;
+    }
+    if (Number(this.tiempoEstimado) < 1) {
+      this.showErrorMessage('El tiempo estimado no puede ser cero o negativo');
+      return;
+    }
     if (form.valid) {
       const { nombre, tiempoEst } = form.value;
       if (this.coordenadas.length < 3) {

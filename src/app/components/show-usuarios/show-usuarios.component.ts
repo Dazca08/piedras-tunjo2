@@ -10,6 +10,7 @@ import { UsuarioService } from '../../services/usuario.service';
 export class ShowUsuariosComponent implements OnInit {
 
   @Input() usuarios: Usuario[];
+  numeroDoc = '';
 
   constructor() { }
 

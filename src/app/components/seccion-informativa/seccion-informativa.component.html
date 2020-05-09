@@ -57,7 +57,7 @@
 
 </div>
 <hr>
-<div class="row">
+<div class="row" *ngIf="horario">
   <div class="col-md-6 " style="text-align: center;">
     <h4>Horario de atención</h4>
     <hr>
@@ -74,10 +74,10 @@
       <hr>
         <br>
 
-<div *ngIf="(Noticias.length==0)">
+<div *ngIf="Noticias && (Noticias.length==0)">
   <h6 >No existen noticias en este momento</h6>
 </div>
-<div *ngIf="(Noticias.length>0)">
+<div *ngIf="Noticias && (Noticias.length>0)">
   <div class="container"  >
      <div class="col-md-12">
     <div class="row row-cols-1 row-cols-md-3">
@@ -121,85 +121,3 @@
 
        
 </div>
-    
-        
-            
-      
-        
-            
-                <!--
-
-                      <div class="col-sm-4 col-12">
-                   
-                    <div class="box-noticias box-noticias-bicentenario  alto_contraste" style="background-color: transparent !important;">
-                        <div style=" width:100;bottom: 290px;color: #fff;padding: 1px 10px;opacity: 1;font-weight: bold;background-color: forestgreen; text-align:center">Noticias</div>
-                                   <img class="pick-avatar" class="card-img-top" width="400" height="200"
-                 src={{rutaImagen}}{{noticia2.imagenesUrl}}
-                       > 
-                                            
-                        <div class="content-noticia" style="background-color: transparent !important;">
-                            <div class="nombre-noticia alto_contraste">
-                                <br>
-                                <p style="text-align: justify;font-size: 1em;">
-                             
-                                     
-                                    {{noticia2.titulo}}
-                                  
-                                </p>
-                                <p style="text-align: justify;font-size: 0.7em;text-transform: capitalize;" class="wrap8">
-                                    <i class="fa fa-calendar"></i>&nbsp;&nbsp;{{noticia2.fechaPublicacion}}
-                                </p>
-                                <p style="text-align: justify;font-size: 0.7em;" class="wrap8">
-                                      {{noticia2.descripcion}}
-                                  
-                                </p>
-                            </div>
-
-                        </div>
-
-                    </div>
-                   
-
-
-
-               </div>
-                <div class="col-sm-4 col-12">
-                   
-                    <div class="box-noticias box-noticias-bicentenario  alto_contraste" style="background-color: transparent !important;">
-                        <div style="width:100;bottom: 290px;color: #fff;padding: 1px 10px;opacity: 1;font-weight: bold;background-color: forestgreen; text-align:center">Noticias</div>
-                                     <img class="pick-avatar" class="card-img-top"  width="400" height="200"
-                 src={{rutaImagen}}{{noticia3.imagenesUrl}}
-                       > 
-                                                
-                        <div class="content-noticia" style="background-color: transparent !important;">
-                            <div class="nombre-noticia alto_contraste">
-                                <br>
-                                <p style="text-align: justify;font-size: 1em;">
-                                
-                                    {{noticia3.titulo}}
-                                    
-                                </p>
-                                <p style="text-align: justify;font-size: 0.7em;text-transform: capitalize;" class="wrap8">
-                                    <i class="fa fa-calendar"></i>&nbsp;&nbsp;{{noticia3.fechaPublicacion}}
-                                </p>
-                                <p style="text-align: justify;font-size: 0.7em;" class="wrap8">
-                                  {{noticia3.descripcion}}
-                                </p>
-                            </div>
-
-                        </div>
-
-                    </div>
-                   
-
-
-
-               </div>
-            
-          
-        </div>-->
-
-<!--</div>-->
-
-    
-     

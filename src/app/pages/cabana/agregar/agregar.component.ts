@@ -4,6 +4,7 @@ import { Cabana } from 'src/app/interfaces/cabana.interface';
 import { ImagesService } from '../../../services/images.service';
 import { CabanasService } from '../../../services/cabanas.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-agregar',
@@ -25,13 +26,24 @@ export class AgregarComponent implements OnInit {
   ngOnInit(): void {
     this.formCabana = this.fb.group({
       Nombre: ['', Validators.required],
-      Precio: [1, Validators.required],
-      Capacidad: [1, Validators.required]
+      Precio: [1000, [Validators.required]],
+      Capacidad: [1, [Validators.required]],
     });
   }
 
   async enviarForm() {
-    // console.log(this.formCabana.value);
+    const { Precio, Capacidad } = this.formCabana.value;
+    // VALIDACIONES
+    // required valida que los campos sean númericos
+    // rangos
+    if (Number(Precio) < 1000) {
+      this.presentAlert('Error', 'El precio debe ser mayor o igual a 1000 COP', 'error');
+      return;
+    }
+    if (Number(Capacidad) < 1) {
+      this.presentAlert('Error', 'La capacidad no puede ser cero ni negativa', 'error');
+      return;
+    }
     const ImagenesUrl = await this.imagesService.uploadMultipleImages(this.files, 'cabana');
     if (ImagenesUrl !== '') {
       const cabana: Cabana = {
@@ -45,6 +57,10 @@ export class AgregarComponent implements OnInit {
         this.router.navigateByUrl('/cabanas');
       }
     }
+  }
+
+  presentAlert(title: any, text: any, icon: any) {
+    Swal.fire({ title, text, icon });
   }
 
   getValidationClass(nameControl: string) {

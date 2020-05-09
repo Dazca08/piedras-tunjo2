@@ -12,11 +12,6 @@ declare var $: any;
   animations: [basicAnimate]
 })
 export class HomeComponent implements OnInit {
-  itemc = {
-    title:   'Venta de tickets',
-      image: 'registradora.jpg',
-      route: '/cajero'
-  };
 
   bandera: any;
   rolUsuario: any;

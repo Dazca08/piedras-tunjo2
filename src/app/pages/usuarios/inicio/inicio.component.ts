@@ -15,7 +15,7 @@ export class InicioComponent implements OnInit {
   roles: Rol[] = [];
   idRolSelected = 0;
   estado = true;
-  otherOption = false;
+  loading = false;
 
   constructor(
     private usuariosService: UsuarioService,
@@ -29,6 +29,10 @@ export class InicioComponent implements OnInit {
   async obtenerUsuarios() {
     this.roles = await this.rolService.getRoles();
     this.usuarios = await this.usuariosService.getUsuarios();
+    this.loading = true;
+    setTimeout(() => {
+      this.loading = false;
+    }, 1000);
   }
 
 }

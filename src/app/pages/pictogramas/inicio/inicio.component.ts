@@ -20,6 +20,7 @@ declare var $: any;
 export class InicioComponent implements OnInit {
 
   pictogramas: Pictograma[] = [];
+  nombrePicto = '';
 
   constructor(
     private pictogramaService: PictogramaService,

@@ -29,7 +29,7 @@
                                 <div class="valid-feedback">Ok!</div>
                                 <div class="invalid-feedback">
                                   <span *ngIf="precio.errors?.required">
-                                      La precio es requerida
+                                      El precio es requerido
                                   </span>
                                 </div>
                             </div>
@@ -52,7 +52,11 @@
                     
                 </div>
                 <div class="card-footer text-center">
-                    <button type="submit" [disabled]="formCabana.invalid || files.length === 0" class="btn btn-success">Guardar</button>
+                    <div class="row justify-content-center">
+                        <div class="col-md-4 col-sm-6">
+                            <button type="submit" [disabled]="formCabana.invalid || files.length === 0" class="btn btn-block btn-success">Guardar</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>

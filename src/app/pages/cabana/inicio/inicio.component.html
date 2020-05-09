@@ -1,8 +1,8 @@
 <div class="row mt-2">
-    <div class ="col-md-4 col-sm-10':'col-md-8 col-sm10">
-        <input type="text" class="form-control" name="filterCabana" placeholder="Buscar Cabaña por nombre ..." [(ngModel)]="filterCabana">
+    <div class ="col-6">
+        <input type="text" class="form-control" name="filterCabana" placeholder="Búsqueda por nombre ..." [(ngModel)]="filterCabana">
     </div>
-    <div class ="col-md-4 col-sm-10':'col-md-8 col-sm10">
+    <div class ="col-6">
         <div class="float-right">
             <button class="btn btn-sm btn-success" routerLink="/cabanas/agregar">Nueva Cabaña</button>
         </div>
@@ -11,8 +11,8 @@
 
 <hr>
 <br>
-<div class="container" *ngIf="cabanas.length === 0">
-    <h6>No hay cabañas para mostrar</h6>
+<div class="container" *ngIf="(cabanas | cabanafiltro:filterCabana).length === 0">
+    <b class="text-muted">No hay resultados para la búsqueda</b>
 </div>
 <div class="row" *ngIf="cabanas.length > 0" >
     <div class="col-md-4 col-sm-6 col-xs-12" *ngFor="let cabana of cabanas  | cabanafiltro:filterCabana">

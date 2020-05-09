@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { InicioGuard } from './guards/inicio.guard';
+import { AdminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   {
@@ -16,6 +17,8 @@ const routes: Routes = [
   },
   {
     path: 'login',
+    canLoad: [ InicioGuard ],
+    canActivate: [ InicioGuard ],
     loadChildren: () => import('./pages/login/login.module').then(mod => mod.LoginModule)
   },
   // Guard auth
@@ -27,72 +30,72 @@ const routes: Routes = [
   {
     path: 'cabanas',
     loadChildren: () => import('./pages/cabana/cabana.module').then(mod => mod.CabanaModule),
-    canLoad: [AuthGuard],
+    canLoad: [AuthGuard, AdminGuard],
   },
   {
     path: 'configuracion',
     loadChildren: () => import('./pages/configuracion/configuracion.module').then(mod => mod.ConfiguracionModule),
-    canLoad: [AuthGuard],
+    canLoad: [AuthGuard, AdminGuard],
   },
   {
     path: 'eventos',
     loadChildren: () => import('./pages/eventos/eventos.module').then(mod => mod.EventosModule),
-    canLoad: [AuthGuard],
+    canLoad: [AuthGuard, AdminGuard],
   },
   {
     path: 'modulo-qr',
     loadChildren: () => import('./pages/modulo-qr/qr.module').then(mod => mod.QrModule),
-    canLoad: [AuthGuard],
+    canLoad: [AuthGuard, AdminGuard],
   },
   {
     path: 'noticias',
     loadChildren: () => import('./pages/noticias/noticias.module').then(mod => mod.NoticiasModule),
-    canLoad: [AuthGuard],
+    canLoad: [AuthGuard, AdminGuard],
   },
   {
     path: 'preguntas-frecuentes',
     loadChildren: () => import('./pages/preguntas-frecuentes/preguntas-frecuentes.module').then(mod => mod.PreguntasFrecuentesModule),
-    canLoad: [AuthGuard],
+    canLoad: [AuthGuard, AdminGuard],
   },
   {
     path: 'promociones',
     loadChildren: () => import('./pages/promociones/promociones.module').then(mod => mod.PromocionesModule),
-    canLoad: [AuthGuard],
+    canLoad: [AuthGuard, AdminGuard],
   },
   {
     path: 'puntos-interes',
     loadChildren: () => import('./pages/puntos-interes/puntos-interes.module').then(mod => mod.PuntosInteresModule),
-    canLoad: [AuthGuard],
+    canLoad: [AuthGuard, AdminGuard],
   },
   {
     path: 'usuarios',
     loadChildren: () => import('./pages/usuarios/usuarios.module').then(mod => mod.UsuariosModule),
-    canLoad: [AuthGuard],
+    canLoad: [AuthGuard, AdminGuard],
   },
   {
     path: 'usuarios-pendientes',
     loadChildren: () => import('./pages/usuarios-pendientes/usuarios-pendientes.module').then(mod => mod.UsuariosPendientesModule),
-    canLoad: [AuthGuard],
+    canLoad: [AuthGuard, AdminGuard],
   },
   {
     path: 'pqr',
     loadChildren: () => import('./pages/pqr/pqr.module').then(mod => mod.PqrModule),
-    canLoad: [AuthGuard],
+    canLoad: [AuthGuard, AdminGuard],
   },
   {
     path: 'pictogramas',
     loadChildren: () => import('./pages/pictogramas/prueba.module').then(mod => mod.PruebaModule),
-    canLoad: [AuthGuard]
+    canLoad: [AuthGuard, AdminGuard],
   },
   {
     path: 'recorridos',
     loadChildren: () => import('./pages/recorridos/recorridos.module').then(mod => mod.RecorridosModule),
-    canLoad: [AuthGuard]
+    canLoad: [AuthGuard, AdminGuard],
   },
   {
     path: 'tickets',
     loadChildren: () => import('./pages/tickets/tickets.module').then(mod => mod.TicketsModule),
-    canLoad: [AuthGuard],
+    canLoad: [AuthGuard, AdminGuard],
   },
   {
     path: 'cajero',
@@ -102,7 +105,7 @@ const routes: Routes = [
   {
     path: 'reportes',
     loadChildren: () => import('./pages/reportes/reportes.module').then(mod => mod.ReportesModule),
-    canLoad: [AuthGuard],
+    canLoad: [AuthGuard, AdminGuard],
   },
   { path: '', pathMatch: 'full', redirectTo: 'tablero' },
   { path: '**', pathMatch: 'full', redirectTo: 'tablero' }

@@ -9,11 +9,17 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-md-6 col-sm-12" *ngIf="usuario.Imagen_documento !== null">
                         <app-carousel-images [imagenes]="[usuario.Imagen_documento]" tipo="identificacion"></app-carousel-images>
                     </div>
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-md-6 col-sm-10" *ngIf="usuario.Imagen_documento === null">
+                        <img src="/assets/imagenes/no-image.png" width="100%" />
+                    </div>
+                    <div class="col-md-6 col-sm-12" *ngIf="usuario.Imagen_documento !== null">
                         <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                            <div class="form-group text-center">
+                                <b class="text-muted">{{ usuario.Nombre }} {{ usuario.Apellido }}</b>
+                            </div>
                             <div class="form-group">
                                 <b class="text-muted">Número documento</b>
                                 <input type="number" class="form-control" [ngClass]="getValidationClass('NumeroDocumento')"
@@ -53,6 +59,32 @@
                                 </button>
                             </div>
                         </form>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12" *ngIf="usuario.Imagen_documento === null">
+                        <table class="table table-sm">
+                            <tr>
+                                <td><b class="text-muted">N. documento</b></td>
+                                <td>{{ usuario.NumeroDocumento }}</td>
+                            </tr>
+                            <tr>
+                                <td><b class="text-muted">Nombre</b></td>
+                                <td>{{ usuario.Nombre }} {{ usuario.Apellido }}</td>
+                            </tr>
+                            <tr>
+                                <td><b class="text-muted">Correo</b></td>
+                                <td>
+                                    {{ usuario.CorreoElectronico }}
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="container text-center">
+                            <i class="fas fa-times fa-4x text-danger"></i>
+                            <hr>
+                            <b class="text-danger">
+                                El usuario todavía no ha subido la foto del documento
+                            </b>
+                        </div>
                     </div>
                 </div>
             </div>

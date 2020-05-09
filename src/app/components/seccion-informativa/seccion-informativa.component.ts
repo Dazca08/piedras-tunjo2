@@ -27,22 +27,18 @@ export class SeccionInformativaComponent implements OnInit {
 ObtenerUltimasNoticias(){
 
   this.infoService.getNoticias().subscribe(resultado =>{
-    console.log("este es el resultado")
-    console.log(resultado)
- this.Noticias=resultado;
-
-
-
- console.log(this.Noticias)
-  for(this.i=0;this.i<this.Noticias.length;this.i++){
-     this.fechatemp=this.Noticias[this.i].fechaPublicacion;
-     var splitted = this.fechatemp.split("T", 2); 
-      this.fechatemp=splitted[0];
- 
-      this.Noticias[this.i].fechaPublicacion=this.fechatemp;
-
-   }
- 
+    // console.log("este es el resultado")
+    // console.log(resultado)
+    this.Noticias=resultado;
+  //  console.log(this.Noticias)
+    for(this.i=0;this.i<this.Noticias.length;this.i++){
+       this.fechatemp=this.Noticias[this.i].fechaPublicacion;
+       var splitted = this.fechatemp.split("T", 2); 
+        this.fechatemp=splitted[0];
+   
+        this.Noticias[this.i].fechaPublicacion=this.fechatemp;
+  
+    }
  },
  error=>{
 console.log(JSON.stringify(error));

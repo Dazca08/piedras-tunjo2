@@ -1,17 +1,24 @@
+<div class="row">
+    <div class="col-md-4 col-sm-6">
+        <input type="text" class="form-control" placeholder="Filtro por N. documento" [(ngModel)]="numeroDoc">
+    </div>
+</div>
+<hr>
 <div class="container text-center" *ngIf="!usuarios">
     <span class="text-muted">
         <i class="fas fa-spinner fa-spin fa-4x"></i>
     </span>
 </div>
-<div class="container" *ngIf="usuarios && usuarios.length === 0">
+<div class="container" *ngIf="usuarios && (usuarios | numDocFilter: numeroDoc ).length === 0">
     <b class="text-muted">No se encontraron resultados para la búsqueda</b>
 </div>
 <div class="row" *ngIf="usuarios">
     <!-- <div class="col-md-4 col-sm-6 col-xs-10 mb-3" *ngFor="let user of (usuarios | usersByRol: idRolSelected)"> -->
-    <div class="col-md-4 col-sm-6 col-xs-10 mb-3" *ngFor="let user of usuarios">
+    <div class="col-md-4 col-sm-6 col-xs-10 mb-3" *ngFor="let user of usuarios | numDocFilter: numeroDoc">
         <div class="card shadow">
             <div class="card-header">
-                <b class="text-muted">{{ user.NumeroDocumento }}</b>
+                <b class="text-muted">N. documento:</b>&nbsp;
+                {{ user.NumeroDocumento }}
                 <div class="float-right">
                     <button class="btn btn-sm btn-outline-success" 
                             routerLink="/usuarios/detalles/{{ user.Id }}">

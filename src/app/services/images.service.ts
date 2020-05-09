@@ -31,6 +31,7 @@ export class ImagesService {
     // Renombramos las imagenes con un uuid
     files.forEach(x => {
       const blob = x.slice(0, x.size, 'image/*');
+      // const uuidName = uuid.v4() + x.name; NO PONER EL NOMBRE DE LA IMAGEN POR SI TIENE CARACTERES ESPECIALES
       const uuidName = uuid.v4() + x.name;
       const newFile = new File([blob], uuidName, {type: 'image/*'});
       // agregar al formData
@@ -38,7 +39,8 @@ export class ImagesService {
       // construir el imagenesUrl que separa las imagenes con un @
       imagenesUrl += uuidName + '@';
     });
-    imagenesUrl = imagenesUrl.substring(0, (imagenesUrl.length - 1));
+    imagenesUrl = imagenesUrl.substring(0, (imagenesUrl.length - 1)); // quitar el último @
+    console.log(imagenesUrl);
 
     // subir imagenes al servidor
     return new Promise(resolve => {

@@ -16,6 +16,8 @@ import { UsersByRolPipe } from './users-by-rol.pipe';
 import { UsersByStatePipe } from './users-by-state.pipe';
 import { CabanafiltroPipe } from './cabanafiltro.pipe';
 import { NoticiasfiltroPipe } from './noticiasfiltro.pipe';
+import { NumDocFilterPipe } from './num-doc-filter.pipe';
+import { ArrayFilterPipe } from './array-filter.pipe';
 
 
 @NgModule({
@@ -35,7 +37,9 @@ import { NoticiasfiltroPipe } from './noticiasfiltro.pipe';
     UsersByRolPipe,
     UsersByStatePipe,
     CabanafiltroPipe,
-    NoticiasfiltroPipe
+    NoticiasfiltroPipe,
+    NumDocFilterPipe,
+    ArrayFilterPipe
   ],
   imports: [
     CommonModule
@@ -56,7 +60,9 @@ import { NoticiasfiltroPipe } from './noticiasfiltro.pipe';
     UsersByRolPipe,
     UsersByStatePipe,
     CabanafiltroPipe,
-    NoticiasfiltroPipe
+    NoticiasfiltroPipe,
+    NumDocFilterPipe,
+    ArrayFilterPipe
   ]
 })
 export class PipesModule { }

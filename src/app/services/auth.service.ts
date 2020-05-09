@@ -47,10 +47,15 @@ export class AuthService {
                         const user = JSON.parse(decode['usuario']);
                         // verificar que sea el administrador o cajero
                         if (user['RolId'] === 1 || user['RolId'] === 3) {
-                          this.guardarToken(res['token']);
-                          this.auth$.emit(true);
-                          this.router.navigateByUrl('/home');
-                          Swal.close();
+                          // usuario habilitado
+                          if (user['EstadoCuenta'] === true) {
+                            this.guardarToken(res['token']);
+                            this.auth$.emit(true);
+                            this.router.navigateByUrl('/home');
+                            Swal.close();
+                          } else {
+                            this.mostrarAlert('Error', 'Usuario deshabilitado', 'warning');
+                          }
                         } else {
                           this.mostrarAlert('Error', 'Acceso denegado, usuario no valido', 'warning');
                         }
@@ -85,6 +90,16 @@ export class AuthService {
                     resolve(false);
                   }
                 });
+    });
+  }
+
+  async validateAdmin(): Promise<boolean> {
+    return new Promise(async resolve => {
+      const user = await this.getUsuario();
+      if (user['RolId'] === 3) {
+        this.router.navigateByUrl('/home');
+      }
+      resolve(user['RolId'] === 1);
     });
   }
 

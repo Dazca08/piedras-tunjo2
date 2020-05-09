@@ -18,11 +18,14 @@ export class SidebarComponent implements OnInit {
   ];
    // las rutas para cuando el usuario se haya autenticado y sea el cajero
   cajeroRoutes = [
-    { label: 'Inicio cajero', path: '/home', icon: 'home' },
-    { label: 'Venta de tickets', path: '/cajero', icon: 'hand-holding-usd' },
+    { label: 'Venta de tickets', path: '/cajero', icon: 'hand-holding-usd' }
   ];
   // rutas para cuando el usuario se haya autenticado y sea el administrador
-  routes = routes;
+  routes = [
+    ...routes,
+    { label: '', path: '', icon: ''},
+    { label: '', path: '', icon: ''}
+  ];
 
   constructor(
     public authService: AuthService

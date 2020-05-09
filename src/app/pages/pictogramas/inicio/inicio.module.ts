@@ -4,6 +4,7 @@ import { InicioComponent } from './inicio.component';
 import { RouterModule } from '@angular/router';
 import { PipesModule } from '../../../pipes/pipes.module';
 import { ComponentsModule } from '../../../components/components.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [InicioComponent],
@@ -11,6 +12,7 @@ import { ComponentsModule } from '../../../components/components.module';
     CommonModule,
     PipesModule,
     ComponentsModule,
+    FormsModule,
     RouterModule.forChild([{ path: '', component: InicioComponent }]),
   ]
 })

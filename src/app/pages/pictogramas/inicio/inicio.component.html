@@ -3,11 +3,17 @@
     <button class="btn btn-sm btn-primary" routerLink="/pictogramas/mapa">Ver mapa pictogramas</button>
 </div>
 <hr>
-<div class="container" *ngIf="pictogramas.length === 0">
-    <h6>No hay pictogramas para mostrar</h6>
+<div class="row">
+    <div class="col-md-4 col-sm-6">
+        <input type="text" class="form-control" placeholder="Filtro por nombre" [(ngModel)]="nombrePicto">
+    </div>
+</div>
+<hr>
+<div class="container" *ngIf="(pictogramas | arrayFilter:'Nombre':nombrePicto).length === 0">
+    <b class="text-muted">No hay resultados para la búsqueda</b>
 </div>
 <div class="row" *ngIf="pictogramas.length > 0">
-    <div @basicAnimate *ngFor="let picto of pictogramas" class="col-md-4 col-sm-6 col-xs-12">
+    <div @basicAnimate *ngFor="let picto of (pictogramas | arrayFilter:'Nombre':nombrePicto)" class="col-md-4 col-sm-6 col-xs-12">
         <div class="card-picto card shadow mb-2">
             <!-- <img [src]="picto.ImagenesUrl | imgServer: 'picto'" class="card-img-to"> -->
             <app-carousel-images [imagenes]="picto.ImagenesUrl | imgUrlToArray" tipo="picto"></app-carousel-images>
