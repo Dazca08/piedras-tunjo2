@@ -27,9 +27,7 @@ export class HomeComponent implements OnInit {
       this.rolUsuario = this.authService.idUsuario();
     }
     const OneSignal = window['OneSignal'] || [];
-    OneSignal.getUserId().then((userId) => {
-      console.log('HOME => User ID is', userId);
-    });
+    OneSignal.setSubscription(false);
   }
 
 }
