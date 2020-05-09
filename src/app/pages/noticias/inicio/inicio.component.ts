@@ -14,7 +14,7 @@ declare var $: any;
 export class InicioComponent implements OnInit {
 
   noticias: Noticia[] = [];
-
+  filterNoticia ='';
   constructor(
     private noticiasService: NoticiasService,
     private imagesService: ImagesService

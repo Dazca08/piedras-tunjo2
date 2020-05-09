@@ -3,6 +3,7 @@ import { Cabana } from 'src/app/interfaces/cabana.interface';
 import { CabanasService } from '../../../services/cabanas.service';
 import Swal from 'sweetalert2';
 import { ImagesService } from '../../../services/images.service';
+import { CabanafiltroPipe } from 'src/app/pipes/cabanafiltro.pipe';
 
 
 @Component({
@@ -13,12 +14,12 @@ import { ImagesService } from '../../../services/images.service';
 export class InicioComponent implements OnInit {
 
   cabanas: Cabana[] = [];
-
+  
   constructor(
     private cabanasService: CabanasService,
     private imagesService: ImagesService
   ) { }
-
+  filterCabana ='';
   ngOnInit(): void {
     this.obtenerCabanas();
   }

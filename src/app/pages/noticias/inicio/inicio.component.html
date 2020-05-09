@@ -1,12 +1,17 @@
-<div class="container">
-    <button class="btn btn-sm btn-primary" routerLink="/noticias/agregar">Nuevo noticia</button>
+<div class="row mt-2">
+    <div class ="col-md-4 col-sm-10':'col-md-8 col-sm10">
+        <input type="text" class="form-control" name="filterNoticia" placeholder="Buscar Noticia por el titulo ..." [(ngModel)]="filterNoticia">
+    </div >
+    <div class="float-right">
+        <button class="btn btn-sm btn-success" routerLink="/noticias/agregar">Nuevo noticia</button>
+    </div>
 </div>
 <hr>
 <div class="container" *ngIf="noticias.length === 0">
     <h6>No hay noticias para mostrar</h6>
 </div>
 <div class="row" *ngIf="noticias.length > 0">
-    <div class="col-md-4 col-sm-6 col-xs-12 mb-2" *ngFor="let noticia of noticias">
+    <div class="col-md-4 col-sm-6 col-xs-12 mb-2" *ngFor="let noticia of noticias | noticiasfiltro:filterNoticia">
         <div class="card-noticia card shadow">
             <div class="card-header">
                 <small>
@@ -22,10 +27,12 @@
             <div class="card-body">
                 <app-carousel-images [imagenes]="noticia.imagenesUrl | imgUrlToArray" tipo="noticia"></app-carousel-images>
                 <b class="text-muted">{{ noticia.titulo }}</b>
-                <p class="card-text">
+                <p class="card-textarea">
                     {{ noticia.descripcion | slice: 0:100 }}
                     ...
                 </p>
+                
+                
             </div>
             <div class="card-footer">
                 <div class="row">

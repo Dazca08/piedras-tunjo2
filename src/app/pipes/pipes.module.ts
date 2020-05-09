@@ -14,6 +14,8 @@ import { ReservasMesPipe } from './reservas-mes.pipe';
 import { RolesCreatePipe } from './roles-create.pipe';
 import { UsersByRolPipe } from './users-by-rol.pipe';
 import { UsersByStatePipe } from './users-by-state.pipe';
+import { CabanafiltroPipe } from './cabanafiltro.pipe';
+import { NoticiasfiltroPipe } from './noticiasfiltro.pipe';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { UsersByStatePipe } from './users-by-state.pipe';
     ReservasMesPipe,
     RolesCreatePipe,
     UsersByRolPipe,
-    UsersByStatePipe
+    UsersByStatePipe,
+    CabanafiltroPipe,
+    NoticiasfiltroPipe
   ],
   imports: [
     CommonModule
@@ -50,7 +54,9 @@ import { UsersByStatePipe } from './users-by-state.pipe';
     ReservasMesPipe,
     RolesCreatePipe,
     UsersByRolPipe,
-    UsersByStatePipe
+    UsersByStatePipe,
+    CabanafiltroPipe,
+    NoticiasfiltroPipe
   ]
 })
 export class PipesModule { }
