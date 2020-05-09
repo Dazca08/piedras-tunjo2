@@ -1,50 +1,47 @@
-<header id="main-header" class="py-2 bg-info text-white">
-  	<div class="container">
-    	<div class="row">
-      		<div class="col-md-4">
-             <div align="center">
-        		<h1>
-           		Gestion De PQRS
-        	    </h1>
-                <div class="form-group">
-       <input  type="text"  class="form-control" name="filterpregunta" placeholder="Buscar pqrs por Asunto ..." [(ngModel)]="filterpregunta">
-                </div>
-            </div>
-          </div>
 
-
-
-
-           	<div class="col-md-4">
-      <div class="container">
-        <div align="center">
-	  <h3 ><i class="fas fa-list-ol"></i> Total de pqrs  </h3>
-            <h4 class="display-4">
-
-          {{pqrs?.length}}
-            </h4>
+<div class="row">
+      <div class="col-md-4">
+       <div align="right">
+         <div class="form-group">
+        <input type="text" class="form-control" style="width: 325" name="filterpregunta" placeholder="Buscar pqrs por Asunto ..." [(ngModel)]="filterpregunta">
+     </div>
        </div>
-    </div>
-          </div>
-
-           	<div class="col-md-3">
+         
+      </div>
+          
+            <div class="col-md-4">
       <div class="container">
         <div align="center">
-        	<br>
-	     
-             <form (submit)="listarContestados()">
-                   <button type="submit"  class="btn btn-info ">
-                   <h4><i class="fas fa-list"></i> {{indicadorBoton}}</h4>
+        
+        <h5> <i class="fas fa-list-ol"></i> Total de pqrs  : {{pqrs?.length}}</h5>
+          
+        </div>
+      </div>
+            </div>
+            <div class="col-md-4">
+      
+        <div align="center">
+        
+         <form (submit)="listarContestados()">
+                   <button type="submit"  class="btn btn-success ">
+                   <h6><i class="fas fa-list"></i> {{indicadorBoton}}</h6>
                      </button>
 
              </form>
-       </div>
+        </div>
+      
+       
       </div>
-           </div>
 
-       </div>
-	</div>
-</header>
+  </div>
+  
+
+
+
+
+
+
+
 
 <div *ngIf="(pqrs.length==0 && indicadorBoton=='PQR Contestados')">
 <hr>
@@ -58,10 +55,12 @@
   <h6>Lo sentimos en este momento no existen pqrs respondidos</h6>
 </div>
 </div>
-<br>
+
 <div *ngIf="(indicador==true)" >
 <section id ="pqrs">
 <div class="container"  >
+  <hr>
+
     <div class="col-md-12">
         <div class="row row-cols-1 row-cols-md-3">
           <div class="col mb-4"  *ngFor="let pqr of pqrs | filtropqrs:filterpregunta | paginate:{itemsPerPage :3 , currentPage:PageActual}; let i =index">
@@ -126,19 +125,12 @@
 
 </section>
 
-
-
-
-
-
-
-
-
-
 </div>
 <div *ngIf="(indicador==false)" >
 <section id ="pqrs">
 <div class="container"  >
+  <hr>
+
     <div class="col-md-12">
         <div class="row row-cols-1 row-cols-md-3">
           <div class="col mb-4"  *ngFor="let pqr of pqrs | filtropqrs:filterpregunta | paginate:{itemsPerPage :3 , currentPage:PageActual}; let i =index">

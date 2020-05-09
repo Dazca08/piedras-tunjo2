@@ -2,27 +2,29 @@
 <form #eventoForm="ngForm" (ngSubmit)="guardar(eventoForm)"> 
 
 
-  <section id="actions" class="py-4 mb-4 bg-light">
-    <div class="container">
+
+ 
       <div class="row">
         <div class="col-md-3">
-          <a routerLink="/eventos" class="btn btn-dark text-white btn-block">
+          <div align="right">
+              <a routerLink="/eventos" style="width: 200;" class="btn btn-dark text-white btn-block">
             <i class="fas fa-arrow-circle-left"></i> Regresar al Inicio
           </a>
+          </div>
+        
         </div>
         <div class="col-md-3">
-          <button type="submit" class="btn btn-success btn-block">
+          <div align="left">
+            <button type="submit" style="width: 200;" class="btn btn-success btn-block">
             <i class="fas fa-save"></i> Guardar cambios
           </button>
+          </div>
+          
         </div>
-       <!-- <div class="col-md-3">
-          <a href="/inicioeventos"   (click)="eliminar()" class="btn btn-danger btn-block">
-             Eliminar 
-          </a>
-        </div>-->
+   
       </div>
-    </div>
-  </section>
+
+<hr>
 
   <section id="details">
     <div class="container">

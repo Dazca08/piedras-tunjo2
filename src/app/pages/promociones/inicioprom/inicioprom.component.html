@@ -1,52 +1,52 @@
-<header id="main-header" class="py-2 bg-info text-white">
-  <div class="container">
-    <div class="row">
+
+
+
+
+   <div class="row">
       <div class="col-md-4">
+       <div align="right">
+         <div class="form-group">
+        <input type="text" class="form-control" style="width: 325" name="filtropromPost" placeholder="Buscar promocion por nombre...." [(ngModel)]="filtropromPost">
+     </div>
+       </div>
+         
+      </div>
+          
+            <div class="col-md-4">
+      <div class="container">
         <div align="center">
-        <h1>
-           Promociones
-        </h1>
-        <div class="form-group">
-        <input type="text" class="form-control" name="filtropromPost" placeholder="Buscar promocion por nombre...." [(ngModel)]="filtropromPost">
-        </div>
+
+        <h5> <i class="fas fa-list-ol"></i> Total Promociones : {{promo?.length}}</h5>
+          
         </div>
       </div>
-      <div class="col-md-4">
-        <div align="center">
-                 <h3 ><i class="fas fa-list-ol"></i> Total Promociones</h3>
-            <h4 class="display-4">
-               {{promo?.length}}
-            </h4>
-        </div>
-      </div>
-    <div class="col-md-3">
+            </div>
+            <div class="col-md-2">
       
         <div align="center">
-          <br>
-        <a class="btn btn-info"  href="promociones/agregar" role="button" >
+        
+        <a class="btn btn-success"  href="promociones/agregar" role="button" >
            <h6> <i class="fas fa-plus"></i> Nueva Promocion</h6>
         </a>
         
-            <form (submit)="listarContestados()">
-                   <button type="submit"  class="btn btn-info ">
+            
+        </div>
+      
+       
+      </div>
+      <div class="col-md-2">
+        <form (submit)="listarContestados()">
+                   <button type="submit"  class="btn btn-success ">
                   <h6> <i class="fas fa-{{icono}}"></i> {{indicadorBoton}}</h6>
                      </button>
 
              </form>
-        </div>
-      
-       
-    </div>
-
-
-
-
-    </div>
+      </div>
+  
   </div>
-</header>
-<br>
-<div *ngIf="(promo.length==0 )">
 <hr>
+<div *ngIf="(promo.length==0 )">
+
   <div>
   <h6>Lo sentimos en este momento no existen Promociones </h6>
 </div>
