@@ -44,13 +44,12 @@ export class RemovidosComponent implements OnInit {
   habilitar(id){
     console.log(id);
     var habil  = this.ServicioTicket.Habilitar(id,1);  
-    /*if (habil) {
+    this.ObtenerTicketsRemovidos();
+    if (habil) {
       this.ObtenerTicketsRemovidos();
-      this.ngOnInit();
-      this.ObtenerTicketsRemovidos();
-      //this.router.navigateByUrl('/tickets');
+      this.ngOnInit();         
     }   
-    */
+    
   }
   
 /* 

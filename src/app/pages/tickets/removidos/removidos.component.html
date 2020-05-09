@@ -55,11 +55,21 @@
                     </p>
                     <div class="row center" >                      
                       <div class="col-md-6">
+                        <!--
                         <form (submit)="habilitar(tk.Id)">
                           <button type="submit" class="btn btn-danger btn-block">
                             Habilitar
                           </button>
                         </form>
+                        -->
+                        <div class="col">
+                          <button type="click"
+                          class="btn btn-sm btn-block btn-danger" 
+                          (click)="habilitar(tk.Id)">
+                            Habilitar
+                          </button>
+                        </div>
+
                       </div>
                     </div>
                   </div>

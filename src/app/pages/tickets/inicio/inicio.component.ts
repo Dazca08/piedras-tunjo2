@@ -45,14 +45,13 @@ export class InicioComponent implements OnInit {
    
   inhabilitar(id){
     console.log(id);
-    var inhab = this.ServicioTicket.Habilitar(id,2);   
-    /*if (inhab) {
+    var inhab = this.ServicioTicket.Habilitar(id,2); 
+    this.ObtenerTickets();  
+    if (inhab) {
       this.ObtenerTickets();
-      this.ngOnInit();
-      this.ObtenerTickets();
-      //this.router.navigateByUrl('/tickets');
+      this.ngOnInit();   
     }       
-    */
+    
   }
 
 
