@@ -26,7 +26,6 @@ export class HomeComponent implements OnInit {
       this.bandera = this.authService.isAuthenticate();
       this.rolUsuario = this.authService.idUsuario();
     }
-    this.authService.getUsuario().then(res => console.log(res));
   }
 
 }

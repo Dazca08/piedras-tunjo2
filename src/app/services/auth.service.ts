@@ -49,10 +49,16 @@ export class AuthService {
                         if (user['RolId'] === 1 || user['RolId'] === 3) {
                           // usuario habilitado
                           if (user['EstadoCuenta'] === true) {
+
+                            // // OneSignal Subscribe
+                            // const OneSignal = window['OneSignal'] || [];
+                            // OneSignal.setSubscription(true);
+
                             this.guardarToken(res['token']);
                             this.auth$.emit(true);
                             this.router.navigateByUrl('/home');
                             Swal.close();
+
                           } else {
                             this.mostrarAlert('Error', 'Usuario deshabilitado', 'warning');
                           }
@@ -86,6 +92,9 @@ export class AuthService {
                     this.usuario = res['usuario'];
                     resolve(true);
                   } else {
+                    // OneSignal Unsubscribe
+                    const OneSignal = window['OneSignal'] || [];
+                    OneSignal.setSubscription(false);
                     this.usuario = undefined;
                     resolve(false);
                   }
@@ -124,6 +133,10 @@ export class AuthService {
   }
 
   logout() {
+    // OneSignal Unsubscribe
+    const OneSignal = window['OneSignal'] || [];
+    OneSignal.setSubscription(false);
+
     localStorage.clear();
     this.usuario = undefined;
     this.router.navigateByUrl('/tablero');
