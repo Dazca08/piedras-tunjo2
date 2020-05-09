@@ -25,6 +25,9 @@ export class AppComponent implements OnInit {
     this.authService.auth$.subscribe(res => {
       if (res === true) {
         this.oneSignalManage();
+      } else {
+        // Unsubscribe con el logout
+        OneSignal.setSubscription(false);
       }
     });
     this.oneSignalManage();
@@ -88,11 +91,14 @@ export class AppComponent implements OnInit {
         },
       });
 
-      this.updateMangeWebPushSubscriptionButton();
-      OneSignal.on('subscriptionChange', (isSubscribed) => {
-        /* If the user's subscription state changes during the page's session, update the button text */
-        this.updateMangeWebPushSubscriptionButton();
-      });
+      // Subscribe
+      OneSignal.setSubscription(true);
+
+      // this.updateMangeWebPushSubscriptionButton();
+      // OneSignal.on('subscriptionChange', (isSubscribed) => {
+      //   /* If the user's subscription state changes during the page's session, update the button text */
+      //   this.updateMangeWebPushSubscriptionButton();
+      // });
     });
   }
 }
