@@ -1,0 +1,31 @@
+<div class="row mt-2">
+    <div class="col-md-4 col-sm-10">
+        <div class="float-left">
+            <div class="btn-group" role="group">
+                <button class="btn btn-sm" (click)="idRolSelected = 0"
+                    [ngClass]="idRolSelected == 0? 'btn-primary':'btn-outline-primary'">Todos</button>
+                <button *ngFor="let rol of roles" class="btn btn-sm " (click)="otherOption = true"
+                    [ngClass]="idRolSelected == rol.id? 'btn-primary':'btn-outline-primary'"
+                    (click)="idRolSelected = rol.id">{{ rol.nombre }}</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-10 text-center" *ngIf="otherOption">
+        <div class="btn-group" role="group">
+            <button class="btn btn-sm" (click)="estado = true" 
+                [ngClass]="estado?'btn-info':'btn-outline-info'">Habilitados</button>
+            <button class="btn btn-sm" (click)="estado = false" 
+                [ngClass]="!estado?'btn-info':'btn-outline-info'">Deshabilitados</button>
+        </div>
+    </div>
+    <div [ngClass]="otherOption?'col-md-4 col-sm-10':'col-md-8 col-sm10'">
+        <div class="float-right">
+            <button class="btn btn-sm btn-success" routerLink="/usuarios/agregar">Nuevo usuario</button>
+        </div>
+    </div>
+</div>
+<hr>
+<app-show-usuarios *ngIf="!otherOption" [usuarios]="(usuarios | usersByRol: idRolSelected)">
+</app-show-usuarios>
+<app-show-usuarios *ngIf="otherOption" [usuarios]="(usuarios | usersByRol: idRolSelected) | usersByState: estado">
+</app-show-usuarios>

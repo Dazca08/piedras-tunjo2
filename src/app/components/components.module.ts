@@ -22,6 +22,7 @@ import { SelectCoordinatesComponent } from './select-coordinates/select-coordina
 import { CardRecorridoComponent } from './card-recorrido/card-recorrido.component';
 import { ChartReservasTicketsComponent } from './chart-reservas-tickets/chart-reservas-tickets.component';
 import { ChartReservasCabanasComponent } from './chart-reservas-cabanas/chart-reservas-cabanas.component';
+import { ShowUsuariosComponent } from './show-usuarios/show-usuarios.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ChartReservasCabanasComponent } from './chart-reservas-cabanas/chart-re
     SelectCoordinatesComponent,
     CardRecorridoComponent,
     ChartReservasTicketsComponent,
-    ChartReservasCabanasComponent
+    ChartReservasCabanasComponent,
+    ShowUsuariosComponent
   ],
   imports: [
     CommonModule,
@@ -62,7 +64,8 @@ import { ChartReservasCabanasComponent } from './chart-reservas-cabanas/chart-re
     SelectCoordinatesComponent,
     CardRecorridoComponent,
     ChartReservasTicketsComponent,
-    ChartReservasCabanasComponent
+    ChartReservasCabanasComponent,
+    ShowUsuariosComponent
   ]
 })
 export class ComponentsModule { }

@@ -11,6 +11,11 @@ import { FiltropromPipe } from './filtroprom.pipe';
 import { FiltropqrsPipe } from './filtropqrs.pipe';
 import { ImgUrlToArrayPipe } from './img-url-to-array.pipe';
 import { ReservasMesPipe } from './reservas-mes.pipe';
+import { RolesCreatePipe } from './roles-create.pipe';
+import { UsersByRolPipe } from './users-by-rol.pipe';
+import { UsersByStatePipe } from './users-by-state.pipe';
+import { CabanafiltroPipe } from './cabanafiltro.pipe';
+import { NoticiasfiltroPipe } from './noticiasfiltro.pipe';
 
 
 @NgModule({
@@ -25,7 +30,12 @@ import { ReservasMesPipe } from './reservas-mes.pipe';
     FiltropromPipe,
     FiltropqrsPipe,
     ImgUrlToArrayPipe,
-    ReservasMesPipe
+    ReservasMesPipe,
+    RolesCreatePipe,
+    UsersByRolPipe,
+    UsersByStatePipe,
+    CabanafiltroPipe,
+    NoticiasfiltroPipe
   ],
   imports: [
     CommonModule
@@ -41,7 +51,12 @@ import { ReservasMesPipe } from './reservas-mes.pipe';
     FiltropromPipe,
     FiltropqrsPipe,
     ImgUrlToArrayPipe,
-    ReservasMesPipe
+    ReservasMesPipe,
+    RolesCreatePipe,
+    UsersByRolPipe,
+    UsersByStatePipe,
+    CabanafiltroPipe,
+    NoticiasfiltroPipe
   ]
 })
 export class PipesModule { }

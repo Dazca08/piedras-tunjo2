@@ -1,0 +1,55 @@
+<div class="container text-center" *ngIf="!usuarios">
+    <span class="text-muted">
+        <i class="fas fa-spinner fa-spin fa-4x"></i>
+    </span>
+</div>
+<div class="container" *ngIf="usuarios && usuarios.length === 0">
+    <b class="text-muted">No se encontraron resultados para la búsqueda</b>
+</div>
+<div class="row" *ngIf="usuarios">
+    <!-- <div class="col-md-4 col-sm-6 col-xs-10 mb-3" *ngFor="let user of (usuarios | usersByRol: idRolSelected)"> -->
+    <div class="col-md-4 col-sm-6 col-xs-10 mb-3" *ngFor="let user of usuarios">
+        <div class="card shadow">
+            <div class="card-header">
+                <b class="text-muted">{{ user.NumeroDocumento }}</b>
+                <div class="float-right">
+                    <button class="btn btn-sm btn-outline-success" 
+                            routerLink="/usuarios/detalles/{{ user.Id }}">
+                        <i class="far fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="container text-center mb-3">
+                    <img [src]="user.Icono_url | imgServer: 'avatar'" width="80px" height="80px" 
+                    [alt]="user.NumeroDocumento">
+                </div>
+                <table class="table table-sm">
+                    <tr>
+                        <td><b class="text-muted">Nombre</b></td>
+                        <td>{{ user.Nombre }} {{ user.Apellido }}</td>
+                    </tr>
+                    <tr>
+                        <td><b class="text-muted">Correo</b></td>
+                        <td>
+                            {{ user.CorreoElectronico | slice:0:22 }}
+                            {{ user.CorreoElectronico.length > 22 ? '...' : '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b class="text-muted">Rol</b></td>
+                        <td>{{ user.Rol.nombre }}</td>
+                    </tr>
+                    <tr>
+                        <td><b class="text-muted">Estado</b></td>
+                        <td>
+                            <span class="badge" [ngClass]="user.EstadoCuenta?'badge-success':'badge-danger'">
+                                {{ user.EstadoCuenta? 'Habilitado' : 'Deshabilitado' }}
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
