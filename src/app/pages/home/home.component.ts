@@ -26,8 +26,6 @@ export class HomeComponent implements OnInit {
       this.bandera = this.authService.isAuthenticate();
       this.rolUsuario = this.authService.idUsuario();
     }
-    const OneSignal = window['OneSignal'] || [];
-    OneSignal.setSubscription(false);
   }
 
 }
