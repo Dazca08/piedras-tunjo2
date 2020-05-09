@@ -71,11 +71,11 @@ else if(ok==false){
                 .subscribe(res => {
                 console.log(res.ok ,res.message);
                 this.MensajedeExitoOfracaso(res.ok)
-                    //console.log(res.ok);
+                    console.log(res);
                 },
                 (err) => { console.log(err)
                  this.MensajedeExitoOfracaso(err.ok)
-                       console.log(err.ok , err.message);
+                       console.log(err);
 
   },
 

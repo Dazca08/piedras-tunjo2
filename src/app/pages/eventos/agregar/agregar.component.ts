@@ -1,4 +1,4 @@
-import { Component, OnInit ,ViewChild} from '@angular/core';
+import { Component, OnInit ,ViewChild,EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule,NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Evento } from '../inicio-a/evento.model';
@@ -7,10 +7,12 @@ import { map, catchError, tap } from 'rxjs/operators';
 import { ServicioEventoService } from '../servicio-evento.service';
 import Swal from 'sweetalert2';
 import { ImagesService } from '../../../services/images.service';
+
 @Component({
   selector: 'app-agregar',
   templateUrl: './agregar.component.html',
-  styleUrls: ['./agregar.component.css']
+  styleUrls: ['./agregar.component.css'],
+
 })
 export class AgregarComponent implements OnInit {
 
@@ -121,14 +123,16 @@ console.log(this.resultadoComparacion);
   'error'
 )
  }
- /*else if(this.selectedfile==null){
-  console.log('error seleccione una imagen');
+else if(this.files.length===0){
+  console.log('error seleccione una imagennwe');
                      Swal.fire(
   'Por favor suba una imagen !',
   'evento no  Agregado!',
   'error'
 )
- }*/
+
+ }
+
  else if(  this.evento.Descripcion=='' || this.evento.Nombre==''){
    console.log('llene todos los campos')
              Swal.fire(
@@ -138,9 +142,9 @@ console.log(this.resultadoComparacion);
 )
  }
 
- else if(this.evento.Descripcion.length<5 || this.evento.Nombre.length<5){
+ else if(this.evento.Descripcion.length<10 || this.evento.Nombre.length<5){
              Swal.fire(
-  ' Lo campos nombre y descripcion deben tener al menos 5 caracteres par ser validos ',
+  ' Lo campos nombre y descripcion deben tener al menos 10 y 5 caracteres respectivamente  para ser validos ',
   'evento no  Agregado!',
   'error')
  }
@@ -150,6 +154,7 @@ console.log(this.resultadoComparacion);
 this.comparacion(value)
 this.selectedfile=null;
 this.refrescar();
+this.files=[]
 /*this.servi.insertar(value)
 this.cargandoImagen();
 this.selectedfile=null;
@@ -173,11 +178,37 @@ for(this.i=0;this.i<this.selectedfile.length;this.i++){
   this.evento.ImagenesUrl=this.evento.ImagenesUrl+this.selectedfile[this.i].name.toString()+"@";
 }
 }
-onChangeFile(files: File[]){
+/*onChangeFile(files: File[]){
     this.files = files;
-    for(this.i=0;this.i<this.files.length;this.i++){
-  this.evento.ImagenesUrl=this.evento.ImagenesUrl+this.files[this.i].name.toString()+"@";
-}
+   console.log(this.files.length)
+   if(this.files.length==1){
+ this.evento.ImagenesUrl=this.files[0].name.toString()+"@";
+ console.log(this.evento.ImagenesUrl)
+   }
+   else if(this.files.length<1){
+     this.evento.ImagenesUrl=this.evento.ImagenesUrl+this.files[0].name.toString()+"@";
+      console.log(this.evento.ImagenesUrl)
+   }
+ 
+ 
+
+  }*/
+    @Output() changeFiles = new EventEmitter<File[]>();
+    onChangeFile(event: any) {
+    const files = event.target.files;
+    if (files.length > 0) {
+      this.files.push(...files);
+    }
+    this.changeFiles.emit(this.files);
+    this.evento.ImagenesUrl=this.files[0].name.toString()+'@'
+
+    console.log(this.files[0].name)
+
+  }
+
+  deleteFile(file: File) {
+    this.files = this.files.filter(x => x.name !== file.name);
+    this.changeFiles.emit(this.files);
   }
 
 refrescar(){
@@ -196,6 +227,8 @@ this.evento.ListaComentariosEvento="";
     for(this.i=0;this.i<this.selectedfile.length;this.i++){
    this.servi.postFileImagen(this.selectedfile[this.i]).subscribe();
  }
+
+
   }
   
     
@@ -206,6 +239,7 @@ this.evento.ListaComentariosEvento="";
    console.log( this.fechaActual);
 
   }
+ 
     comparacion(value){
      var bandera="no existe"
      this.servi.ObtenerJson().subscribe(resultado =>{
@@ -231,9 +265,15 @@ this.evento.ListaComentariosEvento="";
                         }
  
    else{
-          
+
+    // this.evento.ImagenesUrl=imagetemp;
+  
+     
+  
+    
 this.servi.insertar(value)
 //this.cargandoImagen();
+console.log(value)
 this.imagesService.uploadMultipleImages(this.files, 'evento');
       
     

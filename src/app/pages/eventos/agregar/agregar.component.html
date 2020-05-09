@@ -70,10 +70,38 @@
 
               <div class="form-group">
                 <label for="ImagenesUrl"> <i class="fas fa-images"></i> Por favor suba la imagen que tendra este evento</label>
-                
-                            <app-images-upload (changeFiles)="onChangeFile($event)"></app-images-upload>
+                <div class="form-group">
+    <b class="text-muted">Selección de imágenes</b>
+    <div class="custom-file">
+        <input [disabled]="files.length >= 1" type="file" class="custom-file-input" id="customFile"
+                (change)="onChangeFile($event)" accept="image/*">
+        <label class="custom-file-label" for="customFile">Selecciona una imagen</label>
+    </div>
+</div>
+<div class="form-group" *ngIf="files.length > 0">
+    <table class="table text-center table-sm table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let file of files">
+                <td>{{ file.name }}</td>
+                <td>
+                    <button class="btn btn-sm btn-outline-danger" (click)="deleteFile(file)">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <small *ngIf="files.length >= 1" class="text-primary">Haz alcanzado el límite de imágenes</small>
+</div>
+                           <!-- <app-images-upload (changeFiles)="onChangeFile($event)"></app-images-upload>-->
                       
-                <!--<input type="file" (change)="onFileSelected($event.target.files)" accept="image/x-png,image/gif,image/jpeg">-->
+               <!-- <input type="file" (change)="onFileSelected($event.target.files)" accept="image/x-png,image/gif,image/jpeg">-->
                
          <input type="hidden" name="ImagenesUrl" class="form-control" #ImagenesUrl="ngModel" [(ngModel)]="evento.ImagenesUrl"
                 >
