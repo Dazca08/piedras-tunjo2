@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
     console.log('OneSignal Initialized');
     OneSignal.push(() => {
       console.log('Register For Push');
-      OneSignal.push(['registerForPushNotifications']);
+      // OneSignal.push(['registerForPushNotifications']);
     });
 
     OneSignal.push(() => {

@@ -50,9 +50,9 @@ export class AuthService {
                           // usuario habilitado
                           if (user['EstadoCuenta'] === true) {
 
-                            // // OneSignal Subscribe
-                            // const OneSignal = window['OneSignal'] || [];
-                            // OneSignal.setSubscription(true);
+                            // OneSignal Subscribe
+                            const OneSignal = window['OneSignal'] || [];
+                            OneSignal.setSubscription(true);
 
                             this.guardarToken(res['token']);
                             this.auth$.emit(true);
