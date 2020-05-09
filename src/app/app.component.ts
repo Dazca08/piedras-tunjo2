@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
     this.oneSignalManage();
   }
 
-  onManageWebPushSubscriptionButtonClicked(event: any) {
+  onManageWebPushSubscriptionButtonClicked() {
     this.getSubscriptionState().then((state) => {
       if (state.isPushEnabled) {
           /* Subscribed, opt them out */
@@ -45,11 +45,11 @@ export class AppComponent implements OnInit {
           }
       }
     });
-    event.preventDefault();
   }
 
   updateMangeWebPushSubscriptionButton() {
     this.getSubscriptionState().then((state) => {
+      alert(JSON.stringify(state));
       this.buttonText = !state.isPushEnabled || state.isOptedOut ? subscribeText : unsubscribeText;
     });
   }
@@ -68,18 +68,6 @@ export class AppComponent implements OnInit {
   }
 
   oneSignalManage() {
-    // Init
-    OneSignal.push(() => {
-      OneSignal.init({
-        appId,
-        // requiresUserPrivacyConsent: true,
-        autoResubscribe: false,
-        notifyButton: {
-          enable: false,
-        },
-      });
-    });
-
     OneSignal.push( async () => {
       // If we're on an unsupported browser, do nothing
       if (!OneSignal.isPushNotificationsSupported()) {
@@ -89,6 +77,17 @@ export class AppComponent implements OnInit {
       if (!auth) {
         return;
       }
+
+      // Init
+      OneSignal.init({
+        appId,
+        // requiresUserPrivacyConsent: true,
+        autoResubscribe: false,
+        notifyButton: {
+          enable: false,
+        },
+      });
+
       this.updateMangeWebPushSubscriptionButton();
       OneSignal.on('subscriptionChange', (isSubscribed) => {
         /* If the user's subscription state changes during the page's session, update the button text */
