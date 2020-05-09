@@ -68,6 +68,18 @@ export class AppComponent implements OnInit {
   }
 
   oneSignalManage() {
+    // Init
+    OneSignal.push(() => {
+      OneSignal.init({
+        appId,
+        // requiresUserPrivacyConsent: true,
+        autoResubscribe: false,
+        notifyButton: {
+          enable: false,
+        },
+      });
+    });
+
     OneSignal.push( async () => {
       // If we're on an unsupported browser, do nothing
       if (!OneSignal.isPushNotificationsSupported()) {
