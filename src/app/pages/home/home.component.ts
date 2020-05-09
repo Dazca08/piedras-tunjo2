@@ -26,7 +26,10 @@ export class HomeComponent implements OnInit {
       this.bandera = this.authService.isAuthenticate();
       this.rolUsuario = this.authService.idUsuario();
     }
-    // this.authService.getUsuario().then(res => console.log(res));
+    const OneSignal = window['OneSignal'] || [];
+    OneSignal.getUserId().then((userId) => {
+      console.log('HOME => User ID is', userId);
+    });
   }
 
 }
