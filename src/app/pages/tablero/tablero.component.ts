@@ -15,14 +15,18 @@ export class TableroComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.redirect();
+    this.init();
   }
 
-  async redirect() {
-    const auth = await this.authService.validateToken(false);
-    if (auth) {
-      this.router.navigateByUrl('/home');
-    }
+  async init() {
+    this.authService.auth$.subscribe(res => {
+      if (res === false) {
+        console.log('LOGOUT !!!!');
+        // OneSignal Subscribe
+        const OneSignal = window['OneSignal'] || [];
+        OneSignal.setSubscription(false);
+      }
+    });
   }
 
 }
