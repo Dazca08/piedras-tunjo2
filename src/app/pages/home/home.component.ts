@@ -3,8 +3,6 @@ import { AuthService } from '../../services/auth.service';
 import { basicAnimate } from '../../animations';
 import { routes } from '../../mock-data/rutas';
 
-declare var $: any;
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

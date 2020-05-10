@@ -9,6 +9,7 @@ import { of } from 'rxjs';
 import * as jwt_decode from 'jwt-decode';
 
 const apiUrl = environment.apiUrl;
+declare var window: any;
 
 @Injectable({
   providedIn: 'root'

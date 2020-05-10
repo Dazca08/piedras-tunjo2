@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './services/auth.service';
 
 const applicationId = '94a25d89-60f4-4c25-a379-96dfc39c61c6';
+const OneSignal = window['OneSignal'] || [];
 declare var window: any;
 
 @Component({
@@ -14,10 +16,10 @@ export class AppComponent implements OnInit {
   buttonText = '';
 
   constructor(
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
-    const OneSignal = window['OneSignal'] || [];
     console.log('Init OneSignal');
     OneSignal.push(['init', {
       appId: applicationId,
@@ -42,6 +44,12 @@ export class AppComponent implements OnInit {
           console.log('User ID is', userId);
         });
       });
+    });
+
+    // auth$
+    this.authService.auth$.subscribe((res: boolean) => {
+      // OneSignal control
+      OneSignal.setSubscription(res);
     });
   }
 
