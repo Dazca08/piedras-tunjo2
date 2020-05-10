@@ -225,7 +225,7 @@ for (i = 0; i < myArray.length; i++) {
   cuatroRandom=myArray[posicionesElegibles[r]];
   posicionesElegibles.splice(r, 1);
 }
-console.log(cuatroRandom);
+// console.log(cuatroRandom);
 return cuatroRandom;
 }
  
@@ -255,7 +255,7 @@ return cuatroRandom;
     this.funcion( this.arraiy , this.eventos);
     },
     error => {
-      console.log(JSON.stringify(error));
+      // console.log(JSON.stringify(error));
     });
  
   }

@@ -1,10 +1,45 @@
-<app-navbar></app-navbar>
+<!-- NAVBAR -->
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <a class="navbar-brand text-center" routerLink="/tablero">
+        Inicio
+        &nbsp;&nbsp;
+        <i class="fas fa-house-user"></i>
+    </a>
+    <button (click)="toggleSidebar($event)" class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle">
+        <i class="fas fa-bars"></i>
+    </button
+    >
+    <!-- Navbar-->
+    <ul class="navbar-nav mr-auto ml-md-0">
+    </ul>
+    <ul class="navbar-nav mr-3">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                <a id="logout" *ngIf="authService.isAuthenticate()" class="dropdown-item"
+                    (click)="logout()">Cerrar sesión</a>
+                <a *ngIf="!authService.isAuthenticate()" class="dropdown-item" 
+                        routerLink="/login">Iniciar sesión</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
 <div id="layoutSidenav">
     <div id="layoutSidenav_nav">
         <app-sidebar></app-sidebar>
     </div>
     <div id="layoutSidenav_content">
         <main class="container pt-2">
+            <!-- subscribe es la opcion para mostrar subscribirse -->
+            <button class="btn btn-sm btn-warning fixedbutton" (click)="subscribeOneSignal()" *ngIf="subscribe"
+                data-toggle="tooltip" data-placement="bottom" title="Notificaciones Desactivadas">
+                <i class="fas fa-bell-slash"></i>
+            </button>
+            <button class="btn btn-sm btn-warning fixedbutton" (click)="unSubscribeOneSignal()" *ngIf="unsubscribe"
+                data-toggle="tooltip" data-placement="bottom" title="Notificaciones Activadas">
+                <i class="fas fa-bell"></i>
+            </button>
             <router-outlet></router-outlet>
         </main>
         <app-pie-pagina></app-pie-pagina>

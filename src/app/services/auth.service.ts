@@ -9,13 +9,14 @@ import { of } from 'rxjs';
 import * as jwt_decode from 'jwt-decode';
 
 const apiUrl = environment.apiUrl;
+declare var window: any;
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private usuario: Usuario;
+  usuario: Usuario;
   auth$ = new EventEmitter<boolean>();
 
   constructor(
@@ -119,8 +120,8 @@ export class AuthService {
     return this.usuario?.Id !== undefined;
   }
 
-  idUsuario() {
-    return this.usuario.RolId;
+  rolUsuario() {
+    return this.usuario?.Id;
   }
 
   logout() {

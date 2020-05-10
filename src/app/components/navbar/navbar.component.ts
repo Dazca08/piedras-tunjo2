@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import Swal from 'sweetalert2';
 
 declare var $: any;
+const OneSignal = window['OneSignal'] || [];
 
 @Component({
   selector: 'app-navbar',

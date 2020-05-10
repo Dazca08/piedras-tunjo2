@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+
+declare var $: any;
 
 @Component({
   selector: 'app-tablero',
@@ -10,23 +11,10 @@ import { AuthService } from '../../services/auth.service';
 export class TableroComponent implements OnInit {
 
   constructor(
-    private authService: AuthService,
-    private router: Router
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
-    this.init();
-  }
-
-  async init() {
-    this.authService.auth$.subscribe(res => {
-      if (res === false) {
-        console.log('LOGOUT !!!!');
-        // OneSignal Subscribe
-        const OneSignal = window['OneSignal'] || [];
-        OneSignal.setSubscription(false);
-      }
-    });
   }
 
 }

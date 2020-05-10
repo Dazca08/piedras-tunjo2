@@ -27,6 +27,8 @@ export class SidebarComponent implements OnInit {
     { label: '', path: '', icon: ''}
   ];
 
+  rolUsuario = undefined;
+
   constructor(
     public authService: AuthService
   ) { }

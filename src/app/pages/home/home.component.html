@@ -1,4 +1,4 @@
-<div *ngIf="bandera && rolUsuario===1">
+<div *ngIf="rolUsuario !== undefined && rolUsuario === 1">
   <b class="text-muted d-block text-center">PANEL DE ADMINISTRADOR</b>
   <hr>
   <div class="row">
@@ -22,7 +22,7 @@
   </div>
 </div>
 
-<div *ngIf="bandera && rolUsuario===3">
+<div *ngIf="rolUsuario !== undefined && rolUsuario===3">
   <b class="text-muted d-block text-center">PANEL DE CAJERO</b>
   <hr>
   <div class="row justify-content-center">
