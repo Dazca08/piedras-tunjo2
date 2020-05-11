@@ -3,6 +3,7 @@ import { ReservaCabana } from '../../../interfaces/reserva-cabana.interface';
 import { ReservaCabanasService } from 'src/app/services/reserva-cabanas.service';
 import * as jsPDF from "jspdf";
 import Swal from 'sweetalert2';
+import autoTable from 'jspdf-autotable'
 
 @Component({
   selector: 'app-cabanas',
@@ -72,11 +73,10 @@ export class CabanasComponent implements OnInit {
      }
 
      generarPdf(){
-       var id = document.getElementById("cabanareporte");
-       var pdf = new jsPDF();
-       pdf.text("Reporte de Ticket" ,20,10);
-       pdf.fromHTML(id,10,5);
-       pdf.save("ReporteCabañas");
+      const pdf = new jsPDF()
+      pdf.text(85, 10, "Reporte Cabañas");
+      autoTable(pdf, { html:  '#tablac' })
+      pdf.save('Reporte_Cabañas.pdf')
 
      }
 
