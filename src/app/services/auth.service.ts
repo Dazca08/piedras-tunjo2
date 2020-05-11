@@ -52,7 +52,7 @@ export class AuthService {
                           if (user['EstadoCuenta'] === true) {
                             this.guardarToken(res['token']);
                             this.auth$.emit(true);
-                            this.router.navigateByUrl('/home');
+                            this.router.navigateByUrl('/home?state=login');
                             Swal.close();
                           } else {
                             this.mostrarAlert('Error', 'Usuario deshabilitado', 'warning');

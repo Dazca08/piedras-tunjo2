@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { basicAnimate } from '../../animations';
 import { routes } from '../../mock-data/rutas';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -16,10 +17,18 @@ export class HomeComponent implements OnInit {
   bandera = false;
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
+    const state = this.route.snapshot.queryParamMap.get('state');
+    if (state !== null) {
+      this.router.navigateByUrl('/contactanos', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/home']);
+      });
+    }
     this.prepare();
   }
 
