@@ -15,7 +15,7 @@ declare var $: any;
 })
 export class AppComponent implements OnInit {
 
-  title = 'AngularWeb';
+  title = 'Piedras del Tunjo';
   useragentid = null;
   btnUnsubscribe = false;
   btnSubscribe = false;
@@ -28,9 +28,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.authService.auth$.subscribe(res => {
       if (res === true) {
-        this.router.navigateByUrl('/contactanos', { skipLocationChange: true }).then(() => {
-          this.router.navigate(['/home']);
-        });
+        this.init();
       }
     });
     this.init();
@@ -58,7 +56,7 @@ export class AppComponent implements OnInit {
           appId: applicationId,
           autoRegister: false,
           notifyButton: {
-            enable: false
+            enable: true
           },
           persistNotification: false
         });
@@ -75,23 +73,14 @@ export class AppComponent implements OnInit {
           // CONSOLE
           console.log({ userId });
           if (userId === null) {
-            this.btnSubscribe = true;
             resolve(true);
           } else {
             this.useragentid = userId;
-            this.btnUnsubscribe = true;
             OneSignal.push(['getNotificationPermission', (permission) => {
             }]);
             OneSignal.isPushNotificationsEnabled((isEnabled) => {
               // CONSOLE
               console.log({ isEnabled });
-              if (isEnabled) {
-                this.btnUnsubscribe = true;
-                this.btnSubscribe = false;
-              } else {
-                this.btnUnsubscribe = false;
-                this.btnSubscribe = true;
-              }
               resolve(true);
             });
           }
@@ -115,14 +104,10 @@ export class AppComponent implements OnInit {
               // here you can send post request to php file as well.
               // OneSignalUserSubscription(this.useragentid);
             });
-            this.btnUnsubscribe = true;
-            this.btnSubscribe = false;
           } else if (isSubscribed === false) {
               OneSignal.getUserId().then((userId) => {
                 this.useragentid = userId;
               });
-              this.btnUnsubscribe = false;
-              this.btnSubscribe = true;
           } else {
             console.log('Unable to process the request');
           }
@@ -134,18 +119,16 @@ export class AppComponent implements OnInit {
 
   async subscribeOneSignal() {
     if (this.useragentid !== null) {
-      if (confirm('¿Estás seguro de activar las notificaciones?')) {
-        const res = await OneSignal.setSubscription(true);
-      }
+      const res = await OneSignal.setSubscription(true);
     } else {
       OneSignal.registerForPushNotifications();
     }
   }
 
   async unSubscribeOneSignal() {
-    if (confirm('¿Estás seguro de desactivar las notificaciones?')) {
-      const res = await OneSignal.setSubscription(false);
-    }
+    const res = await OneSignal.setSubscription(false);
+    // if (confirm('¿Estás seguro de desactivar las notificaciones?')) {
+    // }
   }
 
   async logout() {
@@ -154,6 +137,7 @@ export class AppComponent implements OnInit {
     localStorage.clear();
     this.authService.usuario = undefined;
     const res = await OneSignal.setSubscription(false);
+    $('#onesignal-bell-container').css('display', 'none');
     this.router.navigateByUrl('/tablero');
     console.log('Notificaciones desactivadas');
   }
