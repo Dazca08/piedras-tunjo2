@@ -10,8 +10,14 @@
     </button>
   </div>
 </div>
+<div class="float-right">
+  <b class="text-muted">Filtrar por año </b>
+  <select [(ngModel)]="selectedYear" class="form-control-sm" (change)="onChange($event)">
+      <option *ngFor="let year of years; let i = index;" [value]="years[i]">{{ years[i] }}</option>
+  </select>
+</div>
 <div class="row justify-content-center mt-5">
-    <div class="col-md-10">
+    <div class="col-10">
       <canvas baseChart
         [datasets]="barChartData"
         [labels]="barChartLabels"

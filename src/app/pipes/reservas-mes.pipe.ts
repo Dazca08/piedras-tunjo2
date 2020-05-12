@@ -21,7 +21,7 @@ export class ReservasMesPipe implements PipeTransform {
         filterReservas.push(x);
       }
     });
-    console.log(filterReservas);
+    // console.log(filterReservas);
     return filterReservas;
   }
 

@@ -4,6 +4,7 @@ import { ReservaCabana } from '../../interfaces/reserva-cabana.interface';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { ReservaCabanasService } from '../../services/reserva-cabanas.service';
+import { DateService } from '../../services/date.service';
 
 @Component({
   selector: 'app-chart-reservas-cabanas',
@@ -13,6 +14,8 @@ import { ReservaCabanasService } from '../../services/reserva-cabanas.service';
 export class ChartReservasCabanasComponent implements OnInit {
 
   @Input() reservas: ReservaCabana[];
+  selectedYear = new Date().getFullYear();
+  years = [];
   typeChart = 'line';
 
   public barChartOptions: ChartOptions = {
@@ -37,16 +40,23 @@ export class ChartReservasCabanasComponent implements OnInit {
   ];
 
   constructor(
-    private reservaCabService: ReservaCabanasService
+    private reservaCabService: ReservaCabanasService,
+    private dateService: DateService
   ) {}
 
   ngOnInit() {
+    this.years = this.dateService.getYears();
     this.prepareData();
   }
 
-  prepareData() {
-    const data = this.reservaCabService.getDataChart(this.reservas);
+  prepareData(year: number = new Date().getFullYear()) {
+    const data = this.reservaCabService.getDataChart(this.reservas, year);
     this.barChartData[0].data = data;
+  }
+
+  onChange(event: any) {
+    const year = event.target.value;
+    this.prepareData(year);
   }
 
   // events

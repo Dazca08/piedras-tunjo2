@@ -18,6 +18,7 @@ import { CabanafiltroPipe } from './cabanafiltro.pipe';
 import { NoticiasfiltroPipe } from './noticiasfiltro.pipe';
 import { NumDocFilterPipe } from './num-doc-filter.pipe';
 import { ArrayFilterPipe } from './array-filter.pipe';
+import { ReservasYearPipe } from './reservas-year.pipe';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { ArrayFilterPipe } from './array-filter.pipe';
     CabanafiltroPipe,
     NoticiasfiltroPipe,
     NumDocFilterPipe,
-    ArrayFilterPipe
+    ArrayFilterPipe,
+    ReservasYearPipe
   ],
   imports: [
     CommonModule
@@ -62,7 +64,8 @@ import { ArrayFilterPipe } from './array-filter.pipe';
     CabanafiltroPipe,
     NoticiasfiltroPipe,
     NumDocFilterPipe,
-    ArrayFilterPipe
+    ArrayFilterPipe,
+    ReservasYearPipe
   ]
 })
 export class PipesModule { }

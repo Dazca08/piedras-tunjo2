@@ -94,7 +94,7 @@ export class UsuarioService {
     });
   }
 
-  getUsuario(id: number): Promise<Usuario> {
+  getUsuario(id: number, needRol: boolean = true): Promise<Usuario> {
     // prepare headers
     const prepare = this.prepareHeaders();
     if (!prepare) {
@@ -107,7 +107,9 @@ export class UsuarioService {
                   catchError(err => of(undefined))
                 )
                 .subscribe(async (res: Usuario) => {
-                  res.Rol = await this.rolesService.getRol(res.RolId);
+                  if (needRol === true) {
+                    res.Rol = await this.rolesService.getRol(res.RolId);
+                  }
                   resolve(res);
                 });
     });

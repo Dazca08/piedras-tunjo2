@@ -12,11 +12,7 @@ export class DateService {
   constructor() { }
 
   getYears() {
-    const currentYears = new Date().getFullYear();
-    const years = [];
-    for (let i = 2; i >= 0; i--) {
-      years.push(currentYears - i);
-    }
-    return years;
+    const currentYear = new Date().getFullYear();
+    return [currentYear, (currentYear - 1)];
   }
 }

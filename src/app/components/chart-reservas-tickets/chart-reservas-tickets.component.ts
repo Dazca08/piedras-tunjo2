@@ -3,6 +3,7 @@ import { ReservaTicket } from '../../interfaces/reserva-ticket.interface';
 import { ChartType, ChartDataSets, ChartOptions } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { ReservaTicketsService } from '../../services/reserva-tickets.service';
+import { DateService } from '../../services/date.service';
 
 @Component({
   selector: 'app-chart-reservas-tickets',
@@ -12,6 +13,8 @@ import { ReservaTicketsService } from '../../services/reserva-tickets.service';
 export class ChartReservasTicketsComponent implements OnInit {
 
   @Input() reservas: ReservaTicket[];
+  selectedYear = new Date().getFullYear();
+  years = [];
   typeChart = 'line';
 
   public barChartOptions: ChartOptions = {
@@ -37,16 +40,23 @@ export class ChartReservasTicketsComponent implements OnInit {
   ];
 
   constructor(
-    private reservaTickService: ReservaTicketsService
+    private reservaTickService: ReservaTicketsService,
+    private dateService: DateService
   ) {}
 
   ngOnInit() {
+    this.years = this.dateService.getYears();
     this.prepareData();
   }
 
-  prepareData() {
-    const data = this.reservaTickService.getDataChart(this.reservas);
+  prepareData(year: number = new Date().getFullYear()) {
+    const data = this.reservaTickService.getDataChart(this.reservas, year);
     this.barChartData[0].data = data;
+  }
+
+  onChange(event: any) {
+    const year = event.target.value;
+    this.prepareData(year);
   }
 
   // events

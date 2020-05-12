@@ -56,18 +56,22 @@ export class ReservaTicketsService {
     });
   }
 
-  getDataChart(reservas: ReservaTicket[]): number[] {
+  getDataChart(reservas: ReservaTicket[], year: number): number[] {
     const cantidades = [];
     const meses = this.dateService.meses;
-    const year = new Date().getFullYear();
     meses.forEach((x, index) => {
-      cantidades.push( this.getTicketsByMonth(reservas, (index + 1), year) );
+      cantidades.push( this.getTicketsByMonthYear(reservas, (index + 1), Number(year)) );
     });
-    console.log(cantidades);
+    // console.log(cantidades);
     return cantidades;
   }
 
-  getTicketsByMonth(reservas: ReservaTicket[], mes: number, anio: number) {
+  getTicketsByMonthYear(reservas: ReservaTicket[], mes: number, anio: number) {
+    // console.log({
+    //   reservas,
+    //   mes,
+    //   anio
+    // });
     const filterReservas = [];
     reservas.forEach(x => {
       const date = x.FechaIngreso.toString().split('T')[0]; // result: 2020-12-12

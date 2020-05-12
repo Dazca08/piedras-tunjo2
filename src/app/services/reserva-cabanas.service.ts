@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ReservaCabana } from '../interfaces/reserva-cabana.interface';
 import { DateService } from './date.service';
+import { UsuarioService } from './usuario.service';
 
 const apiUrl = environment.apiUrl;
 
@@ -18,7 +19,8 @@ export class ReservaCabanasService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private dateService: DateService
+    private dateService: DateService,
+    private usuarioService: UsuarioService
   ) { }
 
   prepareHeaders() {
@@ -54,18 +56,23 @@ export class ReservaCabanasService {
     });
   }
 
-  getDataChart(reservas: ReservaCabana[]): number[] {
+  getDataChart(reservas: ReservaCabana[], year: number): number[] {
     const cantidades = [];
     const meses = this.dateService.meses;
-    const year = new Date().getFullYear();
+    // const year = new Date().getFullYear();
     meses.forEach((x, index) => {
-      cantidades.push( this.getTicketsByMonth(reservas, (index + 1), year) );
+      cantidades.push( this.getTicketsByMonth(reservas, (index + 1), Number(year)) );
     });
-    console.log(cantidades);
+    // console.log(cantidades);
     return cantidades;
   }
 
   getTicketsByMonth(reservas: ReservaCabana[], mes: number, anio: number) {
+    // console.log({
+    //   reservas,
+    //   mes,
+    //   anio
+    // });
     const filterReservas = [];
     reservas.forEach(x => {
       const date = x.FechaReserva.toString().split('T')[0]; // result: 2020-12-12

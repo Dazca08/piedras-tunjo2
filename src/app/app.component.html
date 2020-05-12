@@ -31,17 +31,6 @@
     </div>
     <div id="layoutSidenav_content">
         <main class="container pt-2">
-            <!-- subscribe es la opcion para mostrar subscribirse
-            <button class="btn btn-sm btn-warning fixedbutton" (click)="subscribeOneSignal()" 
-                    *ngIf="authService.isAuthenticate() && btnSubscribe"
-                data-toggle="tooltip" data-placement="bottom" title="Notificaciones Desactivadas">
-                <i class="fas fa-bell-slash"></i>
-            </button>
-            <button class="btn btn-sm btn-warning fixedbutton" (click)="unSubscribeOneSignal()" 
-                    *ngIf="authService.isAuthenticate() && btnUnsubscribe"
-                data-toggle="tooltip" data-placement="bottom" title="Notificaciones Activadas">
-                <i class="fas fa-bell"></i>
-            </button> -->
             <router-outlet></router-outlet>
         </main>
         <app-pie-pagina></app-pie-pagina>
