@@ -56,7 +56,7 @@
 </div>
 </div>
 
-<div *ngIf="(indicador==true)" >
+<div *ngIf="(indicador==true && pqrs.length>0 )" >
 <section id ="pqrs">
 <div class="container"  >
   <hr>
@@ -113,6 +113,7 @@
             </div>
           </div>
         </div>
+        <hr>
         <div class="text-center">
           <pagination-controls (pageChange)="PageActual = $event"></pagination-controls>
         </div>
@@ -126,7 +127,7 @@
 </section>
 
 </div>
-<div *ngIf="(indicador==false)" >
+<div *ngIf="(indicador==false && pqrs.length>0)" >
 <section id ="pqrs">
 <div class="container"  >
   <hr>
@@ -202,6 +203,7 @@
             </div>
           </div>
         </div>
+        <hr>
         <div class="text-center">
           <pagination-controls (pageChange)="PageActual = $event"></pagination-controls>
         </div>
