@@ -41,7 +41,7 @@
 </div>
 </div>
 
-<div *ngIf="(preguntas.length!=0 )">
+<div *ngIf="(preguntas.length>0 )">
   <section id ="pqrs">
 <div class="container"  >
     <div class="col-md-12">
@@ -103,6 +103,7 @@
             </div>
           </div>
         </div>
+        <hr>
         <div class="text-center">
           <pagination-controls (pageChange)="PageActual = $event"></pagination-controls>
         </div>

@@ -55,6 +55,7 @@ export class VentaTComponent implements OnInit {
  ticktes:any;
 date:any;
 k:any;
+PageActual:number=1;
 fechatemp:any
 reservaCabanas: ReservaCabana[];
 reservaCabanasAll:ReservaCabana[];

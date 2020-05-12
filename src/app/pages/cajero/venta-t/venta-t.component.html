@@ -26,8 +26,8 @@
   </thead>
   
   <tbody>
-    <tr *ngFor="let reserva of reservaCabanasAll ; let i = index ">
-      <td>  {{i}}</td>
+    <tr *ngFor="let reserva of reservaCabanasAll | paginate:{itemsPerPage :5 , currentPage:PageActual}  ; let i = index ">
+      <td>  {{i+1}}</td>
       <td>  {{reserva.FechaReserva}}</td>
       <td>$ {{reserva.ValorTotal}} </td>
         <td>  {{reserva.UCabanaId}}</td>
@@ -37,8 +37,12 @@
    
   </tbody>
 </table>
-          
-              
+<hr>   
+
+       <div align="center">
+        <pagination-controls (pageChange)="PageActual = $event"></pagination-controls>
+    </div> 
+
             </div>
             <div *ngIf="(reservaCabanasAll.length==0)">
               <h6>Lo sentimos no existen preguntas frecuentes en este momento</h6>
@@ -77,8 +81,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let reserva of reservaCabanas ; let i = index ">
-      <td>  {{i}}</td>
+    <tr *ngFor="let reserva of reservaCabanas| paginate:{itemsPerPage :5 , currentPage:PageActual} ; let i = index ">
+      <td>  {{i+1}}</td>
       <td>  {{reserva.FechaReserva}}</td>
       <td>$ {{reserva.ValorTotal}}</td>
        <td>  {{reserva.UCabanaId}}</td>
@@ -87,8 +91,12 @@
     
    
   </tbody>
+
 </table>
-              
+<hr>
+        <div align="center">
+        <pagination-controls (pageChange)="PageActual = $event"></pagination-controls>
+    </div>      
             </div>
             <div *ngIf="(reservaCabanas.length==0)">
                 <div class="card">
