@@ -87,6 +87,7 @@ export class AuthService {
                     this.usuario = res['usuario'];
                     resolve(true);
                   } else {
+                    localStorage.clear();
                     this.usuario = undefined;
                     resolve(false);
                   }
