@@ -35,4 +35,9 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  async prepare() {
+    const user = await this.authService.getUsuario();
+    this.rolUsuario = user.RolId;
+  }
 }

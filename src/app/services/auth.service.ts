@@ -53,6 +53,7 @@ export class AuthService {
                             this.guardarToken(res['token']);
                             this.auth$.emit(true);
                             this.router.navigateByUrl('/home?state=login');
+                            // this.router.navigateByUrl('/home');
                             Swal.close();
                           } else {
                             this.mostrarAlert('Error', 'Usuario deshabilitado', 'warning');
@@ -122,7 +123,7 @@ export class AuthService {
   }
 
   rolUsuario() {
-    return this.usuario?.Id;
+    return this.usuario?.RolId;
   }
 
   logout() {

@@ -33,9 +33,8 @@ export class HomeComponent implements OnInit {
   }
 
   async prepare() {
-    this.authService.getUsuario().then(user => {
-      this.rolUsuario = user.Id;
-    });
+    const user = await this.authService.getUsuario();
+    this.rolUsuario = user.RolId;
   }
 
 }
