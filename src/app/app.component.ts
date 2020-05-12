@@ -127,19 +127,18 @@ export class AppComponent implements OnInit {
 
   async unSubscribeOneSignal() {
     const res = await OneSignal.setSubscription(false);
-    // if (confirm('¿Estás seguro de desactivar las notificaciones?')) {
-    // }
   }
 
   async logout() {
-    this.btnUnsubscribe = this.btnSubscribe = false;
-    this.authService.auth$.emit(false);
+    // this.btnUnsubscribe = this.btnSubscribe = false;
     localStorage.clear();
     this.authService.usuario = undefined;
-    const res = await OneSignal.setSubscription(false);
+    this.authService.auth$.emit(false);
     $('#onesignal-bell-container').css('display', 'none');
-    this.router.navigateByUrl('/tablero');
-    console.log('Notificaciones desactivadas');
+    this.router.navigateByUrl('/tablero').then(async res => {
+      await OneSignal.setSubscription(false);
+      console.log('Notificaciones desactivadas');
+    });
   }
 
   toggleSidebar(e: any) {

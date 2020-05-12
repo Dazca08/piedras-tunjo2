@@ -72,6 +72,5 @@ export class CabanasComponent implements OnInit {
     pdf.text(85, 10, 'Reporte Cabañas');
     autoTable(pdf, { html:  '#tablac' });
     pdf.save('Reporte_Cabañas.pdf');
-
   }
 }

@@ -4,9 +4,6 @@ import { RemovidosModule } from './removidos/removidos.module';
 import { AgregarModule } from './agregar/agregar.module';
 import { EditarModule } from './editar/editar.module';
 
-
-
-
 const routes: Routes = [
   {
     path: '',

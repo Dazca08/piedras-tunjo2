@@ -3,98 +3,75 @@
 	COMPONENTE HTML QUE CONTIENE LA VISTA INICIAL DE LA EDICION DE LOS TICKETS
 	FECHA 21/04/2020
 -->
-
-<header id="main-header" class="py-2 bg-info text-white">
-    <div class="container">
-      <div class="row">
-          <div class="col-md-6">
-             <div align="center">
-                <h1>
-                  Edicion De Tipos de Ticket
-                </h1>
-             
-              </div>
-            </div>        
+<div class="row justify-content-center mt-5">
+  <div class="col-md-6 col-sm-8 mb-2">
+    <form #editarticketForm="ngForm" (ngSubmit)="actualizar(editarticketForm)">
+      <div class="card shadow">
+        <div class="card-header text-center">
+          <b class="text-muted">EDITAR TIPO DE TICKET</b>
         </div>
-    </div>
-    <div class="boton_linea">
-        <div class="boton_linea">
-          <a class="btn btn-success btn-block" routerLink="/tickets" role="button"><i class="fa fa-arrow-left"></i> Regresar</a>     
-        </div>
-    </div>  
-</header>  
-
-<form #editarticketForm="ngForm" (ngSubmit)="actualizar(editarticketForm)">
-    <section>
-      <div class="container">
-        <div class="row" style="padding-right:20%; padding-left:20%;">
-          <div class="col-md-4">
-            <h4>Editar Ticket</h4>
-          </div>
-          <div class="col-md-4">
-            <a class="btn btn-dark btn-block" routerLink="/noticias">Regresar al inicio</a>
-          </div>
-          <div class="col-md-4">
-            <button type="submit" class="btn btn-success btn-block">Guardar cambios</button>
-          </div>
-          <div class="col-md-12">
-            <div class="card" style="margin-top:2%">
-              <div class="card-body">
-                  <div class="form-group">
-                    <label for="titulo">Titulo:</label>
-                    <input 
-                      type="text" 
-                      name="Nombre" 
-                      class="form-control" 
-                      #Nombre="ngModel" 
-                      [(ngModel)]="ticketes.Nombre"
-                      [ngClass]="{'is-invalid': Nombre.errors && Nombre.touched}" 
-                      required minlength="2">
-                    <div [hidden]="!Nombre.errors?.required" class="invalid-feedback">
-                      Nombre requerido
-                    </div>
-                    <div [hidden]="!Nombre.errors?.minlength" class="invalid-feedback">
-                      Debe escribir un Nombre mas largo
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="Precio">Precio:</label>
-                    <input 
-                      type="text" 
-                      name="Precio" 
-                      class="form-control" 
-                      #Precio="ngModel" 
-                      [(ngModel)]="ticketes.Precio"
-                      [ngClass]="{'is-invalid': Precio.errors && Precio.touched}" 
-                    >
-                    <div [hidden]="!Precio.errors?.required" class="invalid-feedback">
-                      Precio requerido
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="Descripcion">Descripcion:</label>
-                    <input 
-                      type="text" 
-                      name="Descripcion" 
-                      class="form-control" 
-                      #Descripcion="ngModel"
-                      [(ngModel)]="ticketes.Descripcion" 
-                      [ngClass]="{'is-invalid': Descripcion.errors && Descripcion.touched}"
-                      required minlength="5">
-                    <div [hidden]="!Descripcion.errors?.required" class="invalid-feedback">
-                      Contenido requerido
-                    </div>
-                    <div [hidden]="!Descripcion.errors?.minlength" class="invalid-feedback">
-                      Debe escribir una Descripcion mas larga
-                    </div>
-                  </div>
+        <div class="card-body">
+            <div class="form-group">
+              <label for="titulo">Titulo:</label>
+              <input 
+                disabled
+                type="text" 
+                name="Nombre" 
+                class="form-control" 
+                #Nombre="ngModel" 
+                [(ngModel)]="ticket.Nombre"
+                [ngClass]="{'is-invalid': Nombre.errors && Nombre.touched}" 
+                required minlength="2">
+              <div [hidden]="!Nombre.errors?.required" class="invalid-feedback">
+                Nombre requerido
               </div>
+              <div [hidden]="!Nombre.errors?.minlength" class="invalid-feedback">
+                Debe escribir un Nombre mas largo
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="Precio">Precio:</label>
+              <input 
+                type="text" 
+                name="Precio" 
+                class="form-control" 
+                #Precio="ngModel" 
+                [(ngModel)]="ticket.Precio"
+                [ngClass]="{'is-invalid': Precio.errors && Precio.touched}" 
+              >
+              <div [hidden]="!Precio.errors?.required" class="invalid-feedback">
+                Precio requerido
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="Descripcion">Descripcion:</label>
+              <input 
+                type="text" 
+                name="Descripcion" 
+                class="form-control" 
+                #Descripcion="ngModel"
+                [(ngModel)]="ticket.Descripcion" 
+                [ngClass]="{'is-invalid': Descripcion.errors && Descripcion.touched}"
+                required minlength="5">
+              <div [hidden]="!Descripcion.errors?.required" class="invalid-feedback">
+                Contenido requerido
+              </div>
+              <div [hidden]="!Descripcion.errors?.minlength" class="invalid-feedback">
+                Debe escribir una Descripcion mas larga
+              </div>
+            </div>
+        </div>
+        <div class="card-footer text-center">
+          <div class="row justify-content-center">
+            <div class="col-md-6 col-sm-12">
+              <button class="btn btn-block btn-primary" 
+                  [disabled]="editarticketForm.invalid" type="submit">Actualizar</button>
             </div>
           </div>
         </div>
       </div>
-    </section>
-  </form>
-  
+    </form>
+  </div>
+</div>

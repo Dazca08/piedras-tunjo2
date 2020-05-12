@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Ticket } from 'src/app/interfaces/ticket.interface';
-import { FormGroup, FormBuilder, Validators, ReactiveFormsModule , FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
 import { ServicioTicketService } from 'src/app/services/servicio-ticket.service';
-import { element } from 'protractor';
+
+declare var $: any;
 
 @Component({
   selector: 'app-inicio',
@@ -13,54 +12,55 @@ import { element } from 'protractor';
 })
 export class InicioComponent implements OnInit {
 
-  tickets:Ticket[];  
-  ticketes: Ticket ={  	   
-    Id:'',
-    Nombre:'',
-    Precio:'',
-    Descripcion:''
-  }
+  tickets: Ticket[];
+  ticketes: Ticket = {
+    Id: '',
+    Nombre: '',
+    Precio: '',
+    Descripcion: ''
+  };
 
-  constructor(private router: Router, private ServicioTicket:ServicioTicketService) { }
- 
-  PageActual:number=1;
+  constructor(private router: Router, private ServicioTicket: ServicioTicketService) { }
+
+  PageActual = 1;
 
   ngOnInit(): void {
     this.ObtenerTickets();
-
+    // igualar height de las cards de pictogramas
+    setTimeout(() => {
+      const cards = $('.card-tk');
+      let maxHeight = 0;
+      cards.each((e) => {
+        const height = cards[e].offsetHeight;
+        if (height > maxHeight) {
+          maxHeight = height;
+        }
+      });
+      cards.each((e) => {
+        cards[e].style.height = maxHeight;
+      });
+    }, 1000);
   }
 
-  ObtenerTickets(){
-    this.ServicioTicket.ObtenerTicket().subscribe(resultado =>{      
-      this.tickets=resultado;                
-      console.log("Informacion ya tiene resultado");
-      console.log(this.tickets.length)
+  ObtenerTickets() {
+    this.ServicioTicket.ObtenerTicket().subscribe(resultado => {
+      this.tickets = resultado;
+      // console.log('Informacion ya tiene resultado');
+      // console.log(this.tickets.length);
     },
-    error=>{
+    error => {
       console.log(JSON.stringify(error));
-   
-    }); 
+    });
   }
 
-   
-  inhabilitar(id){
+  inhabilitar(id) {
     console.log(id);
-    var inhab = this.ServicioTicket.Habilitar(id,2); 
-    this.ObtenerTickets();  
+    const inhab = this.ServicioTicket.Habilitar(id, 2);
+    this.ObtenerTickets();
     if (inhab) {
       this.ObtenerTickets();
-      this.ngOnInit();   
-    }       
-    
+      this.ngOnInit();
+    }
   }
-
-
-
-  /*
-  async ObtenerTickets() {
-    this.tickets = await this.ServicioTicket.ObtenerTicket();
-    
-  }
-*/
 
 }
