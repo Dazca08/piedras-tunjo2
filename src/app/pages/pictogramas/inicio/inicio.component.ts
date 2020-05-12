@@ -18,7 +18,7 @@ declare var $: any;
   ]
 })
 export class InicioComponent implements OnInit {
-
+ PageActual:number=1;
   pictogramas: Pictograma[] = [];
   nombrePicto = '';
 

@@ -15,7 +15,7 @@
     <b class="text-muted">No hay resultados para la búsqueda</b>
 </div>
 <div class="row" *ngIf="cabanas.length > 0" >
-    <div class="col-md-4 col-sm-6 col-xs-12" *ngFor="let cabana of cabanas  | cabanafiltro:filterCabana">
+    <div class="col-md-4 col-sm-6 col-xs-12" *ngFor="let cabana of cabanas  | cabanafiltro:filterCabana| paginate:{itemsPerPage :3 , currentPage:PageActual}">
         <div class="card mb-3 shadow">
             <app-carousel-images [imagenes]="cabana.ImagenesUrl | imgUrlToArray" 
                                 tipo="cabana"></app-carousel-images>
@@ -41,5 +41,11 @@
                 </div>
             </div>
         </div>
+
     </div>
+
 </div>
+<hr>
+<div align="center" *ngIf="cabanas.length > 0">
+        <pagination-controls (pageChange)="PageActual = $event"></pagination-controls>
+    </div>

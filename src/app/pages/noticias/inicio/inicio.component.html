@@ -13,7 +13,7 @@
     <b class="text-muted">No hay resultados para la búsqueda</b>
 </div>
 <div class="row" *ngIf="noticias.length > 0">
-    <div class="col-md-4 col-sm-6 col-xs-12 mb-2" *ngFor="let noticia of noticias | arrayFilter:'titulo':filterNoticia">
+    <div class="col-md-4 col-sm-6 col-xs-12 mb-2" *ngFor="let noticia of noticias | arrayFilter:'titulo':filterNoticia | paginate:{itemsPerPage :3 , currentPage:PageActual}">
         <div class="card-noticia card shadow">
             <div class="card-header">
                 <small>
@@ -45,3 +45,7 @@
         </div>
     </div>
 </div>
+<hr>
+<div align="center" *ngIf="noticias.length > 0">
+        <pagination-controls (pageChange)="PageActual = $event"></pagination-controls>
+    </div>

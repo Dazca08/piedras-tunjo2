@@ -20,6 +20,7 @@ export class InicioComponent implements OnInit {
     private imagesService: ImagesService
   ) { }
   filterCabana ='';
+   PageActual:number=1;
   ngOnInit(): void {
     this.obtenerCabanas();
   }

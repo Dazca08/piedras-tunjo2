@@ -15,6 +15,7 @@ export class InicioComponent implements OnInit {
 
   noticias: Noticia[] = [];
   filterNoticia ='';
+  PageActual:number=1;
   constructor(
     private noticiasService: NoticiasService,
     private imagesService: ImagesService

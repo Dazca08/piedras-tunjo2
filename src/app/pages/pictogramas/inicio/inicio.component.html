@@ -13,7 +13,7 @@
     <b class="text-muted">No hay resultados para la búsqueda</b>
 </div>
 <div class="row" *ngIf="pictogramas.length > 0">
-    <div @basicAnimate *ngFor="let picto of (pictogramas | arrayFilter:'Nombre':nombrePicto)" class="col-md-4 col-sm-6 col-xs-12">
+    <div @basicAnimate *ngFor="let picto of (pictogramas | arrayFilter:'Nombre':nombrePicto) | paginate:{itemsPerPage :3 , currentPage:PageActual}" class="col-md-4 col-sm-6 col-xs-12">
         <div class="card-picto card shadow mb-2">
             <!-- <img [src]="picto.ImagenesUrl | imgServer: 'picto'" class="card-img-to"> -->
             <app-carousel-images [imagenes]="picto.ImagenesUrl | imgUrlToArray" tipo="picto"></app-carousel-images>
@@ -36,3 +36,7 @@
         </div>
     </div>
 </div>
+<hr>
+<div align="center" *ngIf="pictogramas.length > 0">
+        <pagination-controls (pageChange)="PageActual = $event"></pagination-controls>
+    </div>

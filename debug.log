@@ -53,3 +53,7 @@
 [0508/174819.140:WARNING:minidump_to_upload_parameters.cc(36)] duplicate key guid, discarding value 8f5b76bf-b872-4424-bb5b-da2d899020eb
 [0509/151839.147:WARNING:minidump_to_upload_parameters.cc(36)] duplicate key guid, discarding value 8f5b76bf-b872-4424-bb5b-da2d899020eb
 [0509/152525.069:WARNING:minidump_to_upload_parameters.cc(36)] duplicate key guid, discarding value 8f5b76bf-b872-4424-bb5b-da2d899020eb
+[0512/001006.310:ERROR:minidumpwritedump_with_crashpad_info.cc(435)] Failed to call MiniDumpWriteDump: Solo se completó una parte de una solicitud ReadProcessMemory o WriteProcessMemory. (0x8007012B)
+[0512/001006.424:ERROR:minidumpwritedump_with_crashpad_info.cc(562)] Failed to write minidump file
+[0512/001006.424:ERROR:crash_report_exception_handler.cc(128)] TryMiniDumpWriteDumpWithCrashpadInfo failed
+[0512/001914.250:WARNING:minidump_to_upload_parameters.cc(36)] duplicate key guid, discarding value 8f5b76bf-b872-4424-bb5b-da2d899020eb
