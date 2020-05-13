@@ -40,18 +40,18 @@ export class AgregarComponent implements OnInit {
     // console.log(usuario);
     // VALIDACIONES
     const numDoc = usuario.NumeroDocumento.toString();
-    if (numDoc.length > 10 || numDoc.length < 7) {
-      this.mostrarMensajeError('El número de documento no cumple (7-10) digitos');
+    if (numDoc.length > 10 || numDoc.length < 6) {
+      this.mostrarMensajeError('El número de documento no cumple (6-10) digitos');
       return;
     }
     const correoExiste = await this.usuarioService.existeCorreo(usuario.CorreoElectronico);
     if (correoExiste) {
-      this.mostrarMensajeError('El correo ya está siendo utilizado');
+      this.mostrarMensajeError('El correo ya está siendo utilizado por otro usuario');
       return;
     }
     const numDocExiste = await this.usuarioService.existeNumeroDoc(usuario.NumeroDocumento);
     if (numDocExiste) {
-      this.mostrarMensajeError('El número de documento ya existe');
+      this.mostrarMensajeError('El número de documento ya está siendo utilizado por otro usuario');
       return;
     }
 
@@ -78,8 +78,8 @@ export class AgregarComponent implements OnInit {
   async prepareForm() {
     this.roles = await this.rolService.getRoles();
     this.formUsuario = this.fb.group({
-      Nombre: ['', Validators.required],
-      Apellido: ['', Validators.required],
+      Nombre: ['', [Validators.required, Validators.pattern('[a-zA-Z ñÑáéíóúÁÉÍÓÚ\s]+')]],
+      Apellido: ['', [Validators.required, Validators.pattern('[a-zA-Z ñÑáéíóúÁÉÍÓÚ\s]+')]],
       TipoDocumento: ['TI', Validators.required],
       NumeroDocumento: [0, Validators.required],
       FechaNacimiento: ['2020-01-01', Validators.required],

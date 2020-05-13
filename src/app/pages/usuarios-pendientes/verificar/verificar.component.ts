@@ -41,10 +41,10 @@ export class VerificarComponent implements OnInit {
 
   async onSubmit() {
     const { NumeroDocumento, LugarExpedicion, FechaNacimiento } = this.form.value;
-    if (NumeroDocumento.toString().length > 10 || NumeroDocumento.toString().length < 7) {
+    if (NumeroDocumento.toString().length > 10 || NumeroDocumento.toString().length < 6) {
       Swal.fire(
         'Error',
-        'El número de documento no cumple el formato (7-10 digitos)',
+        'El número de documento no cumple el formato (6-10 digitos)',
         'error'
       );
       return;

@@ -34,13 +34,6 @@ export class EditarComponent implements OnInit {
   }
 
   async onSubmit() {
-    // const usuario: Usuario = {
-    //   ... this.formUsuario.value,
-    //   Icono_url: this.avatar,
-    //   VerificacionCuenta: true,
-    //   EstadoCuenta: true,
-    //   Imagen_documento: null
-    // };
     const {
       Nombre,
       Apellido,
@@ -54,18 +47,18 @@ export class EditarComponent implements OnInit {
     } = this.formUsuario.value;
     // VALIDACIONES
     const numDoc = NumeroDocumento.toString();
-    if (numDoc.length > 10 || numDoc.length < 7) {
-      this.mostrarMensajeError('El número de documento no cumple (7-10) digitos');
+    if (numDoc.length > 10 || numDoc.length < 6) {
+      this.mostrarMensajeError('El número de documento no cumple (6-10) digitos');
       return;
     }
     const correoExiste = await this.usuarioService.existeCorreo(CorreoElectronico);
     if (correoExiste && CorreoElectronico !== this.correoOriginal) {
-      this.mostrarMensajeError('El correo ya está siendo utilizado');
+      this.mostrarMensajeError('El correo ya está siendo utilizado por otro usuario');
       return;
     }
     const numDocExiste = await this.usuarioService.existeNumeroDoc(NumeroDocumento);
     if (numDocExiste && NumeroDocumento !== this.numDocOriginal) {
-      this.mostrarMensajeError('El número de documento ya existe');
+      this.mostrarMensajeError('El número de documento está siendo utilizado por otro usuario');
       return;
     }
 
@@ -111,8 +104,8 @@ export class EditarComponent implements OnInit {
                           this.numDocOriginal = res.NumeroDocumento;
 
                           this.formUsuario = this.fb.group({
-                            Nombre: [res.Nombre, Validators.required],
-                            Apellido: [res.Apellido, Validators.required],
+                            Nombre: [res.Nombre, [Validators.required, Validators.pattern('[a-zA-Z ñÑáéíóúÁÉÍÓÚ\s]+')]],
+                            Apellido: [res.Apellido, [Validators.required, Validators.pattern('[a-zA-Z ñÑáéíóúÁÉÍÓÚ\s]+')]],
                             TipoDocumento: [res.TipoDocumento, Validators.required],
                             NumeroDocumento: [res.NumeroDocumento, Validators.required],
                             FechaNacimiento: [res.FechaNacimiento.split('T')[0], Validators.required],

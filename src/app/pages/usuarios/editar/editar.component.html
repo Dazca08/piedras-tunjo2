@@ -25,6 +25,9 @@
                                     <span *ngIf="nombre.errors?.required">
                                         El nombre es requerido
                                     </span>
+                                    <span *ngIf="nombre.errors?.pattern">
+                                        Nombre invalido
+                                    </span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -35,6 +38,9 @@
                                 <div class="invalid-feedback">
                                     <span *ngIf="apellido.errors?.required">
                                         El apellido es requerido
+                                    </span>
+                                    <span *ngIf="apellido.errors?.pattern">
+                                        Apellido invalido
                                     </span>
                                 </div>
                             </div>
