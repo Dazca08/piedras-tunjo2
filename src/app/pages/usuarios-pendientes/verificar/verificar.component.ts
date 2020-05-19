@@ -56,27 +56,20 @@ export class VerificarComponent implements OnInit {
     this.usuario.VerificacionCuenta = true;
     // enviar para actualización
     const updated = await this.usuarioService.actualizarUsuarioNoVerificado(this.usuario);
-    Swal.fire({
-      title: 'Bien',
-      text: 'Usuario verificado exitosamente',
-      icon: 'success'
-    });
-    this.router.navigateByUrl('/usuarios-pendientes');
-    // // console.log(updated);
-    // if (updated === true) {
-    //   Swal.fire({
-    //     title: 'Bien',
-    //     text: 'Usuario verificado exitosamente',
-    //     icon: 'success'
-    //   });
-    //   this.router.navigateByUrl('/usuarios-pendientes');
-    // } else {
-    //   Swal.fire({
-    //     title: 'Error',
-    //     text: 'Ha ocurrido un error',
-    //     icon: 'error'
-    //   });
-    // }
+    if (updated === true) {
+      Swal.fire({
+        title: 'Bien',
+        text: 'Usuario verificado exitosamente',
+        icon: 'success'
+      });
+      this.router.navigateByUrl('/usuarios-pendientes');
+    } else {
+      Swal.fire({
+        title: 'Error',
+        text: 'Ha ocurrido un error',
+        icon: 'error'
+      });
+    }
   }
 
   getValidationClass(nameControl: string) {
